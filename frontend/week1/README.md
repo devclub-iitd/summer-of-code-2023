@@ -27,7 +27,7 @@ Create a carousel and add the image with two buttons.
 Bonus: Use Javascript to turn this into a slide show 
 
 Add a section heading ("What we do to help our customers in the digital era") with 3 cards. The cards should have an image, some text, and a link.
-Hint: Use absolute positioning, and don't forget to use <div> tag.
+Hint: Use absolute positioning, and don't forget to use div tag.
 
 Add a section heading ("How it works") with 3 cards, this time side by side. This is meant to help the customers, so keep your instructions short and clear.
 
