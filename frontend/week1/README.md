@@ -4,9 +4,9 @@
 
 This week, we'll learn how to build a simple website using HTML and CSS. 
 
-Introduction
+###Introduction
 
-HTML
+####HTML
 
 HTML (Hyper Text Markup Language) is the standard markup for web pages. A markup language is an encoding system which consists of a set of symbols which when inserted in text control it's structure. HTML is based on markup meta languages XML and SGML. Meta languages are used to define a documents structure and the relation between it's parts rather than how it will be displayed. Thus colors, padding, position, etc are rarely specified in HTML. 
 
