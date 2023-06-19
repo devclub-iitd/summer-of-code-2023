@@ -1,10 +1,8 @@
 # DevClub Summer of Code 2023
 
-<!--
-#### Why learn this?
-#### What we'll be building? -->
+## App Development
 
-## Why App development?
+#### Why learn this?
 
 1. **Engagement:** People are more likely to be engaged when they have an app installed on their device. Having an app icon visible on the home screen serves as a constant reminder of your brand or service. Additionally, push notifications can be utilized to send timely and personalized updates, prompting users to interact with the app more frequently.
 
@@ -14,7 +12,7 @@
 
 4. **Personalization:** Apps allow for greater personalization options based on user preferences, behavior, and location. By collecting and analyzing user data, apps can provide personalized content, recommendations, and user interfaces tailored to individual preferences.
 
-## Why Flutter?
+#### Why Flutter?
 
 1. **Single Codebase:** Flutter's ability to create apps for multiple platforms ensures broader market reach and compatibility. By building a single codebase, developers can simultaneously target Android, iOS, web, desktop, and more, reaching a wider audience.
 
@@ -24,10 +22,9 @@
 
 4. **Beauty of Dart and Google Prioritization:** This makes flutter an appealing choice for app developers. With its clean syntax and modern features, Dart enables efficient development and code maintenance. Google's support, exemplified by frameworks like Flutter, fosters a vibrant ecosystem, providing resources and cross-platform capabilities. This combination empowers developers to create high-quality apps with elegance and productivity.
 
-## What we’re covering
+### Week 1
 
-Welcome to Week 1 of the DevClub Summer of Code 2023! The primary focus of Week 1 is to establish a strong foundation in Flutter development and root our theme of Ecommerce.
-
+- #### Concepts
 1. **Setting up Flutter and Visual Studio Code (VSCode):** Start by installing Flutter and setting up Visual Studio Code on your local PC. This will ensure a seamless Flutter app development experience. Additionally, we will introduce you to essential VSCode extensions specifically tailored for Flutter development, enhancing your coding experience.
 
 2. **Widgets: Stateless and Stateful:** Learn about the concepts of stateless and stateful widgets, which are the building blocks of Flutter UIs. Understand the differences between them and when to use each. Create visually appealing layouts using widgets such as Column, Row, Scaffold, Container, and others.
@@ -38,19 +35,7 @@ Welcome to Week 1 of the DevClub Summer of Code 2023! The primary focus of Week 
 
 5. **Introduction to pub.dev:** Discover pub.dev, a central repository for Flutter packages. Learn how to search, evaluate, and integrate packages into your Flutter projects. Find ready-to-use components and utilities that can enhance your app's functionality.
 
-### Assignment: Exploring E-commerce Concepts
-
-In addition to the topics covered in Week 1, we encourage you to dive deeper into E-commerce concepts and explore the different aspects of building a marketplace. This assignment will allow you to apply your Flutter skills and showcase your understanding of E-commerce principles.
-
-1. **Marketplace Design Exploration** We encourage you to explore various marketplace designs available in the industry. While we provide our own design guidelines, we want you to research and gather inspiration from existing e-commerce platforms like Amazon, eBay, and others. Analyze their layouts, navigation patterns, product displays, and user experience. Based on your analysis, create sketches outlining the design of our marketplace app.
-
-2. **Product Listing Implementation** Implement a basic product listing functionality in your Flutter app. Create a list of dummy products with details such as title, description, price, and image. You can hard-code the product data. Display the product listings using Flutter widgets like ListView or GridView. Focus on creating an appealing and user-friendly interface that allows users to browse through the available products.
-
-3. **Product Details and Interaction** Extend your app to display detailed product information when a user selects a product from the listings. Implement a screen that presents the product details, including an enlarged image, description, price, and any other relevant information. Add interactive elements such as buttons for adding the product to a cart or wishlist.
-
-4. **Cart Functionality** Implement a basic cart screen that allows users to view the contents of the cart. Consider how you will manage the state of the cart across different screens and ensure that the cart information persists as users navigate through the app.
-
-## Additional Resources
+- #### Resources
 
 - [Why the Future of Flutter is Bright in 2023 and Beyond](https://example.com)
 - [What is State?](https://youtu.be/QlwiL_yLh6E)
@@ -60,9 +45,4 @@ In addition to the topics covered in Week 1, we encourage you to dive deeper int
 - [pub.dev - Flutter Packages](https://pub.dev)
 - [Flutter Documentation](https://flutter.dev/docs)
 
-**Note:** Feel free to reach out to the DevClub community for support
-
-<!-- ### Week 1
-- #### Concepts
-- #### Resources
-- #### [Task](week1)  -->
+- #### [Task](week1)
