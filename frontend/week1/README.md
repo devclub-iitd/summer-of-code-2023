@@ -4,9 +4,9 @@
 
 This week, we'll learn how to build a simple website using HTML and CSS. 
 
-###Introduction
+##Introduction
 
-####HTML
+HTML
 
 HTML (Hyper Text Markup Language) is the standard markup for web pages. A markup language is an encoding system which consists of a set of symbols which when inserted in text control it's structure. HTML is based on markup meta languages XML and SGML. Meta languages are used to define a documents structure and the relation between it's parts rather than how it will be displayed. Thus colors, padding, position, etc are rarely specified in HTML. 
 
@@ -17,7 +17,7 @@ CSS (Cascading Style Sheets) is used to describe the presentation of a document 
 It can be added in the HTML file (inline) or be linked separately in a style sheet. 
 In case of multiple styles, in line take preference over an external style sheet. 
 
-Task
+##Task
 
 In this task you have to implement a basic figma design using HTML and CSS. 
 
@@ -35,7 +35,7 @@ In the "What our clients say" section, you can add a photo of yourself or your f
 
 In the last section, make a footer and add the logo with your name.
 
-Resources
+##Resources
 
 Mozilla Developer Docs
 
