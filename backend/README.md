@@ -45,5 +45,7 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 - Python's [http.server](https://docs.python.org/3/library/http.server.html): You can use this packe to make a simple backend server, which takes a request with data like URL and body, and returns reponse of headers and content
 - Python's [sqlite3](https://docs.python.org/3/library/sqlite3.html): You can use this python package to interact with a sqlite3 database
 - [ngrok](https://ngrok.com/): You can use this to forward your `localhost` port to the web for everyone to see!
-#### [Task](week1) 
 - [Postman](https://www.postman.com/): You can use this to write about APIs you've written or found, and share or use them conveniently later
+
+#### [Task](week1) 
+Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener

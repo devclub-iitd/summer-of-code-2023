@@ -46,3 +46,4 @@
 - [Flutter Documentation](https://flutter.dev/docs)
 
 - #### [Task](week1)
+This assignment will allow you to apply your Flutter skills with Marketplace Design Exploration, Product Listing Implementation, Product Details and Interaction, and Cart Functionality.

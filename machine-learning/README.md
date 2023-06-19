@@ -32,4 +32,4 @@ This year the theme for DevClub Summer of Code is e-commerce! We will be buildin
 - #### Resources:
     See <a href = "https://github.com/devclub-iitd/summer-of-code-2023/blob/machine-learning/machine-learning/week1/README.md">Assignment 1</a>
 - #### [Task](week1) 
-
+Set up an ML environment to run your code on GPUs, then select and build a price prediction model, and also scrape your own dataset for it from the web.
