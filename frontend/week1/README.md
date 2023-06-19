@@ -19,7 +19,7 @@ In case of multiple styles, in line take preference over an external style sheet
 
 ### Task
 
-In this task you have to implement a basic figma design using HTML and CSS. 
+In this task you have to implement a basic [figma design] (https://www.figma.com/file/N7yxyydXHp3mFS5jW8N0Bl/E-commerce-(Website)-(Community)?type=design&t=3bpoeKePi2CJRpBb-1) using HTML and CSS. 
 
 Create a navbar with 3 links and a logo. The links should be white and turn light blue on clicking them. We're only concerned with the Home page right now but we'll be adding routing and linking other sites very soon ;)
 
@@ -37,13 +37,10 @@ In the last section, make a footer and add the logo with your name.
 
 ### Resources
 
-Mozilla Developer Docs
-
-W3Schools
-
-Programming with Mosh's HTML
-
-Kevin Powell's HTML and CSS basic and advanced
-
-GitHub Documentation  
-
+- [Mozilla Developer Docs](https://developer.mozilla.org/en-US/docs/Learn)
+- [web.dev CSS](https://web.dev/learn/css/)
+- [W3Schools](https://www.w3schools.com/)
+- ProgrammingWithMosh's [HTML](https://www.youtube.com/watch?v=qz0aGYrrlhU)
+- Hussein Nasser's [Web](https://www.youtube.com/watch?v=dh406O2v_1c)
+- CS50 [HTML CSS JS](https://www.youtube.com/watch?v=2VauFS071pg)
+- GitHub Pages [Documentation](https://docs.github.com/en/pages)
