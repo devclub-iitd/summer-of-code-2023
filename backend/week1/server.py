@@ -7,6 +7,26 @@ DATABASE_FILE = "shorten.db"
 
 class urlShortener(BaseHTTPRequestHandler):
 
+    def unzip(self, results):
+
+        # pretty sure theres a faster inbuilt py function for this but was too lazy to look up LOL
+
+        dic = {}
+
+        for element in results:
+            dic[element[0]] = element[1]
+        
+        return dic
+
+    def concat(self, listOfStrs):
+
+        st = ""
+
+        for str in listOfStrs:
+            st = st + str + "/"
+        
+        return st[:-1]
+
     def do_GET(self):
 
         if self.path == '/':
@@ -21,13 +41,15 @@ class urlShortener(BaseHTTPRequestHandler):
 
         elif self.path.split("/")[1] == "redirect" and len(self.path.split("/")) > 2:
 
-            self.db = sqlite3.connect(DATABASE_FILE)
-            self.cursor = self.db.cursor()
+            db = sqlite3.connect(DATABASE_FILE)
+            cur = db.cursor()
+            results = cur.execute("SELECT * FROM shortener").fetchall()
+            results = self.unzip(results)
 
-            if self.path.split("/")[2] == "myCode": # to do check in db
+            if self.path.split("/")[2] in results.keys():
 
                 self.send_response(302)
-                self.send_header("Location", "https://www.google.com") # to do fetch from db
+                self.send_header("Location", results[self.path.split("/")[2]])
                 self.end_headers()
         
             else:
@@ -43,14 +65,23 @@ class urlShortener(BaseHTTPRequestHandler):
         if self.path.split("/")[1] == "create" and len(self.path.split("/")) > 3:
 
             shortCode = self.path.split("/")[2]
-            destinationUrl = self.path.split("/")[3]
+            destinationUrl = self.concat(self.path.split("/")[3:])
 
-            self.db = sqlite3.connect(DATABASE_FILE)
-            self.cursor = self.db.cursor()
+            db = sqlite3.connect(DATABASE_FILE)
+            cur = db.cursor()
+            results = cur.execute("SELECT * FROM shortener").fetchall()
+            results = self.unzip(results)
 
-            if shortCode is not "myCode": # to do check in db
-                self.send_response(201)
-                # to do add to db
+            if shortCode not in results.keys():
+
+                try:
+                    query = "INSERT INTO shortener VALUES ('"+shortCode+"', '"+destinationUrl+"')"
+                    cur.execute(query)
+                    db.commit()
+                    self.send_response(201)
+
+                except:
+                    self.send_error(500)
 
             else:
                 self.send_error(403)
@@ -58,9 +89,7 @@ class urlShortener(BaseHTTPRequestHandler):
         else:
             self.send_error(404)
 
-
-
-shortenServer = HTTPServer((HOST, PORT), urlShortener   )
+shortenServer = HTTPServer((HOST, PORT), urlShortener)
 
 print("Server is running!")
 shortenServer.serve_forever()
