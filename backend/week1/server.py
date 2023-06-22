@@ -50,6 +50,11 @@ class urlShortener(BaseHTTPRequestHandler):
 
                 self.send_response(302)
                 self.send_header("Location", results[self.path.split("/")[2]])
+
+                query = "UPDATE shortener SET timesVisited = timesVisited + 1 WHERE shortCode = '"+self.path.split("/")[2]+"'"
+                cur.execute(query)
+                db.commit()
+
                 self.end_headers()
         
             else:
@@ -75,7 +80,7 @@ class urlShortener(BaseHTTPRequestHandler):
             if shortCode not in results.keys():
 
                 try:
-                    query = "INSERT INTO shortener VALUES ('"+shortCode+"', '"+destinationUrl+"')"
+                    query = "INSERT INTO shortener VALUES ('"+shortCode+"', '"+destinationUrl+", 0')"
                     cur.execute(query)
                     db.commit()
                     self.send_response(201)

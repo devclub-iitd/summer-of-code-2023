@@ -8,8 +8,8 @@ db = sqlite3.connect(DATABASE_FILE)
 cur = db.cursor()
 
 try:
-    cur.execute("CREATE TABLE shortener(shortCode, destinationUrl)")
-    cur.execute("INSERT INTO shortener VALUES ('myCode', 'https://www.google.com')")
+    cur.execute("CREATE TABLE shortener(shortCode, destinationUrl, timesVisited)")
+    cur.execute("INSERT INTO shortener VALUES ('myCode', 'https://www.google.com', 0)")
 except:
     pass
 
