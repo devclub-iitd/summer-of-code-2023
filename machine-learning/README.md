@@ -30,6 +30,13 @@ This year the theme for DevClub Summer of Code is e-commerce! We will be buildin
       - Train Test Split
       - Error metrics
 - #### Resources:
-    See <a href = "https://github.com/devclub-iitd/summer-of-code-2023/blob/machine-learning/machine-learning/week1/README.md">Assignment 1</a>
+    - Week 1
+      1. <a href = "https://www.youtube.com/playlist?list=PLA83b1JHN4ly56Y7o6vDAT8Szxc3_EdRH">Google Colab Setup</a>
+      2. <a href="https://www.youtube.com/watch?v=_uwucNViakk">Kaggle Datasets</a>
+      3. Tutorial on <a href="https://www.youtube.com/watch?v=FniLzpaSFGk">Numpy and Pandas</a> for Data Analysis and Manipulation
+      4. Tutorials on <a href="https://www.youtube.com/playlist?list=PL-osiE80TeTvipOqomVEeZ1HRrcEvtZB_">Matplotlib</a> for Data Visualisation
+      5. <a href="https://www.youtube.com/watch?v=WngoqVB6cXw">Linear Regression (Multiple Variables)</a>
+      6. <a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uvCeTYTeyfe0-rN5r8zn9rw">ML Playlist</a>, contains algorithms like Linear Regression, Decision Trees, and Random Forest
+      7. <a href="https://www.youtube.com/watch?v=K490SP-_H0U&t=26s">Evaluation metrics for regression:</a> MAE vs MSE vs RMSE vs RMSLE
 - #### [Task](week1) 
 Set up an ML environment to run your code on GPUs, then select and build a price prediction model, and also scrape your own dataset for it from the web.
