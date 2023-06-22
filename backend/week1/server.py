@@ -55,6 +55,14 @@ class urlShortener(BaseHTTPRequestHandler):
                 cur.execute(query)
                 db.commit()
 
+                query = "INSERT INTO uniques VALUES ('"+self.path.split("/")[2]+"', '"+self.client_address[0]+"')"
+                cur.execute(query)
+                db.commit()
+
+                query = "UPDATE shortener SET uniqueVisitors = (SELECT COUNT(DISTINCT visitIP ) FROM uniques u WHERE u.shortCode = '"+self.path.split("/")[2]+"')"
+                cur.execute(query)
+                db.commit()
+
                 self.end_headers()
         
             else:
