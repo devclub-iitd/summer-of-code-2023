@@ -3,26 +3,26 @@
 ## Requests made
 
 When moodle is opened first:
-![enter image description here](https://drive.google.com/uc?export=view&id=1hdyS-Yb8khEYFSmU8leILHnleF1mX6A-)
+![enter image description here](./images/1.png)
 
 First, index.php is requested. This is the webpage (PHP is a backend language like JS). Then, in order to display other assets, the index.php requests css files (for styling) as well as JavaScript files for subroutines. The favicon is hosted on an external site, and loaded last.
 
 After logging in:
-![enter image description here](https://drive.google.com/uc?export=view&id=1WUnNy1HMobHMURm6nS9gok4ZF8Gf0F_m)
+![enter image description here](./images/2.png)
 
 There's a lot of requests! The most interesting one is the topmost one: it's a POST request and the payload contains the username and password which is obviously verified server-side. The response is a redirect, code 303, as the verification succeeds and it redirects to the dashboard. **Interestingly, the captcha is just text-based and easily bypassable by a simple script!**
 
 The POST request:
-![enter image description here](https://drive.google.com/uc?export=view&id=1W3sltCjVESD7kNAWkYEQZBciMq08qqzg)
+![enter image description here](./images/3.png)
 
 The payload:
-![enter image description here](https://drive.google.com/uc?export=view&id=1GP0f8kEYZTnSzGOt8QREtTnH1T2nom1q)
+![enter image description here](./images/4.png)
 
 
 ## What do the headers mean?
 
 Here are the response headers for the initial login page request:
-![enter image description here](https://drive.google.com/uc?export=view&id=1CvV_lbi_qfU9Sk2-BqFtsM_4b2YIRLMJ)
+![enter image description here](./images/5.png)
 
 Here's the headers listed and what they mean:
 
@@ -49,7 +49,7 @@ Here's the headers listed and what they mean:
 ## Sweet Cookies
 
 Here are the 2 cookies Moodle has:
-![enter image description here](https://drive.google.com/uc?export=view&id=1fReaxOzGNuj6Nz3yPMCaaMkBYz0Mfnkl)
+![enter image description here](./images/6.png)
 
 *MoodleSession* stores the session ID so you don't have to keep logging in. As soon as you close the browser, however, this cookie is invalid and you have to log in again.
 
