@@ -12,7 +12,6 @@ import seaborn as sns                                 # For plots
 import joblib
 
 raw_data = pd.read_csv('laptop_price.csv', encoding='latin-1')
-raw_data
 
 Resolution = []
 for row in raw_data['ScreenResolution']:
@@ -93,7 +92,7 @@ def pricePredict(X_test):
 
   X = np.concatenate((X_norm, X_transform), axis=1)
   X_train = X[:-1]
-  X_test = X[-1]
+  X_test = [X[-1]]
 
   model = RandomForestRegressor()
   model.fit(X_train, y_train)
@@ -123,4 +122,4 @@ with st.form("my_form"):
 
   submitted = st.form_submit_button("Submit")
   if submitted:
-    st.write("The predicted value of your laptop is "+ pricePredict([Company, TypeName, OpSys, (x*y), GHz, CpuBrand, GpuBrand, RamValue, StorageisSSD]) +" euros!")
+    st.write("The predicted value of your laptop is "+ str((pricePredict([Company, TypeName, OpSys, (x*y), GHz, CpuBrand, GpuBrand, RamValue, StorageisSSD]))[0]) +" euros!")
