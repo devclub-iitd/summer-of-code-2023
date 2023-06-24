@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np                                    # For matrices!
 import matplotlib.pyplot as plt                       # To visualize
 import pandas as pd                                   # To read data
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn import svm
 from sklearn.metrics import mean_squared_error, f1_score
 from sklearn.preprocessing import OneHotEncoder       # To convert discrete strings to vectors!
