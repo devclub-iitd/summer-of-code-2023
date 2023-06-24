@@ -121,9 +121,6 @@ with st.form("my_form"):
 
   GHz = st.number_input("Processor GHz")
 
-  slider_val = st.slider("Form slider")
-  checkbox_val = st.checkbox("Form checkbox")
-
   submitted = st.form_submit_button("Submit")
   if submitted:
     st.write("The predicted value of your laptop is "+ pricePredict([Company, TypeName, OpSys, (x*y), GHz, CpuBrand, GpuBrand, RamValue, StorageisSSD]) +" euros!")
