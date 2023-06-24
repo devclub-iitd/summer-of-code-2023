@@ -66,7 +66,7 @@ raw_data = raw_data.drop(columns=['Product', 'Weight','Inches', 'ScreenResolutio
 # First we convert to numpy arrays
 
 y_train = np.array(raw_data['Price_euros'])
-raw_data = raw_data.drop(columns=['Price_euros'])
+raw_data = raw_data.drop(columns=['Price_euros', 'laptop_ID'])
 
 
 def pricePredict(X_test):
