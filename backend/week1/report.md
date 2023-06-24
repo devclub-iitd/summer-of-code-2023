@@ -3,26 +3,26 @@
 ## Requests made
 
 When moodle is opened first:
-![enter image description here](./images/1.png)
+![enter image description here](./images/1.jpg)
 
 First, index.php is requested. This is the webpage (PHP is a backend language like JS). Then, in order to display other assets, the index.php requests css files (for styling) as well as JavaScript files for subroutines. The favicon is hosted on an external site, and loaded last.
 
 After logging in:
-![enter image description here](./images/2.png)
+![enter image description here](./images/2.jpg)
 
 There's a lot of requests! The most interesting one is the topmost one: it's a POST request and the payload contains the username and password which is obviously verified server-side. The response is a redirect, code 303, as the verification succeeds and it redirects to the dashboard. **Interestingly, the captcha is just text-based and easily bypassable by a simple script!**
 
 The POST request:
-![enter image description here](./images/3.png)
+![enter image description here](./images/3.jpg)
 
 The payload:
-![enter image description here](./images/4.png)
+![enter image description here](./images/4.jpg)
 
 
 ## What do the headers mean?
 
 Here are the response headers for the initial login page request:
-![enter image description here](./images/5.png)
+![enter image description here](./images/5.jpg)
 
 Here's the headers listed and what they mean:
 
@@ -49,7 +49,7 @@ Here's the headers listed and what they mean:
 ## Sweet Cookies
 
 Here are the 2 cookies Moodle has:
-![enter image description here](./images/6.png)
+![enter image description here](./images/6.jpg)
 
 *MoodleSession* stores the session ID so you don't have to keep logging in. As soon as you close the browser, however, this cookie is invalid and you have to log in again.
 
