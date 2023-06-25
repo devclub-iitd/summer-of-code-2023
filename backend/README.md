@@ -45,5 +45,34 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 - Python's [http.server](https://docs.python.org/3/library/http.server.html): You can use this packe to make a simple backend server, which takes a request with data like URL and body, and returns reponse of headers and content
 - Python's [sqlite3](https://docs.python.org/3/library/sqlite3.html): You can use this python package to interact with a sqlite3 database
 - [ngrok](https://ngrok.com/): You can use this to forward your `localhost` port to the web for everyone to see!
-#### [Task](week1) 
 - [Postman](https://www.postman.com/): You can use this to write about APIs you've written or found, and share or use them conveniently later
+
+#### [Task](week1)
+
+### Week 2
+#### Concepts
+- Virtual Environment
+    - What is a virtual environment and why do we need it.
+    - Setting up a virtual environment for our project.
+- Installing Django
+    - Installing Django using pip in the newly created virtual environment.
+    - Creating a new Django project.
+- Creating Apps
+    - Creating apps for our project.
+    - Understanding the structure of a Django app.
+    - Adding the app to the main project.
+- Creating models
+    - Creating models for our app.
+    - Understanding the structure of a Django model.
+    - Adding the models to the database.
+    - Adding data to the model using the admin panel.
+- Template Rendering
+    - Creating templates for our app.
+    - Rendering the templates using views and data from the database.
+
+#### Resources
+- Documentation for Python's [venv](https://docs.python.org/3/library/venv.html) module
+- Installation guide for [Django](https://docs.djangoproject.com/en/4.2/topics/install/)
+- Introduction to [Django](https://www.youtube.com/watch?v=rHux0gMZ3Eg)
+
+#### [Task](week2)
