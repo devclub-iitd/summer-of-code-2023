@@ -6,13 +6,15 @@
 
 ### Task 2A: Creating a Virtual Environment and Installing Django
 You have to create a python virtual environment for your project. You can use the `venv` module to create a virtual environment. You can refer to the [official documentation](https://docs.python.org/3/library/venv.html) for more details.
-- Create a virtual environment named `venv` in the `backend` folder.
+- Create a virtual environment named `venv` in the `backend/` folder.
+- Make sure to add this folder to the `.gitignore`. You can check out various `.gitignore` templates for Django/Python.
 - Activate the virtual environment.
 - Install Django in the virtual environment using `pip install django`.
 
 ### Task 2B: Creating a Django Project and App
 You have to create a Django project. You can refer to the [official documentation](https://docs.djangoproject.com/en/4.2/intro/tutorial01/) for more details.
-- Create a Django project. You can name it anything you like but make sure it is related to our project theme, i.e. E-commerce.
+- Create a Django project. Name it `mydjangoproject` for consistency.
+- Make sure the project directory is at `summer-of-code-2023/backend/mydjangoproject`
 - Run the server and check if it is working.
 - Create a Django app. You can name it anything you like. Add the app to the project and make necessary changes in the `settings.py` file.
 - Write basic code for the app and check if it is working.
@@ -35,6 +37,8 @@ You have to create a form for adding products to the database. You can refer to 
 - Make sure the form is only accessible to authenticated users.
 - Add the necessary logic to add the product to the database.
 
+
 ## Bonus Task
-- Check out Django REST Framework and try to convert your project into an API.
-- Explore usage of JWTs in authentication and try to implement it in your project.
+1. Visualise your schema! Create a file `backend/schema.md` and write each field and their data type etc. for each Model in [table format in markdown](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables), keeping a separate Table for each Model. Also, create a diagram for your schema using [Mermaid](https://mermaid.js.org/syntax/entityRelationshipDiagram.html).
+2. By default, Django uses `sqlite3` as its database for development. However, for production, you need to set up a database like [MySQL](https://www.mysql.com/) or [PostgreSQL](https://www.postgresql.org/). So, for the first bonus task, setup **PostgreSQL** on your local machine, and connect it to Django
+3. When using Django on production, we prefer a different server like `nginx` or `apache` for rendering the [static files](https://docs.djangoproject.com/en/4.2/howto/static-files/deployment/#) like the templates and assets. So, set up a simple [nginx](https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/) server, and place your static files accordingly
