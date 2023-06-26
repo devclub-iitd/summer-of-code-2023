@@ -20,6 +20,6 @@ For positing within the container, use padding and margins. Try to position the 
 
 **Bonus**: You will notice the font size looks too big or too small in some views. Study about different font units in CSS. Try to fix this for bonus points.
 
-Use the navbar class to redesign the navbar. The hover effects mentioned earlier should also be there. 
+Use the navbar class to redesign the navbar. The hover effects mentioned last week should also be there. 
 
 **Bonus**: Try to create a vertical navbar for mobile view using all the properties mentioned earlier.
