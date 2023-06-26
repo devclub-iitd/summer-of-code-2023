@@ -10,12 +10,16 @@ We will be giving attractive **rewards** to those who participate enthusiastical
 - **Tracks**
   - [App Development](app)
     - [Week 1](app/week1): Learn Flutter and build a UI using Stateful and Stateless Widgets
+    - [Week 2](app/week2): Dive deeper into Flutter's Widgets by building ProductTile, Promoted product banners and implementing forms. Make the app dynamic and interactive!
   - [Backend Development](backend)
     - [Week 1](backend/week1): Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
+    - [Week 2](backend/week2): Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
   - [Frontend Development](frontend)
     - [Week 1](frontend/week1): Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
+    - [Week 2](frontend/week2): Use Javascript to create a repository network analyzer consuming the GitHub API, and use Bootstrap to make our previous webpage responsive!
   - [Machine Learning](machine-learning)
     - [Week 1](machine-learning/week1): Set up an ML environment to run your code on GPUs, then select and build a price prediction model, and also scrape your own dataset for it from the web.
+    - [Week 2](machine-learning/week2): Use YOLO to identify and describe items to be sold from the pictures, and fine-tune your Object Detection model using your own dataset
 - [How to Participate](#how-to-participate)
 - [Aim](#aim)
 - [Theme and Project](#theme-and-project)
@@ -56,7 +60,12 @@ The projects in each track will revolve around this theme, and we are planning t
 - We will also be sharing **opportunities** relevant to the tools we have covered here, and your submissions can serve as a proof of your skills
 - We will be showcasing the **best projects** in our Discord server and our social media handles
 - Chance to be part of the team for actually deploying this and **launching** for students on campus!
- 
+- There will be a special award for the overall **most starred fork**!
+  - The fork with the most number of stars :star: will receive a **special mention and a certificate/ECA**
+  - You are expected to **share about your work** on social media and with friends, and ask them to star _your fork_ if they liked it
+  - To keep the game fair, we discourage any bots or fake users. So along with other measures, we'll be counting only those stars from users created **before 2023-06-25**
+  - ~~No more counting dollars,~~ _we'll be counting stars_ on `31st July 2023 11:59 PM IST`
+
 ## Connect
 Join our `DevClub IIT Delhi` **Discord** server using [this invite](https://discord.gg/ScKSwn5jsP) and set your discord nickname to your GitHub handle
 
