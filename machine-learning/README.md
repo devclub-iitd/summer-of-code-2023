@@ -38,5 +38,10 @@ This year the theme for DevClub Summer of Code is e-commerce! We will be buildin
       5. <a href="https://www.youtube.com/watch?v=WngoqVB6cXw">Linear Regression (Multiple Variables)</a>
       6. <a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uvCeTYTeyfe0-rN5r8zn9rw">ML Playlist</a>, contains algorithms like Linear Regression, Decision Trees, and Random Forest
       7. <a href="https://www.youtube.com/watch?v=K490SP-_H0U&t=26s">Evaluation metrics for regression:</a> MAE vs MSE vs RMSE vs RMSLE
+   - Week 2
+     1.  Object Detection by using [YOLO with OpenCV](https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)
+     2. Check out [Scikit Learn](https://www.youtube.com/playlist?list=PLQVvvaa0QuDd0flgGphKCej-9jp-QdzZ3)
+     3. Tutorial on using Pytorch with YOLO [here](https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/)
+     4. Setting up [YOLO on Google Collab](https://www.youtube.com/watch?v=mmj3nxGT2YQ)
 - #### [Task](week1) 
 
