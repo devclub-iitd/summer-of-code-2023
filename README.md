@@ -16,6 +16,7 @@ We will be giving attractive **rewards** to those who participate enthusiastical
     - [Week 1](frontend/week1): *Will be uploaded on Monday 19-06-2023*
   - [Machine Learning](machine-learning)
     - [Week 1](machine-learning/week1): *Will be uploaded on Monday 19-06-2023*
+    - [Week 2](machine-learning/week2): Use YOLO to identify and describe items to be sold from the pictures, and fine-tune your Object Detection model using your own dataset
 - [How to Participate](#how-to-participate)
 - [Aim](#aim)
 - [Theme and Project](#theme-and-project)
