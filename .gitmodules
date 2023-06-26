@@ -1,0 +1,6 @@
+[submodule "machine-learning/week1/price-prediction"]
+	path = machine-learning/week1/price-prediction
+	url = https://github.com/17vali/price-prediction.git
+[submodule "backend/week1/url-shortener"]
+	path = backend/week1/url-shortener
+	url = https://github.com/17vali/url-shortener.git
