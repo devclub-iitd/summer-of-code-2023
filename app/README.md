@@ -67,4 +67,4 @@ This assignment will allow you to apply your Flutter skills with Marketplace Des
 - [A Deep Dive Into PageView In Flutter (With Custom Transitions)](https://medium.com/flutter-community/a-deep-dive-into-pageview-in-flutter-with-custom-transitions-581d9ea6dded)
 
 - #### [Task](week2)
-In Week 2, we will dive deeper into Flutter's capabilities by building ProductTile, Promoted product banners and implementing forms. These topics will empower you to build more dynamic and interactive apps.
+Dive deeper into Flutter's Widgets by building ProductTile, Promoted product banners and implementing forms. Make the app dynamic and interactive!

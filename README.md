@@ -10,6 +10,7 @@ We will be giving attractive **rewards** to those who participate enthusiastical
 - **Tracks**
   - [App Development](app)
     - [Week 1](app/week1): Learn Flutter and build a UI using Stateful and Stateless Widgets
+    - [Week 2](app/week2): Dive deeper into Flutter's Widgets by building ProductTile, Promoted product banners and implementing forms. Make the app dynamic and interactive!
   - [Backend Development](backend)
     - [Week 1](backend/week1): Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
   - [Frontend Development](frontend)
