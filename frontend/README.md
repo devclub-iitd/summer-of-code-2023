@@ -46,8 +46,8 @@ This is a service provided by GitHub where we can host our static files easily a
 - GitHub Pages [Documentation](https://docs.github.com/en/pages)
 
 - #### [Task](week1) 
-Learn how websites work, and then learn how to build a simple website using HTML and CSS.
-⁹
+Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
+
 ### Week 2 
 - ### Concepts 
 - Javascript

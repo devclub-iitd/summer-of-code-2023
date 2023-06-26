@@ -9,13 +9,13 @@ We will be giving attractive **rewards** to those who participate enthusiastical
 
 - **Tracks**
   - [App Development](app)
-    - [Week 1](app/week1): *Will be uploaded on Monday 19-06-2023*
+    - [Week 1](app/week1): Learn Flutter and build a UI using Stateful and Stateless Widgets
   - [Backend Development](backend)
-    - [Week 1](backend/week1): *Will be uploaded on Monday 19-06-2023*
+    - [Week 1](backend/week1): Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
   - [Frontend Development](frontend)
-    - [Week 1](frontend/week1): *Will be uploaded on Monday 19-06-2023*
+    - [Week 1](frontend/week1): Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
   - [Machine Learning](machine-learning)
-    - [Week 1](machine-learning/week1): *Will be uploaded on Monday 19-06-2023*
+    - [Week 1](machine-learning/week1): Set up an ML environment to run your code on GPUs, then select and build a price prediction model, and also scrape your own dataset for it from the web.
 - [How to Participate](#how-to-participate)
 - [Aim](#aim)
 - [Theme and Project](#theme-and-project)
