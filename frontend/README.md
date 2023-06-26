@@ -58,3 +58,4 @@ Bootstrap is the world's most popular framework for building responsive, mobile 
 
 - ### Resources 
 - [Bootstrap Documentation](https://getbootstrap.com/docs/4.3/getting-started/introduction/#quick-start)
+- [Bootstrap Free Code Camp](https://youtube.com/watch?v=-qfEOE4vtxE&feature=share8)
