@@ -11,9 +11,9 @@ This week, we'll learn how to create dynamic and interactive pages with JavaScri
 In this task we're going to make changes to our previous webpage to make it resizable for multiple screens, and add interactive components. 
 
 Add the following lines within the head tag
-'''
+```
 v
-'''
+```
 
 Remove all your positioning properties in the CSS file. Use the container and row class appropriately to enclose the components. Remember that the container is the basic building block of Bootstrap and doesn't have actual content. The same applies to the row class.  
 
