@@ -11,6 +11,7 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 
 ## Timeline
 ### Week 1
+
 #### Concepts
 - Introduction
     - What backend development entails.
@@ -47,7 +48,8 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 - [ngrok](https://ngrok.com/): You can use this to forward your `localhost` port to the web for everyone to see!
 - [Postman](https://www.postman.com/): You can use this to write about APIs you've written or found, and share or use them conveniently later
 
-#### [Task](week1)
+#### [Task](week1) 
+Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
 
 ### Week 2
 #### Concepts
@@ -69,10 +71,16 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 - Template Rendering
     - Creating templates for our app.
     - Rendering the templates using views and data from the database.
+- Using Django's powerful inbuilt Authentication and Form features
 
 #### Resources
 - Documentation for Python's [venv](https://docs.python.org/3/library/venv.html) module
 - Installation guide for [Django](https://docs.djangoproject.com/en/4.2/topics/install/)
 - Introduction to [Django](https://www.youtube.com/watch?v=rHux0gMZ3Eg)
+- GitHub's [Advanced Markdown Formatting](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams#creating-mermaid-diagrams)
+- Digital Ocean's [PostgreSQL Setup](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-22-04)
+- [NGINX](https://nginx.org/en/)
+- Django's guide to [deployment](https://docs.djangoproject.com/en/4.2/howto/deployment/)
 
 #### [Task](week2)
+Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
