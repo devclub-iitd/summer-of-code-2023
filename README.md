@@ -60,7 +60,12 @@ The projects in each track will revolve around this theme, and we are planning t
 - We will also be sharing **opportunities** relevant to the tools we have covered here, and your submissions can serve as a proof of your skills
 - We will be showcasing the **best projects** in our Discord server and our social media handles
 - Chance to be part of the team for actually deploying this and **launching** for students on campus!
- 
+- There will be a special award for the overall **most starred fork**!
+  - The fork with the most number of stars :star: will receive a **special mention and a certificate/ECA**
+  - You are expected to **share about your work** on social media and with friends, and ask them to star _your fork_ if they liked it
+  - To keep the game fair, we discourage any bots or fake users. So along with other measures, we'll be counting only those stars from users created **before 2023-06-25**
+  - ~~No more counting dollars,~~ _we'll be counting stars_ on `31st July 2023 11:59 PM IST`
+
 ## Connect
 Join our `DevClub IIT Delhi` **Discord** server using [this invite](https://discord.gg/ScKSwn5jsP) and set your discord nickname to your GitHub handle
 
