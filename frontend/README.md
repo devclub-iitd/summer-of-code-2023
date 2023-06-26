@@ -56,6 +56,6 @@ Learn how websites work, and then learn how to build a simple website using HTML
 - Bootstrap 
 Bootstrap is the world's most popular framework for building responsive, mobile first sites. It utilises SaaS, a pre-built grid and powerful Javascript plug-ins. Saas is a scripting language that is compiled into CSS. Due to its structured syntax and additional features Saas is preferred over CSS. 
 
-- ### Resources 
+- #### Resources 
 - [Bootstrap Documentation](https://getbootstrap.com/docs/4.3/getting-started/introduction/#quick-start)
 - [Bootstrap Free Code Camp](https://youtube.com/watch?v=-qfEOE4vtxE&feature=share8)
