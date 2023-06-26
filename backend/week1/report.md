@@ -9,14 +9,14 @@ This report analyzes the browser-server communication during the login process i
    - Method: POST
 
    Request Header:
-   ```
+```
    POST /login/index.php HTTP/1.1
    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
    ...
 ```
 
    Response Header:
-   ```
+```
    HTTP/1.1 303 See Other
    Date: Mon, 26 Jun 2023 03:17:36 GMT
    ...
@@ -27,25 +27,26 @@ This report analyzes the browser-server communication during the login process i
    - Method: GET
 
    Request Header:
-   ```
+```
    GET /login/index.php?testsession=49144 HTTP/1.1
    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
    ...
 ```
 
    Response Header:
-   ```
+```
    HTTP/1.1 303 See Other
    Date: Mon, 26 Jun 2023 03:17:37 GMT
    ...
-   ```
+```
 
 3. **Request 3:**
    - URL: https://moodle.iitd.ac.in/my/
    - Method: GET
 
    Request Header:
-   ```GET /my/ HTTP/1.1
+```
+   GET /my/ HTTP/1.1
    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
    ...
 ```
