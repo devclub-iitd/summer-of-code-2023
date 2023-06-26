@@ -46,4 +46,12 @@ This is a service provided by GitHub where we can host our static files easily a
 - GitHub Pages [Documentation](https://docs.github.com/en/pages)
 
 - #### [Task](week1) 
-Learn how websites work, and then learn how to build a simple website using HTML and CSS. 
+Learn how websites work, and then learn how to build a simple website using HTML and CSS.
+⁹
+### Week 2 
+- ### Concepts 
+- Javascript
+
+
+- Bootstrap 
+Bootstrap is the world's most popular framework for building responsive, mobile first sites. It utilises SaaS, a pre-built grid and powerful Javascript plug-ins. Saas is a scripting language that is compiled into CSS. Due to its structured syntax and additional features Saas is preferred over CSS. 
