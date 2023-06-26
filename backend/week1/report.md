@@ -9,12 +9,12 @@ This report analyzes the browser-server communication during the login process i
    - Method: POST
 
    Request Header:
-   `POST /login/index.php HTTP/1.1
+   ```POST /login/index.php HTTP/1.1
    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
    ...```
 
    Response Header:
-   `HTTP/1.1 303 See Other
+   ```HTTP/1.1 303 See Other
    Date: Mon, 26 Jun 2023 03:17:36 GMT
    ...```
 
@@ -23,28 +23,28 @@ This report analyzes the browser-server communication during the login process i
    - Method: GET
 
    Request Header:
-   `GET /login/index.php?testsession=49144 HTTP/1.1
+   ```GET /login/index.php?testsession=49144 HTTP/1.1
    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-   ...`
+   ...```
 
    Response Header:
-   `HTTP/1.1 303 See Other
+   ```HTTP/1.1 303 See Other
    Date: Mon, 26 Jun 2023 03:17:37 GMT
-   ...`
+   ...```
 
 3. **Request 3:**
    - URL: https://moodle.iitd.ac.in/my/
    - Method: GET
 
    Request Header:
-   `GET /my/ HTTP/1.1
+   ```GET /my/ HTTP/1.1
    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-   ...`
+   ...```
 
    Response Header:
-   `HTTP/1.1 200 OK
+   ```HTTP/1.1 200 OK
    Date: Mon, 26 Jun 2023 03:17:37 GMT
-   ...`
+   ...```
 
 ## Server Response Headers
 
@@ -68,11 +68,11 @@ This report analyzes the browser-server communication during the login process i
 
 ## Login Process in Moodle
 
-1. The browser initiates a POST request to `https://moodle.iitd.ac.in/login/index.php` with the login credentials and other necessary data.
+1. The browser initiates a POST request to ```https://moodle.iitd.ac.in/login/index.php``` with the login credentials and other necessary data.
 2. The server responds with a status code of 303 See Other, indicating a redirection.
-3. The browser follows the redirect and sends a GET request to `https://moodle.iitd.ac.in/login/index.php?testsession=49144`.
+3. The browser follows the redirect and sends a GET request to ```https://moodle.iitd.ac.in/login/index.php?testsession=49144```.
 4. The server responds with a status code of 303 See Other, indicating another redirection.
-5. The browser follows the second redirect and sends a GET request to `https://moodle.iitd.ac.in/my/`.
+5. The browser follows the second redirect and sends a GET request to ```https://moodle.iitd.ac.in/my/```.
 6. The server responds with a status code of 200 OK, indicating a successful request.
 
 ## Cookies and Authentication
