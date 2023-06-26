@@ -164,6 +164,9 @@ def home():
         
         return render_template('home.html', short_url=short_url1)
     return render_template('home.html')
+
+
+
 @app.route('/<id>')
 def url_redirect(id):
     conn = get_db_connection()
@@ -185,7 +188,7 @@ def url_redirect(id):
             conn.execute('UPDATE urls SET clicks = ? WHERE id = ?', (clicks+1, original_id))
             conn.commit()
             conn.close()
-            return redirect(original_url,Response=response.status_code)
+            return redirect(original_url,Response=response.headers)
         else:
             flash('INVALID URL')
             return redirect(url_for('home'))
@@ -204,6 +207,17 @@ def url_redirect(id):
 def stats():
     conn = get_db_connection()
     db_urls = conn.execute('SELECT   original_url,clicks,short_url FROM urls').fetchall()
+    hostname= socket.gethostname()
+    ipa=socket.gethostbyname(hostname)
+    found = conn.execute('SELECT status from ips WHERE ip= ?',(ipa,)).fetchone()
+    if found == 0 or found == None:
+
+        data=conn.execute('INSERT INTO ips (ip) VALUES (?)',(ipa,))
+        conn.commit()
+        conn.execute('UPDATE ips SET status =? WHERE ip = ?',(1,ipa))
+        conn.commit()
+        
+    d = conn.execute('SELECT id FROM ips').fetchall()
     conn.close()
 
     urls = []
@@ -214,21 +228,27 @@ def stats():
         r1=[ourl,surl,click]
         urls.append(r1)
 
-    return render_template('data.html', urls=urls)
-if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    return render_template('data.html', urls=urls,uni=len(d))
 '''def uniques():
     conn= get_db_connection()
     hostname= socket.gethostname()
     ipa=socket.gethostbyname(hostname)
-    found = conn.execute('SELECT ip from ips WHERE ip= ?',(ipa,)).fetchone()
-    if found == 0:
+    found = conn.execute('SELECT status from ips WHERE ip= ?',(ipa,)).fetchone()
+    if found == 0 or found == None:
 
         data=conn.execute('INSERT INTO ips (ip) VALUES (?)',(ipa,))
         conn.commit()
         conn.execute('UPDATE ips SET status =? WHERE ip = ?',(1,ipa))
-    last_row = conn.execute('SELECT * FROM ips ORDER BY id DESC LIMIT 1').fetchone() 
-    if last_row:
-        return last_row[0]
+        conn.commit()
+        
+    d = conn.execute('SELECT id FROM ips').fetchall()
+    conn.close()
+
+    if d:
+        return len(d)
     else:
-        return 0   '''
+        return 0 
+uniques()'''
+    
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
