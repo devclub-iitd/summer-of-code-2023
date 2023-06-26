@@ -43,5 +43,7 @@ This year the theme for DevClub Summer of Code is e-commerce! We will be buildin
      2. Check out [Scikit Learn](https://www.youtube.com/playlist?list=PLQVvvaa0QuDd0flgGphKCej-9jp-QdzZ3)
      3. Tutorial on using Pytorch with YOLO [here](https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/)
      4. Setting up [YOLO on Google Collab](https://www.youtube.com/watch?v=mmj3nxGT2YQ)
+     5. Sample Dataset for Object Detection [BSDS500](https://www.kaggle.com/datasets/balraj98/berkeley-segmentation-dataset-500-bsds500) (Already split into training testing and validation)
+     6. YOLO Algorithm Expkanation [YOLO](https://www.baeldung.com/cs/yolo-algorithm) 
 - #### [Task](week1) 
 
