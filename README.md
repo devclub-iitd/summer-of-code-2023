@@ -13,6 +13,7 @@ We will be giving attractive **rewards** to those who participate enthusiastical
     - [Week 2](app/week2): Dive deeper into Flutter's Widgets by building ProductTile, Promoted product banners and implementing forms. Make the app dynamic and interactive!
   - [Backend Development](backend)
     - [Week 1](backend/week1): Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
+    - [Week 2](backend/week2): Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
   - [Frontend Development](frontend)
     - [Week 1](frontend/week1): Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
   - [Machine Learning](machine-learning)
