@@ -1,0 +1,4 @@
+venv/*
+venv
+backend/mydjangoproject/eCom/__pycache__/*
+backend/mydjangoproject/mydjangoproject/__pycache__/*
