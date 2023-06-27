@@ -47,3 +47,22 @@ This is a service provided by GitHub where we can host our static files easily a
 
 - #### [Task](week1) 
 Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
+
+### Week 2 
+- #### Concepts 
+- Javascript
+Javascript is the programming language which runs on the web! Today, it also powers many backend servers and user applications. We use Javascript on the frontend to add logic to our webpage to make it interactive, using both Browser APIs and Web APIs.
+
+- Bootstrap 
+Bootstrap is the world's most popular framework for building responsive, mobile first sites. It utilises SaaS, a pre-built grid and powerful Javascript plug-ins. Saas is a scripting language that is compiled into CSS. Due to its structured syntax and additional features Saas is preferred over CSS. 
+
+- #### Resources 
+- Programming with Mosh's [JavaScript Tutorial for Beginners](https://www.youtube.com/watch?v=W6NZfCO5SIk)
+- DevClub's [JavaScript and using APIs to power up your webpage](https://www.youtube.com/watch?v=gC4X0ZRiJo4)
+- [The Modern JavaScript Tutorial](https://javascript.info/)
+- Hussein Nasser's [GitHub REST API Crash Course](https://www.youtube.com/watch?v=5QlE6o-iYcE)
+- [Bootstrap Documentation](https://getbootstrap.com/docs/4.3/getting-started/introduction/#quick-start)
+- [Bootstrap Free Code Camp](https://youtube.com/watch?v=-qfEOE4vtxE&feature=share8)
+
+- #### [Task](week2) 
+Use Javascript to create a repository network analyzer consuming the GitHub API, and use Bootstrap to make our previous webpage responsive!

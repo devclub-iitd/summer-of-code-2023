@@ -21,7 +21,7 @@ Finally, create a file in this repo as `frontend/week1/report.md` and write your
 
 ### Task 2
 
-In this task you have to implement a basic [figma design] (https://www.figma.com/file/N7yxyydXHp3mFS5jW8N0Bl/E-commerce-(Website)-(Community)?type=design&t=3bpoeKePi2CJRpBb-1) using HTML and CSS. 
+In this task you have to implement a basic [figma design](https://www.figma.com/file/N7yxyydXHp3mFS5jW8N0Bl/E-commerce-(Website)-(Community)?type=design&t=3bpoeKePi2CJRpBb-1) using HTML and CSS. 
 
 Create a navbar with 3 links and a logo. The links should be white and turn light blue on clicking them. We're only concerned with the Home page right now but we'll be adding routing and linking other sites very soon ;)
 
