@@ -1,3 +1,4 @@
+"""This is an API for creating shorturl for more instructions read server.md"""
 import http.server
 import sqlite3
 import json
