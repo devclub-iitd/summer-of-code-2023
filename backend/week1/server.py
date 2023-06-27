@@ -1,15 +1,17 @@
 import http.server
-import json
-import random
-import string
 import sqlite3
+import json
+from urllib.parse import parse_qs
+import uuid
 
-conn = sqlite3.connect('url_shortener.db')
+# Empty dictionary to store cookies
+cookies = {}
+
+# Database connection
+conn = sqlite3.connect("url_shortener.db")
 c = conn.cursor()
 
-cookies = {}  # Empty dict with cookie to user mapping
-
-# Create URLs table
+# Create URLs table if it doesn't exist
 c.execute('''
     CREATE TABLE IF NOT EXISTS urls (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,165 +22,196 @@ c.execute('''
     )
 ''')
 
-# Create user table
+# Create users table if it doesn't exist
 c.execute('''
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL UNIQUE,
+        username TEXT UNIQUE NOT NULL,
         password TEXT NOT NULL
     )
 ''')
 
-class URLShortenerHandler(http.server.BaseHTTPRequestHandler):
+# Function to handle login request
+def login_handler(body):
+    username = body.get("username", [""])[0]
+    password = body.get("password", [""])[0]
+
+    c.execute("SELECT * FROM users WHERE username=?", (username,))
+    user = c.fetchone()
+
+    if user:
+        if user[2] == password:
+            user_id = str(uuid.uuid4())
+            cookies[user_id] = username
+            return (200, {"message": "Login successful", "user_id": user_id})
+        else:
+            return (401, {"message": "Invalid password"})
+    else:
+        return (401, {"message": "Invalid username"})
+
+# Function to handle signin request
+def signin_handler(body):
+    username = body.get("username", [""])[0]
+    password = body.get("password", [""])[0]
+
+    c.execute("SELECT * FROM users WHERE username=?", (username,))
+    user = c.fetchone()
+
+    if user:
+        return (409, {"message": "User already exists"})
+    else:
+        user_id = str(uuid.uuid4())
+        cookies[user_id] = username
+        c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
+        conn.commit()
+        return (200, {"message": "Signin successful", "user_id": user_id})
+
+# Function to handle create short URL request
+def create_handler(short_code, destination_url, user_cookie):
+    if user_cookie not in cookies:
+        return (401, {"message": "Session expired. Please login again"})
+    
+    user = cookies[user_cookie]
+    
+    c.execute("SELECT * FROM urls WHERE short_code=?", (short_code,))
+    url = c.fetchone()
+    
+    if url:
+        return (409, {"message": "Short code already exists"})
+    
+    c.execute("INSERT INTO urls (short_code, destination_url, user) VALUES (?, ?, ?)", (short_code, destination_url, user))
+    conn.commit()
+    return (201, {"message": "Short URL created successfully"})
+
+
+# Function to handle redirect request
+def redirect_handler(short_code):
+    c.execute("SELECT * FROM urls WHERE short_code=?", (short_code,))
+    url = c.fetchone()
+    
+    if url:
+        visit_count = url[4] + 1
+        c.execute("UPDATE urls SET visit_count=? WHERE short_code=?", (visit_count, short_code))
+        conn.commit()
+        return (302, {"Location": url[2]})
+    else:
+        return (404, {"message": "Short URL not found"})
+
+
+# Function to handle update request
+def update_handler(short_code, new_destination_url, user_cookie):
+    if user_cookie not in cookies:
+        return (401, {"message": "Session expired. Please login again"})
+    
+    user = cookies[user_cookie]
+    
+    c.execute("SELECT * FROM urls WHERE short_code=?", (short_code,))
+    url = c.fetchone()
+    
+    if url:
+        if url[3] != user:
+            return (403, {"message": "You don't have permission to update this URL"})
+        
+        c.execute("UPDATE urls SET destination_url=?, visit_count=0 WHERE short_code=?", (new_destination_url, short_code))
+        conn.commit()
+        return (200, {"message": "URL destination updated successfully"})
+    else:
+        return (404, {"message": "Short URL not found"})
+
+
+# Custom HTTP request handler
+class RequestHandler(http.server.BaseHTTPRequestHandler):
+    
+    # Set response headers
+    def set_headers(self, status_code, user_id=None):
+        self.send_response(status_code)
+        self.send_header("Content-Type", "application/json")
+        if user_id:
+            self.send_header("Set-Cookie", f"{user_id}")
+        self.end_headers()
+    
+ 
+        
+    
+    # Parse the request body
+    def parse_body(self):
+        content_length = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(content_length).decode("utf-8")
+        return parse_qs(body)
+    
+    # Handle login request
+    def handle_login(self):
+        body = self.parse_body()
+        status_code, response_body = login_handler(body)
+        user_id = response_body.get("user_id")
+        self.set_headers(status_code, user_id)
+        self.wfile.write(bytes(json.dumps(response_body), "utf-8"))
+    
+    
+    # Handle signin request
+    def handle_signin(self):
+        body = self.parse_body()
+        status_code, response_body = signin_handler(body)
+        user_id = response_body.get("user_id")
+        self.set_headers(status_code, user_id)
+        self.wfile.write(bytes(json.dumps(response_body), "utf-8"))
+    
+    
+    # Handle create short URL request
+    def handle_create(self, short_code, destination_url):
+        user_cookie = self.headers.get("Cookie", "")
+        status_code, response_body = create_handler(short_code, destination_url, user_cookie)
+        self.set_headers(status_code)
+        self.wfile.write(bytes(json.dumps(response_body), "utf-8"))
+    
+    # Handle redirect request
+    def handle_redirect(self, short_code):
+        status_code, response_body = redirect_handler(short_code)
+        self.set_headers(status_code)
+        if status_code == 302:
+            self.send_header("Location", response_body["Location"])
+        self.wfile.write(bytes("", "utf-8"))
+    
+    # Handle update request
+    def handle_update(self, short_code, new_destination_url):
+        user_cookie = self.headers.get("Cookie", "")
+        status_code, response_body = update_handler(short_code, new_destination_url, user_cookie)
+        self.set_headers(status_code)
+        self.wfile.write(bytes(json.dumps(response_body), "utf-8"))
+    
+    # Handle HTTP GET requests
     def do_GET(self):
-        if self.path.startswith('/login'):
-            # Verify login credentials and generate cookie
-            content_length = int(self.headers.get('Content-Length', 0))
-            payload = self.rfile.read(content_length)
-            payload = json.loads(payload)
-            username = payload.get('username')
-            password = payload.get('password')
-            if verify_login(username, password):
-                cookie = generate_cookie()
-                cookies[cookie] = username
-                self.send_response(200)
-                self.send_header('Content-Type', 'application/json')
-                self.send_header('Set-Cookie', f'cookie={cookie}')
-                self.end_headers()
-                response = {
-                    'message': 'Login successful',
-                    'cookie': cookie
-                }
-                self.wfile.write(json.dumps(response).encode())
-            else:
-                self.send_error(401, 'Unauthorized')
-
-        elif self.path.startswith('/redirect/'):
-            # Redirect to the original URL and increase visit count
-            short_code = self.path.split('/')[-1]
-            c.execute('SELECT * FROM urls WHERE short_code = ?', (short_code,))
-            result = c.fetchone()
-            if result:
-                url_id, _, destination_url, _, visit_count = result
-                visit_count += 1
-                c.execute('UPDATE urls SET visit_count = ? WHERE id = ?', (visit_count, url_id))
-                conn.commit()
-                self.send_response(302)
-                self.send_header('Location', destination_url)
-                self.end_headers()
-            else:
-                self.send_error(404, 'Short URL not found')
-
-        else:
-            self.send_error(404, 'Not Found')
-
+        if self.path.startswith("/redirect/"):
+            short_code = self.path[len("/redirect/"):]
+            self.handle_redirect(short_code)
+    
+    # Handle HTTP POST requests
     def do_POST(self):
-        if self.path.startswith('/signin'):
-            # Sign in and create a new user
-            content_length = int(self.headers.get('Content-Length', 0))
-            payload = self.rfile.read(content_length)
-            payload = json.loads(payload)
-            username = payload.get('username')
-            password = payload.get('password')
-            if username_exists(username):
-                self.send_error(409, 'Username already exists')
-            else:
-                cookie = generate_cookie()
-                cookies[cookie] = username
-                c.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
-                conn.commit()
-                self.send_response(201)
-                self.send_header('Content-Type', 'application/json')
-                self.send_header('Set-Cookie', f'cookie={cookie}')
-                self.end_headers()
-                response = {
-                    'message': 'User created successfully',
-                    'cookie': cookie
-                }
-                self.wfile.write(json.dumps(response).encode())
-
-        elif self.path.startswith('/create/'):
-            # Create a new short URL
-            short_code = self.path.split('/')[-2]
-            destination_url = self.path.split('/')[-1]
-            cookie = self.headers.get('Cookie')
-            username = cookies.get(cookie)
-            if username is None:
-                self.send_error(401, 'Session expired, please log in')
-            else:
-                if short_code_exists(short_code):
-                    self.send_error(409, 'Short code already exists')
-                else:
-                    c.execute('INSERT INTO urls (short_code, destination_url, user) VALUES (?, ?, ?)',
-                              (short_code, destination_url, username))
-                    conn.commit()
-                    self.send_response(201)
-                    self.send_header('Content-Type', 'application/json')
-                    self.end_headers()
-                    response = {
-                        'message': 'Short URL created successfully'
-                    }
-                    self.wfile.write(json.dumps(response).encode())
-
-        else:
-            self.send_error(404, 'Not Found')
-
+        if self.path == "/login":
+            self.handle_login()
+        elif self.path == "/signin":
+            self.handle_signin()
+        elif self.path == "/create":
+            body = self.parse_body()
+            short_code = body.get("short_code", [""])[0]
+            destination_url = body.get("destination_url", [""])[0]
+            self.handle_create(short_code, destination_url)
+    
+    # Handle HTTP PATCH requests
     def do_PATCH(self):
-        if self.path.startswith('/update/'):
-            # Update the destination URL
-            short_code = self.path.split('/')[-2]
-            destination_url = self.path.split('/')[-1]
-            cookie = self.headers.get('Cookie')
-            username = cookies.get(cookie)
-            if username is None:
-                self.send_error(401, 'Session expired, please log in')
-            else:
-                if user_matches_short_code(username, short_code):
-                    c.execute('UPDATE urls SET destination_url = ?, visit_count = 0 WHERE short_code = ?',
-                              (destination_url, short_code))
-                    conn.commit()
-                    self.send_response(200)
-                    self.send_header('Content-Type', 'application/json')
-                    self.end_headers()
-                    response = {
-                        'message': 'URL destination updated successfully'
-                    }
-                    self.wfile.write(json.dumps(response).encode())
-                else:
-                    self.send_error(403, 'Forbidden')
+        if self.path.startswith("/update/"):
+            short_code = self.path[len("/update/"):]
+            body = self.parse_body()
+            new_destination_url = body.get("destination_url", [""])[0]
+            self.handle_update(short_code, new_destination_url)
 
-        else:
-            self.send_error(404, 'Not Found')
 
-def generate_cookie():
-    # Generate a random cookie
-    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=16))
-
-def verify_login(username, password):
-    # Verify the login credentials against the user table
-    c.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password))
-    return c.fetchone() is not None
-
-def username_exists(username):
-    # Check if a username exists in the user table
-    c.execute('SELECT * FROM users WHERE username = ?', (username,))
-    return c.fetchone() is not None
-
-def short_code_exists(short_code):
-    # Check if a short code exists in the urls table
-    c.execute('SELECT * FROM urls WHERE short_code = ?', (short_code,))
-    return c.fetchone() is not None
-
-def user_matches_short_code(username, short_code):
-    # Check if the given user matches the user associated with the short code
-    c.execute('SELECT user FROM urls WHERE short_code = ?', (short_code,))
-    result = c.fetchone()
-    return result is not None and result[0] == username
-
-def run_server():
-    server_address = ('', 8000)
-    httpd = http.server.HTTPServer(server_address, URLShortenerHandler)
+# Run the server
+def run(server_class=http.server.HTTPServer, handler_class=RequestHandler):
+    server_address = ("", 8000)
+    httpd = server_class(server_address, handler_class)
     httpd.serve_forever()
 
-if __name__ == '__main__':
-    run_server()
+
+if __name__ == "__main__":
+    run()

@@ -35,6 +35,33 @@ Response:
   }
   ```
 
+### Signin
+
+Request:
+- Method: POST
+- URL: `/signin`
+- Headers:
+  - Content-Type: application/json
+- Body:
+  ```json
+  {
+    "username": "your_username",
+    "password": "your_password"
+  }
+  ```
+
+Response:
+- Status Code: 200 (OK)
+- Headers:
+  - Content-Type: application/json
+- Body:
+  ```json
+  {
+    "message": "Login successful",
+    "cookie": "your_cookie"
+  }
+  ```
+
 ### Create Short URL
 
 Request:
