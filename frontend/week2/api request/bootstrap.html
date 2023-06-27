@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Repository Network Analyzer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Repository Network Analyzer</h1>
+        <div class="row justify-content-center mb-3">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" id="repoInput" class="form-control" placeholder="Enter repository owner and name (e.g., facebook/react)">
+                    <button onclick="analyzeRepository()" class="btn btn-primary">Analyze</button>
+                </div>
+            </div>
+        </div>
+        <div id="resultContainer" class="row justify-content-center"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function analyzeRepository() {
+            var repoInput = document.getElementById("repoInput").value;
+            var username = "YOUR_GITHUB_USERNAME";
+            var token = "YOUR_PERSONAL_ACCESS_TOKEN";
+            var apiUrl = `https://api.github.com/repos/${repoInput}/network/dependencies`;
+
+            fetch(apiUrl, {
+                headers: {
+                    Authorization: `Basic ${btoa(username + ":" + token)}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayResults(data);
+            })
+            .catch(error => {
+                console.log(error);
+                displayError("An error occurred while fetching data.");
+            });
+        }
+
+        function displayResults(data) {
+            var resultContainer = document.getElementById("resultContainer");
+            resultContainer.innerHTML = "";
+
+            if (data.length === 0) {
+                resultContainer.innerHTML = "No dependencies found for the repository.";
+                return;
+            }
+
+            var dependenciesList = document.createElement("ul");
+            dependenciesList.classList.add("list-group");
+
+            data.forEach(dependency => {
+                var dependencyItem = document.createElement("li");
+                dependencyItem.classList.add("list-group-item");
+                dependencyItem.textContent = dependency.name;
+                dependenciesList.appendChild(dependencyItem);
+            });
+
+            resultContainer.appendChild(dependenciesList);
+        }
+
+        function displayError(errorMessage) {
+            var resultContainer = document.getElementById("resultContainer");
+            resultContainer.innerHTML = errorMessage;
+        }
+    </script>
+</body>
+</html>
+
