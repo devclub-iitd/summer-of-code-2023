@@ -4,7 +4,7 @@
 
 This week, we'll learn how websites work, and then learn how to build a simple website using HTML and CSS. 
 
-### Task 1
+### Task 1 
 
 For this task, visit [Moodle](https://moodle.iitd.ac.in), and open up **Elements** tab in the DevTools
 - Observe how the page is divided into nested elements. Check if it forms a tree structure.
