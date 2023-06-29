@@ -17,6 +17,9 @@ class _CategoryPageState extends State<CategoryPage> {
   int i=1;
   List productList=[];
   List HeadPhone=["hp1.png","hp2.png","hp3.png","hp4.png","hp5.png"];
+  IconData like=Icons.favorite_border_outlined;
+  Color likedColor=Colors.black12;
+
   @override
   void initState() {
     super.initState();
@@ -176,13 +179,26 @@ class _CategoryPageState extends State<CategoryPage> {
                   child: Container(
                     child: Column(
                       children: [
-                        Container(
-                        height: 125,
-                          decoration: BoxDecoration(
-                            borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
-                            color: Color(0xff33505a),
-                            image: DecorationImage(image: NetworkImage(productList[i]["image"]),fit: BoxFit.fill)
-                          ),
+                        Stack(
+                          children:[
+                            Container(
+                              height: 118,
+                              decoration: BoxDecoration(
+                                  borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
+                                  color: Colors.grey.withOpacity(0.5),
+                                  image: DecorationImage(image: NetworkImage(productList[i]["image"]),fit: BoxFit.fill)
+                              ),
+                            ),
+                            Positioned(
+                              right: 10,
+                                top: 5,
+                                child: GestureDetector(
+                                    onTap: (){
+
+                                    },
+                                    child: Icon(like,color: likedColor,)))
+                          ]
+                    
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
@@ -193,10 +209,13 @@ class _CategoryPageState extends State<CategoryPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                          padding: const EdgeInsets.only(left: 8.0,right: 5),
                           child: Row(
                             children: [
                               Text("Rs."+productList[i]["price"].toString(),style: TextStyle(color: Colors.blue),),
+                              Expanded(child: Container()),
+                              Icon(Icons.star_outline,color: Colors.yellow,),
+                              Text(productList[i]["rating"])
                             ],
                           ),
                         )
