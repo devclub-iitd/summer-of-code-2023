@@ -3,6 +3,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/Models/Product.dart';
+import 'package:my_app/Utils/widgets.dart';
+import 'package:my_app/pages/product_description.dart';
 
 class CategoryPage extends StatefulWidget {
   String name;
@@ -173,57 +176,62 @@ class _CategoryPageState extends State<CategoryPage> {
               itemCount: productList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),
                   itemBuilder: (context,i){
-              return Card(
-                elevation: 5,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Stack(
-                          children:[
-                            Container(
-                              height: 118,
-                              decoration: BoxDecoration(
-                                  borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
-                                  color: Colors.grey.withOpacity(0.5),
-                                  image: DecorationImage(image: NetworkImage(productList[i]["image"]),fit: BoxFit.fill)
+              return GestureDetector(
+                onTap: (){
+                  nextScreen(context, ProductDescription(product: Product(productList[i]["name"],productList[i]["price"] ,productList[i]["desc"], productList[i]["image"],productList[i]["rating"]),category: widget.name,),);
+                },
+                child: Card(
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Stack(
+                            children:[
+                              Container(
+                                height: 118,
+                                decoration: BoxDecoration(
+                                    borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
+                                    color: Colors.grey.withOpacity(0.5),
+                                    image: DecorationImage(image: NetworkImage(productList[i]["image"]),fit: BoxFit.fill)
+                                ),
                               ),
+                              Positioned(
+                                right: 10,
+                                  top: 5,
+                                  child: GestureDetector(
+                                      onTap: (){
+
+                                      },
+                                      child: Icon(like,color: likedColor,)))
+                            ]
+
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Row(
+                              children: [
+                                Text(productList[i]["name"],style: TextStyle(fontWeight: FontWeight.w500),),
+                              ],
                             ),
-                            Positioned(
-                              right: 10,
-                                top: 5,
-                                child: GestureDetector(
-                                    onTap: (){
-
-                                    },
-                                    child: Icon(like,color: likedColor,)))
-                          ]
-                    
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Row(
-                            children: [
-                              Text(productList[i]["name"],style: TextStyle(fontWeight: FontWeight.w500),),
-                            ],
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0,right: 5),
-                          child: Row(
-                            children: [
-                              Text("Rs."+productList[i]["price"].toString(),style: TextStyle(color: Colors.blue),),
-                              Expanded(child: Container()),
-                              Icon(Icons.star_outline,color: Colors.yellow,),
-                              Text(productList[i]["rating"])
-                            ],
-                          ),
-                        )
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0,right: 5),
+                            child: Row(
+                              children: [
+                                Text("Rs."+productList[i]["price"].toString(),style: TextStyle(color: Colors.blue),),
+                                Expanded(child: Container()),
+                                Icon(Icons.star_outline,color: Colors.yellow,),
+                                Text(productList[i]["rating"])
+                              ],
+                            ),
+                          )
 
-                      ],
+                        ],
+                      ),
+
                     ),
-
-                  ),
+                ),
               );
                   }),
                 ))
