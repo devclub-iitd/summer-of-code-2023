@@ -1,0 +1,18 @@
+#form{
+    background-color: rgb(94, 94, 230);
+}
+#rep,#own{
+    border-radius: 0.2rem;
+}
+#button{
+    background-color: rgb(41, 41, 187);
+    color: white;
+    box-shadow: 2px 5px 5px 0px rgba(74, 153, 211,0.5);
+    border: 0;
+}
+#button:hover{
+    background-color: rgb(34, 34, 155);
+}
+.intro{
+    background-color: rgb(228, 228, 122);
+}

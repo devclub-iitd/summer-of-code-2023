@@ -3,17 +3,26 @@
     <head>
         <title>Don't Spy</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="./index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <form id="form">
-            <input type="text" placeholder="Repo" id="rep"/><br>
-            <input type="text" placeholder="Owner" id="own"/><br>
-            <button>Submit</button>
+        <form id="form" class="row">
+            <div class="container">
+            <div class="row justify-content-center">
+            <input type="text" placeholder="Repo" id="rep" class="col-3 px-2 mx-2 my-2"/>
+            <input type="text" placeholder="Owner" id="own" class="col-3 px-2 mx-2 my-2"/></div>
+            <div class="row justify-content-center my-2"><button class="col-1 p-1" id="button">Submit</button></div></div>
         </form>
         <script type="text/javascript" src="index.js"></script>
-        <div id="data"></div>
+        <div id="data">
+            <div class="row p-2 intro">
+                <div class="col p-2">User Account</div>
+            <div class="col p-2">Stars</div>
+            <div class="col p-2">has issues</div>
+            <div class="col p-2">size</div></div>
+        </div>
     </body>
 </html>
