@@ -2,12 +2,10 @@
 class Product{
   final String name;
   final int price;
-  final int itemsCount;
   final String image;
-
-
+  final String desc;
 
 
 const  Product(
-  this.name, this.price, this.itemsCount,this.image);
+  this.name, this.price, this.desc,this.image);
 }

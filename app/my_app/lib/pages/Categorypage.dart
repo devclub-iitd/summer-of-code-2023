@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,7 +15,21 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPageState extends State<CategoryPage> {
   int i=1;
+  List productList=[];
   List HeadPhone=["hp1.png","hp2.png","hp3.png","hp4.png","hp5.png"];
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+  getData() async {
+    await DefaultAssetBundle.of(context).loadString("json/"+widget.name+".json").then((value) {
+      setState(() {
+        productList = json.decode(value);
+      });
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,7 +167,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: GridView.builder(
-              itemCount: 5,
+              itemCount: productList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),
                   itemBuilder: (context,i){
               return Card(
@@ -164,15 +180,15 @@ class _CategoryPageState extends State<CategoryPage> {
                         height: 125,
                           decoration: BoxDecoration(
                             borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
-                            color: Colors.grey.withOpacity(0.5),
-                            image: DecorationImage(image: AssetImage("assets/"+HeadPhone[i],),fit: BoxFit.fill)
+                            color: Color(0xff33505a),
+                            image: DecorationImage(image: NetworkImage(productList[i]["image"]),fit: BoxFit.fill)
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Row(
                             children: [
-                              Text("Boat 420",style: TextStyle(fontWeight: FontWeight.w500),),
+                              Text(productList[i]["name"],style: TextStyle(fontWeight: FontWeight.w500),),
                             ],
                           ),
                         ),
@@ -180,7 +196,7 @@ class _CategoryPageState extends State<CategoryPage> {
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Row(
                             children: [
-                              Text("Rs.10",style: TextStyle(color: Colors.blue),),
+                              Text("Rs."+productList[i]["price"].toString(),style: TextStyle(color: Colors.blue),),
                             ],
                           ),
                         )
