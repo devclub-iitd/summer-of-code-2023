@@ -10,11 +10,29 @@
     </head>
     <body class="fluid-container">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <ul class="nav nav-pills justify-content-end px-5 py-3" >
+            {%if not request.user.is_authenticated%}
+            <li class="nav-item">
+                <a class="nav-link active mx-2" aria-current="page" href="{%url 'sign_up'%}">Sign Up</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{%url 'login'%}">Log In</a>
+            </li>
+            {%else%}
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'logout'%}">Log Out</a>
+              </li>
+            {%endif%}
+        </ul>
         {% for x in ls %}
-        <div class="row"><div class="col px-5">
-            <div class="row">{{x.name}}</div>
-            <div class="row">{{x.description}}</div>
-            <div class="row">{{x.price}}</div>
+        <div class="row"><div class="col p-4">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{x.name}}</h5>
+                  <p class="card-text">{{x.description}}</p>
+                  <a href="#" class="btn btn-primary">${{x.price}}</a>
+                </div>
+              </div>
         </div></div>
         {% endfor %}
     </body>

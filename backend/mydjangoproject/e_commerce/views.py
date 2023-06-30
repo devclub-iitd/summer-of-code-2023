@@ -2,14 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from e_commerce.models import Product
 from django.template import loader
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import UserCreationForm
 
 def visit(request):
     template = loader.get_template("visit.html")
-    print(Product.objects.all())
+    # print(Product.objects.all())
+    print(request.user.is_authenticated)
     context ={"ls":list(Product.objects.all())}
     return HttpResponse(template.render(context, request))
 
@@ -26,7 +27,10 @@ def login_page(request):
             return redirect('login')
     else:
         return HttpResponse(render(request,"login.html",{}))
-    
+
+def logout_page(request):
+    logout(request)
+    return redirect('visit')
 @csrf_protect
 def sign_up(request):
     if(request.method=="POST"):
