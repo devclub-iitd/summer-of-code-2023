@@ -48,7 +48,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                       child: Container(
                         height: 50,
                         width: 50,
-                        child: Icon(Icons.sort_outlined),
+                        child: Icon(Icons.favorite_border_outlined),
                       ),
                     ),
                   ],
@@ -60,6 +60,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         height: 200,

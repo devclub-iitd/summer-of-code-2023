@@ -246,6 +246,15 @@ class _CategoryPageState extends State<CategoryPage> {
               ),
                 );
                 }),
+              ),
+              Visibility(
+                visible: widget.name=="Gadgets"?true:false,
+                child: Container(
+                  height: 150,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: NetworkImage("https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/18919eb38b0f5c17.png?q=20"),fit: BoxFit.cover)
+                  ),
+                ),
               )
 
             ],

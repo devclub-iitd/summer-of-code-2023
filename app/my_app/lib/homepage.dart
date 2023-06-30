@@ -1,9 +1,13 @@
+
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/Categorypage.dart';
 import 'package:my_app/pages/profilepage.dart';
+
+import 'Models/Product.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,6 +20,9 @@ class _HomePageState extends State<HomePage> {
   List items=["Headphone","Formals","Gadgets","Furnitures","watches","Bagpacks"];
   List img=["hp1.png","Cmen.jpg","Celectr.jpg","Cfurni.jpg","Cwat.jpg","Cbag.jpg"];
   int currentPageIndex=0;
+  List<Product> list=[Product("Casual shirts", 0, "min 50% off", "https://m.media-amazon.com/images/I/51v8UlSQfBL._AC_UL600_FMwebp_QL65_.jpg", ""),
+  Product("Men's Trousers", 0, "Min 70% off", "https://m.media-amazon.com/images/I/71wL-coI9aL._AC_UL600_FMwebp_QL65_.jpg", ""),
+  Product("Deals on Red Tape", 0, "Upto 80% off", "https://m.media-amazon.com/images/I/31nQtukA3bL._AC_SY200_.jpg", "")];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,14 +196,72 @@ class _HomePageState extends State<HomePage> {
               ),
 
               const SizedBox(height: 15,),
-              Row(
-                children: [
-                  const Text("Hot Sales",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black),),
-                  Expanded(child: Container()),
-                  const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey),),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Text("Hot Sales",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
+                    Expanded(child: Container()),
+                    const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey,fontSize: 18),),
+                  ],
+                ),
               ),
               const SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal:10),
+                child: GridView.builder(
+                    itemCount: list.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),
+                    itemBuilder: (context,i){
+                      return GestureDetector(
+                        child: Container(
+                          decoration: BoxDecoration(border:Border.fromBorderSide(BorderSide(width: 1,color: Colors.grey)),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 140,
+                                decoration: BoxDecoration(
+                                    borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
+                                    color: Colors.grey.withOpacity(0.5),
+                                    image: DecorationImage(image: NetworkImage(list[i].image),fit: BoxFit.fill)
+                                ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(list[i].name,style: TextStyle(fontWeight: FontWeight.w500),),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 5),
+                                child: Row(
+                                  children: [
+                                    Text(list[i].desc.toString(),style: TextStyle(color: Colors.blue),),
+                                    Expanded(child: Container()),
+                                  ],
+                                ),
+                              )
+
+                            ],
+                          ),
+
+                        ),
+                      );
+                    }),
+              ),
+              const SizedBox(height: 10,),
+              Container(
+                height: 150,
+                decoration: BoxDecoration(
+                    image: DecorationImage(image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/NAB/Banner_Corporate-bulk.jpg"),fit: BoxFit.cover)
+                ),
+              )
             ],
           ),
         )),
