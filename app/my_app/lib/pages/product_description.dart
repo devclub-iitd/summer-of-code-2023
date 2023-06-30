@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/Product.dart';
 
@@ -81,12 +82,48 @@ class _ProductDescriptionState extends State<ProductDescription> {
                       ),
                       SizedBox(height: 10,),
                       Padding(padding: EdgeInsets.only(left: 8),
-                        child: Row(
-                          children: [
-                            Text(widget.product.desc,style: TextStyle(color: Colors.black.withOpacity(0.8),fontSize: 17),),
-                          ],
-                        )
-                        ,)
+                        child: Text(widget.product.desc,style: TextStyle(color: Colors.black.withOpacity(0.8),fontSize: 17),)
+                        ,),
+                      SizedBox(height: 10,),
+                      Row(
+                        children: [
+                        RatingBar.builder(
+                        initialRating: double.parse(widget.product.ratings),
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          size: 15,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                        },
+                      ),
+
+
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        decoration: const BoxDecoration(
+                            gradient:LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [Colors.black,Colors.black45],),
+                            borderRadius: BorderRadius.all(Radius.circular(15))
+                        ),
+                        height: 50,
+                        child: const Center(
+                          child: Text("Add to Cart",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+
                     ],
                   ),
                 ),
