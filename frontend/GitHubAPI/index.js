@@ -34,13 +34,17 @@ document.querySelector("#form").addEventListener("submit", async (event) => {
   var ls = [],
     counter = 2;
   await fetch(
-    "https://api.github.com/repos/" + own + "/" + repo + "/forks?page=1"
+    "https://api.github.com/repos/" +
+      own +
+      "/" +
+      repo +
+      "/forks?page=1&sort=stargazers&per_page=99"
   )
     .then((res) => res.json())
     .then((res) => {
       ls = res;
     });
-  while (ls != []) {
+  while (ls.length != 0 && counter <= 10) {
     table = document.getElementById("data");
     for (y in ls) {
       table.appendChild(create(ls[y]));
@@ -68,7 +72,7 @@ document.querySelector("#form").addEventListener("submit", async (event) => {
               }
             });
           await fetch(
-            "https://api.github.com/repos/" + name + "/" + repo + "/commits"
+            "https://api.github.com/repos/" + name + "/" + repo + "/commits?per_page=99"
           )
             .then((i) => i.json())
             .then((i) => {
@@ -93,12 +97,14 @@ document.querySelector("#form").addEventListener("submit", async (event) => {
         "/" +
         repo +
         "/forks?page=" +
-        counter
+        counter +
+        "&sort=stargazers&per_page=99"
     )
       .then((res) => res.json())
       .then((res) => {
         ls = res;
       });
     counter += 1;
+    console.log(ls);
   }
 });
