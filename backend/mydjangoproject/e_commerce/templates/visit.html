@@ -35,5 +35,10 @@
               </div>
         </div></div>
         {% endfor %}
+        {%if request.user.is_authenticated%}
+        <div class="position-fixed bottom-0 end-0 m-3">
+          <a href="{%url 'add_product'%}" class="btn btn-success btn-floating">Add Product</a>
+        </div>
+        {%endif%}
     </body>
 </html>

@@ -46,3 +46,13 @@ def sign_up(request):
             return redirect('sign_up')
     form=UserCreationForm()
     return render(request,'signup.html',{'form':form})
+
+@csrf_protect
+def add_product(request):
+    if(not request.user.is_authenticated):
+        return redirect('login')
+    if(request.method=='POST'):
+        product=Product(name=request.POST.get("name"),description=request.POST.get("description"),price=request.POST.get("price"))
+        product.save()
+        return redirect('add_product')
+    return render(request,'add_product.html',{})
