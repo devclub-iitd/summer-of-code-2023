@@ -1,10 +1,15 @@
 
 
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/Categorypage.dart';
+import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/profilepage.dart';
 
 import 'Models/Product.dart';
@@ -20,9 +25,24 @@ class _HomePageState extends State<HomePage> {
   List items=["Headphone","Formals","Gadgets","Furnitures","watches","Bagpacks"];
   List img=["hp1.png","Cmen.jpg","Celectr.jpg","Cfurni.jpg","Cwat.jpg","Cbag.jpg"];
   int currentPageIndex=0;
-  List<Product> list=[Product("Casual shirts", 0, "min 50% off", "https://m.media-amazon.com/images/I/51v8UlSQfBL._AC_UL600_FMwebp_QL65_.jpg", ""),
-  Product("Men's Trousers", 0, "Min 70% off", "https://m.media-amazon.com/images/I/71wL-coI9aL._AC_UL600_FMwebp_QL65_.jpg", ""),
-  Product("Deals on Red Tape", 0, "Upto 80% off", "https://m.media-amazon.com/images/I/31nQtukA3bL._AC_SY200_.jpg", "")];
+  List<Product> productList=[];
+  ApiService apiService=ApiService();
+  bool isloading=true;
+  List<Product> list=[Product("Casual shirts", "", "min 50% off", "https://m.media-amazon.com/images/I/51v8UlSQfBL._AC_UL600_FMwebp_QL65_.jpg", "",''),
+  Product("Men's Trousers", "", "Min 70% off", "https://m.media-amazon.com/images/I/71wL-coI9aL._AC_UL600_FMwebp_QL65_.jpg", "",''),
+  Product("Deals on Red Tape", "", "Upto 80% off", "https://m.media-amazon.com/images/I/31nQtukA3bL._AC_SY200_.jpg", "",'')];
+
+  @override
+  void initState() {
+    super.initState();
+    apiService.fetchProduct().then((value){
+
+      setState(() {
+        productList=value;
+        isloading=false;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -261,6 +281,70 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                     image: DecorationImage(image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/NAB/Banner_Corporate-bulk.jpg"),fit: BoxFit.cover)
                 ),
+              ),
+              const SizedBox(height: 10,),
+              isloading?CircularProgressIndicator(
+                color: Colors.black,
+              ):Padding(
+                padding: const EdgeInsets.symmetric(horizontal:10),
+                child: GridView.builder(
+                    itemCount:productList.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),
+                    itemBuilder: (context,i){
+                      return GestureDetector(
+                        onTap: (){
+                          nextScreen(context, ProductDescription(product: Product(productList[i].name, productList[i].price, productList[i].desc, productList[i].image, productList[i].ratings,''), category:productList[i].Category ));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(border:Border.fromBorderSide(BorderSide(width: 1,color: Colors.grey)),
+                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 131,
+                                decoration: BoxDecoration(
+                                    borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
+                                    color: Colors.grey.withOpacity(0.5),
+                                    image: DecorationImage(image: NetworkImage(productList[i].image),fit: BoxFit.fill)
+                                ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(productList[i].name.substring(0,10),style: TextStyle(fontWeight: FontWeight.w500),),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 5),
+                                child: Row(
+                                  children: [
+                                    Text(productList[i].desc.toString().substring(0,15),style: TextStyle(color: Colors.blue),),
+                                    Expanded(child: Container()),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 5),
+                                child: Row(
+                                  children: [
+                                    Text("Rs."+productList[i].price.toString(),style: TextStyle(color: Colors.blue),),
+                                    Expanded(child: Container()),
+                                  ],
+                                ),
+                              ),
+
+
+                            ],
+                          ),
+
+                        ),
+                      );
+                    }),
               )
             ],
           ),

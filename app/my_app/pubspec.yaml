@@ -38,6 +38,7 @@ dependencies:
   carousel_slider:
   google_fonts:
   flutter_rating_bar:
+  http:
 
 
 dev_dependencies:
