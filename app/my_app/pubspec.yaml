@@ -39,6 +39,7 @@ dependencies:
   google_fonts:
   flutter_rating_bar:
   http:
+  provider:
 
 
 dev_dependencies:

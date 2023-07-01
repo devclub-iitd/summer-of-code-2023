@@ -14,4 +14,5 @@ const  Product(
 factory Product.fromJson(Map<String,dynamic> json){
   return Product(json['title'], json['price'].toString(), json['description'], json['image'], json["rating"]['rate'].toString(),json['category']);
 }
+
 }

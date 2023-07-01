@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/Categorypage.dart';
+import 'package:my_app/pages/mycart.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/profilepage.dart';
 
@@ -90,10 +91,15 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
                   children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      child: const Icon(Icons.shopping_cart_outlined,color: Colors.black,size: 30,),
+                    GestureDetector(
+                      onTap: (){
+                        nextScreen(context, MyCart());
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 50,
+                        child: const Icon(Icons.shopping_cart_outlined,color: Colors.black,size: 30,),
+                      ),
                     ),
                     Expanded(child: appbarTitle())
                   ],

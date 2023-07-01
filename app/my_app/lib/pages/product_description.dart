@@ -1,8 +1,14 @@
 
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/Product.dart';
+import 'package:my_app/Utils/widgets.dart';
+import 'package:my_app/pages/mycart.dart';
+import 'package:my_app/product_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProductDescription extends StatefulWidget {
   Product product;
@@ -14,6 +20,9 @@ class ProductDescription extends StatefulWidget {
 }
 
 class _ProductDescriptionState extends State<ProductDescription> {
+  ProductProvider productProvider=ProductProvider();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +84,9 @@ class _ProductDescriptionState extends State<ProductDescription> {
                         padding: const EdgeInsets.only(left: 8.0,top: 10),
                         child: Row(
                           children: [
-                            Text(widget.product.name,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20),),
+                            Container(
+                              width:250,
+                                child: Text(widget.product.name,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20),)),
                             Expanded(child: Container()),
                             Text("Rs."+widget.product.price.toString(),style: TextStyle(color: Colors.blue,fontSize: 18),),
                           ],
@@ -109,20 +120,31 @@ class _ProductDescriptionState extends State<ProductDescription> {
                         ],
                       ),
                       SizedBox(height: 10,),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        decoration: const BoxDecoration(
-                            gradient:LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Colors.black,Colors.black45],),
-                            borderRadius: BorderRadius.all(Radius.circular(15))
-                        ),
-                        height: 50,
-                        child: const Center(
-                          child: Text("Add to Cart",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                      Consumer<ProductProvider>(
+                          builder: (context,data,child){
+
+                        return GestureDetector(
+                          onTap: (){
+                            data.addProduct(widget.product);
+                            nextScreen(context, MyCart());
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            decoration: const BoxDecoration(
+                                gradient:LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.black,Colors.black45],),
+                                borderRadius: BorderRadius.all(Radius.circular(15))
+                            ),
+                            height: 50,
+                            child: const Center(
+                              child: Text("Add to Cart",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                              ),
+                            ),
                           ),
-                        ),
+                        );
+                          }
                       ),
 
                     ],

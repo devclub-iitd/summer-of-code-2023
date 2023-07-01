@@ -190,7 +190,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 itemBuilder: (context,i){
                 return GestureDetector(
               onTap: (){
-                nextScreen(context, ProductDescription(product: Product(productList[i]["name"],productList[i]["price"] ,productList[i]["desc"], productList[i]["image"],productList[i]["rating"],''),category: widget.name,),);
+                nextScreen(context, ProductDescription(product: Product(productList[i]["name"],productList[i]["price"].toString() ,productList[i]["desc"], productList[i]["image"],productList[i]["rating"],''),category: widget.name,),);
               },
               child: Card(
                 elevation: 5,
