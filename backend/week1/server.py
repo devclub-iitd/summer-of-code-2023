@@ -3,8 +3,7 @@ import urllib.parse
 
 url_mappings = {}
 class URLHandler(http.server.BaseHTTPRequestHandler):
-
-
+# bacc
     def do_POST(self):
         url = urllib.parse.urlparse(self.path).path
         try:
