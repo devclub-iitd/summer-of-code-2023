@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-const textInputdec=InputDecoration(
+var textInputdec=InputDecoration(
   labelStyle: TextStyle(color: Colors.black),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color:Colors.grey,width: 2)
+    borderSide: BorderSide.none,
+
   ),
     enabledBorder: OutlineInputBorder(
-borderSide: BorderSide(color:Color(0xff053637),width: 2)
+borderSide: BorderSide.none
 ),
 errorBorder: OutlineInputBorder(
-borderSide: BorderSide(color:Colors.red,width: 2)
+borderSide: BorderSide.none
 )
 );
 void nextScreen(context,page){

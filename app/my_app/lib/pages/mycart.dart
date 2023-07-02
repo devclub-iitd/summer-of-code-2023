@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/Product.dart';
+import 'package:my_app/Utils/widgets.dart';
+import 'package:my_app/homepage.dart';
+import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/product_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +19,7 @@ class _MyCartState extends State<MyCart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar:CheckOut() ,
       body: SafeArea(child: Container(
         padding: EdgeInsets.only(top: 10),
         child: Column(
@@ -54,12 +58,12 @@ class _MyCartState extends State<MyCart> {
             ),
             SizedBox(height: 15,),
             CartProducts()
-
           ],
         ),
       )),
     );
   }
+
 
   Widget CartProducts(){
     return Consumer<ProductProvider>(
@@ -69,12 +73,12 @@ class _MyCartState extends State<MyCart> {
             child: Column(
               children: [
                 Text("Cart is empty",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 23),),
-                SizedBox(height: 10,),
+                SizedBox(height: 20,),
                 Text("Let's find something special for you",style:TextStyle(fontSize: 20,color: Colors.grey),),
-                SizedBox(height: 15,),
+                SizedBox(height: 25,),
                 GestureDetector(
                   onTap: (){
-
+                    nextScreen(context, HomePage());
                   },
                   child: Container(
                     width: 250,
@@ -96,10 +100,11 @@ class _MyCartState extends State<MyCart> {
               ],
             ),
           )
-          :Card(
+          :Container(
+        height: 500,
+            child: Card(
+        elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-            child: Container(
-
               child: Column(
                 children: [
                   Padding(
@@ -117,7 +122,7 @@ class _MyCartState extends State<MyCart> {
                           ),
                           child: Icon(Icons.shopping_cart_outlined),
                         ),
-                        Text("Items in the cart",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 20),),
+                        Text("Items in your cart",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 20),),
                         Text(data.list.length.toString(),style: TextStyle(color: Colors.blue,fontSize: 22,fontWeight: FontWeight.w400),)
                       ],
                     ),
@@ -128,39 +133,78 @@ class _MyCartState extends State<MyCart> {
                   shrinkWrap: true,
                   itemBuilder: (context,i){
                   final product=data.products[i];
-                  return ListTile(
-                    leading: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.5),
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.fill)
-                      ),
-                    ),
-                    title: Text(product.name,),
-                    subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
-                    trailing: GestureDetector(
-                      onTap: (){
-                        data.removeProduct(product);
-                      },
-                      child: Container(
-                        height: 40,
-                          width: 40,
+                  return GestureDetector(
+                    onTap: (){
+                      nextScreen(context, ProductDescription(product: product, category: product.Category));
+                    },
+                    child: ListTile(
+                      leading: Container(
+                        height: 60,
+                        width: 60,
                         decoration: BoxDecoration(
-                          color: Colors.grey.withOpacity(0.2),
-                          borderRadius: BorderRadius.all(Radius.circular(10))
+                          color: Colors.grey.withOpacity(0.5),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.fill)
                         ),
-                        child: Icon(Icons.remove,color: Colors.red,),
+                      ),
+                      title: Text(product.name,),
+                      subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
+                      trailing: GestureDetector(
+                        onTap: (){
+                          data.removeProduct(product);
+                        },
+                        child: Container(
+                          height: 40,
+                            width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.2),
+                            borderRadius: BorderRadius.all(Radius.circular(10))
+                          ),
+                          child: Icon(Icons.remove,color: Colors.red,),
+                        ),
                       ),
                     ),
                   );
 
       }),
+
                 ],
               ),
             ),
           );
     });
   }
+
+  Widget CheckOut(){
+    return Consumer<ProductProvider>(
+      builder: (context,data,child){
+        int priceSum=0;
+        for(var i=0; i<data.size; i++){
+          priceSum=priceSum+int.parse(data.products[i].price.split(".")[0]).toInt();
+        }
+
+        return data.size==0? Container(height: 1,):
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            decoration: const BoxDecoration(
+                gradient:LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.black,Colors.black45],),
+                borderRadius: BorderRadius.all(Radius.circular(15))
+            ),
+            height: 50,
+            child:  Center(
+              child: Text("Go to checkout -  Rs."+priceSum.toString(),style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+        );
+      }
+
+    );
+  }
+
 }

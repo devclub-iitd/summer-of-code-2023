@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/product_description.dart';
@@ -21,15 +22,22 @@ class _CategoryPageState extends State<CategoryPage> {
   int i=1;
   List<DropdownMenuItem> items=[DropdownMenuItem(child: Text("BestSeller")),DropdownMenuItem(child: Text("Trending")),DropdownMenuItem(child: Text("Discounts")),];
   List productList=[];
+  List<User> list=[];
   String initial="BestSeller";
   List HeadPhone=["hp1.png","hp2.png","hp3.png","hp4.png","hp5.png"];
   IconData like=Icons.favorite_border_outlined;
   Color likedColor=Colors.black12;
+  ApiService apiService=ApiService();
 
   @override
   void initState() {
     super.initState();
     getData();
+    apiService.getUser().then((value){
+      setState(() {
+        list=value;
+      });
+    });
   }
   getData() async {
     await DefaultAssetBundle.of(context).loadString("json/"+widget.name+".json").then((value) {
@@ -38,7 +46,10 @@ class _CategoryPageState extends State<CategoryPage> {
       });
 
     });
+
+
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -255,13 +266,53 @@ class _CategoryPageState extends State<CategoryPage> {
                     image: DecorationImage(image: NetworkImage("https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/18919eb38b0f5c17.png?q=20"),fit: BoxFit.cover)
                   ),
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: GridView.builder(
+                    itemCount: list.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),
+                    itemBuilder: (context,i){
+                      return Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(list[i].email,style: TextStyle(fontWeight: FontWeight.w500),),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 5),
+                                child: Row(
+                                  children: [
+                                    Text(list[i].name.toString(),style: TextStyle(color: Colors.blue),),
+
+                                  ],
+                                ),
+                              )
+
+                            ],
+                          ),
+
+                        ),
+                      );
+                    }),
+              ),
 
             ],
           ),
           ),
         ),
       ),
+
     );
   }
 }
