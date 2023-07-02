@@ -11,6 +11,16 @@
 
 <body>
     <h1>Products</h1>
+    {% if user.is_authenticated %}
+
+    <a href="/logout">Logout</a>
+
+    {%endif%}
+    {% if user.is_authenticated == False%}
+    <a href="/login">Login</a>
+    {% endif %}
+
+
 
     <table class="table table-striped">
         <tr>

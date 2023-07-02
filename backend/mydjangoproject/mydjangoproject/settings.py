@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_4rxs#0$w@e_g65)(!5pzl3f@85q3i-1anxj5vyocrzy=zaels
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','.ngrok.io','7ca6-2401-4900-1f3d-33fe-e5c7-684e-4690-a4b4.ngrok-free.app','https://4941-2402-3a80-1f88-a496-68d1-9cea-1d24-facb.ngrok-free.app']
 
 
 # Application definition
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'mydjangoproject.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'test',
+       'NAME': 'postgres',
        'USER': 'postgres',
        'PASSWORD': 'begoodtoall',
        'HOST': '127.0.0.1',
@@ -127,3 +127,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ['https://7ca6-2401-4900-1f3d-33fe-e5c7-684e-4690-a4b4.ngrok-free.app']
