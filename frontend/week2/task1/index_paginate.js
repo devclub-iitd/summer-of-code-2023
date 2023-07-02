@@ -1,5 +1,4 @@
 import { Octokit, App } from "https://esm.sh/octokit";
-import { Auth } from './credential.js'
 
 
 const btnGet = document.getElementById("btnGet")
