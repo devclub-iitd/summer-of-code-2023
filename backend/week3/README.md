@@ -11,15 +11,16 @@ You have to install Django REST Framework in your project. You can refer to the 
 
 ### Task 3B: Transforming Django project into a REST API
 Now we will be transforming our existing Django project into a REST API. You can refer to the [official documentation](https://www.django-rest-framework.org/tutorial/quickstart/) for more details.
-- Create a new model `Tag` with only one field `name`. Modify the `Product` model to add a `tags` field which is a many-to-many field with `Tag` model.
 - Modify `views.py` to add the necessary logic for the APIs. You are **only** allowed to use function based views for this task.
 - Create 5 APIs for each of the following:
     - Get all products
     - Get a single product (by id)
-    - Get products by tag
     - Add a product
     - Delete a product
+    - Purchase a product
 - Test the APIs using Postman and make sure they are working as expected.
+
+**Note:** You can create new models and/or modify the existing models if you want to.
 
 ### Task 3C: Authentication using Simple JWT
 You have to add authentication to your project. You can refer to the [official documentation](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) for more details.
@@ -29,7 +30,7 @@ You have to add authentication to your project. You can refer to the [official d
     - Login
     - Signup
 - Test the APIs using Postman and make sure they are working as expected.
-- Make `Add Product` API created in the previous task accessible only to authenticated users and `Delete Product` API accessible only to the user who created the product.
+- Make `Add Product` and `Purchase Product` APIs created in the previous task accessible only to authenticated users and `Delete Product` API accessible only to the user who created the product. Put necessary restrictions on `Purchase Product` API so that a user can only purchase a product once, a user cannot purchase a product created by them, etc. (**DO NOT** delete the product after it has been purchased.)
 
 ### Task 3D: Documentation
 Now we will be finally documenting our APIs in Postman. You can refer to the [official documentation](https://learning.postman.com/docs/getting-started/introduction/) for more details.
