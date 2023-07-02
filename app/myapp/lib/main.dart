@@ -7,35 +7,36 @@ import 'package:csv/csv.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  ProductData.products = fetchData();
-  print(ProductData.products.length);
-  runApp(MarketplaceApp());
+  fetchData().then((products) {
+    Storage.products = products;
+    print(Storage.products.length);
+    runApp(MarketplaceApp());
+  });
 }
-List<Product> fetchData() {
+Future<List<Product>> fetchData() async {
   List<Product> products = [];
 
   // Read the CSV file from assets
-  rootBundle.loadString('assets/marketplace.csv').then((csvString) {
-    List<List<dynamic>> csvData = CsvToListConverter().convert(csvString);
+  String csvString = await rootBundle.loadString('assets/marketplace.csv');
+  List<List<dynamic>> csvData = CsvToListConverter().convert(csvString);
 
-    List<String> fields = csvData[0].cast<String>();
-    for (int i = 1; i < csvData.length; i++) {
-      List<dynamic> row = csvData[i];
+  List<String> fields = csvData[0].cast<String>();
+  for (int i = 1; i < csvData.length; i++) {
+    List<dynamic> row = csvData[i];
 
-      String title = row[0].toString();
-      String description = row[1].toString();
-      double price = double.parse(row[2].toString());
-      String image = row[3].toString();
+    String title = row[0].toString();
+    String description = row[1].toString();
+    double price = double.parse(row[2].toString());
+    String image = row[3].toString();
 
-      Product product = Product(
-        title: title,
-        description: description,
-        price: price,
-        image: image,
-      );
-      products.add(product);
-    }
-  });
+    Product product = Product(
+      title: title,
+      description: description,
+      price: price,
+      image: image,
+    );
+    products.add(product);
+  }
 
   return products;
 }
@@ -47,10 +48,14 @@ class MarketplaceApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ProductListingScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ProductListingScreen(),
+      },
     );
   }
 }
+
 
 
 

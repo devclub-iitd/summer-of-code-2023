@@ -10,4 +10,8 @@ class Product {
     required this.price,
     required this.image,
   });
+  @override
+  bool operator ==(other) {
+    return (other is Product) && (other.title == title);
+  }
 }

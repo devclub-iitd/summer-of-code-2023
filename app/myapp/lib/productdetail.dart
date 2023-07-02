@@ -1,10 +1,11 @@
+import 'storage.dart';
 import 'package:flutter/material.dart';
 import 'product.dart';
 import 'cart.dart';
 class ProductDetailsScreen extends StatelessWidget {
   final Product product;
-
-  ProductDetailsScreen({required this.product});
+  final Function() onUpdateParentState;
+  ProductDetailsScreen({required this.product, required this.onUpdateParentState});
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +64,11 @@ class ProductDetailsScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                        builder: (context) => Cart(),
-                        ),
-                      );
+                      onUpdateParentState();
+                      if (!Storage.favorites.contains(product))
+                      {Storage.favorites.insert(0,product);}
                     },
-                    child: Text('View Cart'),
+                    child: Text('Add to Favorites'),
                   ),
                 ),
               ],
