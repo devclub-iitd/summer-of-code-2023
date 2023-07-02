@@ -9,7 +9,7 @@ btnGet.addEventListener("click", getForks)
 async function getCommits(i, repo) {
     const commitUrl = "https://api.github.com/repos/"+i.full_name+"/commits"
 
-    const commitResponse = await fetch(commitUrl})
+    const commitResponse = await fetch(commitUrl, { headers: { "Authorization": Auth.token} })
     const commitResult = await commitResponse.json()
 
     console.log(commitResult)
@@ -30,7 +30,7 @@ async function getCommits(i, repo) {
 async function getBranches(i, repo) {
     const branchUrl = "https://api.github.com/repos/"+i.full_name+"/branches"
 
-    const branchResponse = await fetch(branchUrl})
+    const branchResponse = await fetch(branchUrl, { headers: { "Authorization": Auth.token} })
     const branchResult = await branchResponse.json()
 
     console.log(branchResult)
@@ -78,6 +78,9 @@ async function getForks() {
 
     const data = await octokit.paginate("https://api.github.com/repos/devclub-iitd/summer-of-code-2023/forks", {
         per_page: 100,
+        headers: {
+          "Authorization": Auth.token,
+        },
       });
 
     console.log(data)
