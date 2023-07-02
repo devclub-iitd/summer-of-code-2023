@@ -51,23 +51,25 @@ async function getBranches(i, repo) {
 async function getForks() {
     clear();
 
+    const load = document.createElement("div");
+    load.classList.add("loader");
+    divResult.appendChild(load);
+    divResult.appendChild(document.createTextNode("Loading results..."));
+
     const table = document.createElement("table");
 
     const headRow = document.createElement("tr");
 
     const head1 = document.createElement("th");
     head1.textContent= "Fork";
-    head1.id="head1"
     headRow.appendChild(head1);
 
     const head2 = document.createElement("th");
     head2.textContent= "Stargazers";
-    head2.id="head2"
     headRow.appendChild(head2);
 
     const head3 = document.createElement("th");
     head3.textContent= "Last committed";
-    head3.id="head3"
     headRow.appendChild(head3);
 
     table.appendChild(headRow);
@@ -111,11 +113,11 @@ async function getForks() {
         tr.appendChild(td2)
         tr.appendChild(td3)
         table.appendChild(tr)
+
     })
 
+    clear();
     divResult.appendChild(table)
-
-    
 
     function clear() {
         while(divResult.firstChild) 
