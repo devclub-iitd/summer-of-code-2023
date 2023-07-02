@@ -1,0 +1,38 @@
+body {
+    background-color: #19102b;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+h1 {
+    align-self: center;
+    align-content: center;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+
+    background: -webkit-gradient(linear, left top, right bottom, from(#d552de), to(#52aede));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+button {
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+    align-self: center;
+    align-content: center;
+    min-width: 7vw;
+    min-height: 6vh;
+    border-radius: 0.5vh;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+
+    background: -webkit-gradient(linear, left top, right bottom, from(#d552de), to(#52aede));   
+}
