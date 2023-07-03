@@ -120,7 +120,7 @@ These are feature extraction algorithms that enable the identification of distin
 Once keypoints are identified, aligning the detected objects accurately becomes crucial. This is where **RANSAC** steps in. RANSAC is an algorithm that iteratively estimates model parameters by fitting models to subsets of data points. In the context of image recognition, RANSAC aids in eliminating outliers and refining the alignment of objects within the image. By incorporating RANSAC, you can achieve more robust and reliable object alignment.
 
 #### Resources
-1. Explanation of the Harr Cascades [Algorithm](https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08)
+1. Explanation of the [Harr Cascades](https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08) Algorithm
 2. A basic introduction to [SVMs](https://towardsdatascience.com/https-medium-com-pupalerushikesh-svm-f4b42800e989)
 3. The steps involved in the [SIFT](https://medium.com/data-breach/introduction-to-sift-scale-invariant-feature-transform-65d7f3a72d40) algorithm
 
