@@ -1,4 +1,4 @@
-<h1 style="text-align: center;">C. Automated Image Alignment and Enhancement </h1>
+<h1 style="text-align: center;">Automated Image Alignment and Enhancement </h1>
 
 ### Background
 In the bustling world of online marketplaces, product images hold the key to attracting potential customers and driving sales. Picture this: a seller uploads an image of their remarkable product, but alas! It appears misaligned, dimly lit, or lacking that captivating appeal.
