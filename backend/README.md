@@ -84,3 +84,32 @@ Learn how a backend works by analysing a real-world website, and then make your 
 
 #### [Task](week2)
 Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
+
+### Week 3
+#### Concepts
+- Django REST Framework
+    - What is Django REST Framework and why do we need it.
+    - Installing Django REST Framework using pip in the virtual environment.
+    - Transforming our Django project into a REST API.
+- Function Based Views
+    - Creating function based views for our app.
+    - Understanding the structure of a Django function based view.
+    - Adding the views to the main project.
+- Authentication using Simple JWT
+    - Understanding the concept of JWT.
+    - Installing Simple JWT using pip in the virtual environment.
+    - Adding JWT authentication to our project.
+- Documentation
+    - Understanding how to document our API.
+    - Installing Postman and using it to test our API.
+    - Writing documentation for all APIs used in our project.
+
+
+#### Resources
+- Django REST Framework's [Quickstart](https://www.django-rest-framework.org/tutorial/quickstart/)
+- Django Simple JWT's [Quickstart](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html)
+- Postman's [Quickstart](https://learning.postman.com/docs/getting-started/introduction/)
+
+#### [Task](week3)
+
+Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!
