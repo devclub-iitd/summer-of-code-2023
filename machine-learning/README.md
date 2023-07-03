@@ -123,6 +123,12 @@ Once keypoints are identified, aligning the detected objects accurately becomes 
 1. Explanation of the [Harr Cascades](https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08) Algorithm
 2. A basic introduction to [SVMs](https://towardsdatascience.com/https-medium-com-pupalerushikesh-svm-f4b42800e989)
 3. The steps involved in the [SIFT](https://medium.com/data-breach/introduction-to-sift-scale-invariant-feature-transform-65d7f3a72d40) algorithm
+4. Implementation of <a href="https://www.youtube.com/watch?v=7sz4WpkUIIs">SVMs</a>
+5. <a href="https://www.youtube.com/watch?v=5nZGnYPyKLU">HOGs</a>
+6. <a href="https://www.youtube.com/watch?v=6oLRdnQI_2w">SIFT</a> feature extraction
+7. <a href="https://www.youtube.com/watch?v=USl5BHFq2H4">SIFT and SURF</a>
+8. <a href="https://www.youtube.com/watch?v=EkYXjmiolBg">RANSAC</a>
+9. Implementation(check the github link underneath the video description too)  of  <a href="https://www.youtube.com/watch?v=IYBOPdmFDJ8">RANSAC</a>
 
 #### [Task](week3) 
 Develop a model that automatically detects, aligns, and enhances images uploaded by sellers in an online marketplace, using techniques such as image recognition, rotation, and image enhancement
