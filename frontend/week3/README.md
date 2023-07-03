@@ -20,8 +20,36 @@ We're going to create a new page for Contact Us using [this design](https://www.
 
 6. Now add the HTML code to the respective .js files. If you've made the last assignment on Bootstrap you can add the code as it is and it will render. Create CSS files according to your convinience.
 
-7. We're going to experiment with useState and useEffect to understand states in React better.
+7. Test your app on terminal by using "yarn" and "yarn start" commands.
+
+8. We're going to experiment with useState and useEffect to understand states in React better.
    
-    7.1.  Add the following text to "What our customers say" section:
+    8.1.  Add the following text to "What our customers say" section:
    
-```I bought a {product} from {brand} omn {date} and the experience was amazing. There were a few hiccups since I wasn’t familiar with the process but {person} from Customer Service Department was there to help me at every step. ```
+```I bought a {Review.product} from {Review.brand} on {Review.date} and the experience was amazing. There were a few hiccups since I wasn’t familiar with the process but {Review.person} from Customer Service Department was there to help me at every step. ```
+
+      8.2 Now create a function :
+
+```
+function Review() {
+  const [review, setReview] = useState({
+    product: "soap",
+    brand: "Lux",
+    date: "5th June",
+    person: "Amy"
+  });
+```
+
+      8.3 Add this code to the end:
+```
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Car />);
+```
+
+      8.4 Notice the changes in the text when your change the constant. 
+
+Bonus:
+
+1. Create a carousel for the landing. The design should be similar to the one given above in figma.
+
+2. Create a "fake" carousel for the  "what our customers say" section using useState. When you click the forward button, it should display a new const with a different product, brand, date and person. When you click back it should show the initial constant. Use onClick to acheieve this.
