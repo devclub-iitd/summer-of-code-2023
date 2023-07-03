@@ -112,4 +112,4 @@ Setup a Django backend server, and learn database models, rendering templates, u
 
 #### [Task](week3)
 
-Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation. Bonus: make it production-ready!
+Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!

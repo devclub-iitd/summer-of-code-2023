@@ -43,3 +43,4 @@ Now we will be finally documenting our APIs in Postman. You can refer to the [of
 ## Bonus Task
 1. Learn about class based views in Django and convert all the function based views created in Task 3B to class based views.
 2. Learn about [Django CORS Headers](https://pypi.org/project/django-cors-headers/) and add it to your project.
+3. Learn about [OpenAPI](https://www.openapis.org/), and use [Swagger](https://django-rest-swagger.readthedocs.io/en/latest/) to make an OpenAPI compatible documentation for your project
