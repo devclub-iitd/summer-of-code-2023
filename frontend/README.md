@@ -66,3 +66,9 @@ Bootstrap is the world's most popular framework for building responsive, mobile 
 
 - #### [Task](week2) 
 Use Javascript to create a repository network analyzer consuming the GitHub API, and use Bootstrap to make our previous webpage responsive!
+
+
+### Week 3
+
+- #### Resources
+- [useState hook in React with examples](https://www.w3schools.com/react/react_usestate.asp)
