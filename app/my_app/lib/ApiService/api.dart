@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/Models/AddedProduct.dart';
+import 'package:my_app/Utils/constants.dart';
 import 'package:my_app/Utils/widgets.dart';
 
 import '../Models/Product.dart';
@@ -27,9 +28,10 @@ class ApiService{
     return parsed.map<User>((json)=>
         User.fromJson(json)).toList();
   }
+  Constants constants=Constants();
 
   Future<List<User>>getUser()async{
-    final response=await http.get(Uri.parse("https://aditya-impact.onrender.com/api/users"));
+    final response=await http.get(Uri.parse("${constants.apiUri}/api/users"));
     return get(response.body);
   }
 
@@ -37,6 +39,7 @@ class ApiService{
     required BuildContext context,
     required String userId,
     required String title,
+    required String category,
     required String desc,
     required String price,
     required String location,
@@ -45,9 +48,9 @@ class ApiService{
 
 }) async{
     try{
-      AddedProduct addedProduct=AddedProduct(userId, title, desc, price, location, isNegotiable, image);
+      AddedProduct addedProduct=AddedProduct(userId, title,category, desc, price, location, isNegotiable, image);
 
-      http.Response response=await http.post(Uri.parse("https://aditya-impact.onrender.com/api/addProduct"),
+      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/addProduct"),
           body: addedProduct.toJson(),
           headers: <String,String>{
             'content-Type':'application/json; charset=UTF-8'

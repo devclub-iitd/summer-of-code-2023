@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Models/Product.dart';
+import 'package:my_app/Utils/constants.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/product_description.dart';
 
@@ -28,6 +29,7 @@ class _CategoryPageState extends State<CategoryPage> {
   IconData like=Icons.favorite_border_outlined;
   Color likedColor=Colors.black12;
   ApiService apiService=ApiService();
+  Constants constants=Constants();
 
   @override
   void initState() {
@@ -100,8 +102,8 @@ class _CategoryPageState extends State<CategoryPage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       color: Colors.red,
-                      image: const DecorationImage(
-                        image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/img23/PCA/GW/MFD_GW_PC-1X._CB602607458_.jpg"),
+                      image:  DecorationImage(
+                        image: NetworkImage(constants.bannerList_categoryPage[0]),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -110,8 +112,8 @@ class _CategoryPageState extends State<CategoryPage> {
                     margin: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
-                      image: const DecorationImage(
-                        image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/img23/Fashion/GW/Jun/Unrec-PFF-3000-1200._CB603212230_.jpg"),
+                      image:  DecorationImage(
+                        image: NetworkImage(constants.bannerList_categoryPage[1]),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -121,8 +123,8 @@ class _CategoryPageState extends State<CategoryPage> {
                     margin: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
-                      image: const DecorationImage(
-                        image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/June23/EOSS/UNREC/Shoes/Shoes_3000._CB603440768_.jpg"),
+                      image:  DecorationImage(
+                        image: NetworkImage(constants.bannerList_categoryPage[2]),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -263,7 +265,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 child: Container(
                   height: 150,
                   decoration: BoxDecoration(
-                    image: DecorationImage(image: NetworkImage("https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/18919eb38b0f5c17.png?q=20"),fit: BoxFit.cover)
+                    image: DecorationImage(image: NetworkImage(constants.imagesUri[0]),fit: BoxFit.cover)
                   ),
                 ),
               ),

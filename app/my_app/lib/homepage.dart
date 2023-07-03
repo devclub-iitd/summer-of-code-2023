@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/Categorypage.dart';
+import 'package:my_app/pages/addProduct.dart';
 import 'package:my_app/pages/categories.dart';
 import 'package:my_app/pages/mycart.dart';
 import 'package:my_app/pages/product_description.dart';
@@ -66,9 +67,9 @@ class _HomePageState extends State<HomePage> {
 
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.data_thresholding),
-            icon: Icon(Icons.data_thresholding_outlined),
-            label: 'Statistics',
+            selectedIcon: Icon(Icons.shopping_bag),
+            icon: Icon(Icons.shopping_bag_outlined),
+            label: 'Add Product',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.settings),
@@ -359,6 +360,7 @@ class _HomePageState extends State<HomePage> {
         )),
       ),
         const MyCart(),
+        const AddProduct(),
         const ProfilePage()
       ][currentPageIndex]
     );
@@ -389,8 +391,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  PageChanger(int page,CarouselPageChangedReason){
 
-  }
 
 }

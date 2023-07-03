@@ -105,7 +105,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     child: Column(
                       children: [
-
                         Row(
                           children: [
                             Text("Account Settings",style: GoogleFonts.roboto(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),

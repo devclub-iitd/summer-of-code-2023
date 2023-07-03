@@ -78,7 +78,8 @@ class _MyCartState extends State<MyCart> {
                 SizedBox(height: 25,),
                 GestureDetector(
                   onTap: (){
-                    nextScreen(context, HomePage());
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                        builder: (context) =>  HomePage()), (Route route) => false);
                   },
                   child: Container(
                     width: 250,
