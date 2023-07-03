@@ -22,5 +22,6 @@ We're going to create a new page for Contact Us using [this design](https://www.
 
 7. We're going to experiment with useState and useEffect to understand states in React better.
    
-    7.1 Add the following text to "What our customers say" section:
+    7.1.  Add the following text to "What our customers say" section:
+   
          "I bought a {product} from {brand} omn {date} and the experience was amazing. There were a few hiccups since I wasn’t familiar with the process but {person} from Customer Service            Department was there to help me at every step."
