@@ -48,7 +48,7 @@ class ApiService{
 
 }) async{
     try{
-      AddedProduct addedProduct=AddedProduct(userId, title,category, desc, price, location, isNegotiable, image);
+      AddedProduct addedProduct=AddedProduct("",userId, title,category, desc, price, location, isNegotiable, image);
 
       http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/addProduct"),
           body: addedProduct.toJson(),
