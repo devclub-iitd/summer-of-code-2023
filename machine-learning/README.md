@@ -44,6 +44,7 @@ Set up an ML environment to run your code on GPUs, then select and build a price
 
 #### Concepts
 - YOLO
+  
 YOLO is incredibly efficient because it processes the entire image in a single pass. Unlike traditional object detection algorithms that inspect different regions of an image separately, YOLO absorbs all the visual information at once, rather than examining each piece of evidence individually. By examining the entire image simultaneously, it drastically reduces the computational burden and time compared to algorithms that examine multiple regions independently. It also achieves impressive accuracy despite its speed. Its deep neural network architecture has been meticulously trained on vast datasets, honing its ability to recognize a wide range of objects across various classes. YOLO doesn't just detect objects; it also provides precise bounding box coordinates and class probabilities, allowing for more detailed analysis. While there are other highly accurate object detection algorithms, YOLO strikes an excellent balance between speed and accuracy, making it a popular choice in practical applications.
 
 - Training a Model
@@ -98,3 +99,30 @@ might help in tagging.
 
 #### [Task](week2) 
 Use YOLO to identify and describe items to be sold from the pictures, and fine-tune your Object Detection model using your own dataset
+
+### Week 3
+
+#### Concepts
+- Haar Cascades
+  
+Haar cascades are an efficient and widely-used method for object detection in images. This method is based on the Haar-like features, which are simple rectangular patterns that can be computed rapidly. Haar cascades use a cascade of classifiers trained to detect specific object features at different scales and positions within an image. This approach is particularly effective for detecting objects with well-defined features, such as faces or specific shapes.
+
+- HOG + SVM
+
+The HOG (Histogram of Oriented Gradients) + SVM approach is another beginner-friendly method for image recognition. It involves extracting gradient features from images to capture local shape and edge information. The HOG algorithm computes histograms of oriented gradients, which represent the distribution of gradient orientations within localized image regions. These features are then used as input to an SVM classifier, which can learn to distinguish between different object classes.
+
+- SIFT and SURF
+
+These are feature extraction algorithms that enable the identification of distinctive keypoints within an image. These keypoints represent unique visual patterns that can be robustly matched across different images, regardless of variations in scale, rotation, or lighting conditions. By leveraging these algorithms, you can extract and analyze the most relevant features in an image, laying the foundation for successful object detection.
+
+- RANSAC
+
+Once keypoints are identified, aligning the detected objects accurately becomes crucial. This is where **RANSAC** steps in. RANSAC is an algorithm that iteratively estimates model parameters by fitting models to subsets of data points. In the context of image recognition, RANSAC aids in eliminating outliers and refining the alignment of objects within the image. By incorporating RANSAC, you can achieve more robust and reliable object alignment.
+
+#### Resources
+1. Explanation of the Harr Cascades [Algorithm](https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08)
+2. A basic introduction to [SVMs](https://towardsdatascience.com/https-medium-com-pupalerushikesh-svm-f4b42800e989)
+3. The steps involved in the [SIFT](https://medium.com/data-breach/introduction-to-sift-scale-invariant-feature-transform-65d7f3a72d40) algorithm
+
+#### [Task](week3) 
+Develop a model that automatically detects, aligns, and enhances images uploaded by sellers in an online marketplace, using techniques such as image recognition, rotation, and image enhancement
