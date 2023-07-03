@@ -8,4 +8,6 @@ urlpatterns = [
     path('login',views.login__,name='login'),
     path('logout',views.logout__,name='logout'),
     path('accounts/',include('django.contrib.auth.urls')),
+    path('',views.home,name='home'),
+    path('timeout',views.to,name='timeout')
 ]

@@ -8,6 +8,9 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+def home(request):
+     return render(request,'index.html')
+
 # Create your views here.
 @login_required
 def add(request):
@@ -82,6 +85,9 @@ def login__(request):
                
     form = lo()
     return render(request,'registration/login.html',{'form':lo})
+
+def to(request):
+     return render(request,'timeout.html')
 
 def logout__(request):
     logout(request)
