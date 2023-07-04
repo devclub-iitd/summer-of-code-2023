@@ -22,17 +22,23 @@ class ApiService{
     return getProducts(response.body);
   }
 
-  List<User> get(String res){
-
-    final parsed=jsonDecode(res).cast<Map<String,dynamic>>();
-    return parsed.map<User>((json)=>
-        User.fromJson(json)).toList();
-  }
   Constants constants=Constants();
 
-  Future<List<User>>getUser()async{
+  Future<List<Map<String,dynamic>>>getUser()async{
+    List<Map<String,dynamic>> list=[];
     final response=await http.get(Uri.parse("${constants.apiUri}/api/users"));
-    return get(response.body);
+    for (var i=0;i<jsonDecode(response.body).length;i++){
+      list.add(jsonDecode(response.body)[i]);
+    }
+    return list;
+  }
+
+  Future<List<AddedProduct>> getMyProducts(String id)async{
+    List<Map<String,dynamic>> list=[];
+    final response=await http.get(Uri.parse("${constants.apiUri}/api/products/$id"));
+    final parsed=jsonDecode(response.body).cast<Map<String,dynamic>>();
+    return parsed.map<AddedProduct>((json)=>
+        AddedProduct.fromJson(json)).toList();
   }
 
   void addProduct({
@@ -66,14 +72,7 @@ class ApiService{
 
   }
 }
-class User{
-  final String name;
-  final String email;
 
-  User(this.name, this.email);
-  factory User.fromJson(Map<String,dynamic> json){
-    return User(json["name"], json["email"]);
-  }
-}
+
 
 

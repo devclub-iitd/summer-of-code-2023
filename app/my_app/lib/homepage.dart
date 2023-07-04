@@ -11,6 +11,7 @@ import 'package:my_app/pages/mycart.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/profilepage.dart';
 
+import 'Models/AddedProduct.dart';
 import 'Models/Product.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,6 +28,8 @@ class _HomePageState extends State<HomePage> {
   List<Product> productList=[];
   ApiService apiService=ApiService();
   bool isloading=true;
+  bool ismyProductLoading=true;
+  List<AddedProduct> myProducts=[];
 
   List<Product> list=[const Product("Casual shirts", "", "min 50% off", "https://m.media-amazon.com/images/I/51v8UlSQfBL._AC_UL600_FMwebp_QL65_.jpg", "",''),
   const Product("Men's Trousers", "", "Min 70% off", "https://m.media-amazon.com/images/I/71wL-coI9aL._AC_UL600_FMwebp_QL65_.jpg", "",''),
@@ -36,10 +39,15 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     apiService.fetchProduct().then((value){
-
       setState(() {
         productList=value;
         isloading=false;
+      });
+    });
+    apiService.getMyProducts("adi@gmail.com").then((value) {
+      setState(() {
+        myProducts=value;
+        ismyProductLoading=false;
       });
     });
   }
@@ -291,9 +299,89 @@ class _HomePageState extends State<HomePage> {
                     image: DecorationImage(image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/NAB/Banner_Corporate-bulk.jpg"),fit: BoxFit.cover)
                 ),
               ),
+              const SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Text("Added by you",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
+                    Expanded(child: Container()),
+                    const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey,fontSize: 18),),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20,),
+              ismyProductLoading?Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: CircularProgressIndicator(color: Colors.grey,),
+              ):Container(
+                child: GridView.builder(
+                  itemCount:myProducts.length>4?4:myProducts.length ,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10),
+                    itemBuilder: (context,i){
+                    return Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 145,
+                              decoration: BoxDecoration(
+                                  borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
+                                  color: Colors.grey.withOpacity(0.5),
+                                  image: DecorationImage(image: NetworkImage(myProducts[i].image),fit: BoxFit.fill)
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Row(
+                                children: [
+                                  Text(myProducts[i].title,style: TextStyle(fontWeight: FontWeight.w500),),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right: 5),
+                              child: Row(
+                                children: [
+                                  Text("Rs."+myProducts[i].price,style: TextStyle(color: Colors.blue),),
+                                  Expanded(child: Container()),
+
+                                ],
+                              ),
+                            )
+
+                          ],
+                        ),
+
+                      ),
+                    );
+
+                }),
+              ),
+
               const SizedBox(height: 10,),
+              Container(
+                height: 150,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/NAB/Banner_Cart.jpg"),fit: BoxFit.cover)
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    const Text("Deals of the Day",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
+                    Expanded(child: Container()),
+                    const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey,fontSize: 18),),
+                  ],
+                ),
+              ),
               isloading?const CircularProgressIndicator(
-                color: Colors.black,
+                color: Colors.grey,
               ):Padding(
                 padding: const EdgeInsets.symmetric(horizontal:10),
                 child: GridView.builder(
