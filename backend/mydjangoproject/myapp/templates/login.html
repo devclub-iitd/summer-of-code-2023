@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="/myapp/logout/">Logout</a></li>
+            {% else %}
+                <li><a href="/myapp/login/">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

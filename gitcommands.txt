@@ -1,0 +1,8 @@
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
+
+git add .
+git commit -m "Week 2 backend completed"
+git push origin main
