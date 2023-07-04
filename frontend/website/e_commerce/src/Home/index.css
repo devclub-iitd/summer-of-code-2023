@@ -141,7 +141,7 @@ a:visited {
 }
 #p4prev {
   width: 5vw;
-  height: 8vh;
+  height: min-content;
   background: #ffffff;
   border-radius: 4px 0px 0px 4px;
 }

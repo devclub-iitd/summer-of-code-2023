@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
 import Review from "./Review";
-
+import{data2,next,prev} from "./Data.js"
 export default function HowitWorks() {
+  const [carousel_review,set_carousel_review]=useState(0)
   return (
     <>
       <div class="row">
@@ -83,7 +84,7 @@ export default function HowitWorks() {
                     </div>
                     <div class="row">
                       <span id="p4retext">
-                      <Review/>
+                      {data2[carousel_review]}
                       </span>
                     </div>
                     <div class="row">
@@ -92,14 +93,14 @@ export default function HowitWorks() {
                     <div class="row justify-content-end changesymb">
                       <div class="col">
                         <div class="row justify-content-end">
-                          <span id="p4next">
+                          <span id="p4next" onClick={()=>{console.log("clicked",data2,carousel_review);prev(carousel_review,set_carousel_review,data2)}}>
                             <img src={require("./images/dashicons_arrow-left-alt2.svg").default} />
                           </span>
                         </div>
                       </div>
                       <div class="col">
-                        <span id="p4prev">
-                          <img src={require("./images/dashicons_arrow-left-alt22.svg").default} />
+                        <span id="p4prev" onClick={()=>{next(carousel_review,set_carousel_review,data2)}}>
+                          <img src={require("./images/dashicons_arrow-left-alt22.svg").default}  />
                         </span>
                       </div>
                     </div>

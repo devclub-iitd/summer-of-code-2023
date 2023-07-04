@@ -13,7 +13,7 @@ export default function Landing() {
                   src={
                     require("./images/dashicons_arrow-left-alt2.svg").default
                   }
-                  onClick={()=>{prev(carousel,set_carousel);console.log(carousel)}}
+                  onClick={()=>{prev(carousel,set_carousel,data);console.log(carousel)}}
                 />
               </div>
             </span>
@@ -29,7 +29,7 @@ export default function Landing() {
                   src={
                     require("./images/dashicons_arrow-left-alt21.svg").default
                   }
-                  onClick={()=>{next(carousel,set_carousel)}}
+                  onClick={()=>{next(carousel,set_carousel,data)}}
                 />
               </div>
             </span>
