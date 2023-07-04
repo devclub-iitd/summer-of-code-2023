@@ -4,7 +4,7 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 
-import 'Models/Product.dart';
+import '../Models/Product.dart';
 
 class ProductProvider extends ChangeNotifier{
   List<Product> list=[];

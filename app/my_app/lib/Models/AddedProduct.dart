@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 class AddedProduct{
-  final String _id;
+  final String id;
   final String userId;
   final String title;
   final String category;
@@ -12,7 +12,7 @@ class AddedProduct{
   final bool isNegotiable;
   final String image;
 
-  AddedProduct(this._id,this.userId, this.title,this.category, this.desc, this.price, this.location,
+  AddedProduct(this.id,this.userId, this.title,this.category, this.desc, this.price, this.location,
       this.isNegotiable, this.image);
   factory AddedProduct.fromJson(Map<String,dynamic> json){
     return AddedProduct(json["_id"],json["userId"], json["title"],json["category"] ?? "", json["desc"], json["price"], json["location"], json["isNegotiable"], json["image"]);

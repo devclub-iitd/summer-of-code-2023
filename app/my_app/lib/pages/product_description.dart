@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/mycart.dart';
-import 'package:my_app/product_provider.dart';
+import 'package:my_app/providers/product_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProductDescription extends StatefulWidget {
