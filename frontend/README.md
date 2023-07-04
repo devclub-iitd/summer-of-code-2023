@@ -13,7 +13,7 @@ We'll start by learning how to make simple webpages, and then we'll build an **e
 ##
 
 ### Week 1
-- #### Concepts
+#### Concepts
 - HTML
 
 HTML (Hyper Text Markup Language) is the standard markup for web pages. A markup language is an encoding system which consists of a set of symbols which when inserted in text control it's structure. HTML is based on markup meta languages XML and SGML. Meta languages are used to define a documents structure and the relation between it's parts rather than how it will be displayed. Thus colors, padding, position, etc are rarely specified in HTML. 
@@ -33,7 +33,7 @@ Built right inside your browser, this provides the most powerful set of tools to
 This is a service provided by GitHub where we can host our static files easily and it gets updated on each push too!
 
 
-- #### Resources
+#### Resources
 
 - DevClub's [Introduction to Web Development](https://www.youtube.com/watch?v=NeA-qRb7xNo)
 - Google Chrome's [DevTools](https://developer.chrome.com/docs/devtools/overview/) 
@@ -49,14 +49,14 @@ This is a service provided by GitHub where we can host our static files easily a
 Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
 
 ### Week 2 
-- #### Concepts 
+#### Concepts 
 - Javascript
 Javascript is the programming language which runs on the web! Today, it also powers many backend servers and user applications. We use Javascript on the frontend to add logic to our webpage to make it interactive, using both Browser APIs and Web APIs.
 
 - Bootstrap 
 Bootstrap is the world's most popular framework for building responsive, mobile first sites. It utilises SaaS, a pre-built grid and powerful Javascript plug-ins. Saas is a scripting language that is compiled into CSS. Due to its structured syntax and additional features Saas is preferred over CSS. 
 
-- #### Resources 
+#### Resources 
 - Programming with Mosh's [JavaScript Tutorial for Beginners](https://www.youtube.com/watch?v=W6NZfCO5SIk)
 - DevClub's [JavaScript and using APIs to power up your webpage](https://www.youtube.com/watch?v=gC4X0ZRiJo4)
 - [The Modern JavaScript Tutorial](https://javascript.info/)
@@ -66,3 +66,27 @@ Bootstrap is the world's most popular framework for building responsive, mobile 
 
 - #### [Task](week2) 
 Use Javascript to create a repository network analyzer consuming the GitHub API, and use Bootstrap to make our previous webpage responsive!
+
+
+### Week 3
+
+#### Concepts
+
+- ReactJS
+React JS is a Javascript library for building websites. It's main advantage is that applications can be created on a single page and that website components are reusable. It divides a website into reusable "components", to make the process of development faster - so you don't ever have to copy paste for making a navbar or list etc, this is accomplished by using **JSX**. It provides us a **declarative** way to manage the UI state, where rather than manipulating each piece of content that has to change on an action, we describe those states and it efficiently renders them.
+
+- JSX
+JSX is a syntax extension of Javascript and commonly used on React. JSX allows us to write HTML elements in JavaScript and place them in the DOM without any createElement() and/or appendChild() methods. It provides a very neat and intuitive way to look at the components. After compilation, JSX expressions become regular JavaScript function calls.
+
+- State
+ReactJS is made of components. The State of a component is an object that holds some information that may change with time or user interaction. State can be used with React Hooks like useState. They are mutable and React re-renders the component whenever its state changes, manipulating the DOM accordingly.
+
+#### Resources
+- Mosh's [React Tutorial for Beginners](https://www.youtube.com/watch?v=SqcY0GlETPk)
+- ReactJS's [Official Tutorial](https://react.dev/learn). This gives the best understanding of React, and how to think in it. It gives a complete introduction as well as explanation and exercises to check your understanding
+- [JSX](https://legacy.reactjs.org/docs/introducing-jsx.html)
+- [React Router](https://reactrouter.com/en/main) This is one of the most popular routing packages for React - which allows you to render different components based on the URL, similar to how a server serves different files for different URLs.
+- [useState hook in React with examples](https://www.w3schools.com/react/react_usestate.asp)
+
+#### [Task](week3)
+Learn ReactJS, and make your website better using JSX components and State management. Bonus: improve the code quality too!
