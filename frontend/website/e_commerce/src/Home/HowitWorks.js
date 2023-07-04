@@ -1,4 +1,6 @@
 import React from "react";
+import Review from "./Review";
+
 export default function HowitWorks() {
   return (
     <>
@@ -6,7 +8,7 @@ export default function HowitWorks() {
         <div class="container-fluid" id="page3">
           <div class="row">
             <div class="container" id="page3up">
-              <div class="row">
+              <div className="row">
                 <span class="htw p-2 m-4">How it works</span>
               </div>
               <div class="row">
@@ -81,9 +83,7 @@ export default function HowitWorks() {
                     </div>
                     <div class="row">
                       <span id="p4retext">
-                        Amet in elementum nulla scelerisque dui, egestas at.
-                        Elit consectetur turpis elementum amet vitae et etiam
-                        nec. Varius volutpat hac adipiscing tincidunt pretium.
+                      <Review/>
                       </span>
                     </div>
                     <div class="row">
