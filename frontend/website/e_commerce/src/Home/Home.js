@@ -1,11 +1,12 @@
-import Landing from "./Landing"
-import HowitWorks from "./Howitworks"
-
-
-export default function Home(){
-    return(
-        <div>
-        <Landing></Landing>
-        <HowitWorks.js></HowitWorks.js></div>
-    )
+import React from "react";
+import Landing from "./Landing";
+import HowitWorks from "./Howitworks";
+import "./index.css"
+export default function Home() {
+  return (
+    <div>
+      <Landing />
+      <HowitWorks />
+    </div>
+  );
 }

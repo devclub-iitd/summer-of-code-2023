@@ -1,0 +1,150 @@
+body {
+  background: #fff;
+}
+#page1home {
+  background: linear-gradient(
+      180deg,
+      rgba(74, 153, 211, 0.20000000298023224) 7.81%,
+      rgba(74, 153, 211, 0) 100%
+    ),
+    #fff;
+  box-shadow: 4px 4px 4px 0px rgba(75, 0, 129, 0.26);
+}
+a {
+  color: #0f001a;
+  font-size: 1.125rem;
+  font-family: Cambay;
+  text-decoration: none;
+}
+a:visited {
+  color: #4a99d3;
+  text-decoration: none;
+}
+#Logo {
+  color: #4a99d3;
+  font-size: 2.5rem;
+  /* font-family: Cambay; */
+  font-weight: 700;
+}
+#box1,
+#box2 {
+  width: 5rem;
+  height: 5rem;
+  background: #4a99d3;
+  border-radius: 4px 0px 0px 4px;
+}
+#pg1img {
+  width: 53.687rem;
+  height: 35.812rem;
+}
+#whatwedotext {
+  width: 21.5rem;
+  height: 8.625rem;
+  color: #260041;
+  font-size: 2.25rem;
+  font-family: Cambay;
+  line-height: 2.875rem;
+  letter-spacing: 0.1125rem;
+}
+#receive,
+#send,
+#buy {
+  width: 23.75vw;
+  height: 32.8125vw;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 20px 50px 0px rgba(74, 153, 211, 0.2);
+}
+#receivetext,
+#sendtext,
+#buytext {
+  color: var(--text-color, #0f001a);
+  font-size: 1.25rem;
+  font-family: Cambay;
+  line-height: 1.875rem;
+  letter-spacing: 0.025rem;
+}
+#text {
+  width: 17.75rem;
+  height: 6.4375rem;
+  flex-direction: column;
+  flex-shrink: 0;
+  color: var(--text-color, #0f001a);
+  font-size: 1rem;
+  font-family: Cambay;
+  line-height: 1.625rem;
+  opacity: 0.6000000238418579;
+}
+#LearnMore {
+  color: #4a99d3;
+  font-size: 0.875rem;
+  font-family: Cambay;
+  line-height: 1.875rem;
+  letter-spacing: 0.04375rem;
+}
+#page3up {
+  background: rgba(74, 153, 211, 0.1);
+}
+.htw {
+  color: #4a99d3;
+  text-align: center;
+  font-size: 1.625rem;
+  font-family: Cambay;
+  font-weight: 700;
+}
+#p3img1,
+#p3img2,
+#p3img3 {
+  width: 3.75rem;
+  height: 3.75rem;
+}
+#p31t1,
+#p31t2,
+#p31t3 {
+  color: #0f001a;
+  font-size: 1.125rem;
+  font-family: Cambay;
+  text-align: center;
+}
+#p3infot {
+  color: #0f001a;
+  text-align: center;
+  font-size: 1rem;
+  font-family: Cambay;
+  line-height: 1.625rem;
+}
+#whatourclient {
+  color: var(--text-color, #0f001a);
+  text-align: center;
+  font-size: 1.625rem;
+  font-family: Cambay;
+  font-weight: 700;
+}
+#author {
+  color: var(--text-color, #0f001a);
+  font-size: 1.125rem;
+  font-family: Cambay;
+}
+#p4next {
+  width: 5vw;
+  height: 8vh;
+  background: #4a99d3;
+  border-radius: 4px 0px 0px 4px;
+}
+#changesymb {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+  width: 10rem;
+  height: 5rem;
+}
+#p4prev {
+  width: 5vw;
+  height: 8vh;
+  background: #ffffff;
+  border-radius: 4px 0px 0px 4px;
+}
+#p4rework {
+  width: 3rem;
+}
