@@ -68,3 +68,20 @@ This assignment will allow you to apply your Flutter skills with Marketplace Des
 
 - #### [Task](week2)
 Dive deeper into Flutter's Widgets by building ProductTile, Promoted product banners and implementing forms. Make the app dynamic and interactive!
+
+### Week 3
+
+- #### Concepts
+1. **Integrating RESTAPIs (GET, POST, PUT, DELETE):** Throughout the week, your task will be to explore and implement the fundamental concepts of REST API integration. You will learn how to make HTTP requests using the various methods such as GET, POST, PUT, and DELETE to interact with server resources. Your challenge will be to understand endpoints, request headers, request bodies, and how to handle server responses. By the end of the week, you will have the skills to effectively communicate with server-side resources, retrieve and create data, update existing resources, and delete resources using the appropriate HTTP methods.
+
+2. **JSON Serialization and DeSerialization:** You have to learn how to serialize Dart objects into JSON format and deserialize JSON into Dart objects. This process will enable you to seamlessly communicate with server APIs, persist data, and share information within your app. Your challenge is to transform data between JSON and Dart objects, allowing for efficient data handling and manipulation.
+
+- #### Resources
+
+- [Fetch data from the internet](https://docs.flutter.dev/cookbook/networking/fetch-data)
+- [Working with REST APIs](https://blog.codemagic.io/rest-api-in-flutter/)
+- [Flutter Tutorial - HTTP Requests and REST API (GET, POST, PUT and DELETE)](https://youtu.be/4hq_Kwu7sgU)
+- [JSON and serialization](https://docs.flutter.dev/data-and-backend/json)
+
+- #### [Task](week3)
+In Week 3, We communicate with server resources, manage product data using HTTP methods. Enhancing our app's capabilities for seamless product management and smooth data handling.
