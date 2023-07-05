@@ -69,8 +69,9 @@ def add_product(request):
 #API
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer,IdSerializer
 from rest_framework import status
+import json
 
 @api_view(['GET'])
 def get_all(request):
@@ -105,22 +106,24 @@ def post_one(request):
 def buy_one(request):
     if(not request.user.is_authenticated):
         return Response('Please Login First', status=status.HTTP_400_BAD_REQUEST)
-    id=request.data['id']
+    try:
+        id=json.loads(request.body.decode('utf-8'))['id']
+    except:return Response('Invalid Input', status=status.HTTP_400_BAD_REQUEST)
     ls=Product.objects.filter(id=id)
     if(len(ls)==0):
         return Response('id does not exist', status=status.HTTP_400_BAD_REQUEST)
     ls=ls[0]
-    if(ls['creator']==request.user.id):
+    if(ls.creator==request.user.id):
         return Response("creator can't buy his own stuff", status=status.HTTP_400_BAD_REQUEST)
-    if request.user.id in ls['buyer']:
+    if request.user.id in ls.buyers:
         return Response("already bought", status=status.HTTP_400_BAD_REQUEST)
-    ls['buyer'].append(request.user.id);ls.save()
+    ls.buyers.append(request.user.id);ls.save()
     return Response("Mission accomplished", status=status.HTTP_201_CREATED)
 @api_view(['DELETE'])
 def del_one(request):
     if(not request.user.is_authenticated):
         return Response("Please login first",status=status.HTTP_400_BAD_REQUEST)
-    id=request.data['id']
+    id=request.data.id
     ls=Product.objects.filter(id=id)
     if(len(ls)==0):
         return Response('the product not in the database',status=status.HTTP_204_NO_CONTENT)
