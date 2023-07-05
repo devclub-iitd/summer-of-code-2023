@@ -1,7 +1,8 @@
+import 'cart.dart';
 import 'storage.dart';
 import 'package:flutter/material.dart';
 import 'product.dart';
-
+import 'productdetail.dart';
 class ProductTile extends StatefulWidget {
   final Product product;
   final Function() onUpdateParentState;
@@ -12,8 +13,6 @@ class ProductTile extends StatefulWidget {
 }
 
 class _ProductTileState extends State<ProductTile> {
-
-
   @override
   void initState() {
     super.initState();
@@ -25,17 +24,32 @@ class _ProductTileState extends State<ProductTile> {
       } else {
         Storage.favorites.insert(0,widget.product);
       }
-      widget.onUpdateParentState();
+      // widget.onUpdateParentState();
     });
   }
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: double.infinity,
+    return GestureDetector(
+      onLongPress:  () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Cart(product: widget.product),
+        ),
+      );
+    },
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(product: widget.product,onUpdateParentState: widget.onUpdateParentState),
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Stack(
               children: [
@@ -57,10 +71,9 @@ class _ProductTileState extends State<ProductTile> {
                 ),
               ],
             ),
-            SizedBox(height: 8),
             Center(child: Text(widget.product.title, style: TextStyle(fontWeight: FontWeight.bold))),
-            SizedBox(height: 4),
             Center(child: Text('\$${widget.product.price.toStringAsFixed(2)}')),
+            SizedBox(height: 5)
           ],
         ),
       ),

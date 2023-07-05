@@ -1,35 +1,50 @@
 import 'package:flutter/material.dart';
 import 'product_tile.dart';
-import 'productdetail.dart';
 import 'product.dart';
-import 'cart.dart';
-import 'storage.dart';
-import 'post_products.dart';
+import 'apiservice.dart';
 import 'promoted_product_banners.dart';
+import 'post_products.dart';
+import 'cart.dart';
 class ProductTileCollection extends StatefulWidget {
   @override
   _ProductTileCollectionState createState() => _ProductTileCollectionState();
 }
 
 class _ProductTileCollectionState extends State<ProductTileCollection> {
-  void _updateParentState() {
-    setState(() {
-    });
+  List<Product> products = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _updateParentState();
   }
-  final double height = 200;
-  final double width = 150;
+
+  Future<void> _updateParentState() async {
+    try {
+      List<Product> fetchedProducts = await ApiService.fetchProducts();
+      setState(() {
+        products = fetchedProducts;
+      });
+    } catch (e) {
+      // Handle any error that occurred during product fetching
+      print('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        PromotedProductBanners(),
-        Visibility(
-          visible: Storage.favorites.isNotEmpty,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Product Listings'),
+      ),
+      body: Column(
+        children: [
+          PromotedProductBanners(),
+          const Padding(
+            padding: EdgeInsets.all(12.0),
             child: Center(
               child: Text(
-                'Your Favorites!',
+                'Items You Need!',
                 style: TextStyle(
                   fontFamily: 'Cupertino',
                   fontSize: 18,
@@ -38,108 +53,59 @@ class _ProductTileCollectionState extends State<ProductTileCollection> {
               ),
             ),
           ),
-        ),
-
-        Visibility(
-          visible: Storage.favorites.isNotEmpty,
-          child: SizedBox(
-            height: height, // Set a specific height for the first ListView.builder
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: Storage.favorites.length,
+          Expanded(
+            child: GridView.builder(
+              itemCount: products.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 5,
+                crossAxisSpacing: 0,
+                childAspectRatio: 0.82,
+              ),
               itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductDetailsScreen(product: Storage.favorites[index],onUpdateParentState: _updateParentState,),
-                      ),
-                    );
-                  },
-                  child: SizedBox(
-                    width: width, // Specify the desired width for the tile
-                    child: ProductTile(product: Storage.favorites[index],onUpdateParentState: _updateParentState,),
-                  ),
+                return ProductTile(
+                  product: products[index],
+                  onUpdateParentState: _updateParentState,
                 );
               },
             ),
           ),
-        ),
-        SizedBox(height: 8.0),
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Center(
-            child: Text(
-              'Items You Need!',
-              style: TextStyle(
-                fontFamily: 'Cupertino',
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Cart(),
+                        ),
+                      );
+                    },
+                    child: Text('View Cart'),
+                  ),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PostProductForm(addit:"Add",onUpdateParentState: _updateParentState,),
+                        ),
+                      );
+                    },
+                    child: Text('Add your Product'),
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-        SizedBox(
-          height: height, // Set a specific height for the second ListView.builder
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: Storage.products.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProductDetailsScreen(product: Storage.products[index],onUpdateParentState: _updateParentState,),
-                    ),
-                  );
-                },
-                child: SizedBox(
-                  width: width, // Specify the desired width for the tile
-                  child: ProductTile(product: Storage.products[index],onUpdateParentState: _updateParentState,),
-                ),
-              );
-            },
-
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Cart(),
-                      ),
-                    );
-                  },
-                  child: Text('View Cart'),
-                ),
-              ),
-              SizedBox(width: 16),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PostProductForm(),
-                      ),
-                    );
-                  },
-                  child: Text('Add your Product'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-
+        ],
+      ),
     );
   }
 }

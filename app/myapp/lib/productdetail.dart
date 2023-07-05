@@ -1,7 +1,10 @@
+import 'package:myapp/apiservice.dart';
+
 import 'storage.dart';
 import 'package:flutter/material.dart';
 import 'product.dart';
 import 'cart.dart';
+import 'post_products.dart';
 class ProductDetailsScreen extends StatelessWidget {
   final Product product;
   final Function() onUpdateParentState;
@@ -26,18 +29,34 @@ class ProductDetailsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  product.title,
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                Center(
+                  child: Text(
+                    product.title,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height: 8),
+                Center(
+                  child: Text(
+                    '\$${product.price.toStringAsFixed(2)} ${product.isNegotiable ? "" : "Not"} Negotiable',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Location: \t${product.location}',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    ),
+                    Text('Category: \t${product.category}',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    )
+                  ],
                 ),
                 SizedBox(height: 8),
                 Text(
-                  '\$${product.price.toStringAsFixed(2)}',
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  product.description,
+                  '${product.description}\n',
                   style: TextStyle(fontSize: 16),
                 ),
               ],
@@ -53,22 +72,24 @@ class ProductDetailsScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Cart(product: product),
+                          builder: (context) => PostProductForm(addit: "Edit", onUpdateParentState: onUpdateParentState,product:product),
                         ),
                       );
                     },
-                    child: Text('Add to Cart'),
+                    child: Text('Edit Product'),
                   ),
                 ),
                 SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      onUpdateParentState();
-                      if (!Storage.favorites.contains(product))
-                      {Storage.favorites.insert(0,product);}
+                      ApiService.deleteProduct(product.id).then((value) {
+                        Navigator.pop(context);
+                        onUpdateParentState();
+                      });
                     },
-                    child: Text('Add to Favorites'),
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    child: Text('Delete Product'),
                   ),
                 ),
               ],
