@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/homepage.dart';
-import 'package:my_app/pages/addProduct.dart';
-import 'package:my_app/pages/mycart.dart';
 import 'package:my_app/providers/product_provider.dart';
 import 'package:my_app/providers/userProvider.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +26,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    apiService.getUserData(context);
   }
 
 @override

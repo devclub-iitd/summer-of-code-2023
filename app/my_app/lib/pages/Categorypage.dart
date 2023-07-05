@@ -10,6 +10,8 @@ import 'package:my_app/Utils/constants.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/product_description.dart';
 
+import '../Models/AddedProduct.dart';
+
 class CategoryPage extends StatefulWidget {
   String name;
 
@@ -196,7 +198,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 itemBuilder: (context,i){
                 return GestureDetector(
               onTap: (){
-                nextScreen(context, ProductDescription(product: Product(productList[i]["name"],productList[i]["price"].toString() ,productList[i]["desc"], productList[i]["image"],productList[i]["rating"],''),category: widget.name,),);
+                nextScreen(context, ProductDescription(product: AddedProduct('', '', productList[i].name, productList[i].Category, productList[i].desc, productList[i].price, '', true, productList[i].image), category:widget.name ));
               },
               child: Card(
                 elevation: 5,

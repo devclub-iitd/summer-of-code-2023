@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/ApiService/CartApi.dart';
+import 'package:my_app/Models/AddedProduct.dart';
 import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/mycart.dart';
@@ -9,7 +11,7 @@ import 'package:my_app/providers/product_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProductDescription extends StatefulWidget {
-  Product product;
+  AddedProduct product;
   String category;
    ProductDescription({Key? key,required this.product,required this.category}) : super(key: key);
 
@@ -19,6 +21,7 @@ class ProductDescription extends StatefulWidget {
 
 class _ProductDescriptionState extends State<ProductDescription> {
   ProductProvider productProvider=ProductProvider();
+  CartApiService cartApiService=CartApiService();
 
 
   @override
@@ -84,7 +87,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                           children: [
                             Container(
                               width:250,
-                                child: Text(widget.product.name,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 20),)),
+                                child: Text(widget.product.title,style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 20),)),
                             Expanded(child: Container()),
                             Text("Rs. ${widget.product.price}",style: const TextStyle(color: Colors.blue,fontSize: 18),),
                           ],
@@ -98,7 +101,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                       Row(
                         children: [
                         RatingBar.builder(
-                        initialRating: double.parse(widget.product.ratings),
+                        initialRating: double.parse("3"),
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
@@ -118,14 +121,16 @@ class _ProductDescriptionState extends State<ProductDescription> {
                         ],
                       ),
                       const SizedBox(height: 10,),
-                      Consumer<ProductProvider>(
-                          builder: (context,data,child){
-
-                        return GestureDetector(
+                       GestureDetector(
                           onTap: (){
-                            data.addProduct(widget.product);
-                            nextScreen(context, const MyCart());
-                            showSnakbar(context, Colors.green, "Added to your cart");
+                            if(widget.product.id.isEmpty){
+                              showSnakbar(context, Colors.red, "can't be added");
+                            }else{
+                              cartApiService.addTocart(context: context, userId: widget.product.userId, id: widget.product.id, quantity: 1);
+
+                            }
+
+                           
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -142,9 +147,8 @@ class _ProductDescriptionState extends State<ProductDescription> {
                               ),
                             ),
                           ),
-                        );
-                          }
-                      ),
+                        )
+
 
                     ],
                   ),

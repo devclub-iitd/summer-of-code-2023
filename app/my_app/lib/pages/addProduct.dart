@@ -40,14 +40,22 @@ class _AddProductState extends State<AddProduct> {
   }
 
   void add() {
-    if(formKey.currentState!.validate()){
+    if (formKey.currentState!.validate()) {
       setState(() {
-        isLoading=true;
+        isLoading = true;
       });
-       apiService.addProduct(context: context, userId: "adi@gmail.com", title: name,category: category, desc: description, price: price, location: location, isNegotiable: isSwitched, image: imageAddress);
-       isLoading=false;
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-          builder: (context) =>  HomePage()), (Route route) => false);
+      apiService.addProduct(context: context,
+          userId: "adi@gmail.com",
+          title: name,
+          category: category,
+          desc: description,
+          price: price,
+          location: location,
+          isNegotiable: isSwitched,
+          image: imageAddress);
+      isLoading = false;
+      formKey.currentState!.reset();
+
     }
   }
   @override

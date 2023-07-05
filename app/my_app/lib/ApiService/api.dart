@@ -44,9 +44,14 @@ class ApiService{
   Future<List<AddedProduct>> getMyProducts(String id)async{
     List<Map<String,dynamic>> list=[];
     final response=await http.get(Uri.parse("${constants.apiUri}/api/products/$id"));
-    final parsed=jsonDecode(response.body).cast<Map<String,dynamic>>();
-    return parsed.map<AddedProduct>((json)=>
-        AddedProduct.fromJson(json)).toList();
+      if(response.statusCode==200){
+        final parsed=jsonDecode(response.body).cast<Map<String,dynamic>>();
+        return parsed.map<AddedProduct>((json)=>
+            AddedProduct.fromJson(json)).toList();
+      }else{
+        return [];
+      }
+
   }
 
   void addProduct({
@@ -77,6 +82,8 @@ class ApiService{
     }
 
   }
+
+
 
 
 

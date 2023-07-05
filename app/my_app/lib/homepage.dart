@@ -392,7 +392,7 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context,i){
                       return GestureDetector(
                         onTap: (){
-                          nextScreen(context, ProductDescription(product: Product(productList[i].name, productList[i].price, productList[i].desc, productList[i].image, productList[i].ratings,''), category:productList[i].Category ));
+                          nextScreen(context, ProductDescription(product: AddedProduct('', '', productList[i].name, productList[i].Category, productList[i].desc, productList[i].price, '', true, productList[i].image), category:productList[i].Category ));
                         },
                         child: Container(
                           decoration: const BoxDecoration(border:Border.fromBorderSide(BorderSide(width: 1,color: Colors.grey)),

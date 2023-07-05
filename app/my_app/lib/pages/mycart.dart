@@ -8,6 +8,9 @@ import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/providers/product_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../ApiService/CartApi.dart';
+import '../Models/AddedProduct.dart';
+
 class MyCart extends StatefulWidget {
   const MyCart({Key? key}) : super(key: key);
 
@@ -16,6 +19,22 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
+  List<AddedProduct>list=[];
+  bool isLoading=true;
+  CartApiService cartApiService=CartApiService();
+
+  @override
+  void initState() {
+    super.initState();
+    cartApiService.getMyCart("adi@gmail.com",context).then((value){
+      setState(() {
+        list=value;
+        isLoading=false;
+
+      });
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,42 +85,40 @@ class _MyCartState extends State<MyCart> {
 
 
   Widget CartProducts(){
-    return Consumer<ProductProvider>(
-        builder: (context,data,child){
-      return data.list.length==0?
-          Container(
-            child: Column(
-              children: [
-                Text("Cart is empty",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 23),),
-                SizedBox(height: 20,),
-                Text("Let's find something special for you",style:TextStyle(fontSize: 20,color: Colors.grey),),
-                SizedBox(height: 25,),
-                GestureDetector(
-                  onTap: (){
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                        builder: (context) =>  HomePage()), (Route route) => false);
-                  },
-                  child: Container(
-                    width: 250,
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    decoration: const BoxDecoration(
-                        gradient:LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Colors.black,Colors.black45],),
-                        borderRadius: BorderRadius.all(Radius.circular(15))
-                    ),
-                    height: 50,
-                    child: const Center(
-                      child: Text("start Shopping",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
+    return isLoading?const CircularProgressIndicator(color: Colors.grey,):list.isEmpty?
+    Container(
+      child: Column(
+        children: [
+          Text("Cart is empty",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 23),),
+          SizedBox(height: 20,),
+          Text("Let's find something special for you",style:TextStyle(fontSize: 20,color: Colors.grey),),
+          SizedBox(height: 25,),
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                  builder: (context) =>  HomePage()), (Route route) => false);
+            },
+            child: Container(
+              width: 250,
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              decoration: const BoxDecoration(
+                  gradient:LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black,Colors.black45],),
+                  borderRadius: BorderRadius.all(Radius.circular(15))
+              ),
+              height: 50,
+              child: const Center(
+                child: Text("start Shopping",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
                 ),
-              ],
+              ),
             ),
-          )
-          :Container(
+          ),
+        ],
+      ),
+    )
+        :SizedBox(
         height: 500,
             child: Card(
         elevation: 5,
@@ -124,19 +141,19 @@ class _MyCartState extends State<MyCart> {
                           child: Icon(Icons.shopping_cart_outlined),
                         ),
                         Text("Items in your cart",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 20),),
-                        Text(data.list.length.toString(),style: TextStyle(color: Colors.blue,fontSize: 22,fontWeight: FontWeight.w400),)
+                        Text(list.length.toString(),style: TextStyle(color: Colors.blue,fontSize: 22,fontWeight: FontWeight.w400),)
                       ],
                     ),
                   ),
                   SizedBox(height: 10,),
                   ListView.builder(
-        itemCount: data.size,
+        itemCount: list.length,
                   shrinkWrap: true,
                   itemBuilder: (context,i){
-                  final product=data.products[i];
+                  final product=list[i];
                   return GestureDetector(
                     onTap: (){
-                      nextScreen(context, ProductDescription(product: product, category: product.Category));
+                      nextScreen(context, ProductDescription(product: list[i], category: product.category));
                     },
                     child: ListTile(
                       leading: Container(
@@ -148,11 +165,11 @@ class _MyCartState extends State<MyCart> {
                           image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.fill)
                         ),
                       ),
-                      title: Text(product.name,),
+                      title: Text(product.title,),
                       subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
                       trailing: GestureDetector(
                         onTap: (){
-                          data.removeProduct(product);
+
                         },
                         child: Container(
                           height: 40,
@@ -173,18 +190,15 @@ class _MyCartState extends State<MyCart> {
               ),
             ),
           );
-    });
+
   }
 
   Widget CheckOut(){
-    return Consumer<ProductProvider>(
-      builder: (context,data,child){
-        int priceSum=0;
-        for(var i=0; i<data.size; i++){
-          priceSum=priceSum+int.parse(data.products[i].price.split(".")[0]).toInt();
-        }
-
-        return data.size==0? Container(height: 1,):
+    int priceSum=0;
+    for(var i=0; i<list.length; i++){
+      priceSum=priceSum+int.parse(list[i].price.split(".")[0]).toInt();
+    }
+    return isLoading?Container(height: 1,):list.length==0? Container(height: 1,):
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
           child: Container(
@@ -203,9 +217,7 @@ class _MyCartState extends State<MyCart> {
             ),
           ),
         );
-      }
 
-    );
   }
 
 }

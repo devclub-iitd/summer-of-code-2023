@@ -15,7 +15,7 @@ class AddedProduct{
   AddedProduct(this.id,this.userId, this.title,this.category, this.desc, this.price, this.location,
       this.isNegotiable, this.image);
   factory AddedProduct.fromJson(Map<String,dynamic> json){
-    return AddedProduct(json["_id"],json["userId"], json["title"],json["category"] ?? "", json["desc"], json["price"], json["location"], json["isNegotiable"], json["image"]);
+    return AddedProduct(json["_id"],json["userId"], json["title"],json["category"] , json["desc"], json["price"], json["location"], json["isNegotiable"], json["image"]);
   }
 
   Map<String,dynamic> toMap(){
