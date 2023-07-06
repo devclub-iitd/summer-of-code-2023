@@ -7,6 +7,7 @@ import receive_img from "./images/imgy.svg"
 import send_img from "./images/imgx.svg"
 import buy_img from "./images/imgz.svg"
 import arrow from "./images/ic_arrow_forward_24px.svg"
+import { url } from "inspector";
 
 
 
@@ -16,8 +17,8 @@ export default function Landing() {
     <div className="row">
       <div className="col">
         <div className="p-2" id="page1home">
-          <div className="row justify-content-center align-items-center">
-            <span className="col d-flex flex-row-reverse">
+          <div className="d-flex flex-row justify-content- align-items-center" >
+            <span className="d-flex flex-row-reverse" >
               <div className="d-flex center p-3" id="box1">
                 <img
                   src={left}
@@ -25,13 +26,13 @@ export default function Landing() {
                 />
               </div>
             </span>
-            <span className="col mb-5" id="pg1img">
+            <span className=" mb-5" id="pg1img">
               <img
                 src={data[carousel]}
                 alt="Image not Found"
               />
             </span>
-            <span className="col">
+            <span className="">
               <div className="d-flex center p-3" id="box2">
                 <img
                   src={
