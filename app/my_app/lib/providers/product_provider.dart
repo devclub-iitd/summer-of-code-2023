@@ -17,4 +17,8 @@ class ProductProvider extends ChangeNotifier{
     list.remove(product);
     notifyListeners();
   }
+  void setList(List<AddedProduct> cartList){
+    list=cartList;
+    notifyListeners();
+  }
 }

@@ -37,7 +37,7 @@ class _MyProductsState extends State<MyProducts> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -68,33 +68,36 @@ class _MyProductsState extends State<MyProducts> {
                 ],
               ),
             ),
-            isLoading?const CircularProgressIndicator( ):ListView.builder(
-                itemCount: myProducts.length,
-                shrinkWrap: true,
-                itemBuilder: (context,i){
-                  final product=myProducts[i];
-                  return GestureDetector(
-                    onTap: (){
-                      nextScreen(context, ProductDescription(product: myProducts[i], category: product.category,isMYProduct: true,));
-                    },
-                    child: ListTile(
-                      leading: Container(
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+            isLoading?const CircularProgressIndicator( ):Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 15),
+              child: ListView.builder(
+                  itemCount: myProducts.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context,i){
+                    final product=myProducts[i];
+                    return GestureDetector(
+                      onTap: (){
+                        nextScreen(context, ProductDescription(product: myProducts[i], category: product.category,isMYProduct: true,));
+                      },
+                      child: ListTile(
+                        leading: Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                              image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+                          ),
                         ),
-                      ),
-                      title: Text(product.title,),
-                      subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
+                        title: Text(product.title,),
+                        subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
 
-                      ),
+                        ),
 
-                  );
+                    );
 
-                }),
+                  }),
+            ),
           ],
         ),
       )),

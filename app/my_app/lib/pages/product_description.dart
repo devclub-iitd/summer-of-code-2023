@@ -26,6 +26,11 @@ class _ProductDescriptionState extends State<ProductDescription> {
   ProductProvider productProvider=ProductProvider();
   CartApiService cartApiService=CartApiService();
   MyProductApi myProductApi =MyProductApi();
+  getCart(){
+    cartApiService.getMyCart("adi@gmail.com",context).then((value){
+      Provider.of<ProductProvider>(context, listen: false).setList(value);
+    });
+  }
 
   void add(AddedProduct product){
     myProductApi.addProduct(context: context,
@@ -49,7 +54,11 @@ class _ProductDescriptionState extends State<ProductDescription> {
           if(widget.product.id.isEmpty){
             showSnakbar(context, Colors.red, "can't be added");
           }else{
-            cartApiService.addTocart(context: context, userId: widget.product.userId, id: widget.product.id, quantity: 1);
+            cartApiService.addTocart(context: context, userId: widget.product.userId, id: widget.product.id, quantity: 1).then((value) {
+              if(value){
+                getCart();
+              }
+            });
           }
         },
         child: Padding(

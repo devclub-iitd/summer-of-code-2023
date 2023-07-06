@@ -31,7 +31,7 @@ class CartApiService{
 
   }
 
-  void addTocart({
+  Future<bool> addTocart({
     required BuildContext context,
     required String userId,
     required String id,
@@ -51,19 +51,23 @@ class CartApiService{
       );
       if (response.statusCode==200){
         showSnakbar(context,Colors.green, "added to cart");
+        return true;
       }else if(response.statusCode==400){
         showSnakbar(context,Colors.red, jsonDecode(response.body)["msg"]);
+        return false;
       }
       else{
         showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
+        return false;
       }
     }catch(e){
       showSnakbar(context, Colors.red, e.toString());
+      return false;
     }
 
   }
 
-  void removeFromCart({
+  Future<bool> removeFromCart({
     required BuildContext context,
     required String userId,
     required String id,
@@ -81,14 +85,21 @@ class CartApiService{
       );
       if (response.statusCode==200){
         showSnakbar(context,Colors.green, "removed from cart");
+        return true;
       }else if(response.statusCode==400){
         showSnakbar(context,Colors.red, jsonDecode(response.body)["msg"]);
+        return false;
+
       }
       else{
         showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
+        return false;
       }
+
     }catch(e){
+
       showSnakbar(context, Colors.red, e.toString());
+      return false;
     }
 
   }

@@ -1,12 +1,15 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/homepage.dart';
 import 'package:my_app/pages/product_description.dart';
+import 'package:provider/provider.dart';
 import '../ApiService/CartApi.dart';
 import '../Models/AddedProduct.dart';
+import '../providers/product_provider.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({Key? key}) : super(key: key);
@@ -27,6 +30,7 @@ class _MyCartState extends State<MyCart> {
   }
   getCart(){
     cartApiService.getMyCart("adi@gmail.com",context).then((value){
+      Provider.of<ProductProvider>(context, listen: false).setList(value);
       setState(() {
         list=value;
         isLoading=false;
@@ -40,45 +44,47 @@ class _MyCartState extends State<MyCart> {
 
     return Scaffold(
       bottomNavigationBar:CheckOut() ,
-      body: SafeArea(child: Container(
-        padding: EdgeInsets.only(top: 10),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap:(){
-                      Navigator.pop(context);
-                    },
-                    child: Card(
+      body: SafeArea(child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(top: 10),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap:(){
+                        Navigator.pop(context);
+                      },
+                      child: Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          child: Icon(Icons.arrow_back_ios),
+                        ),
+                      ),
+                    ),
+                    Text("Shopping Cart",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+                    Card(
                       elevation: 10,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                       child: Container(
                         height: 50,
                         width: 50,
-                        child: Icon(Icons.arrow_back_ios),
+                        child: Icon(Icons.more_horiz),
                       ),
                     ),
-                  ),
-                  Text("Shopping Cart",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
-                  Card(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      child: Icon(Icons.more_horiz),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 15,),
-            CartProducts()
-          ],
+              SizedBox(height: 15,),
+              CartProducts()
+            ],
+          ),
         ),
       )),
     );
@@ -120,7 +126,6 @@ class _MyCartState extends State<MyCart> {
       ),
     )
         :SizedBox(
-        height: 500,
             child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -150,44 +155,75 @@ class _MyCartState extends State<MyCart> {
                   ListView.builder(
         itemCount: list.length,
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context,i){
                   final product=list[i];
                   return GestureDetector(
                     onTap: (){
                       nextScreen(context, ProductDescription(product: list[i], category: product.category,isMYProduct: false,));
                     },
-                    child: ListTile(
-                      leading: Container(
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
-                        ),
-                      ),
-                      title: Text(product.title,),
-                      subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
-                      trailing: GestureDetector(
-                        onTap: (){
-                          cartApiService.removeFromCart(context: context, userId: "adi@gmail.com", id: product.id);
+                    child: Slidable(
+                      startActionPane: ActionPane(
+                        // A motion is a widget used to control how the pane animates.
+                        motion: const ScrollMotion(),
 
-                          setState(() {
-                            isLoading=true;
-                          });
-                          getCart();
-                          setState(() {
-                          });
 
-                        },
-                        child: Container(
-                          height: 40,
-                            width: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            borderRadius: BorderRadius.all(Radius.circular(10))
+                        // All actions are defined in the children parameter.
+                        children:  [
+                          // A SlidableAction can have an icon and/or a label.
+                          SlidableAction(
+                            onPressed: (context){
+
+                            },
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.red,
+                            icon: Icons.delete,
+                            label: 'Delete',
                           ),
-                          child: Icon(Icons.remove,color: Colors.red,),
+                          SlidableAction(
+                            onPressed: (context){
+                            },
+                            backgroundColor: Colors.white,
+                            foregroundColor: Color(0xFF21B7CA),
+                            icon: Icons.share,
+                            label: 'Share',
+                          ),
+                        ],
+                      ),
+
+                      child: ListTile(
+                        leading: Container(
+                          height: 60,
+                          width: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+                          ),
+                        ),
+                        title: Text(product.title,),
+                        subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
+                        trailing: GestureDetector(
+                          onTap: (){
+
+                            cartApiService.removeFromCart(context: context, userId: "adi@gmail.com", id: product.id).then((value) {
+                              if(value){
+                                getCart();
+                              }
+                            });
+
+
+
+                          },
+                          child: Container(
+                            height: 40,
+                              width: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withOpacity(0.2),
+                              borderRadius: BorderRadius.all(Radius.circular(10))
+                            ),
+                            child: Icon(Icons.remove,color: Colors.red,),
+                          ),
                         ),
                       ),
                     ),

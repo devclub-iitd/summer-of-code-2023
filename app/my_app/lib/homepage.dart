@@ -1,7 +1,9 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:http/http.dart' as http;
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:my_app/ApiService/CartApi.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/Categorypage.dart';
@@ -11,6 +13,8 @@ import 'package:my_app/pages/myProducts.dart';
 import 'package:my_app/pages/mycart.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/profilepage.dart';
+import 'package:my_app/providers/product_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'Models/AddedProduct.dart';
 import 'Models/Product.dart';
@@ -31,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   bool isloading=true;
   bool ismyProductLoading=true;
   List<AddedProduct> myProducts=[];
-
+  CartApiService cartApiService=CartApiService();
   List<Product> list=[const Product("Casual shirts", "", "min 50% off", "https://m.media-amazon.com/images/I/51v8UlSQfBL._AC_UL600_FMwebp_QL65_.jpg", "",''),
   const Product("Men's Trousers", "", "Min 70% off", "https://m.media-amazon.com/images/I/71wL-coI9aL._AC_UL600_FMwebp_QL65_.jpg", "",''),
   const Product("Deals on Red Tape", "", "Upto 80% off", "https://m.media-amazon.com/images/I/31nQtukA3bL._AC_SY200_.jpg", "",'')];
@@ -51,9 +55,13 @@ class _HomePageState extends State<HomePage> {
         ismyProductLoading=false;
       });
     });
+    cartApiService.getMyCart("adi@gmail.com", context).then((value) {
+      Provider.of<ProductProvider>(context, listen: false).setList(value);
+    });
   }
   @override
   Widget build(BuildContext context) {
+    final cl=context.watch<ProductProvider>().list;
     return Scaffold(
       bottomNavigationBar: NavigationBar(
         backgroundColor: Colors.black12,
@@ -63,24 +71,34 @@ class _HomePageState extends State<HomePage> {
           });
         },
         selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
+        destinations:
+        <Widget>[
+          const NavigationDestination(
             selectedIcon: Icon(Icons.home),
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.shopping_cart),
-            icon: Icon(Icons.shopping_cart_outlined),
+            selectedIcon: badges.Badge(
+                position: badges.BadgePosition.topEnd(top: -13, end: -16),
+                badgeContent:  Text(cl.length.toString()),
+                badgeStyle: const badges.BadgeStyle(
+                  badgeColor: Colors.blue
+                ),
+                child: const Icon(Icons.shopping_cart)),
+            icon:  badges.Badge(
+              badgeContent:  Text(cl.length.toString()),
+                position: badges.BadgePosition.topEnd(top: -13, end: -16),
+                child: const Icon(Icons.shopping_cart_outlined)),
             label: 'My cart',
 
           ),
-          NavigationDestination(
+          const NavigationDestination(
             selectedIcon: Icon(Icons.shopping_bag),
             icon: Icon(Icons.shopping_bag_outlined),
             label: 'Add Product',
           ),
-          NavigationDestination(
+          const NavigationDestination(
             selectedIcon: Icon(Icons.settings),
             icon: Icon(Icons.settings_outlined),
             label: 'Profile',
@@ -309,18 +327,18 @@ class _HomePageState extends State<HomePage> {
                     Expanded(child: Container()),
                      InkWell(
                        onTap: (){
-                         nextScreen(context, MyProducts());
+                         nextScreen(context, const MyProducts());
                        },
                          child: Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.black.withOpacity(0.8),fontSize: 18),)),
                   ],
                 ),
               ),
               const SizedBox(height: 10,),
-              ismyProductLoading?Padding(
-                padding: const EdgeInsets.all(5.0),
+              ismyProductLoading?const Padding(
+                padding: EdgeInsets.all(5.0),
                 child: CircularProgressIndicator(color: Colors.grey,),
               ):Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GridView.builder(
                   itemCount:myProducts.length>4?4:myProducts.length ,
                     physics: const NeverScrollableScrollPhysics(),
@@ -329,7 +347,7 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context,i){
                     return Card(
                       elevation: 5,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
                       child: GestureDetector(
                         onTap: (){
                           nextScreen(context, ProductDescription(product: myProducts[i], category: myProducts[i].category,isMYProduct: true,));
@@ -340,7 +358,7 @@ class _HomePageState extends State<HomePage> {
                               Container(
                                 height: 141,
                                 decoration: BoxDecoration(
-                                    borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
+                                    borderRadius:const BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
                                     color: Colors.white,
                                     image: DecorationImage(image: NetworkImage(myProducts[i].image),fit: BoxFit.contain)
                                 ),
@@ -349,7 +367,7 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: Row(
                                   children: [
-                                    Text(myProducts[i].title,style: TextStyle(fontWeight: FontWeight.w500),),
+                                    Text(myProducts[i].title,style: const TextStyle(fontWeight: FontWeight.w500),),
                                   ],
                                 ),
                               ),
@@ -357,7 +375,7 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.only(left: 8.0,right: 5),
                                 child: Row(
                                   children: [
-                                    Text("Rs."+myProducts[i].price,style: TextStyle(color: Colors.blue),),
+                                    Text("Rs."+myProducts[i].price,style: const TextStyle(color: Colors.blue),),
                                     Expanded(child: Container()),
 
                                   ],
@@ -381,7 +399,7 @@ class _HomePageState extends State<HomePage> {
                     image: DecorationImage(image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/NAB/Banner_Cart.jpg"),fit: BoxFit.cover)
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -392,7 +410,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               isloading?const CircularProgressIndicator(
                 color: Colors.grey,
               ):Padding(

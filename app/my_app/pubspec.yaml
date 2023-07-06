@@ -42,6 +42,7 @@ dependencies:
   provider:
   shared_preferences:
   flutter_slidable:
+  badges:
 
 
 dev_dependencies:
