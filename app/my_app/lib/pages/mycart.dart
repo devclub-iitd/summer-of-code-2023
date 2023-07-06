@@ -5,9 +5,6 @@ import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/homepage.dart';
 import 'package:my_app/pages/product_description.dart';
-import 'package:my_app/providers/product_provider.dart';
-import 'package:provider/provider.dart';
-
 import '../ApiService/CartApi.dart';
 import '../Models/AddedProduct.dart';
 
@@ -26,6 +23,9 @@ class _MyCartState extends State<MyCart> {
   @override
   void initState() {
     super.initState();
+   getCart();
+  }
+  getCart(){
     cartApiService.getMyCart("adi@gmail.com",context).then((value){
       setState(() {
         list=value;
@@ -37,6 +37,7 @@ class _MyCartState extends State<MyCart> {
   }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       bottomNavigationBar:CheckOut() ,
       body: SafeArea(child: Container(
@@ -153,22 +154,30 @@ class _MyCartState extends State<MyCart> {
                   final product=list[i];
                   return GestureDetector(
                     onTap: (){
-                      nextScreen(context, ProductDescription(product: list[i], category: product.category));
+                      nextScreen(context, ProductDescription(product: list[i], category: product.category,isMYProduct: false,));
                     },
                     child: ListTile(
                       leading: Container(
                         height: 60,
                         width: 60,
                         decoration: BoxDecoration(
-                          color: Colors.grey.withOpacity(0.5),
+                          color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(15)),
-                          image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.fill)
+                          image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
                         ),
                       ),
                       title: Text(product.title,),
                       subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
                       trailing: GestureDetector(
                         onTap: (){
+                          cartApiService.removeFromCart(context: context, userId: "adi@gmail.com", id: product.id);
+
+                          setState(() {
+                            isLoading=true;
+                          });
+                          getCart();
+                          setState(() {
+                          });
 
                         },
                         child: Container(

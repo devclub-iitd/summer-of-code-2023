@@ -10,7 +10,6 @@ import '../Utils/widgets.dart';
 class CartApiService{
   Constants constants=Constants();
 
-
   Future<List<AddedProduct>> getMyCart(String id,BuildContext context) async{
 
     List<AddedProduct> list=[];
@@ -81,7 +80,7 @@ class CartApiService{
           }
       );
       if (response.statusCode==200){
-        showSnakbar(context,Colors.green, "removed to cart");
+        showSnakbar(context,Colors.green, "removed from cart");
       }else if(response.statusCode==400){
         showSnakbar(context,Colors.red, jsonDecode(response.body)["msg"]);
       }

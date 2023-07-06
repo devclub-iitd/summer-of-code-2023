@@ -18,6 +18,7 @@ import '../providers/userProvider.dart';
 
 
 class ApiService{
+  Constants constants=Constants();
   List<Product> getProducts(String res){
 
     final parsed=jsonDecode(res).cast<Map<String,dynamic>>();
@@ -25,12 +26,12 @@ class ApiService{
         Product.fromJson(json)).toList();
   }
 
+
   Future<List<Product>>fetchProduct() async{
     final response=await http.get(Uri.parse("https://fakestoreapi.com/products"));
     return getProducts(response.body);
   }
 
-  Constants constants=Constants();
 
   Future<List<Map<String,dynamic>>>getUser()async{
     List<Map<String,dynamic>> list=[];
@@ -54,34 +55,8 @@ class ApiService{
 
   }
 
-  void addProduct({
-    required BuildContext context,
-    required String userId,
-    required String title,
-    required String category,
-    required String desc,
-    required String price,
-    required String location,
-    required bool isNegotiable,
-    required String image,}) async{
-    try{
-      AddedProduct addedProduct=AddedProduct("",userId, title,category, desc, price, location, isNegotiable, image);
 
-      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/addProduct"),
-          body: addedProduct.toJson(),
-          headers: <String,String>{
-            'content-Type':'application/json; charset=UTF-8'
-          });
-      if (response.statusCode==200){
-        showSnakbar(context,Colors.green, "Product Added");
-      }else{
-        showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
-      }
-    }catch(e){
-      showSnakbar(context, Colors.red, e.toString());
-    }
 
-  }
 
 
 

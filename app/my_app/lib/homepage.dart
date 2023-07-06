@@ -7,6 +7,7 @@ import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/Categorypage.dart';
 import 'package:my_app/pages/addProduct.dart';
 import 'package:my_app/pages/categories.dart';
+import 'package:my_app/pages/myProducts.dart';
 import 'package:my_app/pages/mycart.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/profilepage.dart';
@@ -262,8 +263,8 @@ class _HomePageState extends State<HomePage> {
                                 height: 140,
                                 decoration: BoxDecoration(
                                     borderRadius:const BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
-                                    color: Colors.grey.withOpacity(0.5),
-                                    image: DecorationImage(image: NetworkImage(list[i].image),fit: BoxFit.fill)
+                                    color: Colors.white,
+                                    image: DecorationImage(image: NetworkImage(list[i].image),fit: BoxFit.contain)
                                 ),
                               ),
 
@@ -301,20 +302,25 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 15,),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   children: [
                     const Text("Added by you",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
                     Expanded(child: Container()),
-                    const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey,fontSize: 18),),
+                     InkWell(
+                       onTap: (){
+                         nextScreen(context, MyProducts());
+                       },
+                         child: Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.black.withOpacity(0.8),fontSize: 18),)),
                   ],
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(height: 10,),
               ismyProductLoading?Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: CircularProgressIndicator(color: Colors.grey,),
               ):Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: GridView.builder(
                   itemCount:myProducts.length>4?4:myProducts.length ,
                     physics: const NeverScrollableScrollPhysics(),
@@ -324,39 +330,44 @@ class _HomePageState extends State<HomePage> {
                     return Card(
                       elevation: 5,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 145,
-                              decoration: BoxDecoration(
-                                  borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
-                                  color: Colors.grey.withOpacity(0.5),
-                                  image: DecorationImage(image: NetworkImage(myProducts[i].image),fit: BoxFit.fill)
+                      child: GestureDetector(
+                        onTap: (){
+                          nextScreen(context, ProductDescription(product: myProducts[i], category: myProducts[i].category,isMYProduct: true,));
+                        },
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 141,
+                                decoration: BoxDecoration(
+                                    borderRadius:BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
+                                    color: Colors.white,
+                                    image: DecorationImage(image: NetworkImage(myProducts[i].image),fit: BoxFit.contain)
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Row(
-                                children: [
-                                  Text(myProducts[i].title,style: TextStyle(fontWeight: FontWeight.w500),),
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(myProducts[i].title,style: TextStyle(fontWeight: FontWeight.w500),),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0,right: 5),
-                              child: Row(
-                                children: [
-                                  Text("Rs."+myProducts[i].price,style: TextStyle(color: Colors.blue),),
-                                  Expanded(child: Container()),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0,right: 5),
+                                child: Row(
+                                  children: [
+                                    Text("Rs."+myProducts[i].price,style: TextStyle(color: Colors.blue),),
+                                    Expanded(child: Container()),
 
-                                ],
-                              ),
-                            )
+                                  ],
+                                ),
+                              )
 
-                          ],
+                            ],
+                          ),
+
                         ),
-
                       ),
                     );
 
@@ -370,8 +381,9 @@ class _HomePageState extends State<HomePage> {
                     image: DecorationImage(image: NetworkImage("https://images-eu.ssl-images-amazon.com/images/G/31/NAB/Banner_Cart.jpg"),fit: BoxFit.cover)
                 ),
               ),
+              SizedBox(height: 15,),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   children: [
                     const Text("Deals of the Day",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
@@ -380,6 +392,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+              SizedBox(height: 10,),
               isloading?const CircularProgressIndicator(
                 color: Colors.grey,
               ):Padding(
@@ -392,7 +405,7 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context,i){
                       return GestureDetector(
                         onTap: (){
-                          nextScreen(context, ProductDescription(product: AddedProduct('', '', productList[i].name, productList[i].Category, productList[i].desc, productList[i].price, '', true, productList[i].image), category:productList[i].Category ));
+                          nextScreen(context, ProductDescription(product: AddedProduct('', '', productList[i].name, productList[i].Category, productList[i].desc, productList[i].price, 'Delhi,India', true, productList[i].image), category:productList[i].Category,isMYProduct: false, ));
                         },
                         child: Container(
                           decoration: const BoxDecoration(border:Border.fromBorderSide(BorderSide(width: 1,color: Colors.grey)),

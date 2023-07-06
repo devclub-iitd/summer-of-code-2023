@@ -1,21 +1,19 @@
 
 import 'dart:collection';
-
-
 import 'package:flutter/cupertino.dart';
+import 'package:my_app/Models/AddedProduct.dart';
 
-import '../Models/Product.dart';
 
 class ProductProvider extends ChangeNotifier{
-  List<Product> list=[];
-  UnmodifiableListView<Product> get products=>UnmodifiableListView(list);
+  List<AddedProduct> list=[];
+  UnmodifiableListView<AddedProduct> get products=>UnmodifiableListView(list);
   get size=>list.length;
 
-  void addProduct(Product product){
+  void addProduct(AddedProduct product){
     list.add(product);
     notifyListeners();
   }
-  void removeProduct(Product product){
+  void removeProduct(AddedProduct product){
     list.remove(product);
     notifyListeners();
   }

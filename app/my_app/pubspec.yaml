@@ -41,6 +41,7 @@ dependencies:
   http:
   provider:
   shared_preferences:
+  flutter_slidable:
 
 
 dev_dependencies:

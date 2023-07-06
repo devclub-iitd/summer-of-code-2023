@@ -3,13 +3,13 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/ApiService/api.dart';
-import 'package:my_app/homepage.dart';
-
+import 'package:my_app/Models/AddedProduct.dart';
+import '../ApiService/addedProductApi.dart';
 import '../Utils/widgets.dart';
 
 class AddProduct extends StatefulWidget {
-  const AddProduct({Key? key}) : super(key: key);
+  final AddedProduct? addedProduct;
+  const AddProduct({Key? key,this.addedProduct}) : super(key: key);
 
   @override
   State<AddProduct> createState() => _AddProductState();
@@ -23,7 +23,7 @@ class _AddProductState extends State<AddProduct> {
   String location="";
   String description="";
   final formKey=GlobalKey<FormState>();
-  ApiService apiService=ApiService();
+  MyProductApi apiService=MyProductApi();
   bool isSwitched=true;
   bool isLoading=false;
   void toggleSwitch(bool value) {
@@ -55,7 +55,6 @@ class _AddProductState extends State<AddProduct> {
           image: imageAddress);
       isLoading = false;
       formKey.currentState!.reset();
-
     }
   }
   @override
@@ -115,6 +114,7 @@ class _AddProductState extends State<AddProduct> {
                     color: Colors.grey.withOpacity(0.2)
                   ),
                   child: TextFormField(
+                    initialValue: widget.addedProduct==null?null:widget.addedProduct!.title,
                     decoration: textInputdec.copyWith(
                       hintText: "half sleeve shirt",
                       hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
@@ -155,6 +155,7 @@ class _AddProductState extends State<AddProduct> {
                                 color: Colors.grey.withOpacity(0.2)
                             ),
                             child: TextFormField(
+                              initialValue: widget.addedProduct==null?null:widget.addedProduct!.category,
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
                               decoration: textInputdec.copyWith(
@@ -191,6 +192,7 @@ class _AddProductState extends State<AddProduct> {
                                 color: Colors.grey.withOpacity(0.2)
                             ),
                             child: TextFormField(
+                              initialValue: widget.addedProduct==null?null:widget.addedProduct!.price,
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
                               decoration: textInputdec.copyWith(
@@ -233,6 +235,7 @@ class _AddProductState extends State<AddProduct> {
                       color: Colors.grey.withOpacity(0.2)
                   ),
                   child: TextFormField(
+                    initialValue: widget.addedProduct==null?null:widget.addedProduct!.image,
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     decoration: textInputdec.copyWith(
@@ -270,6 +273,7 @@ class _AddProductState extends State<AddProduct> {
                       color: Colors.grey.withOpacity(0.2)
                   ),
                   child: TextFormField(
+                    initialValue: widget.addedProduct==null?null:"Delhi,India",
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     decoration: textInputdec.copyWith(
@@ -310,6 +314,7 @@ class _AddProductState extends State<AddProduct> {
                   ),
                   child: Center(
                     child: TextFormField(
+                      initialValue: widget.addedProduct==null?null:widget.addedProduct!.desc,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       decoration: textInputdec.copyWith(

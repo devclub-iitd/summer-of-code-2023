@@ -8,6 +8,7 @@ import 'package:my_app/Utils/constants.dart';
 import 'package:http/http.dart' as http;
 import '../Models/AddedProduct.dart';
 import '../Utils/widgets.dart';
+import '../homepage.dart';
 
 class MyProductApi{
   Constants constants=Constants();
@@ -44,6 +45,8 @@ class MyProductApi{
           });
       if (response.statusCode==200){
         showSnakbar(context,Colors.green, "Product Added");
+
+
       }else{
         showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
       }
