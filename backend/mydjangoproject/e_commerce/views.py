@@ -67,11 +67,15 @@ def add_product(request):
 
 
 #API
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from .serializers import ProductSerializer,IdSerializer
+
+from .serializers import ProductSerializer,SignUpSerializer
 from rest_framework import status
 import json
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.response import Response
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
 def get_all(request):
@@ -103,9 +107,9 @@ def post_one(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 @api_view(['PUT'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def buy_one(request):
-    if(not request.user.is_authenticated):
-        return Response('Please Login First', status=status.HTTP_400_BAD_REQUEST)
     try:
         id=json.loads(request.body.decode('utf-8'))['id']
     except:return Response('Invalid Input', status=status.HTTP_400_BAD_REQUEST)
@@ -119,10 +123,10 @@ def buy_one(request):
         return Response("already bought", status=status.HTTP_400_BAD_REQUEST)
     ls.buyers.append(request.user.id);ls.save()
     return Response("Mission accomplished", status=status.HTTP_201_CREATED)
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 @api_view(['DELETE'])
 def del_one(request):
-    if(not request.user.is_authenticated):
-        return Response("Please login first",status=status.HTTP_400_BAD_REQUEST)
     id=request.data.id
     ls=Product.objects.filter(id=id)
     if(len(ls)==0):
@@ -132,3 +136,22 @@ def del_one(request):
         ls.delete()
         return Response('Mission accomplished',status=status.HTTP_204_NO_CONTENT)
     return Response("Only the creator can delete the item",status=status.HTTP_400_BAD_REQUEST)
+@api_view(['POST'])
+def log_in(request):
+    try:username,password=request.data['username'],request.data['password']
+    except:return Response('Authorization token absent',status=status.HTTP_401_UNAUTHORIZED)
+    # print(username,password)
+    user=authenticate(username=username,password=password)
+    print(user)
+    if(user is None):
+        return Response('invalid authorization',status=status.HTTP_400_BAD_REQUEST)
+    refresh = RefreshToken.for_user(user)
+    return Response({'refresh': str(refresh), 'access': str(refresh.access_token)},status=status.HTTP_202_ACCEPTED)
+@api_view(['POST'])
+def signup(request):
+    serializer = SignUpSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        refresh = RefreshToken.for_user(user)
+        return Response({'refresh': str(refresh), 'access': str(refresh.access_token)})
+    return Response(serializer.errors, status=400)
