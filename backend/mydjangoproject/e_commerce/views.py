@@ -77,23 +77,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-@api_view(['GET'])
-def get_all(request):
-    product = Product.objects.all()
-    serializer = ProductSerializer(product, many=True)
-    return Response(serializer.data)
-@api_view(['GET'])
-def get_one(request):
-    id= request.query_params.get('id')
-    if(id):
-        try:
-            product = Product.objects.filter(id=id)[0]
-        except:
-            return Response([])
-    else:
-        return Response('Invalid request please attach product id', status=status.HTTP_400_BAD_REQUEST)
-    serializer = ProductSerializer(product, many=False)
-    return Response(serializer.data)
+
 @api_view(['POST'])
 def post_one(request):
     if(not request.user.is_authenticated):
@@ -123,19 +107,6 @@ def buy_one(request):
         return Response("already bought", status=status.HTTP_400_BAD_REQUEST)
     ls.buyers.append(request.user.id);ls.save()
     return Response("Mission accomplished", status=status.HTTP_201_CREATED)
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
-@api_view(['DELETE'])
-def del_one(request):
-    id=request.data.id
-    ls=Product.objects.filter(id=id)
-    if(len(ls)==0):
-        return Response('the product not in the database',status=status.HTTP_204_NO_CONTENT)
-    ls=ls[0]
-    if(ls['creator']==request.user.id):
-        ls.delete()
-        return Response('Mission accomplished',status=status.HTTP_204_NO_CONTENT)
-    return Response("Only the creator can delete the item",status=status.HTTP_400_BAD_REQUEST)
 @api_view(['POST'])
 def log_in(request):
     try:username,password=request.data['username'],request.data['password']
@@ -155,3 +126,34 @@ def signup(request):
         refresh = RefreshToken.for_user(user)
         return Response({'refresh': str(refresh), 'access': str(refresh.access_token)})
     return Response(serializer.errors, status=400)
+
+from e_commerce.serializers import ProductSerializer
+from rest_framework import viewsets
+from rest_framework import permissions
+class ProductList(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = Product.objects.all()
+    serializer_class =ProductSerializer
+    lookup_field='id'
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        print(instance.creator,request.user.id)
+        if(request.user.id==instance.creator):
+            return super().destroy(request, *args, **kwargs)
+        else:
+            return Response('only creator can destroy an object',status=status.HTTP_400_BAD_REQUEST)
+    def create(self, request, *args, **kwargs):
+        instance=self.get_object()
+        instance.creator=request.user.id
+        instance.buyers=[]
+        instance.save()
+        return Response('the product has been created',status=status.HTTP_201_CREATED)
+    def update(self, request, *args, **kwargs):
+        instance=self.get_object()
+        if(request.user.id==instance.creator):
+            return Response("creator can't buy his own",status=400)
+        if(request.user.id in instance.buyers):
+            return Response('Already Bought',status=400)
+        instance.buyers.append(request.user.id)
+        instance.save()
+        return Response('Item bought',status=status.HTTP_202_ACCEPTED)

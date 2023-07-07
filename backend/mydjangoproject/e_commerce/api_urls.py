@@ -6,11 +6,11 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns=[
-    path('',views.get_all,name='get_all'),
-    path('find',views.get_one,name='get_one'),
-    path('post',views.post_one,name='post'),
-    path('delete',views.del_one,name='delete'),
-    path('buy',views.buy_one,name='buy'),
+    path('product',views.ProductList.as_view({'get':'list'}),name='get_all'),
+    path('product/<int:id>/',views.ProductList.as_view({'get': 'retrieve'}),name='get_one'),
+    path('add/',views.ProductList.as_view({'post':'create'}),name='add'),
+    path('delete/<int:id>/',views.ProductList.as_view({'delete':'destroy'}),name='delete'),
+    path('buy/<int:id>/',views.ProductList.as_view({'put':'update'}),name='buy'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('login',views.log_in,name='login'),
