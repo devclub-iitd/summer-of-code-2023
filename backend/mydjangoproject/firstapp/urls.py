@@ -9,5 +9,8 @@ urlpatterns = [
     path('logout',views.logout__,name='logout'),
     path('accounts/',include('django.contrib.auth.urls')),
     path('',views.home,name='home'),
-    path('timeout',views.to,name='timeout')
+    path('timeout',views.to,name='timeout'),
+    path('product/<int:id>/',views.viewone,name='viewone'),
+    path('product/delete/<int:id>/',views.deletep,name='delete'),
+    path('product/purchase',views.purchase,name='Purchase')
 ]
