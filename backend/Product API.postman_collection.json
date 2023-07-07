@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "670c0ff7-200c-4d3c-bf3b-268145958e3d",
+		"name": "Product API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28370327"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/api/signup/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"<username>\", \"password\": \"<password>\"}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signup",
+						""
+					]
+				},
+				"description": "StartFragmentStartFragment\n\nCreates a new user account with the provided username and password. Upon successful creation, it returns the details of the user account, including username, user ID, and registration date.\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/token/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"<username>\", \"password\": \"<password>\"}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/token/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				},
+				"description": "StartFragment\n\nAuthenticates the user with the provided username and password. If the credentials are valid, it returns an access token that can be used for subsequent API calls to authenticate the user.\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/products/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <access_token>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/products/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"products",
+						""
+					]
+				},
+				"description": "StartFragment\n\nRetrieves a list of all products available in the system. Requires authentication with a valid access token. It returns an array of product objects containing details such as the product name, description, and price.\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/products/<product_id>/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <access_token>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/products/<product_id>/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"products",
+						"<product_id>",
+						""
+					]
+				},
+				"description": "StartFragment\n\nRetrieves detailed information about a specific product based on the provided product ID. Requires authentication with a valid access token. It returns the product details, including the name, description, price, and other relevant attributes.\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/products/<product_id>/",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <access_token>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/products/<product_id>/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"products",
+						"<product_id>",
+						""
+					]
+				},
+				"description": "StartFragment\n\nDeletes a specific product identified by the provided product ID. Requires authentication and authorization with a valid access token. If the product is successfully deleted, it returns a success message confirming the deletion.\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/products/<product_id>/purchase/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <access_token>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/products/<product_id>/purchase/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"products",
+						"<product_id>",
+						"purchase",
+						""
+					]
+				},
+				"description": "StartFragment\n\nAllows the authenticated user to purchase a specific product identified by the provided product ID. Upon successful purchase, it returns a success message confirming the purchase and any relevant details, such as the order ID or transaction information.\n\nEndFragment"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/products/add/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <access_token>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"<product_name>\",\r\n    \"description\": \"<product_description>\",\r\n    \"price\": \"<product_price>\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/products/add/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"products",
+						"add",
+						""
+					]
+				},
+				"description": "StartFragment\n\nAdds a new product to the system with the provided name, description, and price. Requires authentication with a valid access token. If the product is successfully added, it returns the details of the newly created product, including the product ID, name, description, and price.\n\nEndFragment"
+			},
+			"response": []
+		}
+	]
+}
