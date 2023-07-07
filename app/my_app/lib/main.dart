@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/homepage.dart';
+import 'package:my_app/pages/searchPage.dart';
 import 'package:my_app/providers/product_provider.dart';
 import 'package:my_app/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(MultiProvider(
     providers: [ChangeNotifierProvider(create: (context) => UserProvider()),
       ChangeNotifierProvider(create: (context) => ProductProvider()),

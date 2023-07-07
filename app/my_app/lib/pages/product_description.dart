@@ -28,7 +28,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
   MyProductApi myProductApi =MyProductApi();
   getCart(){
     cartApiService.getMyCart("adi@gmail.com",context).then((value){
-      Provider.of<ProductProvider>(context, listen: false).setList(value);
+      Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
     });
   }
 

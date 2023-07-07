@@ -4,6 +4,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/AddedProduct.dart';
+import 'package:my_app/pages/searchPage.dart';
 import '../ApiService/addedProductApi.dart';
 import '../Utils/widgets.dart';
 
@@ -61,44 +62,53 @@ class _AddProductState extends State<AddProduct> {
   Widget build(BuildContext context) {
     return  Scaffold(
       bottomNavigationBar:submitForm() ,
+      appBar: AppBar(
+        flexibleSpace:Padding(
+          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap:(){
+                  Navigator.pop(context);
+                },
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: Icon(Icons.arrow_back_ios),
+                  ),
+                ),
+              ),
+              Text("Add Product",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+              GestureDetector(
+                onTap: (){
+                  nextScreen(context, SearchPage());
+                },
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: Icon(Icons.search_outlined),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: SafeArea(child: SingleChildScrollView(
         child: Form(
           key: formKey,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap:(){
-                        Navigator.pop(context);
-                      },
-                      child: Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          child: Icon(Icons.arrow_back_ios),
-                        ),
-                      ),
-                    ),
-                    Text("Add Product",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
-                    Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        child: Icon(Icons.sort_outlined),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 15,),
+              SizedBox(height: 10,),
               Align(
                 alignment: Alignment.topLeft,
                   child: Padding(

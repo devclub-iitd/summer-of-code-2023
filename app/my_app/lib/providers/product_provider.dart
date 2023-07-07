@@ -6,6 +6,7 @@ import 'package:my_app/Models/AddedProduct.dart';
 
 class ProductProvider extends ChangeNotifier{
   List<AddedProduct> list=[];
+  int cartLength=0;
   UnmodifiableListView<AddedProduct> get products=>UnmodifiableListView(list);
   get size=>list.length;
 
@@ -19,6 +20,10 @@ class ProductProvider extends ChangeNotifier{
   }
   void setList(List<AddedProduct> cartList){
     list=cartList;
+    notifyListeners();
+  }
+  void setCartLength(int length){
+    cartLength=length;
     notifyListeners();
   }
 }

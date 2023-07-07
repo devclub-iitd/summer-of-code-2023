@@ -201,7 +201,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
                     child: GestureDetector(
                       onTap: (){
-                        nextScreen(context, ProductDescription(product: AddedProduct('', '', productList[i]['name'], widget.name, productList[i]['desc'], productList[i]['price'].toString(), '', true, productList[i]['image']), category:widget.name,isMYProduct: false, ));
+                        nextScreen(context, ProductDescription(product: AddedProduct('', '', productList[i]['name'], widget.name, productList[i]['desc'], productList[i]['price'].toString(), "Delhi,India", true, productList[i]['image']), category:widget.name,isMYProduct: false, ));
                       },
                       child: Container(
                         child: Column(

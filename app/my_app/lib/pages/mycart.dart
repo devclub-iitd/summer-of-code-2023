@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/Product.dart';
+import 'package:my_app/Models/cartItem.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/homepage.dart';
 import 'package:my_app/pages/product_description.dart';
+import 'package:my_app/pages/searchPage.dart';
 import 'package:provider/provider.dart';
 import '../ApiService/CartApi.dart';
 import '../Models/AddedProduct.dart';
@@ -19,8 +21,9 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
-  List<AddedProduct>list=[];
+  List<CartItem>list=[];
   bool isLoading=true;
+  int priceSum=0;
   CartApiService cartApiService=CartApiService();
 
   @override
@@ -30,11 +33,11 @@ class _MyCartState extends State<MyCart> {
   }
   getCart(){
     cartApiService.getMyCart("adi@gmail.com",context).then((value){
-      Provider.of<ProductProvider>(context, listen: false).setList(value);
+      Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
       setState(() {
-        list=value;
+        list=value[0];
+        priceSum=value[1];
         isLoading=false;
-
       });
 
     });
@@ -44,43 +47,52 @@ class _MyCartState extends State<MyCart> {
 
     return Scaffold(
       bottomNavigationBar:CheckOut() ,
+      appBar: AppBar(
+        flexibleSpace:Padding(
+          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap:(){
+                  Navigator.pop(context);
+                },
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: Icon(Icons.arrow_back_ios),
+                  ),
+                ),
+              ),
+              Text("My Cart",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+              GestureDetector(
+                onTap: (){
+                  nextScreen(context, SearchPage());
+                },
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: Icon(Icons.search_outlined),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: SafeArea(child: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(top: 10),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap:(){
-                        Navigator.pop(context);
-                      },
-                      child: Card(
-                        elevation: 10,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          child: Icon(Icons.arrow_back_ios),
-                        ),
-                      ),
-                    ),
-                    Text("Shopping Cart",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
-                    Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        child: Icon(Icons.more_horiz),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(height: 15,),
               CartProducts()
             ],
@@ -92,7 +104,8 @@ class _MyCartState extends State<MyCart> {
 
 
   Widget CartProducts(){
-    return isLoading?const CircularProgressIndicator(color: Colors.grey,):list.isEmpty?
+    final cl=context.watch<ProductProvider>().cartLength;
+    return isLoading?Center(child: const CircularProgressIndicator(color: Colors.grey,)):list.isEmpty?
     Container(
       child: Column(
         children: [
@@ -147,7 +160,7 @@ class _MyCartState extends State<MyCart> {
                           child: Icon(Icons.shopping_cart_outlined),
                         ),
                         Text("Items in your cart",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 20),),
-                        Text(list.length.toString(),style: TextStyle(color: Colors.blue,fontSize: 22,fontWeight: FontWeight.w400),)
+                        Text(cl.toString(),style: TextStyle(color: Colors.blue,fontSize: 22,fontWeight: FontWeight.w400),)
                       ],
                     ),
                   ),
@@ -157,10 +170,10 @@ class _MyCartState extends State<MyCart> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context,i){
-                  final product=list[i];
+                  final product=list[i].product;
                   return GestureDetector(
                     onTap: (){
-                      nextScreen(context, ProductDescription(product: list[i], category: product.category,isMYProduct: false,));
+                      nextScreen(context, ProductDescription(product: product, category: product.category,isMYProduct: false,));
                     },
                     child: Slidable(
                       startActionPane: ActionPane(
@@ -202,10 +215,15 @@ class _MyCartState extends State<MyCart> {
                           ),
                         ),
                         title: Text(product.title,),
-                        subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
+                        subtitle: Row(
+                          children: [
+                            Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
+                            SizedBox(width: 5,),
+                            Text(" X "+list[i].count.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
+                          ],
+                        ),
                         trailing: GestureDetector(
                           onTap: (){
-
                             cartApiService.removeFromCart(context: context, userId: "adi@gmail.com", id: product.id).then((value) {
                               if(value){
                                 getCart();
@@ -239,10 +257,7 @@ class _MyCartState extends State<MyCart> {
   }
 
   Widget CheckOut(){
-    int priceSum=0;
-    for(var i=0; i<list.length; i++){
-      priceSum=priceSum+int.parse(list[i].price.split(".")[0]).toInt();
-    }
+
     return isLoading?Container(height: 1,):list.length==0? Container(height: 1,):
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),

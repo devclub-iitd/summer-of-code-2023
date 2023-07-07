@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/Models/cartItem.dart';
 import '../Models/AddedProduct.dart';
 import '../Utils/constants.dart';
 import '../Utils/widgets.dart';
@@ -10,22 +11,29 @@ import '../Utils/widgets.dart';
 class CartApiService{
   Constants constants=Constants();
 
-  Future<List<AddedProduct>> getMyCart(String id,BuildContext context) async{
+  Future<List> getMyCart(String id,BuildContext context) async{
 
-    List<AddedProduct> list=[];
+    List<CartItem> list=[];
     final response=await http.get(Uri.parse("${constants.apiUri}/api/cart/$id"));
     if(response.statusCode==200){
+      int price=0;
+      int cartLength=0;
       for (var i=0;i<jsonDecode(response.body).length;i++){
         Map<String,dynamic> json=jsonDecode(response.body)[i]["product"];
+        int qty=jsonDecode(response.body)[i]['quantity'];
         AddedProduct addedProduct=AddedProduct.fromJson(json);
-        list.add(addedProduct);
+
+        price+=qty*(int.parse(addedProduct.price.split(".")[0]).toInt());
+        cartLength+=qty;
+        CartItem cartItem=CartItem(addedProduct, qty);
+        list.add(cartItem);
       }
-      return list;
+      return [list,price,cartLength];
     }else if(response.statusCode==400){
-      return [];
+      return [[],0,0];
     }else{
       showSnakbar(context, Colors.red, jsonDecode(response.body)['error']);
-      return [];
+      return [[],0,0];
 
     }
 
