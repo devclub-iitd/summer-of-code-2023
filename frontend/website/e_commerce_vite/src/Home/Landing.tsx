@@ -7,7 +7,6 @@ import receive_img from "./images/imgy.svg"
 import send_img from "./images/imgx.svg"
 import buy_img from "./images/imgz.svg"
 import arrow from "./images/ic_arrow_forward_24px.svg"
-import { url } from "inspector";
 
 
 
