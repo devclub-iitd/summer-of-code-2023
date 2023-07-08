@@ -29,7 +29,7 @@ async function getCommits(i, repo) {
 async function getBranches(i, repo) {
     const branchUrl = "https://api.github.com/repos/"+i.full_name+"/branches"
 
-    const branchResponse = await fetch(branchUrl})
+    const branchResponse = await fetch(branchUrl)
     const branchResult = await branchResponse.json()
 
     console.log(branchResult)
