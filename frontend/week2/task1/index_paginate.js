@@ -8,7 +8,7 @@ btnGet.addEventListener("click", getForks)
 async function getCommits(i, repo) {
     const commitUrl = "https://api.github.com/repos/"+i.full_name+"/commits"
 
-    const commitResponse = await fetch(commitUrl})
+    const commitResponse = await fetch(commitUrl))
     const commitResult = await commitResponse.json()
 
     console.log(commitResult)
