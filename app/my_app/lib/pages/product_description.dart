@@ -43,6 +43,11 @@ class _ProductDescriptionState extends State<ProductDescription> {
         isNegotiable: true,
         image: product.image);
   }
+  @override
+  void initState() {
+    super.initState();
+    myProductApi.addSuggestion(context: context, email: "its8@gmail.com", category: widget.product.category);
+  }
 
 
 
@@ -54,7 +59,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
           if(widget.product.id.isEmpty){
             showSnakbar(context, Colors.red, "can't be added");
           }else{
-            cartApiService.addTocart(context: context, userId: widget.product.userId, id: widget.product.id, quantity: 1).then((value) {
+            cartApiService.addTocart(context: context, userId: "adi@gmail.com", id: widget.product.id, quantity: 1).then((value) {
               if(value){
                 getCart();
               }

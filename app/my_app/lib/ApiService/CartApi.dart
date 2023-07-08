@@ -13,29 +13,35 @@ class CartApiService{
 
   Future<List> getMyCart(String id,BuildContext context) async{
 
-    List<CartItem> list=[];
-    final response=await http.get(Uri.parse("${constants.apiUri}/api/cart/$id"));
-    if(response.statusCode==200){
-      int price=0;
-      int cartLength=0;
-      for (var i=0;i<jsonDecode(response.body).length;i++){
-        Map<String,dynamic> json=jsonDecode(response.body)[i]["product"];
-        int qty=jsonDecode(response.body)[i]['quantity'];
-        AddedProduct addedProduct=AddedProduct.fromJson(json);
+    try{
+      List<CartItem> list=[];
+      final response=await http.get(Uri.parse("${constants.apiUri}/api/cart/$id"));
+      if(response.statusCode==200){
+        int price=0;
+        int cartLength=0;
+        for (var i=0;i<jsonDecode(response.body).length;i++){
+          Map<String,dynamic> json=jsonDecode(response.body)[i]["product"];
+          int qty=jsonDecode(response.body)[i]['quantity'];
+          AddedProduct addedProduct=AddedProduct.fromJson(json);
 
-        price+=qty*(int.parse(addedProduct.price.split(".")[0]).toInt());
-        cartLength+=qty;
-        CartItem cartItem=CartItem(addedProduct, qty);
-        list.add(cartItem);
+          price+=qty*(int.parse(addedProduct.price.split(".")[0]).toInt());
+          cartLength+=qty;
+          CartItem cartItem=CartItem(addedProduct, qty);
+          list.add(cartItem);
+        }
+        return [list,price,cartLength];
+      }else if(response.statusCode==400){
+        return [[],0,0];
+      }else{
+        return [[],0,0];
+
       }
-      return [list,price,cartLength];
-    }else if(response.statusCode==400){
-      return [[],0,0];
-    }else{
-      showSnakbar(context, Colors.red, jsonDecode(response.body)['error']);
-      return [[],0,0];
-
+    }catch(e){
+      showSnakbar(context, Colors.red, e.toString());
+      return [];
     }
+
+
 
   }
 

@@ -25,6 +25,29 @@ class MyProductApi{
 
   }
 
+  Future<List<AddedProduct>> getRecommended(String id)async{
+    try{
+
+      final response=await http.get(Uri.parse("${constants.apiUri}/api/recommended/$id"));
+      if(response.statusCode==200){
+        final parsed=jsonDecode(response.body).cast<Map<String,dynamic>>();
+        return parsed.map<AddedProduct>((json)=>
+            AddedProduct.fromJson(json)).toList();
+      }else{
+        return [];
+      }
+    }catch(e){
+      print(e.toString());
+      return [];
+    }
+
+
+
+  }
+
+
+
+
   void addProduct({
     required BuildContext context,
     required String userId,
@@ -46,10 +69,32 @@ class MyProductApi{
       if (response.statusCode==200){
         showSnakbar(context,Colors.green, "Product Added");
 
-
+      }else if(response.statusCode==400){
+        showSnakbar(context, Colors.red, jsonDecode(response.body)["msg"]);
       }else{
-        showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
+        showSnakbar(context, Colors.red, jsonDecode(response.body)['error']);
       }
+    }catch(e){
+      showSnakbar(context, Colors.red, e.toString());
+    }
+
+  }
+
+  void  addSuggestion({
+    required BuildContext context,
+    required String email,
+    required String category,}) async{
+    try{
+
+      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/suggestion"),
+          body:jsonEncode({
+            "email":email,
+            "category":category
+          }),
+          headers: <String,String>{
+            'content-Type':'application/json; charset=UTF-8'
+          });
+
     }catch(e){
       showSnakbar(context, Colors.red, e.toString());
     }

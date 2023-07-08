@@ -43,6 +43,7 @@ dependencies:
   shared_preferences:
   flutter_slidable:
   badges:
+  smooth_page_indicator:
 
 
 dev_dependencies:

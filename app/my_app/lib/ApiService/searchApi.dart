@@ -12,6 +12,7 @@ import '../Utils/constants.dart';
 class SearchApi{
 
   Constants constants=Constants();
+
   Future<List<AddedProduct>> getSearchedProducts(String query,BuildContext context)async{
     try{
       List<Map<String,dynamic>> list=[];
@@ -31,4 +32,8 @@ class SearchApi{
     }
 
   }
+
+
+
+
 }

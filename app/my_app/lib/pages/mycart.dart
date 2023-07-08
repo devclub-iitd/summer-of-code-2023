@@ -59,26 +59,26 @@ class _MyCartState extends State<MyCart> {
                 },
                 child: Card(
                   elevation: 10,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
                     width: 50,
-                    child: Icon(Icons.arrow_back_ios),
+                    child: const Icon(Icons.arrow_back_ios),
                   ),
                 ),
               ),
               Text("My Cart",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
               GestureDetector(
                 onTap: (){
-                  nextScreen(context, SearchPage());
+                  nextScreen(context, const SearchPage());
                 },
                 child: Card(
                   elevation: 10,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
                     width: 50,
-                    child: Icon(Icons.search_outlined),
+                    child: const Icon(Icons.search_outlined),
                   ),
                 ),
               ),
@@ -90,10 +90,10 @@ class _MyCartState extends State<MyCart> {
       ),
       body: SafeArea(child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 10),
           child: Column(
             children: [
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               CartProducts()
             ],
           ),
@@ -105,18 +105,18 @@ class _MyCartState extends State<MyCart> {
 
   Widget CartProducts(){
     final cl=context.watch<ProductProvider>().cartLength;
-    return isLoading?Center(child: const CircularProgressIndicator(color: Colors.grey,)):list.isEmpty?
+    return isLoading?const Center(child: CircularProgressIndicator(color: Colors.grey,)):list.isEmpty?
     Container(
       child: Column(
         children: [
           Text("Cart is empty",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 23),),
-          SizedBox(height: 20,),
-          Text("Let's find something special for you",style:TextStyle(fontSize: 20,color: Colors.grey),),
-          SizedBox(height: 25,),
+          const SizedBox(height: 20,),
+          const Text("Let's find something special for you",style:TextStyle(fontSize: 20,color: Colors.grey),),
+          const SizedBox(height: 25,),
           GestureDetector(
             onTap: (){
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                  builder: (context) =>  HomePage()), (Route route) => false);
+                  builder: (context) =>  const HomePage()), (Route route) => false);
             },
             child: Container(
               width: 250,
@@ -141,7 +141,7 @@ class _MyCartState extends State<MyCart> {
         :SizedBox(
             child: Card(
         elevation: 5,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
               child: Column(
                 children: [
                   Padding(
@@ -155,20 +155,20 @@ class _MyCartState extends State<MyCart> {
 
                           decoration: BoxDecoration(
                               color: Colors.grey.withOpacity(0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(15))
+                            borderRadius: const BorderRadius.all(Radius.circular(15))
                           ),
-                          child: Icon(Icons.shopping_cart_outlined),
+                          child: const Icon(Icons.shopping_cart_outlined),
                         ),
                         Text("Items in your cart",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 20),),
-                        Text(cl.toString(),style: TextStyle(color: Colors.blue,fontSize: 22,fontWeight: FontWeight.w400),)
+                        Text(cl.toString(),style: const TextStyle(color: Colors.blue,fontSize: 22,fontWeight: FontWeight.w400),)
                       ],
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   ListView.builder(
-        itemCount: list.length,
+                  itemCount: list.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context,i){
                   final product=list[i].product;
                   return GestureDetector(
@@ -177,13 +177,8 @@ class _MyCartState extends State<MyCart> {
                     },
                     child: Slidable(
                       startActionPane: ActionPane(
-                        // A motion is a widget used to control how the pane animates.
                         motion: const ScrollMotion(),
-
-
-                        // All actions are defined in the children parameter.
                         children:  [
-                          // A SlidableAction can have an icon and/or a label.
                           SlidableAction(
                             onPressed: (context){
 
@@ -197,7 +192,7 @@ class _MyCartState extends State<MyCart> {
                             onPressed: (context){
                             },
                             backgroundColor: Colors.white,
-                            foregroundColor: Color(0xFF21B7CA),
+                            foregroundColor: const Color(0xFF21B7CA),
                             icon: Icons.share,
                             label: 'Share',
                           ),
@@ -210,16 +205,16 @@ class _MyCartState extends State<MyCart> {
                           width: 60,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            borderRadius: const BorderRadius.all(Radius.circular(15)),
                             image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
                           ),
                         ),
                         title: Text(product.title,),
                         subtitle: Row(
                           children: [
-                            Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
-                            SizedBox(width: 5,),
-                            Text(" X "+list[i].count.toString(),style: TextStyle(color: Colors.black,fontSize: 15),),
+                            Text("Rs. ${product.price}",style: const TextStyle(color: Colors.blue),),
+                            const SizedBox(width: 5,),
+                            Text(" X ${list[i].count}",style: const TextStyle(color: Colors.black,fontSize: 15),),
                           ],
                         ),
                         trailing: GestureDetector(
@@ -238,9 +233,9 @@ class _MyCartState extends State<MyCart> {
                               width: 40,
                             decoration: BoxDecoration(
                               color: Colors.grey.withOpacity(0.2),
-                              borderRadius: BorderRadius.all(Radius.circular(10))
+                              borderRadius: const BorderRadius.all(Radius.circular(10))
                             ),
-                            child: Icon(Icons.remove,color: Colors.red,),
+                            child: const Icon(Icons.remove,color: Colors.red,),
                           ),
                         ),
                       ),
@@ -272,7 +267,7 @@ class _MyCartState extends State<MyCart> {
             ),
             height: 50,
             child:  Center(
-              child: Text("Go to checkout -  Rs."+priceSum.toString(),style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+              child: Text("Go to checkout -  Rs.$priceSum",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
               ),
             ),
           ),
