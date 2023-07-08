@@ -11,6 +11,7 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 
 ## Timeline
 ### Week 1
+
 #### Concepts
 - Introduction
     - What backend development entails.
@@ -49,3 +50,66 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 
 #### [Task](week1) 
 Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
+
+### Week 2
+#### Concepts
+- Virtual Environment
+    - What is a virtual environment and why do we need it.
+    - Setting up a virtual environment for our project.
+- Installing Django
+    - Installing Django using pip in the newly created virtual environment.
+    - Creating a new Django project.
+- Creating Apps
+    - Creating apps for our project.
+    - Understanding the structure of a Django app.
+    - Adding the app to the main project.
+- Creating models
+    - Creating models for our app.
+    - Understanding the structure of a Django model.
+    - Adding the models to the database.
+    - Adding data to the model using the admin panel.
+- Template Rendering
+    - Creating templates for our app.
+    - Rendering the templates using views and data from the database.
+- Using Django's powerful inbuilt Authentication and Form features
+
+#### Resources
+- Documentation for Python's [venv](https://docs.python.org/3/library/venv.html) module
+- Installation guide for [Django](https://docs.djangoproject.com/en/4.2/topics/install/)
+- Introduction to [Django](https://www.youtube.com/watch?v=rHux0gMZ3Eg)
+- GitHub's [Advanced Markdown Formatting](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams#creating-mermaid-diagrams)
+- Digital Ocean's [PostgreSQL Setup](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-22-04)
+- [NGINX](https://nginx.org/en/)
+- Django's guide to [deployment](https://docs.djangoproject.com/en/4.2/howto/deployment/)
+
+#### [Task](week2)
+Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
+
+### Week 3
+#### Concepts
+- Django REST Framework
+    - What is Django REST Framework and why do we need it.
+    - Installing Django REST Framework using pip in the virtual environment.
+    - Transforming our Django project into a REST API.
+- Function Based Views
+    - Creating function based views for our app.
+    - Understanding the structure of a Django function based view.
+    - Adding the views to the main project.
+- Authentication using Simple JWT
+    - Understanding the concept of JWT.
+    - Installing Simple JWT using pip in the virtual environment.
+    - Adding JWT authentication to our project.
+- Documentation
+    - Understanding how to document our API.
+    - Installing Postman and using it to test our API.
+    - Writing documentation for all APIs used in our project.
+
+
+#### Resources
+- Django REST Framework's [Quickstart](https://www.django-rest-framework.org/tutorial/quickstart/)
+- Django Simple JWT's [Quickstart](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html)
+- Postman's [Quickstart](https://learning.postman.com/docs/getting-started/introduction/)
+
+#### [Task](week3)
+
+Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!
