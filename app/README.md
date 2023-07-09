@@ -47,3 +47,41 @@
 
 - #### [Task](week1)
 This assignment will allow you to apply your Flutter skills with Marketplace Design Exploration, Product Listing Implementation, Product Details and Interaction, and Cart Functionality.
+
+
+### Week 2
+
+- #### Concepts
+1. **Custom Widgets:** Take the initiative to create custom widgets that align with the design and functionality of our marketplace app. These widgets should encapsulate specific UI components or reusable elements, promoting code reusability and modularity. Experiment with different Flutter widget types such as `Container`, `Card`, `FlatButton`, or `CustomPaint` and customize them according to the desired visual style and behavior of our app.
+
+2. **PageView Builder:** Implement a dynamic PageView builder that enables users to swipe between different banners displayed in our app. Utilize the `PageView` widget to showcase promoted banners with smooth transitions. Apply the builder pattern to dynamically generate the content of each page, ensuring flexibility in our user interface.
+
+3. **Forms and Input Validation:** Take the initiative to implement forms that capture user input and perform input validation. Focus on creating a form that allows users to provide necessary details when posting a product for sale. Utilize Flutter's form widgets, such as `TextFormField` and `FormFieldValidator`, to manage user input and maintain data integrity. Implement validation logic to verify the correctness of entered data, including checking for required fields and enforcing length limitations.
+
+- #### Resources
+
+- [Building an eCommerce app with Flutter](https://codesource.io/building-an-ecommerce-app-with-flutter/)
+- [Flutter – Custom Widgets](https://www.geeksforgeeks.org/flutter-custom-widgets/)
+- [Designing a Form Submission Page in Flutter](https://www.geeksforgeeks.org/designing-a-form-submission-page-in-flutter/)
+- [Flutter form validation: The complete guide](https://blog.logrocket.com/flutter-form-validation-complete-guide/)
+- [A Deep Dive Into PageView In Flutter (With Custom Transitions)](https://medium.com/flutter-community/a-deep-dive-into-pageview-in-flutter-with-custom-transitions-581d9ea6dded)
+
+- #### [Task](week2)
+Dive deeper into Flutter's Widgets by building ProductTile, Promoted product banners and implementing forms. Make the app dynamic and interactive!
+
+### Week 3
+
+- #### Concepts
+1. **Integrating RESTAPIs (GET, POST, PUT, DELETE):** Throughout the week, your task will be to explore and implement the fundamental concepts of REST API integration. You will learn how to make HTTP requests using the various methods such as GET, POST, PUT, and DELETE to interact with server resources. Your challenge will be to understand endpoints, request headers, request bodies, and how to handle server responses. By the end of the week, you will have the skills to effectively communicate with server-side resources, retrieve and create data, update existing resources, and delete resources using the appropriate HTTP methods.
+
+2. **JSON Serialization and DeSerialization:** You have to learn how to serialize Dart objects into JSON format and deserialize JSON into Dart objects. This process will enable you to seamlessly communicate with server APIs, persist data, and share information within your app. Your challenge is to transform data between JSON and Dart objects, allowing for efficient data handling and manipulation.
+
+- #### Resources
+
+- [Fetch data from the internet](https://docs.flutter.dev/cookbook/networking/fetch-data)
+- [Working with REST APIs](https://blog.codemagic.io/rest-api-in-flutter/)
+- [Flutter Tutorial - HTTP Requests and REST API (GET, POST, PUT and DELETE)](https://youtu.be/4hq_Kwu7sgU)
+- [JSON and serialization](https://docs.flutter.dev/data-and-backend/json)
+
+- #### [Task](week3)
+In Week 3, We communicate with server resources, manage product data using HTTP methods. Enhancing our app's capabilities for seamless product management and smooth data handling.
