@@ -161,6 +161,11 @@ access to quality collections of texts which can be used for both
 training as well as evaluation.
 
 #### Resources
+1. How [NLP](https://landbot.io/blog/natural-language-processing-chatbot) fits into Machine Learning
+2. Understanding differences between LLMs and small-scale models [here](https://www.labellerr.com/blog/unveiling-the-contrasts-developing-small-scale-and-large-scale-language-models/#:~:text=Small%2Dscale%20language%20models%2C%20also,and%20had%20limited%20computational%20resources)
+3. An introduction to [Dataset Cleaning](https://machinelearningmastery.com/basic-data-cleaning-for-machine-learning/)
+4. Natural Language Processing with [NLTK](https://youtube.com/playlist?list=PLQVvvaa0QuDf2JswnfiGkliBInZnIC4HL) library
+5. The basics of [spaCy](https://youtu.be/dIUTsFT2MeQ) library 
 
 #### [Task](week4) 
 Develop a chatbot designed for a marketplace website, capable of effectively addressing and resolving buyer queries and complaints, by utilizing a well-organized dataset, NLP frameworks and integration for a seamless user experience
