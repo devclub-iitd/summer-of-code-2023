@@ -1,5 +1,8 @@
 <h1 style="text-align: center;">Chatbot for Queries</h1>
 
+### Background
+
+
 ### Formal Statement
 
 This assignment deals with creating a chatbot capable of answering the
