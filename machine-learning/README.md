@@ -132,3 +132,35 @@ Once keypoints are identified, aligning the detected objects accurately becomes 
 
 #### [Task](week3) 
 Develop a model that automatically detects, aligns, and enhances images uploaded by sellers in an online marketplace, using techniques such as image recognition, rotation, and image enhancement
+
+### Week 4
+
+#### Concepts
+- Language Models
+  
+Language models lie at the core of chatbot development. A language model
+is basically a model based on deep learning through which enables the
+chatbot to understand and subsequently generate answers to user queries.
+Training such a model from scratch requires vast computational
+resources. This is where certain libraries with pre-built models which
+can be changed to suit the need of the marketplace website become useful
+. Some libraries which may be of use include:-
+
+- NLTK and spaCy
+
+The NLTK library is of great use for all NLP related applications
+especially for chatbots. It allows for speech tagging and tokenization
+which is of great help as this can then be processed to generate the
+output.The spaCy library also provides tools such as creation of tokens
+as well as getting dependency information among various entities present
+in the input.\
+There are several other libraries with a variety of underlying
+architectures which can be used to build the chatbot Try out a few to
+observe which works the best. Note that some of these also provide
+access to quality collections of texts which can be used for both
+training as well as evaluation.
+
+#### Resources
+
+#### [Task](week4) 
+Develop a chatbot designed for a marketplace website, capable of effectively addressing and resolving buyer queries and complaints, by utilizing a well-organized dataset, NLP frameworks and integration for a seamless user experience
