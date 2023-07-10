@@ -9,10 +9,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer,UserCreateSerializer
 from django.http import JsonResponse
 import json
 import datetime
+from rest_framework import permissions, response,decorators,status
+from rest_framework_simplejwt.tokens import RefreshToken,Token,AccessToken
 
 def home(request):
      return render(request,'index.html')
@@ -32,21 +34,32 @@ def viewone(request,id):
 '''@login_required'''
 ''' current_user = request.user'''
 @api_view(['POST'])
+@decorators.permission_classes([permissions.IsAuthenticated])
 def add(request):
+     
      serializer = ProductSerializer(data = request.data)
      if serializer.is_valid():
           serializer.save()
+          product=Product.objects.last()
+          product.user = request.user
+          product.save()
           return Response(serializer.data)
      return Response(serializer.errors)
-     
+
     
 @api_view(['DELETE'])
+@decorators.permission_classes([permissions.IsAuthenticated])
 def deletep(request,id):
-     product = Product.objects.filter(id=id)
-     product.delete()
-     return Response('DELETED')
+     product = Product.objects.get(id = id)
+     print(product.user,request.user)
+     if product.user == request.user:
+          
+          product.delete()
+          return Response('DELETED')
+     return Response("Unauthorized")
      
 @api_view(['POST'])
+@decorators.permission_classes([permissions.IsAuthenticated])
 def purchase(request):
      data = json.loads(request.body)
      
@@ -83,33 +96,39 @@ def all(request):
     }
     return HttpResponse(template.render(context,request))'''
     return Response(serializer.data)
+@api_view(['POST'])
+@decorators.permission_classes([permissions.AllowAny])
 def register(request):
-    form = re()
-    if request.method == 'POST':
-        form = re(request.POST)
+     serializer = UserCreateSerializer(data=request.data)
+     d=request.data
         
         
-        if form.is_valid():
-               username =form.cleaned_data['username']
-               password = form.cleaned_data['password']
-               user = User.objects.filter(username =username)
-               if user :
-                   messages.error(request,'User already Exists')
-                   return render(request,'registration/register.html',{'form': form})
-               user = User.objects.create_user(username)
-               user.set_password(password)
-               user.save()
-               messages.success(request,'Account Created')
-               return redirect('/product')
+     if serializer.is_valid():
+          email = d['email']
+          username = d['username']
+          if User.objects.filter(username = username).exists():
+               return Response('Username already exists')
+          user=User(username=username,email=email)
+          user.set_password(d['password'])
+          user.save()
+          refresh = RefreshToken.for_user(user)
+          res = {
+               "refresh": str(refresh),
+               "access": str(refresh.access_token),
+          }
+          return response.Response(res,status.HTTP_201_CREATED)
+     else:
+          return Response(serializer.errors)
+
         
             
            
         
-    form=re()      
+          
 
             
     
-    return render(request,'registration/register.html',{'form': form})
+
 def login__(request):
     if request.method == "POST":
         form = lo(request.POST)
