@@ -26,6 +26,7 @@ We will be giving attractive **rewards** to those who participate enthusiastical
     - [Week 1](machine-learning/week1): Set up an ML environment to run your code on GPUs, then select and build a price prediction model, and also scrape your own dataset for it from the web.
     - [Week 2](machine-learning/week2): Use YOLO to identify and describe items to be sold from the pictures, and fine-tune your Object Detection model using your own dataset
     - [Week 3](machine-learning/week3): Develop a model that automatically detects, aligns, and enhances images uploaded by sellers in an online marketplace, using techniques such as image recognition, rotation, and image enhancement
+    - [Week 4](machine-learning/week4): Develop a chatbot designed for a marketplace website, capable of effectively addressing and resolving buyer queries and complaints, by utilizing a well-organized dataset, NLP frameworks and integration for a seamless user experience 
 - [How to Participate](#how-to-participate)
 - [Aim](#aim)
 - [Theme and Project](#theme-and-project)
