@@ -132,3 +132,40 @@ Once keypoints are identified, aligning the detected objects accurately becomes 
 
 #### [Task](week3) 
 Develop a model that automatically detects, aligns, and enhances images uploaded by sellers in an online marketplace, using techniques such as image recognition, rotation, and image enhancement
+
+### Week 4
+
+#### Concepts
+- Language Models
+  
+Language models lie at the core of chatbot development. A language model
+is basically a model based on deep learning through which enables the
+chatbot to understand and subsequently generate answers to user queries.
+Training such a model from scratch requires vast computational
+resources. This is where certain libraries with pre-built models which
+can be changed to suit the need of the marketplace website become useful
+. Some libraries which may be of use include:-
+
+- NLTK and spaCy
+
+The NLTK library is of great use for all NLP related applications
+especially for chatbots. It allows for speech tagging and tokenization
+which is of great help as this can then be processed to generate the
+output.The spaCy library also provides tools such as creation of tokens
+as well as getting dependency information among various entities present
+in the input.\
+There are several other libraries with a variety of underlying
+architectures which can be used to build the chatbot Try out a few to
+observe which works the best. Note that some of these also provide
+access to quality collections of texts which can be used for both
+training as well as evaluation.
+
+#### Resources
+1. How [NLP](https://landbot.io/blog/natural-language-processing-chatbot) fits into Machine Learning
+2. Understanding differences between LLMs and small-scale models [here](https://www.labellerr.com/blog/unveiling-the-contrasts-developing-small-scale-and-large-scale-language-models/#:~:text=Small%2Dscale%20language%20models%2C%20also,and%20had%20limited%20computational%20resources)
+3. An introduction to [Dataset Cleaning](https://machinelearningmastery.com/basic-data-cleaning-for-machine-learning/)
+4. Natural Language Processing with [NLTK](https://youtube.com/playlist?list=PLQVvvaa0QuDf2JswnfiGkliBInZnIC4HL) library
+5. The basics of [spaCy](https://youtu.be/dIUTsFT2MeQ) library 
+
+#### [Task](week4) 
+Develop a chatbot designed for a marketplace website, capable of effectively addressing and resolving buyer queries and complaints, by utilizing a well-organized dataset, NLP frameworks and integration for a seamless user experience
