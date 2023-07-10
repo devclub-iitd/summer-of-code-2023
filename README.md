@@ -14,6 +14,7 @@ We will be giving attractive **rewards** to those who participate enthusiastical
     - [Week 1](backend/week1): Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
     - [Week 2](backend/week2): Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
     - [Week 3](backend/week3): Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!
+    - [Week 4](backend/week4): Deploy your Django project on Microsoft Azure cloud platform, and learn about virtual machines, domain names and HTTPS.
   - [Frontend Development](frontend)
     - [Week 1](frontend/week1): Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
   - [Machine Learning](machine-learning)

@@ -149,9 +149,11 @@ Convert your Django backend into a REST API, and learn about function based view
 - How to [SSH into a Virtual Machine (MacOS)](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-macos)
 - Digital Ocean's [Guide to Deploying Django](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-22-04)
 - Digital Ocean's [Guide to Domain Names](https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts)
-- Getting SSL Certificate using [Certbot](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
-
+- Getting SSL Certificate using [Certbot](https://www.digitalocean.com/community/tutorials/
+how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+- [Docker Compose](https://realpython.com/django-development-with-docker-compose-and-machine/)
+- GitHub [WebHooks](https://docs.github.com/en/webhooks-and-events/webhooks/about-webhooks)
 
 #### [Task](week4)
 
-Deploy your Django project on a cloud platform, and learn about virtual machines, domain names and HTTPS. Prepare final documentation for your project.
+Deploy your Django project on Microsoft Azure cloud platform, and learn about virtual machines, domain names and HTTPS.
