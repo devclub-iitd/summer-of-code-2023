@@ -95,16 +95,12 @@ Learn ReactJS, and make your website better using JSX components and State manag
 
 #### Concepts 
 
-- Websockets: The web protocol to facilitate real time communication. 
-- Backend concepts like database access and communicating with a backend server using socket.io client. 
+- Integrating frontend with backend
+- React Hooks - useState, useEffects, etc
 
 #### Resources  
 
-- [Websockets API][0].
-- [Socket.io python client][3]
-- [Socket.io Rooms][6]
-
-Other resources and code snippets are shared in `week4/README.md` so check it out!      
+Resources and code snippets are shared in `week4/README.md` so check it out!      
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
 [3]: https://pypi.org/project/python-socketio/
