@@ -99,7 +99,7 @@ In Week 3, We communicate with server resources, manage product data using HTTP 
 4. **Stripe Integration (BONUS) :** Explore Stripe payment gateway, its features, and the steps involved in integrating it into flutter app. Learn how to set up Stripe, securely handle payment requests, and ensure reliable transaction processing.
 
 - #### Resources
-
+- Code for the [Backend](https://github.com/as1605/MarketPlace-Demo-Backend) server
 - [Add Firebase to your Flutter app](https://firebase.google.com/docs/flutter/setup?platform=android)
 - [Firebase Setup [2022] Easy and Quick Firebase Setup!](https://www.youtube.com/watch?v=sz4slPFwEvs)
 - [Add Firebase Authentication to your app](https://firebase.flutter.dev/docs/auth/start/#:~:text=From%20the%20root%20of%20your%20Flutter%20project%2C%20run,need%20to%20enable%20it%20in%20the%20Firebase%20console.)
@@ -111,4 +111,4 @@ In Week 3, We communicate with server resources, manage product data using HTTP 
 
 
 - #### [Task](week4)
-In Week 4, We implement secure user authentication, integrate cloud storage for image handling and explore Stripe for seamless payments.
+Implement Firebase user authentication, integrate cloud storage for image handling and explore Stripe for seamless payments.
