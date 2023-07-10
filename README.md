@@ -22,6 +22,7 @@ We will be giving attractive **rewards** to those who participate enthusiastical
     - [Week 1](frontend/week1): Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
     - [Week 2](frontend/week2): Use Javascript to create a repository network analyzer consuming the GitHub API, and use Bootstrap to make our previous webpage responsive!
     - [Week 3](frontend/week3): Learn ReactJS, and make your website better using JSX components and State management. Bonus: improve the code quality too!
+    - [Week 4](frontend/week4/): Design pages to render, create, and update products. Fetch this data from a public API and understand the interface using API specs. Learn about status codes, state management, error handling, and much more! 
   - [Machine Learning](machine-learning)
     - [Week 1](machine-learning/week1): Set up an ML environment to run your code on GPUs, then select and build a price prediction model, and also scrape your own dataset for it from the web.
     - [Week 2](machine-learning/week2): Use YOLO to identify and describe items to be sold from the pictures, and fine-tune your Object Detection model using your own dataset
