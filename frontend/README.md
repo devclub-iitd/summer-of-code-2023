@@ -103,6 +103,10 @@ Learn ReactJS, and make your website better using JSX components and State manag
 
 Resources and code snippets are shared in `week4/README.md` so check it out!      
 
+#### [Task](week4)
+Design pages to render, create, and update products. Fetch this data from a public API and understand the interface using API specs. Learn about status codes, state management, error handling, and much more!   
+
+
 [0]: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
 [1]: https://marketplace-1-b3203472.deta.app/docs#/
 [3]: https://pypi.org/project/python-socketio/
