@@ -91,7 +91,7 @@ ReactJS is made of components. The State of a component is an object that holds 
 #### [Task](week3)
 Learn ReactJS, and make your website better using JSX components and State management. Bonus: improve the code quality too!
 
-### Week 4
+### Week 4: Powering your React app with a public API
 
 #### Concepts 
 

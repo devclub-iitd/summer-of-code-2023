@@ -1,6 +1,7 @@
 # DevClub Summer of Code 2023
 
-## Frontend Development: Week 4   
+## Powering your React app with a public API
+### Frontend Development: Week 4  
 
 Welcome to the final stride of the DSoC '23 Frontend track! 
 
