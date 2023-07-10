@@ -85,3 +85,25 @@ Dive deeper into Flutter's Widgets by building ProductTile, Promoted product ban
 
 - #### [Task](week3)
 In Week 3, We communicate with server resources, manage product data using HTTP methods. Enhancing our app's capabilities for seamless product management and smooth data handling.
+
+
+### Week 4
+
+- #### Concepts
+1. **Introduction to Google Firebase :** Explore the powerful features of Google Firebase and its significance in building robust mobile and web applications. Your have to understand its various components and their benefits for app development. Think about the different use cases of Firebase's real-time database, cloud storage, user authentication, hosting, and other services.
+
+2. **Authentication :** Firebase offers different authentication methods, such as email/password, Google, and Facebook authentication. Learn how to implement Firebase Authentication. Understand the significance of secure user authentication and how it improves the functionality and user experience of apps.
+
+3. **Cloud Storage :** Learn how to integrate Firebase Storage for securely store and retrieve  images. Explore techniques for efficiently managing storage, such as compressing images to optimize performance and reduce storage costs.
+
+4. **Stripe Integration (BONUS) :** Explore Stripe payment gateway, its features, and the steps involved in integrating it into flutter app. Learn how to set up Stripe, securely handle payment requests, and ensure reliable transaction processing.
+
+- #### Resources
+
+- [Fetch data from the internet](https://docs.flutter.dev/cookbook/networking/fetch-data)
+- [Working with REST APIs](https://blog.codemagic.io/rest-api-in-flutter/)
+- [Flutter Tutorial - HTTP Requests and REST API (GET, POST, PUT and DELETE)](https://youtu.be/4hq_Kwu7sgU)
+- [JSON and serialization](https://docs.flutter.dev/data-and-backend/json)
+
+- #### [Task](week4)
+In Week 4, We implement secure user authentication, integrate cloud storage for image handling and explore Stripe for seamless payments.
