@@ -100,10 +100,15 @@ In Week 3, We communicate with server resources, manage product data using HTTP 
 
 - #### Resources
 
-- [Fetch data from the internet](https://docs.flutter.dev/cookbook/networking/fetch-data)
-- [Working with REST APIs](https://blog.codemagic.io/rest-api-in-flutter/)
-- [Flutter Tutorial - HTTP Requests and REST API (GET, POST, PUT and DELETE)](https://youtu.be/4hq_Kwu7sgU)
-- [JSON and serialization](https://docs.flutter.dev/data-and-backend/json)
+- [Add Firebase to your Flutter app](https://firebase.google.com/docs/flutter/setup?platform=android)
+- [Firebase Setup [2022] Easy and Quick Firebase Setup!](https://www.youtube.com/watch?v=sz4slPFwEvs)
+- [Add Firebase Authentication to your app](https://firebase.flutter.dev/docs/auth/start/#:~:text=From%20the%20root%20of%20your%20Flutter%20project%2C%20run,need%20to%20enable%20it%20in%20the%20Firebase%20console.)
+- [Flutter Firebase Auth - The Cleanest & Fastest Way - IOS & Android](https://www.youtube.com/watch?v=rWamixHIKmQ)
+- [Upload files with Cloud Storage on Flutter](https://firebase.google.com/docs/storage/flutter/upload-files)
+- [Flutter File Upload - Pick, Crop, and Save Images to the Cloud](https://www.youtube.com/watch?v=HCmAwk2fnZc&t=321s)
+- [Exploring the Stripe Flutter SDK](https://blog.logrocket.com/exploring-stripe-flutter-sdk/)
+- [Flutter Stripe - How to Enable Stripe Payments in your Flutter Apps [2022]](https://www.youtube.com/watch?v=tpILK64NM6M)
+
 
 - #### [Task](week4)
 In Week 4, We implement secure user authentication, integrate cloud storage for image handling and explore Stripe for seamless payments.
