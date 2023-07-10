@@ -34,15 +34,17 @@ You are free to design the pages as you wish but they should be consistent in co
 The product model is given below along with their data types:
 
 ```json
- {
-    "title": "string",
-    "category": "string",
-    "price": 0,
-    "location": "string",
-    "description": "string",
-    "isNegotiable": true,
-    "isFeatured": true,
-    "isPromoted": true
+{
+  "title": "string",
+  "category": "string",
+  "price": 0,
+  "location": "string",
+  "description": "string",
+  "img_url": "string",
+  "metadata_user": "string",
+  "isNegotiable": true,
+  "isFeatured": true,
+  "isPromoted": true
 }
 ```
 
