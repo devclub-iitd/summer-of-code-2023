@@ -95,14 +95,16 @@ Learn ReactJS, and make your website better using JSX components and State manag
 
 #### Concepts 
 
-- Integrating frontend with backend
-- React Hooks - useState, useEffects, etc
+- Integrating frontend with backend: Use our [public marketplace API][1] to design frontend pages to list, create, update, and delete products. Learn about JSON, fetch/axios, state management, HTTP status codes, and a bunch of other concepts!   
+
+- React Hooks - useState, useEffects, etc. 
 
 #### Resources  
 
 Resources and code snippets are shared in `week4/README.md` so check it out!      
 
 [0]: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+[1]: https://marketplace-1-b3203472.deta.app/docs#/
 [3]: https://pypi.org/project/python-socketio/
 [6]: https://socket.io/docs/v3/rooms/
 
