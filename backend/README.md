@@ -113,3 +113,47 @@ Setup a Django backend server, and learn database models, rendering templates, u
 #### [Task](week3)
 
 Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!
+
+### Week 4
+#### Concepts
+- Cloud Platforms
+    - What are cloud platforms and why do we need them.
+    - Overview of different cloud platforms (AWS, GCP, Azure, etc.).
+    - Setting up a cloud platform account.
+- Virtual Machines
+    - What are virtual machines and why do we need them.
+    - Overview of different virtual machine providers (AWS EC2, GCP Compute Engine, Azure Virtual Machines, etc.).
+    - Creating a virtual machine on the cloud platform.
+    - Connecting to the virtual machine using SSH.
+- Deploying our Django project
+    - Setting up git on the virtual machine.
+    - Setting up postgresql on the virtual machine.
+    - Cloning our Django project from GitHub.
+    - Installing all dependencies and running the project.
+    - Making `settings.py` production ready.
+    - Using NGINX and Gunicorn to serve our project.
+- Domain Name
+    - How to get a domain name.
+    - What is DNS and how does it work.
+    - Connecting our domain name to our virtual machine.
+- HTTPS
+    - What is HTTPS and why do we need it.
+    - Getting a SSL certificate for our domain name.
+    - Setting up HTTPS on our virtual machine.
+
+#### Resources
+- Microsoft Azure [Student Account](https://azure.microsoft.com/en-in/free/students/)
+- Azure Virtual Machines [Documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/)
+- How to [SSH into a Virtual Machine (Windows)](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-windows)
+- How to [SSH into a Virtual Machine (Linux)](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-linux)
+- How to [SSH into a Virtual Machine (MacOS)](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-macos)
+- Digital Ocean's [Guide to Deploying Django](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-22-04)
+- Digital Ocean's [Guide to Domain Names](https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts)
+- Getting SSL Certificate using [Certbot](https://www.digitalocean.com/community/tutorials/
+how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+- [Docker Compose](https://realpython.com/django-development-with-docker-compose-and-machine/)
+- GitHub [WebHooks](https://docs.github.com/en/webhooks-and-events/webhooks/about-webhooks)
+
+#### [Task](week4)
+
+Deploy your Django project on Microsoft Azure cloud platform, and learn about virtual machines, domain names and HTTPS.
