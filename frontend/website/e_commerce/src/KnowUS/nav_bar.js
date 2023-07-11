@@ -19,13 +19,13 @@ export default function NavBar() {
       <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item px-3">
-            <Link to='/' className="nav-link" aria-current="page" activeclassname="active" id="home">Home</Link>
+            <Link to='/reachus' className="nav-link" aria-current="page" activeclassname="active" id="home">Home</Link>
           </li>
           <li className="nav-item px-3">
-            <Link to='/about' className="nav-link" activeclassname="active" id="about">About</Link>
+            <Link to='/reachus/about' className="nav-link" activeclassname="active" id="about">About</Link>
           </li>
           <li className="nav-item px-3">
-            <Link to='/contactus' className="nav-link" activeclassname="active" id="contact">Contact Us</Link>
+            <Link to='/reachus/contactus' className="nav-link" activeclassname="active" id="contact">Contact Us</Link>
           </li>
         </ul>
       </div>
