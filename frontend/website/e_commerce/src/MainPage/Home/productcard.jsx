@@ -1,4 +1,5 @@
 export default function ProductCard(props) {
+  const {product}=props;
   return (
     <div class="card m-2" style={{ width: "18rem" }}>
       <img
@@ -7,12 +8,11 @@ export default function ProductCard(props) {
         alt="..."
       />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">{product.title}</h5>
         <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {product.description}
         </p>
-        <h3>$5</h3>
+        <h3>${product.price}</h3>
       </div>
     </div>
   );

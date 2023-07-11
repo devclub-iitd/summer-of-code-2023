@@ -1,7 +1,5 @@
-async function testing(){
-    var y=0;
-    await fetch('https://marketplace-1-b3203472.deta.app/').then(x=>x.json()).then(x=>{y=x})
-    return y
+async function testing(setstate){
+    await fetch('https://marketplace-1-b3203472.deta.app/').then(x=>x.json()).then(x=>{console.log(x);setstate(x)})
 }
 async function put(formData){
     fetch('https://marketplace-1-b3203472.deta.app/product', {
@@ -25,4 +23,7 @@ async function put(formData){
     console.error('Error:', error);
   });
 }
-module.exports={put}
+async function get(setstate){
+  fetch('https://marketplace-1-b3203472.deta.app/search?skip=0&limit=100').then(x=>x.json).then(x=>{setstate(x)}).catch((reason)=>{console.log("HI");setstate(["Error Loading the Page"])})
+}
+module.exports={put,testing,get}
