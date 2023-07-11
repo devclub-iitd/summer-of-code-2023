@@ -10,6 +10,10 @@ class ProductProvider extends ChangeNotifier{
   UnmodifiableListView<AddedProduct> get products=>UnmodifiableListView(list);
   get size=>list.length;
 
+  Map<String,dynamic> user={};
+
+
+
   void addProduct(AddedProduct product){
     list.add(product);
     notifyListeners();
@@ -24,6 +28,10 @@ class ProductProvider extends ChangeNotifier{
   }
   void setCartLength(int length){
     cartLength=length;
+    notifyListeners();
+  }
+  void setUser(Map<String,dynamic> map){
+    user=map;
     notifyListeners();
   }
 }

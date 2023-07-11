@@ -1,9 +1,14 @@
 
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/ApiService/searchApi.dart';
 import 'package:my_app/pages/product_description.dart';
+import 'package:my_app/providers/product_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../Models/AddedProduct.dart';
 import '../Utils/widgets.dart';
@@ -20,6 +25,9 @@ class _SearchPageState extends State<SearchPage> {
   List<AddedProduct> list=[];
   bool isLoading=false;
   SearchApi searchApi=SearchApi();
+  bool history=true;
+
+  ApiService apiService=ApiService();
   @override
   void initState() {
     super.initState();
@@ -32,8 +40,10 @@ class _SearchPageState extends State<SearchPage> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
+    final suggestion=context.watch<ProductProvider>().user["suggestion"];
     return  Scaffold(
       body: SafeArea(
         child: Container(
@@ -98,7 +108,22 @@ class _SearchPageState extends State<SearchPage> {
                   ],
                 ),
               ),
-              CartProducts()
+              Visibility(
+                visible: history,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: suggestion.length,
+                    itemBuilder: (context,i){
+                  return ListTile(
+                    leading: Icon(Icons.history_outlined),
+                    title: suggestion[i],
+                  );
+                }),
+              ),
+
+              CartProducts(),
+
+
 
             ],
           ),
@@ -107,17 +132,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
   Widget CartProducts(){
-    return isLoading?const CircularProgressIndicator(color: Colors.grey,):list.isEmpty?
-    Container(
-      child: Column(
-        children: [
-
-          SizedBox(height: 30,),
-          Center(child: Text("No product found",style: GoogleFonts.roboto(fontSize: 23,color: Colors.grey),)),
-
-        ],
-      ),
-    ) :SizedBox(
+    return isLoading?const CircularProgressIndicator(color: Colors.grey,):SizedBox(
       child: ListView.builder(
           itemCount: list.length,
           shrinkWrap: true,
@@ -133,8 +148,6 @@ class _SearchPageState extends State<SearchPage> {
                   // A motion is a widget used to control how the pane animates.
                   motion: const ScrollMotion(),
 
-
-                  // All actions are defined in the children parameter.
                   children:  [
                     // A SlidableAction can have an icon and/or a label.
                     SlidableAction(
@@ -196,12 +209,19 @@ class _SearchPageState extends State<SearchPage> {
           onChanged:(val){
             setState(() {
               name=val;
+
             });
             if(val.length>2){
               setState(() {
                 isLoading=true;
+                history=false;
               });
               search();
+            }else{
+              setState(() {
+                list=[];
+                history=true;
+              });
             }
           },
           validator: (val){

@@ -44,6 +44,24 @@ class MyProductApi{
 
 
   }
+  Future<List<AddedProduct>> getWishlist(String email)async{
+    try{
+      final response=await http.get(Uri.parse("${constants.apiUri}/api/wishlist/$email"));
+      if(response.statusCode==200){
+        final parsed=jsonDecode(response.body).cast<Map<String,dynamic>>();
+        return parsed.map<AddedProduct>((json)=>
+            AddedProduct.fromJson(json)).toList();
+      }else{
+        return [];
+      }
+    }catch(e){
+      print(e.toString());
+      return [];
+    }
+
+
+
+  }
 
 
 

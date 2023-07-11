@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/ApiService/CartApi.dart';
 import 'package:my_app/ApiService/addedProductApi.dart';
+import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Models/AddedProduct.dart';
 import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/widgets.dart';
@@ -26,10 +27,15 @@ class _ProductDescriptionState extends State<ProductDescription> {
   ProductProvider productProvider=ProductProvider();
   CartApiService cartApiService=CartApiService();
   MyProductApi myProductApi =MyProductApi();
+  ApiService apiService=ApiService();
   getCart(){
     cartApiService.getMyCart("adi@gmail.com",context).then((value){
       Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
     });
+  }
+
+  addTowishlist(){
+    apiService.addTowishlist(email: "its8@gmail.com", id: widget.product.id);
   }
 
   void add(AddedProduct product){
@@ -110,40 +116,13 @@ class _ProductDescriptionState extends State<ProductDescription> {
                         ),
                       ),
                       Text(widget.category,style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
-                      widget.isMYProduct?Row(
-                        children: [
-                          GestureDetector(
-                            onTap:(){
-
-                            },
-                            child: Card(
-                              elevation: 10,
-                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                child: const Icon(Icons.edit,color: Colors.blue,),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap:(){
-
-                            },
-                            child: Card(
-                              elevation: 10,
-                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                child: const Icon(Icons.delete,color: Colors.red,),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ):GestureDetector(
+                      GestureDetector(
                         onTap:(){
-                          add(widget.product);
+                          if(widget.product.id.isEmpty){
+                            showSnakbar(context, Colors.red, "can't be added");
+                          }else{
+                            addTowishlist();
+                          }
                         },
                         child: Card(
                           elevation: 10,
@@ -151,7 +130,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                           child: Container(
                             height: 50,
                             width: 50,
-                            child: const Icon(Icons.add),
+                            child: const Icon(Icons.favorite_outline_outlined),
                           ),
                         ),
                       ),

@@ -31,6 +31,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   CartApiService cartApiService=CartApiService();
   int currentPageIndex=0;
+  ApiService apiService=ApiService();
 
   @override
   void initState() {
@@ -38,6 +39,10 @@ class _HomePageState extends State<HomePage> {
 
     cartApiService.getMyCart("adi@gmail.com", context).then((value) {
       Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
+    });
+
+    apiService.getUser().then((value) {
+      Provider.of<ProductProvider>(context, listen: false).setUser(value[0]);
     });
   }
   @override

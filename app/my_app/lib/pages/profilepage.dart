@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/pages/wishlistpage.dart';
 
 import '../Utils/widgets.dart';
 import 'editprofile.dart';
@@ -131,25 +132,30 @@ class _ProfilePageState extends State<ProfilePage> {
 
                           ],
                         ),
-                        Row(
-                          children: [
-                            Container(
-                              height: 28,
-                              width: 28,
-                              decoration: const BoxDecoration(
+                        GestureDetector(
+                          onTap: (){
+                            nextScreen(context, WishListPage());
+                          },
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 28,
+                                width: 28,
+                                decoration: const BoxDecoration(
 
-                                  borderRadius: BorderRadius.all(Radius.circular(8))
-                              ),
-                              child: Icon(Icons.favorite_border_outlined,color:colorP ,),),
-                            const SizedBox(width: 15,),
-                            Text("Wishlist ",style: GoogleFonts.roboto(color: Colors.black,fontSize: font),),
+                                    borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
+                                child: Icon(Icons.favorite_border_outlined,color:colorP ,),),
+                              const SizedBox(width: 15,),
+                              Text("Wishlist ",style: GoogleFonts.roboto(color: Colors.black,fontSize: font),),
 
-                            Expanded(child: Container()),
-                            Center(
-                              child: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward_ios,color: Colors.black,)),
-                            )
+                              Expanded(child: Container()),
+                              Center(
+                                child: IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward_ios,color: Colors.black,)),
+                              )
 
-                          ],
+                            ],
+                          ),
                         ),
 
                         Row(

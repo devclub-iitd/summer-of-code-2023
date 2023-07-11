@@ -33,6 +33,7 @@ class ApiService{
   }
 
 
+
   Future<List<Map<String,dynamic>>>getUser()async{
     List<Map<String,dynamic>> list=[];
     final response=await http.get(Uri.parse("${constants.apiUri}/api/users"));
@@ -158,6 +159,56 @@ class ApiService{
       showSnakbar(context, Colors.red, e.toString());
     }
   }
+
+  void  addTowishlist({
+    required String email,
+    required String id,}) async{
+    try{
+
+      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/addtowishlist"),
+          body:jsonEncode({
+            "email":email,
+            "id":id
+          }),
+          headers: <String,String>{
+            'content-Type':'application/json; charset=UTF-8'
+          });
+
+    }catch(e){
+      print(e.toString());
+    }
+
+  }
+  void updateAddress({
+    required BuildContext context,
+    required String email,
+    required String address,
+
+  }) async{
+    try{
+
+      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/edit-address"),
+          body: jsonEncode({
+            "email":email,
+            "address":address
+          }),
+          headers: <String,String>{
+            'content-Type':'application/json; charset=UTF-8'
+          });
+      if (response.statusCode==200){
+        showSnakbar(context,Colors.green, "address updated");
+      }else if(response.statusCode==400){
+        showSnakbar(context, Colors.red, jsonDecode(response.body)['msg']);
+      }else{
+        showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
+      }
+    }catch(e){
+      showSnakbar(context, Colors.red, e.toString());
+    }
+
+  }
+
+
 
 
 }

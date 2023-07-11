@@ -88,17 +88,32 @@ class _MyCartState extends State<MyCart> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: SafeArea(child: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.only(top: 10),
-          child: Column(
-            children: [
-              const SizedBox(height: 15,),
-              CartProducts()
-            ],
+      body: LayoutBuilder(
+        builder: (context,constraints)=>RefreshIndicator(
+          onRefresh: () { return cartApiService.getMyCart("adi@gmail.com",context).then((value){
+            Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
+            setState(() {
+              list=value[0];
+              priceSum=value[1];
+              isLoading=false;
+            });
+
+          });  },
+          child: SingleChildScrollView(
+            child: SafeArea(
+              child: Container(
+                padding: const EdgeInsets.only(top: 10),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 15,),
+                    CartProducts()
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 
@@ -168,7 +183,7 @@ class _MyCartState extends State<MyCart> {
                   ListView.builder(
                   itemCount: list.length,
                   shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   itemBuilder: (context,i){
                   final product=list[i].product;
                   return GestureDetector(
