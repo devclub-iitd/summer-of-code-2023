@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { put } from "../API/api_func";
 export default function AddProduct() {
+  const [alert,setAlert]=useState(<></>)
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -16,25 +17,24 @@ export default function AddProduct() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     // console.log(name,name in ['isNegotiable','isFeatured','isPromoted'])
-    if(['isNegotiable','isFeatured','isPromoted'].indexOf(name)!=-1){
-        // console.log(event.target.checked)
-        // console.log(event.target)
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: event.target.checked,
-          }));
+    if (["isNegotiable", "isFeatured", "isPromoted"].indexOf(name) != -1) {
+      // console.log(event.target.checked)
+      // console.log(event.target)
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: event.target.checked,
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
     }
-    else{
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));}
   };
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    formData.price=parseInt(formData.price,10)
-    await(put(formData))
-    
+    formData.price = parseInt(formData.price, 10);
+    await put(formData,setAlert);
   };
   return (
     <div className="row justify-content-center py-5" id="contactus">
@@ -47,6 +47,7 @@ export default function AddProduct() {
         }}
       >
         <form className="card-body" onSubmit={handleSubmit}>
+        {alert}
           <div className="px-4 was-validated">
             <label for="title" className="form-label fw-bold mt-4 fs-5">
               Title

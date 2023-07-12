@@ -1,4 +1,9 @@
-export default function Navbar() {
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+export default function Navbar(props) {
+  const {products,setProducts}=props;
+  const [search,setSearch]=useState("");
     return (
       <nav className="navbar navbar-expand-lg bg-primary">
         <div className="container-fluid">
@@ -19,16 +24,31 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active text-white" aria-current="page" href="#">
+                <button className="nav-link active text-white" aria-current="page" onClick={async()=>{
+                  setProducts([])
+                  await fetch("https://marketplace-1-b3203472.deta.app/search/promoted").then(x=>x.json()).then(x=>{setProducts(x)})
+                }}>
                   Promoted
-                </a>
+                </button>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-white" href="#">
+                <button className="nav-link text-white"  onClick={async()=>{
+                  setProducts([])
+                  await fetch("https://marketplace-1-b3203472.deta.app/search/featured").then(x=>x.json()).then(x=>{setProducts(x)})
+                }}>
                   Featured
-                </a>
+                </button>
               </li>
-              
+              <li className="nav-item">
+                <Link to="/add_product" className="nav-link text-white" >
+                  Add Product
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/update_product" className="nav-link text-white" >
+                  Update Product
+                </Link>
+              </li>
             </ul>
             <form className="d-flex" role="search">
               <input
@@ -36,8 +56,15 @@ export default function Navbar() {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                value={search}
+                onChange={(e)=>{
+                  setSearch(e.target.value);
+                }}
               />
-              <button className="btn btn-outline-success" style={{ color: 'white', borderColor: 'white' }} type="submit">
+              <button className="btn btn-outline-success" style={{ color: 'white', borderColor: 'white' }} type="submit" onClick={async(e)=>{e.preventDefault();
+                setProducts([]);
+                await fetch("https://marketplace-1-b3203472.deta.app/search?skip=0&limit=10&query="+search).then(x=>x.json()).then(x=>{setProducts(x)})
+              }}>
                 Search
               </button>
             </form>

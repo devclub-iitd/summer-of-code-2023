@@ -8,12 +8,12 @@ export default function Home(){
     useEffect(()=>{
     get(setProducts)},[])
     return <>
-    <Navbar />
+    <Navbar products={products} setProducts={setProducts}/>
 <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
   {products.length === 0 ? (
     <div className="spinner-border" role="status" />
   ) : (products.length===1&&products[0]==="Error Loading the Page"?<h4>"Error Loading the Page"</h4>:
-    <div className="d-flex flex-wrap">{products.map(
+    <div className="d-flex flex-wrap justify-content-evenly">{products.map(
         (product,index)=>(<div className="flex-item"><ProductCard product={product}/></div>)
         )}</div>
   )}
