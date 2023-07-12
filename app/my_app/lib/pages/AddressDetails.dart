@@ -1,13 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/pages/CheckOutPage.dart';
 import 'package:my_app/pages/searchPage.dart';
 
 import '../ApiService/addedProductApi.dart';
 import '../Utils/widgets.dart';
 
 class AddressDetails extends StatefulWidget {
-  const AddressDetails({Key? key}) : super(key: key);
+  bool onCheckOut;
+  AddressDetails({Key? key,required this.onCheckOut}) : super(key: key);
 
   @override
   State<AddressDetails> createState() => _AddressDetailsState();
@@ -81,9 +83,31 @@ class _AddressDetailsState extends State<AddressDetails> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: SafeArea(child: SingleChildScrollView(
+      bottomNavigationBar: widget.onCheckOut?Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+        child: GestureDetector(
+          onTap: (){
+            nextScreen(context, CheckOutPage());
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            decoration: const BoxDecoration(
+                gradient:LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.black,Colors.black45],),
+                borderRadius: BorderRadius.all(Radius.circular(15))
+            ),
+            height: 50,
+            child:  Center(
+              child: Text("Continue",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+        ),
+      ):Container(height: 1,),
+      body: SingleChildScrollView(
         child: Column(
-          
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -110,7 +134,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                 child: Column(
                   children: [
                     const SizedBox(height: 10,),
-                    
+
                     Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
@@ -385,8 +409,8 @@ class _AddressDetailsState extends State<AddressDetails> {
                       ),
                     ),
                     const SizedBox(height: 10,),
-                    
-                    
+
+
                     submitForm(),
                   ],
                 ),
@@ -394,7 +418,7 @@ class _AddressDetailsState extends State<AddressDetails> {
             ),
           ],
         ),
-      )),
+      ),
     );
   }
   Widget submitForm(){

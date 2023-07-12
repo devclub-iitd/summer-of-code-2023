@@ -143,45 +143,17 @@ class _SearchPageState extends State<SearchPage> {
               onTap: (){
                 nextScreen(context, ProductDescription(product: product, category: product.category,isMYProduct: false,));
               },
-              child: Slidable(
-                startActionPane: ActionPane(
-                  // A motion is a widget used to control how the pane animates.
-                  motion: const ScrollMotion(),
-
-                  children:  [
-                    // A SlidableAction can have an icon and/or a label.
-                    SlidableAction(
-                      onPressed: (context){
-
-                      },
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.red,
-                      icon: Icons.delete,
-                      label: 'Delete',
-                    ),
-                    SlidableAction(
-                      onPressed: (context){
-                      },
-                      backgroundColor: Colors.white,
-                      foregroundColor: Color(0xFF21B7CA),
-                      icon: Icons.share,
-                      label: 'Share',
-                    ),
-                  ],
-                ),
-
-                child: ListTile(
-                  leading: Container(
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
-                    ),
+              child: ListTile(
+                leading: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
                   ),
-                  title: Text(product.title,),
                 ),
+                title: Text(product.title,),
               ),
             );
 

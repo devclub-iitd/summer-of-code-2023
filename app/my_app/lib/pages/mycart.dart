@@ -6,12 +6,15 @@ import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Models/cartItem.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/homepage.dart';
+import 'package:my_app/pages/AddressDetails.dart';
+import 'package:my_app/pages/CheckOutPage.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/searchPage.dart';
 import 'package:provider/provider.dart';
 import '../ApiService/CartApi.dart';
 import '../Models/AddedProduct.dart';
 import '../providers/product_provider.dart';
+import '../providers/userProvider.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({Key? key}) : super(key: key);
@@ -267,22 +270,32 @@ class _MyCartState extends State<MyCart> {
   }
 
   Widget CheckOut(){
-
-    return isLoading?Container(height: 1,):list.length==0? Container(height: 1,):
+    final user=context.watch<UserProvider>().user;
+    return isLoading?Container(height: 1,):list.isEmpty? Container(height: 1,):
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            decoration: const BoxDecoration(
-                gradient:LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.black,Colors.black45],),
-                borderRadius: BorderRadius.all(Radius.circular(15))
-            ),
-            height: 50,
-            child:  Center(
-              child: Text("Go to checkout -  Rs.$priceSum",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+          child: GestureDetector(
+            onTap: (){
+              if(user.address.isEmpty){
+                nextScreen(context, AddressDetails(onCheckOut: true));
+
+              }else{
+                nextScreen(context, const CheckOutPage());
+              }
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              decoration: const BoxDecoration(
+                  gradient:LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black,Colors.black45],),
+                  borderRadius: BorderRadius.all(Radius.circular(15))
+              ),
+              height: 50,
+              child:  Center(
+                child: Text("Go to checkout -  Rs.$priceSum",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                ),
               ),
             ),
           ),
