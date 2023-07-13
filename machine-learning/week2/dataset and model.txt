@@ -1,0 +1,3 @@
+Dataset: https://www.kaggle.com/datasets/kennethrithvik/shopee
+
+Model: https://colab.research.google.com/drive/1Vx_9d-CLgLaP9gz1FVXLS0utjf6T4Kei?usp=sharing
