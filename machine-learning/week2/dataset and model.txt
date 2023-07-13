@@ -1,3 +1,3 @@
-Dataset: https://www.kaggle.com/datasets/kennethrithvik/shopee
+Dataset: https://www.kaggle.com/datasets/balraj98/berkeley-segmentation-dataset-500-bsds500
 
 Model: https://colab.research.google.com/drive/1Vx_9d-CLgLaP9gz1FVXLS0utjf6T4Kei?usp=sharing
