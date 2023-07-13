@@ -12,9 +12,9 @@
                         "Hya there"
                   ],
                   "responses": [
-                        "Hi human, please tell me your GeniSys user",
-                        "Hello human, please tell me your GeniSys user",
-                        "Hola human, please tell me your GeniSys user"
+                        "Hi human!",
+                        "Hello human!",
+                        "Hola human!"
                   ],
                   "extension":  {
                         "function": "",
@@ -42,11 +42,11 @@
                         "It is Bella"
                   ],
                   "responses": [
-                        "Great! Hi <HUMAN>! How can I help?",
-                        "Good! Hi <HUMAN>, how can I help you?",
-                        "Cool! Hello <HUMAN>, what can I do for you?",
-                        "OK! Hola <HUMAN>, how can I help you?",
-                        "OK! hi <HUMAN>, what can I do for you?"
+                        "Great! Hi Human! How can I help?",
+                        "Good! Hi Human, how can I help you?",
+                        "Cool! Hello Human, what can I do for you?",
+                        "OK! Hola Human, how can I help you?",
+                        "OK! hi Human, what can I do for you?"
                   ],
                   "extension":  {
                         "function": "extensions.gHumans.updateHuman",
@@ -120,13 +120,13 @@
                         "Hello hope you are doing well?"
                   ],
                   "responses": [
-                        "Hello, I am great, how are you? Please tell me your GeniSys user",
-                        "Hello, how are you? I am great thanks! Please tell me your GeniSys user",
-                        "Hello, I am good thank you, how are you? Please tell me your GeniSys user",
-                        "Hi, I am great, how are you? Please tell me your GeniSys user",
-                        "Hi, how are you? I am great thanks! Please tell me your GeniSys user",
-                        "Hi, I am good thank you, how are you? Please tell me your GeniSys user",
-                        "Hi, good thank you, how are you? Please tell me your GeniSys user"
+                        "Hello, I am great, how are you? ",
+                        "Hello, how are you? I am great thanks! ",
+                        "Hello, I am good thank you, how are you? ",
+                        "Hi, I am great, how are you? ",
+                        "Hi, how are you? I am great thanks! ",
+                        "Hi, I am good thank you, how are you? ",
+                        "Hi, good thank you, how are you? "
                   ],
                   "extension":  {
                         "function": "",
