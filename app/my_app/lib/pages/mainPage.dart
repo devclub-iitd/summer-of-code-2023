@@ -25,7 +25,7 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  List items=["Headphone","Formals","Gadgets","Furnitures","watches","Bagpacks"];
+  List items=["Headphone","jewelery","Gadgets","Daily use","watches","Bagpacks"];
   List img=["hp1.png","Cmen.jpg","Celectr.jpg","Cfurni.jpg","Cwat.jpg","Cbag.jpg"];
   int currentPageIndex=0;
   List<Product> productList=[];
@@ -347,7 +347,7 @@ class _FirstPageState extends State<FirstPage> {
                                           padding: const EdgeInsets.only(left: 8.0),
                                           child: Row(
                                             children: [
-                                              Text(myProducts[i].title,style: const TextStyle(fontWeight: FontWeight.w500),overflow: TextOverflow.ellipsis,),
+                                              Text(myProducts[i].title.length>20?myProducts[i].title.substring(0,20):myProducts[i].title,style: const TextStyle(fontWeight: FontWeight.w500),),
                                             ],
                                           ),
                                         ),

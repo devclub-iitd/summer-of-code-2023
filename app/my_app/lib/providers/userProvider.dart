@@ -1,10 +1,11 @@
 
 import 'package:flutter/foundation.dart';
-
 import '../Models/user.dart';
 
+
+
 class UserProvider extends ChangeNotifier{
-  User authorizedUser=User('', '', '', '', '', '', '', '');
+  User authorizedUser=User('', '', '', '', '', '', '');
 
   User get user => authorizedUser;
 

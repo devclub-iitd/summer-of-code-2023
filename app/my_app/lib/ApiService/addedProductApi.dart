@@ -44,7 +44,7 @@ class MyProductApi{
 
 
   }
-  Future<List<AddedProduct>> getWishlist(String email)async{
+  Future<List<AddedProduct>> getWishlist(String email,BuildContext context)async{
     try{
       final response=await http.get(Uri.parse("${constants.apiUri}/api/wishlist/$email"));
       if(response.statusCode==200){
@@ -55,7 +55,6 @@ class MyProductApi{
         return [];
       }
     }catch(e){
-      print(e.toString());
       return [];
     }
 
@@ -63,7 +62,35 @@ class MyProductApi{
 
   }
 
+  Future<List<Map<String,dynamic>>> getCategories()async{
+    try{
+      final response=await http.get(Uri.parse("${constants.apiUri}/api/categories"));
+      if(response.statusCode==200){
+        return jsonDecode(response.body);
+      }else{
+        return [];
+      }
 
+    }catch(e){
+      return [];
+    }
+  }
+
+  Future<List<AddedProduct>> categoryProducts(String name)async{
+    try{
+      final response=await http.get(Uri.parse("${constants.apiUri}/api/category/$name"));
+      if(response.statusCode==200){
+        final parsed=jsonDecode(response.body).cast<Map<String,dynamic>>();
+        return parsed.map<AddedProduct>((json)=>
+            AddedProduct.fromJson(json)).toList();
+      }else{
+        return [];
+      }
+    }catch(e){
+      return [];
+    }
+
+  }
 
 
   void addProduct({

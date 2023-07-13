@@ -1,12 +1,15 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/ApiService/CartApi.dart';
 import 'package:my_app/pages/product_description.dart';
-
+import 'package:provider/provider.dart';
 import '../ApiService/addedProductApi.dart';
 import '../Models/AddedProduct.dart';
 import '../Utils/widgets.dart';
+import '../providers/product_provider.dart';
+
+
 
 class WishListPage extends StatefulWidget {
   const WishListPage({Key? key}) : super(key: key);
@@ -20,15 +23,23 @@ class _WishListPageState extends State<WishListPage> {
   MyProductApi myProductApi=MyProductApi();
   List<AddedProduct> myProducts=[];
   bool isLoading=true;
+  CartApiService cartApiService=CartApiService();
+  getCart(){
+    cartApiService.getMyCart("adi@gmail.com",context).then((value){
+      Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
+    });
+  }
   @override
   void initState() {
 
     super.initState();
-    myProductApi.getWishlist("its8@gmail.com").then((value) {
+    myProductApi.getWishlist("its8@gmail.com",context).then((value) {
+
       setState(() {
         myProducts=value;
         isLoading=false;
       });
+
     });
   }
   @override
@@ -78,23 +89,51 @@ class _WishListPageState extends State<WishListPage> {
                     final product=myProducts[i];
                     return GestureDetector(
                       onTap: (){
-                        nextScreen(context, ProductDescription(product: myProducts[i], category: product.category,isMYProduct: true,));
+                        nextScreen(context, ProductDescription(product: product, category: product.category, isMYProduct: false));
                       },
-                      child: ListTile(
-                        leading: Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                              image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
-                          ),
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.2),
+                            borderRadius: BorderRadius.all(Radius.circular(15))
                         ),
-                        title: Text(product.title,),
-                        subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
-
+                        child: Row(
+                          children: [
+                            Container(
+                              height:50,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+                              ),
+                            ),
+                            SizedBox(width: 15,),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(product.title,style: TextStyle(color:Colors.black,fontWeight: FontWeight.w400),),
+                                Text(product.price,style: TextStyle(color:Colors.blue,),),
+                                Row(
+                                  children: [
+                                    Icon(Icons.delete,color: Colors.red,size: 23,),
+                                    InkWell(
+                                      onTap: (){
+                                        if(product.id.isEmpty){
+                                          showSnakbar(context, Colors.red, "can't be added");
+                                        }else{
+                                          cartApiService.addTocart(context: context, userId: "adi@gmail.com", id:product.id, quantity: 1).then((value) {
+                                            if(value){
+                                              getCart();
+                                            }
+                                          });
+                                        }
+                                      },
+                                        child: Icon(Icons.add_shopping_cart_outlined,color: Colors.green,size: 23,)),
+                                  ],
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-
                     );
 
                   }),

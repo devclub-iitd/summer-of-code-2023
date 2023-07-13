@@ -1,11 +1,16 @@
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:my_app/ApiService/api.dart';
+import 'package:my_app/ApiService/authApi.dart';
+import 'package:my_app/Utils/widgets.dart';
 import 'package:provider/provider.dart';
 
+import '../Models/user.dart';
 import '../providers/userProvider.dart';
+
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -15,35 +20,101 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  bool obscure=true;
+  bool isLoading=false;
   ImagePicker picker =ImagePicker();
   File? _image;
   late XFile pickedimage;
+  ApiService apiService=ApiService();
+  AuthApi api=AuthApi();
+  String phone='';
+  String name="";
+  TextEditingController controller_name=TextEditingController();
+  TextEditingController controller_phone=TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  updateProfile(BuildContext context){
+    if(_image!=null){
+      final user=context.read<UserProvider>().user;
+      api.uploadImage(_image).then((uri){
+        apiService.updateAddress(context: context, email: user.email, name:name, address: user.address, image: uri, phone: phone).then((value) {
+          final user=context.read<UserProvider>().user;
+          if(value){
+            User updated=User(user.id, controller_name.text, user.email, user.password, controller_phone.text, user.address, uri);
+            Provider.of<UserProvider>(context, listen: false).setUserFromModel(updated);
+          }
+
+        });
+      });
+    }else{
+      final user=context.read<UserProvider>().user;
+      apiService.updateAddress(context: context, email: user.email, name:name, address: user.address, image: user.image, phone: phone).then((value) {
+        final user=context.read<UserProvider>().user;
+        if(value){
+          User updated=User(user.id, name, user.email, user.password, phone, user.address, user.image);
+          Provider.of<UserProvider>(context, listen: false).setUserFromModel(updated);
+        }
+
+      });
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     final user=context.watch<UserProvider>().user;
     return  Scaffold(
+      key: _scaffoldKey,
         appBar:  AppBar(
-          title: Text("Edit Profile",style: GoogleFonts.poppins(fontSize: 25),),
-          leading: InkWell(
-              onTap: (){
-                Navigator.pop(context);
-              },
-              child: const Icon(Icons.arrow_back_ios,size: 28,color: Colors.white,)),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xff88b49c), Color(0xff29353C)],),
+          automaticallyImplyLeading: false,
+          flexibleSpace:Padding(
+            padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap:(){
+                    Navigator.pop(context);
+                  },
+                  child: Card(
+                    elevation: 10,
+                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      child: const Icon(Icons.arrow_back_ios),
+                    ),
+                  ),
+                ),
+                Text("Edit Profile",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+                GestureDetector(
+                  child: Card(
+                    elevation: 10,
+                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      child: const Icon(Icons.search_outlined),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-
+          backgroundColor: Colors.white,
+          elevation: 0,
         ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
+            onTap: (){
+              updateProfile(_scaffoldKey.currentContext!);
+            },
             child: Container(
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -69,12 +140,11 @@ class _EditProfileState extends State<EditProfile> {
                 children: [
                   CircleAvatar(
                     radius: 75,
-                    backgroundColor:const Color(0xff2E4237) ,
                     child: profile(),
                   ),
                   Positioned(
-                    left: 75,
-                    top: 140,
+                    left: 90,
+                    top: 100,
                     child: GestureDetector(
                       onTap: (){
                         showModalBottomSheet<void>(context: context,
@@ -91,7 +161,7 @@ class _EditProfileState extends State<EditProfile> {
                                 height: 180,
                                 child: Column(
                                     children:[
-                                      Text("Choose an option ):",style: TextStyle(color:Color(0xff2E4237),fontSize: 25,fontWeight: FontWeight.bold),),
+                                      const Text("Choose an option ):",style: TextStyle(color:Color(0xff2E4237),fontSize: 25,fontWeight: FontWeight.bold),),
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
@@ -162,9 +232,9 @@ class _EditProfileState extends State<EditProfile> {
 
                       },
 
-                      child:   CircleAvatar(
-                        backgroundColor: const Color(0xff2E4237).withOpacity(0.5),
-                        child: const Center(
+                      child:   const CircleAvatar(
+                        backgroundColor: Color(0xff2E4237),
+                        child: Center(
                           child: Icon(Icons.edit,color: Colors.white,),
                         ),
                       ),
@@ -183,55 +253,59 @@ class _EditProfileState extends State<EditProfile> {
                         borderRadius: const BorderRadius.all(Radius.circular(20))
                     ),
                     child: TextFormField(
-                      style: TextStyle(fontSize: 20),
+                      initialValue: user.name,
+                      style: const TextStyle(fontSize: 20),
+                      onChanged: (val){
+                        setState(() {
+                          name=val;
+                        });
+                      },
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         prefixIcon: Icon(Icons.person,color:Color(0xff2E4237) ,),
 
                       ),
-                      initialValue: user.name,
+
                     ),
                   ),
-                  SizedBox(height: 15,),
-                  Text("Entry No",textAlign:TextAlign.start,style: GoogleFonts.poppins(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
+                  const SizedBox(height: 15,),
+                  Text("email ",textAlign:TextAlign.start,style: GoogleFonts.poppins(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
                   Container(
                     decoration: BoxDecoration(
                         color: const Color(0xff2E4237).withOpacity(0.2),
                         borderRadius: const BorderRadius.all(Radius.circular(20))
                     ),
                     child: TextFormField(
-                      style: TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20),
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         prefixIcon: Icon(Icons.confirmation_num,color:Color(0xff2E4237) ,),
 
                       ),
-                      initialValue: "2022EE31760",
+                      initialValue: user.email,
                     ),
                   ),
-                  SizedBox(height: 15,),
-                  Text("Password",textAlign:TextAlign.start,style: GoogleFonts.poppins(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
+                  const SizedBox(height: 15,),
+                  Text("Phone",textAlign:TextAlign.start,style: GoogleFonts.poppins(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w600),),
                   Container(
                     decoration: BoxDecoration(
                         color: const Color(0xff2E4237).withOpacity(0.2),
                         borderRadius: const BorderRadius.all(Radius.circular(20))
                     ),
                     child: TextFormField(
-                      obscureText: obscure,
-                      style: TextStyle(fontSize: 20),
-                      decoration:  InputDecoration(
+                      style: const TextStyle(fontSize: 20),
+                      onChanged: (val){
+                        setState(() {
+                          phone=val;
+                        });
+                      },
+                      decoration:  const InputDecoration(
                           border: InputBorder.none,
                           prefixIcon: Icon(Icons.lock,color:Color(0xff2E4237) ,),
-                          suffixIcon: InkWell(
-                              onTap: (){
-                                setState(() {
-                                  obscure=!obscure;
-                                });
-                              },
-                              child: Icon(obscure?Icons.visibility:Icons.visibility_off,color:Color(0xff2E4237) ,))
+
 
                       ),
-                      initialValue: "783298cb",
+                      initialValue: user.phone,
                     ),
                   ),
                 ],

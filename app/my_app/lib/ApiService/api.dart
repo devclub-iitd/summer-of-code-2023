@@ -1,7 +1,6 @@
 
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/Models/AddedProduct.dart';
 import 'package:my_app/Models/user.dart';
@@ -57,22 +56,15 @@ class ApiService{
   }
 
 
-
-
-
-
-
-
-  void signUP({
+  Future<User> signUP({
     required BuildContext context,
-
     required String name,
     required String email,
     required String password,
 
   }) async{
     try{
-      User user=User('', name, email, password, '', '', '', '');
+      User user=User('', name, email, password, '', '', '');
 
       http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/signUp"),
           body: user.toJson(),
@@ -81,13 +73,21 @@ class ApiService{
           });
       if (response.statusCode==200){
         showSnakbar(context,Colors.green, "account created");
+        User user=User.fromJson(jsonDecode(response.body));
+        return user;
       }else if(response.statusCode==400){
         showSnakbar(context, Colors.red, jsonDecode(response.body)['msg']);
+        User user=User('', '', '', '', '', '', '');
+        return user;
       }else{
         showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
+        User user=User('', '', '', '', '', '', '');
+        return user;
       }
     }catch(e){
       showSnakbar(context, Colors.red, e.toString());
+      User user=User('', '', '', '', '', '', '');
+      return user;
     }
 
   }
@@ -121,6 +121,8 @@ class ApiService{
     }
 
   }
+
+
   void getUserData(
       BuildContext context,
       ) async {
@@ -160,6 +162,8 @@ class ApiService{
     }
   }
 
+
+
   void  addTowishlist({
     required String email,
     required String id,}) async{
@@ -179,34 +183,74 @@ class ApiService{
     }
 
   }
-  void updateAddress({
+
+
+
+  Future<bool> updateAddress({
     required BuildContext context,
     required String email,
+    required String name,
     required String address,
+    required String image,
+    required String phone
 
   }) async{
     try{
 
-      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/edit-address"),
+      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/update-user"),
           body: jsonEncode({
             "email":email,
-            "address":address
+            "address":address,
+            "name":name,
+            "image":image,
+            "phone":phone,
           }),
           headers: <String,String>{
             'content-Type':'application/json; charset=UTF-8'
           });
       if (response.statusCode==200){
-        showSnakbar(context,Colors.green, "address updated");
+        showSnakbar(context,Colors.green, "details updated");
+        return true;
       }else if(response.statusCode==400){
-        showSnakbar(context, Colors.red, jsonDecode(response.body)['msg']);
+        showSnakbar(context, Colors.red, "400");
+        return false;
       }else{
-        showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
+        showSnakbar(context, Colors.red, jsonDecode(response.body)['error']+"500");
+        return false;
       }
     }catch(e){
-      showSnakbar(context, Colors.red, e.toString());
+      showSnakbar(context, Colors.red, e.toString()+"e");
+      return false;
     }
 
   }
+
+
+  Future<User> authorizedUser({required String email, required BuildContext context}) async{
+    try{
+      final response=await http.get(Uri.parse("${constants.apiUri}/user/$email"));
+      if(response.statusCode==200){
+        User user=User.fromJson(jsonDecode(response.body));
+        Provider.of<UserProvider>(context, listen: false).setUserFromModel(user);
+        return user;
+      }else if(response.statusCode==400){
+        User user=User('', '', '', '', '', '', '');
+        return user;
+      }else{
+        showSnakbar(context, Colors.green, jsonDecode(response.body)["error"]);
+        User user=User('', '', '', '', '', '', '');
+        return user;
+      }
+    }catch(e){
+      showSnakbar(context, Colors.green, e.toString());
+      User user=User('', '', '', '', '', '', '');
+      return user;
+    }
+
+
+  }
+
+
 
 
 

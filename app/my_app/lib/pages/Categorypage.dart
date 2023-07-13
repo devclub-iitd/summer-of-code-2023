@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/ApiService/addedProductApi.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/constants.dart';
@@ -25,10 +26,12 @@ class _CategoryPageState extends State<CategoryPage> {
   int i=1;
   List<DropdownMenuItem> items=[DropdownMenuItem(child: Text("BestSeller")),DropdownMenuItem(child: Text("Trending")),DropdownMenuItem(child: Text("Discounts")),];
   List productList=[];
+  List<AddedProduct> list=[];
   List HeadPhone=["hp1.png","hp2.png","hp3.png","hp4.png","hp5.png"];
   IconData like=Icons.favorite_border_outlined;
   Color likedColor=Colors.black12;
   ApiService apiService=ApiService();
+  MyProductApi myProductApi=MyProductApi();
   Constants constants=Constants();
 
   @override
@@ -45,6 +48,14 @@ class _CategoryPageState extends State<CategoryPage> {
     });
 
 
+  }
+
+  getCategoryProducts(){
+    myProductApi.categoryProducts(widget.name).then((value) {
+      setState(() {
+        list=value;
+      });
+    });
   }
 
   @override

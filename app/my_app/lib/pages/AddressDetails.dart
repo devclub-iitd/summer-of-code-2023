@@ -1,15 +1,25 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/pages/CheckOutPage.dart';
 import 'package:my_app/pages/searchPage.dart';
+import 'package:my_app/providers/userProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../ApiService/addedProductApi.dart';
+import '../Models/cartItem.dart';
+import '../Models/order.dart';
+import '../Models/user.dart';
 import '../Utils/widgets.dart';
+
+
+
 
 class AddressDetails extends StatefulWidget {
   bool onCheckOut;
-  AddressDetails({Key? key,required this.onCheckOut}) : super(key: key);
+  List<CartItem>? orders;
+  AddressDetails({Key? key,required this.onCheckOut,this.orders}) : super(key: key);
 
   @override
   State<AddressDetails> createState() => _AddressDetailsState();
@@ -18,11 +28,12 @@ class AddressDetails extends StatefulWidget {
 class _AddressDetailsState extends State<AddressDetails> {
 
   String name="";
-  String category="";
-  String price="";
-  String imageAddress="";
-  String location="";
-  String description="";
+  String phone="";
+  String pin="";
+  String city="";
+  String state="";
+  String landmark="";
+  String ward="";
   final formKey=GlobalKey<FormState>();
   MyProductApi apiService=MyProductApi();
   bool isSwitched=false;
@@ -39,10 +50,57 @@ class _AddressDetailsState extends State<AddressDetails> {
       });
     }
   }
+  ApiService api=ApiService();
+
+  @override
+  void initState() {
+    super.initState();
+    User user=Provider.of<UserProvider>(context, listen: false).user;
+    if(user.address.isEmpty){
+      setState(() {
+        isSwitched=true;
+      });
+    }
+  }
+  List<Step> stepList() => [
+    Step(title: const Text('Address'), content: const SizedBox(height: 1,), isActive: currentStep > 0,
+      state: currentStep > 0
+          ? StepState.complete
+          : StepState.indexed,),
+    Step(title: const Text('Details'), content: const SizedBox(height: 1,), isActive: currentStep > 1,
+      state: currentStep > 1
+          ? StepState.complete
+          : StepState.indexed,),
+    Step(title: const Text('Payment'), content: const SizedBox(height: 1,), isActive: currentStep > 2,
+      state: currentStep > 2
+          ? StepState.complete
+          : StepState.indexed,),
+  ];
+
+
+  updateAddress(String add,String email,String phone,String image,String name,BuildContext context,String id,String password){
+    api.updateAddress(context: context, email: email, address: add,phone: phone,image: image,name: name).then((value) {
+      setState(() {
+        isSwitched=false;
+        formKey.currentState!.reset();
+      });
+      if(value){
+        User updated=User(id, name,email, password, phone, add, image);
+        Provider.of<UserProvider>(context, listen: false).setUserFromModel(updated);
+      }
+
+    });
+  }
+  int currentStep=0;
+
+
   @override
   Widget build(BuildContext context) {
+    final user=context.watch<UserProvider>().user;
     return  Scaffold(
       appBar: AppBar(
+        leading: null,
+        automaticallyImplyLeading: false,
         flexibleSpace:Padding(
           padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
           child: Row(
@@ -87,7 +145,7 @@ class _AddressDetailsState extends State<AddressDetails> {
         padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         child: GestureDetector(
           onTap: (){
-            nextScreen(context, CheckOutPage());
+            nextScreenReplace(context,  CheckOutPage(orders: widget.orders!,));
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -99,8 +157,8 @@ class _AddressDetailsState extends State<AddressDetails> {
                 borderRadius: BorderRadius.all(Radius.circular(15))
             ),
             height: 50,
-            child:  Center(
-              child: Text("Continue",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+            child:  const Center(
+              child: Text("Continue",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -109,26 +167,50 @@ class _AddressDetailsState extends State<AddressDetails> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Icon(Icons.location_on_outlined),
-                Text("Saved Address",style: GoogleFonts.roboto(fontSize: 20),),
-                InkWell(
-                  onTap: (){
-                    setState(() {
-                      isSwitched=true;
-                    });
-                  },
-                    child: const Icon(Icons.edit)),
-              ],
-            ),
+            widget.onCheckOut?Container(
+              height: 80,
+              width: MediaQuery.of(context).size.width,
+              child: Stepper(
+                type: StepperType.horizontal,
+                currentStep: currentStep,
+                physics: const ScrollPhysics(),
+                steps: stepList(),
+              ),
+            ):SizedBox(height: 5,),
             Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: Text("address"),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0).copyWith(top: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Icon(Icons.location_on_outlined),
+                        Text("Saved Address",style: GoogleFonts.roboto(fontSize: 20,color: Colors.blue),),
+                        InkWell(
+                            onTap: (){
+                              setState(() {
+                                isSwitched=true;
+                              });
+                            },
+                            child: const Icon(Icons.edit)),
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Container(padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(user.address.isEmpty?"No saved address":user.address,style: TextStyle(fontSize: 18),)),
+                  ),
+                ],
+              ),
             ),
+
             Visibility(
-              visible: isSwitched,
+              visible: widget.onCheckOut?widget.onCheckOut:isSwitched,
               child: Form(
                 key: formKey,
                 child: Column(
@@ -193,17 +275,17 @@ class _AddressDetailsState extends State<AddressDetails> {
                                     keyboardType: TextInputType.multiline,
                                     maxLines: null,
                                     decoration: textInputdec.copyWith(
-                                      hintText: "shirts,jeans",
+                                      hintText: "with country code",
                                       hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
                                       border:InputBorder.none,),
                                     onChanged:(val){
                                       setState(() {
-                                        category=val;
+                                        phone=val;
                                       });
                                     },
                                     validator: (val){
                                       if(val!.isEmpty){
-                                        return "category is mandatory";
+                                        return "phone is mandatory";
                                       }else{
                                         return null;
                                       }
@@ -234,12 +316,12 @@ class _AddressDetailsState extends State<AddressDetails> {
                                       border:InputBorder.none,),
                                     onChanged:(val){
                                       setState(() {
-                                        price=val;
+                                        pin=val;
                                       });
                                     },
                                     validator: (val){
                                       if(val!.isEmpty){
-                                        return "price is mandatory";
+                                        return "pin is mandatory";
                                       }else{
                                         return null;
                                       }
@@ -271,17 +353,17 @@ class _AddressDetailsState extends State<AddressDetails> {
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
                           decoration: textInputdec.copyWith(
-                            hintText: " ",
+                            hintText: "required",
                             hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
                             border:InputBorder.none,),
                           onChanged:(val){
                             setState(() {
-                              imageAddress=val;
+                              state=val;
                             });
                           },
                           validator: (val){
                             if(val!.isEmpty){
-                              return "name is mandatory";
+                              return "state is mandatory";
                             }else{
                               return null;
                             }
@@ -308,20 +390,15 @@ class _AddressDetailsState extends State<AddressDetails> {
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
                           decoration: textInputdec.copyWith(
-                            hintText: "India ",
+                            hintText: "Delhi ",
                             hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
                             border:InputBorder.none,),
                           onChanged:(val){
                             setState(() {
-                              location=val;
+                              city=val;
                             });
                           },
                           validator: (val){
-                            if(val!.isEmpty){
-                              return "name is mandatory";
-                            }else{
-                              return null;
-                            }
                           },
                         ),
                       ),
@@ -348,17 +425,17 @@ class _AddressDetailsState extends State<AddressDetails> {
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
                             decoration: textInputdec.copyWith(
-                              hintText: "ragged jeans of grey color..",
+                              hintText: "House/ward no",
                               hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
                               border:InputBorder.none,),
                             onChanged:(val){
                               setState(() {
-                                description=val;
+                                ward=val;
                               });
                             },
                             validator: (val){
                               if(val!.isEmpty){
-                                return "name is mandatory";
+                                return "required";
                               }else{
                                 return null;
                               }
@@ -389,20 +466,16 @@ class _AddressDetailsState extends State<AddressDetails> {
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
                             decoration: textInputdec.copyWith(
-                              hintText: "ragged jeans of grey color..",
+                              hintText: "near temple..",
                               hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
                               border:InputBorder.none,),
                             onChanged:(val){
                               setState(() {
-                                description=val;
+                                landmark=val;
                               });
                             },
                             validator: (val){
-                              if(val!.isEmpty){
-                                return "name is mandatory";
-                              }else{
-                                return null;
-                              }
+
                             },
                           ),
                         ),
@@ -422,12 +495,21 @@ class _AddressDetailsState extends State<AddressDetails> {
     );
   }
   Widget submitForm(){
+    final user=context.watch<UserProvider>().user;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: (){
+              if(formKey.currentState!.validate()){
+                String add="Name-$name Phone Number-$phone \n $ward ,$landmark $city $state   Pin-$pin ";
+                showSnakbar(context, Colors.blue, "Saving Address");
+                updateAddress(add,user.email,user.phone,user.image,user.name,context,user.id,user.password);
+
+              }
+
             },
             child: Container(
               height: 50,
@@ -440,13 +522,16 @@ class _AddressDetailsState extends State<AddressDetails> {
                   borderRadius: BorderRadius.all(Radius.circular(15))
               ),
               child:  Center(
-                child: Text(isLoading? "Updating Address" :"Update Address",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                child: Text("Update Address",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
                 ),
               ),
             ),
           ),
           GestureDetector(
             onTap: (){
+              setState(() {
+                isSwitched=false;
+              });
             },
             child: Container(
               height: 50,

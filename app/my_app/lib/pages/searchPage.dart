@@ -1,5 +1,5 @@
 
-import 'dart:html';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -46,7 +46,7 @@ class _SearchPageState extends State<SearchPage> {
     final suggestion=context.watch<ProductProvider>().user["suggestion"];
     return  Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
@@ -116,7 +116,7 @@ class _SearchPageState extends State<SearchPage> {
                     itemBuilder: (context,i){
                   return ListTile(
                     leading: Icon(Icons.history_outlined),
-                    title: suggestion[i],
+                    title: Text(suggestion[i]),
                   );
                 }),
               ),

@@ -9,16 +9,15 @@ class User{
   final String password;
   final String phone;
   final String address;
-  final String token;
   final String image;
 
 
 
-  User(this.id, this.name, this.email, this.password,this.phone, this.address, this.token,
+  User(this.id, this.name, this.email, this.password,this.phone, this.address,
       this.image);
 
   factory User.fromJson(Map<String,dynamic> json){
-    return User(json["_id"], json["name"], json["email"], json['password'],json["phone"], json['address'], json['token'], json['image']);
+    return User(json["_id"], json["name"], json["email"], json['password'],json["phone"], json['address'],  json['image']);
 
   }
   Map<String,dynamic> toMap(){

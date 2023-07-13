@@ -1,6 +1,8 @@
 
 import 'dart:ui';
 
+import 'package:animate_do/animate_do.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,7 +33,7 @@ class _AuthPageState extends State<AuthPage> {
         children: [
           Container(
             decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/bg.jpg"),fit: BoxFit.fill)
+               color: Colors.white
             ),
 
           ),
@@ -128,7 +130,7 @@ class _AuthPageState extends State<AuthPage> {
                                 const SizedBox(height: 70,),
                                 TextFormField(
                                   decoration: textInputdec.copyWith(
-                                      labelText: "Entry Number",
+                                      labelText: "email ",
                                       labelStyle: GoogleFonts.poppins(color: Colors.white),
                                       prefixIcon: const Icon(Icons.email,
                                         color:Color(0xff2E4237),
@@ -141,7 +143,7 @@ class _AuthPageState extends State<AuthPage> {
                                   },
                                   validator: (val){
                                     if(val!.isEmpty){
-                                      return "enter entry no";
+                                      return "enter valid email";
                                     }else{
                                       return null;
                                     }
@@ -151,7 +153,7 @@ class _AuthPageState extends State<AuthPage> {
                                 TextFormField(
                                   obscureText: obscure,
                                   decoration: textInputdec.copyWith(
-                                    labelText: "Kerberos Password",
+                                    labelText: "Password",
                                     labelStyle: GoogleFonts.poppins(color: Colors.white),
                                     prefixIcon: const Icon(Icons.lock,
                                       color:Color(0xff2E4237) ,
@@ -250,7 +252,7 @@ class _AuthPageState extends State<AuthPage> {
                                 const SizedBox(height: 13,),
                                 TextFormField(
                                   decoration: textInputdec.copyWith(
-                                      labelText: "Entry Number",
+                                      labelText: "email ",
                                       labelStyle: GoogleFonts.poppins(color: Colors.white),
                                       prefixIcon: const Icon(Icons.email,
                                         color:Color(0xff2E4237),
@@ -269,7 +271,7 @@ class _AuthPageState extends State<AuthPage> {
                                 TextFormField(
                                   obscureText: obscure,
                                   decoration: textInputdec.copyWith(
-                                    labelText: "Kerberos Password",
+                                    labelText: "Password",
                                     labelStyle: GoogleFonts.poppins(color: Colors.white),
                                     prefixIcon: const Icon(Icons.lock,
                                       color:Color(0xff2E4237) ,

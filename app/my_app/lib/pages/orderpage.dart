@@ -5,7 +5,7 @@ import 'package:my_app/pages/searchPage.dart';
 
 import '../Models/order.dart';
 import '../Utils/widgets.dart';
-import 'package:intl/intl.dart';
+
 
 class OrderDetailPage extends StatefulWidget {
   final Order order;
@@ -75,10 +75,7 @@ class _OrderPageState extends State<OrderDetailPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Order Date:      ${DateFormat().format(
-                    DateTime.fromMillisecondsSinceEpoch(
-                        widget.order.orderedAt),
-                  )}'),
+                  Text('Order Date: ${DateTime.fromMicrosecondsSinceEpoch(widget.order.orderedAt)}'     ),
                   Text('Order ID:          ${widget.order.id}'),
                   Text('Order Total:      \$${widget.order.totalPrice}'),
 

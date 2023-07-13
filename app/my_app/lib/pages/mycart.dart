@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Models/cartItem.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/homepage.dart';
@@ -12,7 +11,6 @@ import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/searchPage.dart';
 import 'package:provider/provider.dart';
 import '../ApiService/CartApi.dart';
-import '../Models/AddedProduct.dart';
 import '../providers/product_provider.dart';
 import '../providers/userProvider.dart';
 
@@ -278,9 +276,8 @@ class _MyCartState extends State<MyCart> {
             onTap: (){
               if(user.address.isEmpty){
                 nextScreen(context, AddressDetails(onCheckOut: true));
-
               }else{
-                nextScreen(context, const CheckOutPage());
+                nextScreen(context,  CheckOutPage(orders: list,));
               }
             },
             child: Container(

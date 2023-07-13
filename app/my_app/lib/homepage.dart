@@ -41,9 +41,8 @@ class _HomePageState extends State<HomePage> {
       Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
     });
 
-    apiService.getUser().then((value) {
-      Provider.of<ProductProvider>(context, listen: false).setUser(value[0]);
-    });
+
+    apiService.authorizedUser(email: "its8@gmail.com", context: context);
   }
   @override
   Widget build(BuildContext context) {
