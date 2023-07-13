@@ -1,0 +1,18 @@
+<nav>
+    {% if request.user.is_authenticated %}
+    <span>Hello, {{request.user}}</span>
+    <span><a href="{% url 'add_products' %}">Add Products</a></span>
+    <span><a href="{% url 'logout' %}">Logout</a></span>
+    {% else %}
+    <span><a href="{% url 'login' %}">Login</a></span>
+    {% endif %}
+</nav>
+{% if product_list %}
+    <ul>
+    {% for product in product_list %}
+        <li><a href="{% url 'detail' product.id %}">{{ product.name }}</a>  {{ product.price }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No products are available.</p>
+{% endif %}
