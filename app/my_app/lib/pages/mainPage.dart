@@ -5,6 +5,8 @@ import 'package:my_app/ApiService/addedProductApi.dart';
 import 'package:my_app/Utils/constants.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/searchPage.dart';
+import 'package:my_app/providers/product_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../ApiService/CartApi.dart';
@@ -25,7 +27,7 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  List items=["Headphone","jewelery","Gadgets","Daily use","watches","Bagpacks"];
+  List items=["Headphone","jewelery","Gadgets","Daily use","Watch","Bagpacks"];
   List img=["hp1.png","Cmen.jpg","Celectr.jpg","Cfurni.jpg","Cwat.jpg","Cbag.jpg"];
   int currentPageIndex=0;
   List<Product> productList=[];
@@ -66,6 +68,9 @@ class _FirstPageState extends State<FirstPage> {
         rec=value;
         isRecLoading=false;
       });
+    });
+    apiService.getUser().then((value) {
+      Provider.of<ProductProvider>(context, listen: false).setUser(value[0]);
     });
   }
   @override

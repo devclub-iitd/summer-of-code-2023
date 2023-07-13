@@ -62,16 +62,22 @@ class MyProductApi{
 
   }
 
-  Future<List<Map<String,dynamic>>> getCategories()async{
+  Future<List<Map<String,dynamic>>> getCategories(BuildContext context)async{
     try{
+      List<Map<String,dynamic>> list=[];
       final response=await http.get(Uri.parse("${constants.apiUri}/api/categories"));
       if(response.statusCode==200){
-        return jsonDecode(response.body);
+        for (var i=0;i<jsonDecode(response.body).length;i++){
+          list.add(jsonDecode(response.body)[i]);
+        }
+        return list;
       }else{
+        showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
         return [];
       }
 
     }catch(e){
+      showSnakbar(context, Colors.red, e.toString());
       return [];
     }
   }

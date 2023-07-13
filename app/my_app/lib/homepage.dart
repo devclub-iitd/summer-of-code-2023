@@ -88,6 +88,11 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.settings_outlined),
             label: 'Profile',
           ),
+          const NavigationDestination(
+            selectedIcon: Icon(Icons.category),
+            icon: Icon(Icons.category_outlined),
+            label: 'Categories',
+          ),
 
         ],
       ),
@@ -97,7 +102,8 @@ class _HomePageState extends State<HomePage> {
         const FirstPage(),
         const MyCart(),
         const AddProduct(),
-        const ProfilePage()
+        const ProfilePage(),
+        const Categories()
       ][currentPageIndex]
     );
   }
@@ -106,7 +112,7 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.only(right: 20),
       child: GestureDetector(
         onTap: (){
-          nextScreen(context, SearchPage());
+          nextScreen(context, const SearchPage());
         },
         child: Container(
           height: 50,

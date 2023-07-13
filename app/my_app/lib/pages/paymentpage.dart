@@ -23,7 +23,7 @@ class _PaymentPageState extends State<PaymentPage> {
     Step(title: const Text('Payment'), content: const SizedBox(height: 1,), isActive: currentStep > 2,
       state: currentStep > 2
           ? StepState.complete
-          : StepState.indexed,),
+          : StepState.editing,),
   ];
   int currentStep=2;
   @override
@@ -70,89 +70,108 @@ class _PaymentPageState extends State<PaymentPage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
-
             children: [
               Container(
                 height: 80,
                 width: MediaQuery.of(context).size.width,
-                child: Stepper(
-                  type: StepperType.horizontal,
-                  currentStep: currentStep,
-                  physics: const ScrollPhysics(),
-                  steps: stepList(),
+                child: Theme(
+                  data: ThemeData(
+
+                      colorScheme: const ColorScheme.light(
+                          primary: Colors.blue,
+                          secondary: Colors.green,
+                        background: Colors.red
+                      )
+                  ),
+                  child: Stepper(
+                    type: StepperType.horizontal,
+                    currentStep: currentStep,
+                    physics: const ScrollPhysics(),
+                    steps: stepList(),
+                  ),
                 ),
               ),
 
 
-               Expanded(
-                child: Card(
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10),)),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            border: Border.all(color: Colors.black.withOpacity(0.3)),
-                            borderRadius: const BorderRadius.all(Radius.circular(5),)
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Debit/Credit Card",style: GoogleFonts.roboto(fontSize: 18),),
-                            Icon(Icons.credit_card_outlined,color: Colors.blue,),
+               Card(
+                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                 child: Padding(
+                   padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                   child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+                       Text("Choose mode of payment",style: GoogleFonts.poppins(fontSize: 20),),
+                       SizedBox(height: 10,),
+                       Container(
+                         padding: EdgeInsets.all(10),
+                         decoration: BoxDecoration(
+                             color: Colors.grey.withOpacity(0.2),
+                             border: Border.all(color: Colors.black.withOpacity(0.1)),
+                             borderRadius: const BorderRadius.all(Radius.circular(5),)
+                         ),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Text("Debit/Credit Card",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue),),
+                             Icon(Icons.credit_card_outlined,color: Colors.red,),
 
-                          ],
-                        )
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            border: Border.all(color: Colors.black.withOpacity(0.3)),
-                            borderRadius: const BorderRadius.all(Radius.circular(5),)
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Internet Banking",style: GoogleFonts.roboto(fontSize: 18),),
-                            Icon(Icons.account_balance_outlined,color: Colors.blue,),
+                           ],
+                         )
+                       ),
+                       SizedBox(height: 10,),
+                       Container(
+                           padding: EdgeInsets.all(10),
+                         decoration: BoxDecoration(
+                             color: Colors.grey.withOpacity(0.2),
+                             border: Border.all(color: Colors.black.withOpacity(0.1)),
+                             borderRadius: const BorderRadius.all(Radius.circular(5),)
+                         ),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Text("Internet Banking",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
+                             Icon(Icons.account_balance_outlined,color: Colors.red,),
 
-                          ],
-                        )
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            border: Border.all(color: Colors.black.withOpacity(0.3)),
-                            borderRadius: const BorderRadius.all(Radius.circular(5),)
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Google-Pay/Paytm/PhonePe",style: GoogleFonts.roboto(fontSize: 18),),
-                            
-                          ],
-                        )
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.2),
-                            border: Border.all(color: Colors.black.withOpacity(0.3)),
-                            borderRadius: const BorderRadius.all(Radius.circular(5),)
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Cash on Delivery",style: GoogleFonts.roboto(fontSize: 18),),
-                            Icon(Icons.currency_rupee_outlined,color: Colors.blue,)
-                          ],
-                        )
-                      ),
-                    ],
-                  ),
-                ),
-              )
+                           ],
+                         )
+                       ),
+                       SizedBox(height: 10,),
+                       Container(
+                           padding: EdgeInsets.all(10),
+                         decoration: BoxDecoration(
+                             color: Colors.grey.withOpacity(0.2),
+                             border: Border.all(color: Colors.black.withOpacity(0.1)),
+                             borderRadius: const BorderRadius.all(Radius.circular(5),)
+                         ),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Text("Google-Pay/Paytm/PhonePe",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
+                             Icon(Icons.qr_code_scanner_rounded,color: Colors.red,)
+                           ],
+                         )
+                       ),
+                       SizedBox(height: 10,),
+                       Container(
+                           padding: EdgeInsets.all(10),
+                         decoration: BoxDecoration(
+                             color: Colors.grey.withOpacity(0.2),
+                             border: Border.all(color: Colors.black.withOpacity(0.1)),
+                             borderRadius: const BorderRadius.all(Radius.circular(5),)
+                         ),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Text("Cash on Delivery",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
+                             Icon(Icons.currency_rupee_outlined,color: Colors.red,)
+                           ],
+                         )
+                       ),
+                     ],
+                   ),
+                 ),
+               )
 
 
             ],

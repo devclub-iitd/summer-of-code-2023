@@ -33,74 +33,80 @@ class _MyProductsState extends State<MyProducts> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: SafeArea(child: Container(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap:(){
-                      Navigator.pop(context);
-                    },
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        child: Icon(Icons.arrow_back_ios),
-                      ),
-                    ),
+      appBar:  AppBar(
+        automaticallyImplyLeading: false,
+        flexibleSpace:Padding(
+          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap:(){
+                  Navigator.pop(context);
+                },
+                child: Card(
+                  elevation: 10,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: const Icon(Icons.arrow_back_ios),
                   ),
-                  Text("My Products",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
-                  Card(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                    child: Container(
-                      height: 50,
-                      width: 50,
-                      child: Icon(Icons.more_horiz),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            isLoading?const CircularProgressIndicator( ):Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 15),
-              child: ListView.builder(
-                  itemCount: myProducts.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context,i){
-                    final product=myProducts[i];
-                    return GestureDetector(
-                      onTap: (){
-                        nextScreen(context, ProductDescription(product: myProducts[i], category: product.category,isMYProduct: true,));
-                      },
-                      child: ListTile(
-                        leading: Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                              image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
-                          ),
-                        ),
-                        title: Text(product.title,),
-                        subtitle: Text("Rs. "+product.price,style: TextStyle(color: Colors.blue),),
-
-                        ),
-
-                    );
-
-                  }),
-            ),
-          ],
+              Text("Edit Profile",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+              GestureDetector(
+                child: Card(
+                  elevation: 10,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: const Icon(Icons.search_outlined),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      )),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: isLoading?const Center(child:  CircularProgressIndicator( )):Column(
+        children: [
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 15),
+            child: ListView.builder(
+                itemCount: myProducts.length,
+                shrinkWrap: true,
+                itemBuilder: (context,i){
+                  final product=myProducts[i];
+                  return GestureDetector(
+                    onTap: (){
+                      nextScreen(context, ProductDescription(product: myProducts[i], category: product.category,isMYProduct: true,));
+                    },
+                    child: ListTile(
+                      leading: Container(
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: const BorderRadius.all(Radius.circular(15)),
+                            image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+                        ),
+                      ),
+                      title: Text(product.title,),
+                      subtitle: Text("Rs. "+product.price,style: const TextStyle(color: Colors.blue),),
+
+                      ),
+
+                  );
+
+                }),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/pages/AddressDetails.dart';
 import 'package:my_app/pages/wishlistpage.dart';
+import 'package:my_app/providers/userProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../Utils/widgets.dart';
 import 'editprofile.dart';
@@ -22,6 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
   double font=17 ;
   @override
   Widget build(BuildContext context) {
+    final user=context.watch<UserProvider>().user;
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -75,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
-              Text("Aditya",style: GoogleFonts.aBeeZee(color: Colors.black,fontSize: 25),),
+              Text(user.name,style: GoogleFonts.aBeeZee(color: Colors.black,fontSize: 25),),
               const SizedBox(height: 20,),
               GestureDetector(
                 onTap: (){

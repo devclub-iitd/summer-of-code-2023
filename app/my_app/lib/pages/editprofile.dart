@@ -34,6 +34,7 @@ class _EditProfileState extends State<EditProfile> {
 
   updateProfile(BuildContext context){
     if(_image!=null){
+      showSnakbar(context, Colors.blue, "Updating details ..please wait");
       final user=context.read<UserProvider>().user;
       api.uploadImage(_image).then((uri){
         apiService.updateAddress(context: context, email: user.email, name:name, address: user.address, image: uri, phone: phone).then((value) {
@@ -46,6 +47,7 @@ class _EditProfileState extends State<EditProfile> {
         });
       });
     }else{
+      showSnakbar(context, Colors.blue, "Updating details ..please wait");
       final user=context.read<UserProvider>().user;
       apiService.updateAddress(context: context, email: user.email, name:name, address: user.address, image: user.image, phone: phone).then((value) {
         final user=context.read<UserProvider>().user;
@@ -59,8 +61,13 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+    final user=context.read<UserProvider>().user;
+    setState(() {
+      name=user.name;
+      phone=user.phone;
+    });
   }
 
 
@@ -120,7 +127,7 @@ class _EditProfileState extends State<EditProfile> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Color(0xff88b49c), Color(0xff29353C)],),
+                    colors: [Colors.black,Colors.black45],),
                   borderRadius: BorderRadius.all(Radius.circular(15))
               ),
               height: 50,
@@ -233,7 +240,7 @@ class _EditProfileState extends State<EditProfile> {
                       },
 
                       child:   const CircleAvatar(
-                        backgroundColor: Color(0xff2E4237),
+                        backgroundColor: Colors.black,
                         child: Center(
                           child: Icon(Icons.edit,color: Colors.white,),
                         ),

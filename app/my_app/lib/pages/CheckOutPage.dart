@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/cartItem.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/AddressDetails.dart';
+import 'package:my_app/pages/paymentpage.dart';
 import 'package:my_app/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 import '../providers/product_provider.dart';
@@ -25,13 +26,21 @@ class _CheckOutPageState extends State<CheckOutPage> {
      Step(title: const Text('Details'), content: const SizedBox(height: 1,), isActive: currentStep > 1,
       state: currentStep > 1
           ? StepState.complete
-          : StepState.indexed,),
+          : StepState.editing,),
      Step(title: const Text('Payment'), content: const SizedBox(height: 1,), isActive: currentStep > 2,
       state: currentStep > 2
           ? StepState.complete
           : StepState.indexed,),
   ];
   int currentStep=1;
+
+  int totalPrice(){
+    int price=0;
+    for(var i=0;i<widget.orders.length;i++){
+      price+=(int.parse(widget.orders[i].product.price.split(".")[0]).toInt())*widget.orders[i].count;
+    }
+    return price;
+  }
   @override
   Widget build(BuildContext context) {
     final user=context.watch<UserProvider>().user;
@@ -75,52 +84,98 @@ class _CheckOutPageState extends State<CheckOutPage> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+        child: GestureDetector(
+          onTap: (){
+            nextScreen(context, const PaymentPage());
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            decoration: const BoxDecoration(
+                gradient:LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.black,Colors.black45],),
+                borderRadius: BorderRadius.all(Radius.circular(15))
+            ),
+            height: 50,
+            child:   Center(
+              child: Text("Pay Rs. ${totalPrice() } /-",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 80,
               width: MediaQuery.of(context).size.width,
-              child: Stepper(
-                type: StepperType.horizontal,
-                currentStep: currentStep,
-                physics: const ScrollPhysics(),
-                steps: stepList(),
+              child: Theme(
+                data: ThemeData(
+                  colorScheme: const ColorScheme.light(
+                    primary: Colors.blue,
+                    secondary: Colors.green,
+                      background: Colors.red
+                  )
+                ),
+                child: Stepper(
+                  type: StepperType.horizontal,
+                  currentStep: currentStep,
+                  physics: const ScrollPhysics(),
+                  steps: stepList(),
+                ),
               ),
             ),
-            Card(
-              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0).copyWith(top: 15,right: 5,left: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Saved Address",style: GoogleFonts.roboto(fontSize: 20,color: Colors.blue),),
-                        InkWell(
-                            onTap: (){
-                              nextScreenReplace(context, AddressDetails(onCheckOut: true,orders: widget.orders,));
-                            },
-                            child: const Icon(Icons.edit)),
-                      ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Card(
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0).copyWith(top: 15,right: 5,left: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Saved Address",style: GoogleFonts.roboto(fontSize: 20,color: Colors.blue),),
+                          InkWell(
+                              onTap: (){
+                                nextScreenReplace(context, AddressDetails(onCheckOut: true,orders: widget.orders,));
+                              },
+                              child: const Icon(Icons.edit)),
+                        ],
+                      ),
                     ),
-                  ),
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Container(padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(user.address.isEmpty?"No saved address":user.address,style: const TextStyle(fontSize: 18),)),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Container(padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(user.address.isEmpty?"No saved address":user.address,style: const TextStyle(fontSize: 18),)),
+                    ),
+                  ],
+                ),
               ),
             ),
-            cartProducts(),
+            Padding(padding: const EdgeInsets.symmetric(horizontal: 10),child:cartProducts() ,),
+
             const SizedBox(height: 10,),
-            Text("Have a coupon Code?enter here",style: GoogleFonts.poppins(fontSize: 18),),
-            const SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                children: [
+                  Text("Have a coupon Code?",style: GoogleFonts.poppins(fontSize: 18),),
+                  Text("Apply here",style: GoogleFonts.poppins(fontSize: 18,color: Colors.blueAccent),),
+                ],
+              )
+            ),
+            const SizedBox(height: 5,),
             Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15),
               decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.1),
                   border: Border.all(color: Colors.black.withOpacity(0.3)),
@@ -129,64 +184,75 @@ class _CheckOutPageState extends State<CheckOutPage> {
               child: TextFormField(
                 style: const TextStyle(fontSize: 20),
                 decoration: const InputDecoration(
+                  hintText: "    enter coupon code to avail discount",
+                  hintStyle: TextStyle(fontSize: 15),
                   border: InputBorder.none, ),
 
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("Subtotal:",style: TextStyle(fontSize: 18),),
-                const Text("Price",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
 
-              ],
-            ),
-            const SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const[
-                 Text("Delivery Fee:",style: TextStyle(fontSize: 18),),
-                 Text("Price",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 10),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Subtotal:",style: TextStyle(fontSize: 18),),
+                      Text("Rs. "+totalPrice().toString(),style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
 
-              ],
-            ),
-            const SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const[
-                 Text("Discount:",style: TextStyle(fontSize: 18),),
-                 Text("Price",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                    ],
+                  ),
+                  const SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const[
+                      Text("Delivery Fee:",style: TextStyle(fontSize: 18),),
+                      Text("Rs. 50",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
 
-              ],
-            ),
-            const SizedBox(height: 10,),
-            Row(
-              children: [
-                for(int i=0;i<90;i++)
-                  i.isEven?Container(
-                    width: 3,
-                    height: 1,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF839fed),
-                        borderRadius: BorderRadius.circular(2)
-                    ),
-                  ):Container( width: 3,
-                    height: 1,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(2)
-                    ),)
-              ],
-            ),
-            const SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const[
-                Text("Total:",style: TextStyle(fontSize: 18),),
-                Text("Price",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.blue),),
+                    ],
+                  ),
+                  const SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Discount:",style: TextStyle(fontSize: 18),),
+                      const Text("Rs. 700",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
 
-              ],
+                    ],
+                  ),
+                  const SizedBox(height: 10,),
+                  Row(
+                    children: [
+                      for(int i=0;i<120;i++)
+                        i.isEven?Container(
+                          width: 3,
+                          height: 1,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFF839fed),
+                              borderRadius: BorderRadius.circular(2)
+                          ),
+                        ):Container( width: 3,
+                          height: 1,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(2)
+                          ),)
+                    ],
+                  ),
+                  const SizedBox(height: 10,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Total:",style: TextStyle(fontSize: 18),),
+                      Text("Rs. ${totalPrice()+ 50-700}",style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.blue),),
+
+                    ],
+                  ),
+                ],
+              ),
             ),
+
 
           ],
         ),
