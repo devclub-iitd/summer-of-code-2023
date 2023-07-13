@@ -33,25 +33,27 @@ class _ProductDescriptionState extends State<ProductDescription> {
       Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
     });
   }
+  bool isInWishlist=false;
 
   addTowishlist(){
     apiService.addTowishlist(email: "its8@gmail.com", id: widget.product.id);
   }
 
-  void add(AddedProduct product){
-    myProductApi.addProduct(context: context,
-        userId: "its8@gmail.com",
-        title: product.title,
-        category: product.category,
-        desc: product.desc,
-        price: product.price,
-        location: product.location,
-        isNegotiable: true,
-        image: product.image);
+  checkifinwish(){
+    if(widget.product.id.isNotEmpty){
+      apiService.isInWishlist(widget.product.id, "its8@gmail.com").then((value) {
+        setState(() {
+          isInWishlist=value;
+        });
+      });
+    }
   }
+
+
   @override
   void initState() {
     super.initState();
+    checkifinwish();
     myProductApi.addSuggestion(context: context, email: "its8@gmail.com", category: widget.product.category);
   }
 
@@ -121,7 +123,12 @@ class _ProductDescriptionState extends State<ProductDescription> {
                           if(widget.product.id.isEmpty){
                             showSnakbar(context, Colors.red, "can't be added");
                           }else{
-                            addTowishlist();
+                            if(!isInWishlist){
+                              addTowishlist();
+                            }else{
+
+                            }
+
                           }
                         },
                         child: Card(
@@ -130,7 +137,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                           child: Container(
                             height: 50,
                             width: 50,
-                            child: const Icon(Icons.favorite_outline_outlined),
+                            child:  Icon(isInWishlist?Icons.favorite:Icons.favorite_outline_outlined,color: isInWishlist?Colors.red:Colors.black,),
                           ),
                         ),
                       ),

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/ApiService/addedProductApi.dart';
 import 'package:my_app/pages/product_description.dart';
@@ -54,7 +55,7 @@ class _MyProductsState extends State<MyProducts> {
                   ),
                 ),
               ),
-              Text("Edit Profile",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+              Text("My Products",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
               GestureDetector(
                 child: Card(
                   elevation: 10,
@@ -72,40 +73,67 @@ class _MyProductsState extends State<MyProducts> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: isLoading?const Center(child:  CircularProgressIndicator( )):Column(
-        children: [
+      body: isLoading?const Center(child:  CircularProgressIndicator( )):SingleChildScrollView(
+        child: Column(
+          children: [
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 15),
-            child: ListView.builder(
-                itemCount: myProducts.length,
-                shrinkWrap: true,
-                itemBuilder: (context,i){
-                  final product=myProducts[i];
-                  return GestureDetector(
-                    onTap: (){
-                      nextScreen(context, ProductDescription(product: myProducts[i], category: product.category,isMYProduct: true,));
-                    },
-                    child: ListTile(
-                      leading: Container(
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(Radius.circular(15)),
-                            image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 15),
+              child: ListView.builder(
+                  itemCount: myProducts.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context,i){
+                    final product=myProducts[i];
+                    return GestureDetector(
+                      onTap: (){
+                        nextScreen(context, ProductDescription(product: myProducts[i], category: product.category,isMYProduct: true,));
+                      },
+                      child: Slidable(
+                        startActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          children:  [
+                            SlidableAction(
+                              onPressed: (context){
+
+                              },
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.red,
+                              icon: Icons.delete,
+                              label: 'Delete',
+                            ),
+                            SlidableAction(
+                              onPressed: (context){
+                              },
+                              backgroundColor: Colors.white,
+                              foregroundColor: const Color(0xFF21B7CA),
+                              icon: Icons.share,
+                              label: 'Share',
+                            ),
+                          ],
                         ),
+                        child: ListTile(
+                          leading: Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: const BorderRadius.all(Radius.circular(15)),
+                                image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+                            ),
+                          ),
+                          title: Text(product.title,),
+                          subtitle: Text("Rs. "+product.price,style: const TextStyle(color: Colors.blue),),
+
+                          ),
                       ),
-                      title: Text(product.title,),
-                      subtitle: Text("Rs. "+product.price,style: const TextStyle(color: Colors.blue),),
 
-                      ),
+                    );
 
-                  );
-
-                }),
-          ),
-        ],
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }

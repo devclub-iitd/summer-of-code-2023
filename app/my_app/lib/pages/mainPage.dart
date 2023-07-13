@@ -488,24 +488,29 @@ class _FirstPageState extends State<FirstPage> {
                               var product=rec[i];
                              return Padding(
                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                               child: Stack(
-                                 children: [
-                                   Container(
-                                     height: 150,
-                                     width: 130,
+                               child: GestureDetector(
+                                 onTap: (){
+                                   nextScreen(context, ProductDescription(product: product, category: product.category, isMYProduct: false));
+                                 },
+                                 child: Stack(
+                                   children: [
+                                     Container(
+                                       height: 150,
+                                       width: 130,
 
-                                     decoration: BoxDecoration(
-                                       borderRadius: BorderRadius.all(Radius.circular(15)),
-                                         color: Colors.white,
-                                         image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+                                       decoration: BoxDecoration(
+                                         borderRadius: BorderRadius.all(Radius.circular(15)),
+                                           color: Colors.white,
+                                           image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
+                                       ),
+
                                      ),
-
-                                   ),
-                                   Positioned(
-                                     top:150,
-                                       left: 10,
-                                       child:Center(child: Text(product.title,style: TextStyle(color: Colors.black),)))
-                                 ],
+                                     Positioned(
+                                       top:150,
+                                         left: 10,
+                                         child:Center(child: Text(product.title,style: TextStyle(color: Colors.black),)))
+                                   ],
+                                 ),
                                ),
                              );
                           }),
