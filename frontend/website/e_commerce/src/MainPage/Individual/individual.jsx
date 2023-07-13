@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { del_id, get_id } from "../API/api_func";
 import Navbar from "../Home/navbar";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AddToCart from "./addtocart";
+import notFoundImage from "./notfound.png"
 export default function IndividualProduct(props) {
 
   const navigate=useNavigate()
@@ -28,7 +29,7 @@ export default function IndividualProduct(props) {
           <>
             <div className="row">
               <div className="col">
-                <img src={product.img_url}/>
+                <img src={product.img_url} onError={(event) => {setproduct((prevFormData) => ({...prevFormData,["img_url"]:"https://cdn-icons-png.flaticon.com/512/2748/2748558.png"}))}} />
               </div>
               <div className=" col">
                 <div className=" p-2">

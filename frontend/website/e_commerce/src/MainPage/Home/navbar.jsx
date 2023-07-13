@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar(props) {
+  const nav=useNavigate()
   const {products,setProducts}=props;
   const [search,setSearch]=useState("");
     return (
@@ -62,6 +63,7 @@ export default function Navbar(props) {
                 }}
               />
               <button className="btn btn-outline-success" style={{ color: 'white', borderColor: 'white' }} type="submit" onClick={async(e)=>{e.preventDefault();
+                nav('/')
                 setProducts([]);
                 await fetch("https://marketplace-1-b3203472.deta.app/search?skip=0&limit=10&query="+search).then(x=>x.json()).then(x=>{setProducts(x)})
               }}>
