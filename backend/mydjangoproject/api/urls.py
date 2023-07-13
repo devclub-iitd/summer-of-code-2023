@@ -1,18 +1,45 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .views import (
+    apiOverviewAPIView,
+    productListAPIView,
+    productDetailAPIView,
+    productAddAPIView,
+    productDeleteAPIView,
+    productDeleteAPIView,
+    signupAPIView
+)
+
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+schema_view = get_schema_view(
+	openapi.Info(
+		title="Snippets API",
+		default_version='v1',
+		description="Test description",
+		terms_of_service="https://www.google.com/policies/terms/",
+		contact=openapi.Contact(email="contact@snippets.local"),
+		license=openapi.License(name="BSD License"),
+	),
+	public=True,
+	permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
-	path('', views.apiOverview, name="api-overview"),
-	path('product-list/', views.productList, name="product-list"),
-	path('product-detail/<str:pk>/', views.productDetail, name="product-detail"),
-	path('product-add/', views.productAdd, name="product-add"),
+	path('', apiOverviewAPIView.as_view(), name="api-overview"),
+	path('product-list/', productListAPIView.as_view(), name="product-list"),
+	path('product-detail/<str:pk>/', productDetailAPIView.as_view(), name="product-detail"),
+	path('product-add/', productAddAPIView.as_view(), name="product-add"),
 
-	path('product-delete/<str:pk>/', views.productDelete, name="product-delete"),
-    path('product-purchase/<str:pk>/', views.productPurchase, name="product-purchase"),
+	path('product-delete/<str:pk>/', productDeleteAPIView.as_view(), name="product-delete"),
+    path('product-purchase/<str:pk>/', productDeleteAPIView.as_view(), name="product-purchase"),
     
 	path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('signup/', views.signup, name="signup")
+    path('signup/', signupAPIView.as_view(), name="signup")
 ]
