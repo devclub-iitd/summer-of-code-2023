@@ -90,3 +90,26 @@ ReactJS is made of components. The State of a component is an object that holds 
 
 #### [Task](week3)
 Learn ReactJS, and make your website better using JSX components and State management. Bonus: improve the code quality too!
+
+### Week 4: Powering your React app with a public API
+
+#### Concepts 
+
+- Integrating frontend with backend: Use our [public marketplace API][1] to design frontend pages to list, create, update, and delete products. Learn about JSON, fetch/axios, state management, HTTP status codes, and a bunch of other concepts!   
+
+- React Hooks - useState, useEffects, etc. 
+
+#### Resources  
+
+Resources and code snippets are shared in `week4/README.md` so check it out!      
+
+#### [Task](week4)
+Design pages to render, create, and update products. Fetch this data from a public API and understand the interface using API specs. Learn about status codes, state management, error handling, and much more!   
+
+
+[0]: https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+[1]: https://marketplace-1-b3203472.deta.app/docs#/
+[3]: https://pypi.org/project/python-socketio/
+[6]: https://socket.io/docs/v3/rooms/
+
+
