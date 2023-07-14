@@ -10,14 +10,16 @@ class User{
   final String phone;
   final String address;
   final String image;
+  final List<dynamic> suggestion;
+
 
 
 
   User(this.id, this.name, this.email, this.password,this.phone, this.address,
-      this.image);
+      this.image,this.suggestion);
 
   factory User.fromJson(Map<String,dynamic> json){
-    return User(json["_id"], json["name"], json["email"], json['password'],json["phone"], json['address'],  json['image']);
+    return User(json["_id"], json["name"], json["email"], json['password'],json["phone"], json['address'],  json['image'],json['suggestion']);
 
   }
   Map<String,dynamic> toMap(){

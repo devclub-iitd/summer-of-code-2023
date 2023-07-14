@@ -52,6 +52,7 @@ dependencies:
   animate_do:
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

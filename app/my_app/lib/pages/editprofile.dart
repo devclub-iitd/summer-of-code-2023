@@ -40,7 +40,7 @@ class _EditProfileState extends State<EditProfile> {
         apiService.updateAddress(context: context, email: user.email, name:name, address: user.address, image: uri, phone: phone).then((value) {
           final user=context.read<UserProvider>().user;
           if(value){
-            User updated=User(user.id, controller_name.text, user.email, user.password, controller_phone.text, user.address, uri);
+            User updated=User(user.id, controller_name.text, user.email, user.password, controller_phone.text, user.address, uri,user.suggestion);
             Provider.of<UserProvider>(context, listen: false).setUserFromModel(updated);
           }
 
@@ -52,7 +52,7 @@ class _EditProfileState extends State<EditProfile> {
       apiService.updateAddress(context: context, email: user.email, name:name, address: user.address, image: user.image, phone: phone).then((value) {
         final user=context.read<UserProvider>().user;
         if(value){
-          User updated=User(user.id, name, user.email, user.password, phone, user.address, user.image);
+          User updated=User(user.id, name, user.email, user.password, phone, user.address, user.image,user.suggestion);
           Provider.of<UserProvider>(context, listen: false).setUserFromModel(updated);
         }
 

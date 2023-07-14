@@ -69,9 +69,7 @@ class _FirstPageState extends State<FirstPage> {
         isRecLoading=false;
       });
     });
-    apiService.getUser().then((value) {
-      Provider.of<ProductProvider>(context, listen: false).setUser(value[0]);
-    });
+
   }
   @override
   Widget build(BuildContext context) {

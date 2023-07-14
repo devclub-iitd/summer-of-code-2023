@@ -251,7 +251,7 @@ class _CategoryPageState extends State<CategoryPage> {
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Row(
                               children: [
-                                Text(product.title,style: const TextStyle(fontWeight: FontWeight.w500),),
+                                Text(product.title.length>17?product.title.substring(0,17):product.title,style: const TextStyle(fontWeight: FontWeight.w500),),
                               ],
                             ),
                           ),

@@ -126,7 +126,7 @@ class _WishListPageState extends State<WishListPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(product.title,style: TextStyle(color:Colors.black,fontWeight: FontWeight.w400,fontSize: 20),),
+                                  Text(product.title.length>15?product.title.substring(0,15):product.title,style: TextStyle(color:Colors.black,fontWeight: FontWeight.w400,fontSize: 20),),
                                   SizedBox(height: 10,),
                                   Text("Rs. "+product.price,style: TextStyle(color:Colors.blue,fontSize: 19),),
                                 ],

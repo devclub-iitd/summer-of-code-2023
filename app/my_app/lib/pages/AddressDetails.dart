@@ -85,7 +85,8 @@ class _AddressDetailsState extends State<AddressDetails> {
         formKey.currentState!.reset();
       });
       if(value){
-        User updated=User(id, name,email, password, phone, add, image);
+        final user=context.read<UserProvider>().user;
+        User updated=User(id, name,email, password, phone, add, image,user.suggestion);
         Provider.of<UserProvider>(context, listen: false).setUserFromModel(updated);
       }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/homepage.dart';
+import 'package:my_app/pages/authpage.dart';
 import 'package:my_app/pages/searchPage.dart';
 import 'package:my_app/providers/product_provider.dart';
 import 'package:my_app/providers/userProvider.dart';
@@ -41,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.grey,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const AuthPage(),
     );
   }
 

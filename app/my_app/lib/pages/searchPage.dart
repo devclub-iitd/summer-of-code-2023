@@ -8,6 +8,7 @@ import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/ApiService/searchApi.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/providers/product_provider.dart';
+import 'package:my_app/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 
 import '../Models/AddedProduct.dart';
@@ -43,7 +44,7 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final suggestion=context.watch<ProductProvider>().user["suggestion"];
+    final suggestion=context.watch<UserProvider>().user.suggestion;
     return  Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
