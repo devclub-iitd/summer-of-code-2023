@@ -1,3 +1,9 @@
+# Week 1
+
+// write write write
+Instructions for running the application
+
+
 # DevClub Summer of Code 2023
 
 DevClub IIT Delhi is organising DevClub Summer of Code 2023, so students can learn development together in the summers!
