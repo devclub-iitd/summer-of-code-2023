@@ -1,0 +1,20 @@
+<div>
+    {%if messages%} 
+    <ul>
+        {%for message in messages%}
+            <li>{{message}}</li>
+        {%endfor%}
+    </ul>
+    {%endif%}
+    <h1>Register to ecommerce</h1>
+    <form  action="/ecommerce/register/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Register"></td>
+            </tr>
+        </table>
+    </form>
+</div>
