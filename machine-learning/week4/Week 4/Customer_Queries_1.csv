@@ -1,0 +1,976 @@
+Queries,Type
+"""Are contactless payments available at your physical store?""",payments
+"""Are electronic wallets accepted?""",payments
+"""Are gift cards accepted?""",payments
+"""Are personal checks accepted?""",payments
+"""Are refunds issued in the same form of payment?""",payments
+"""Are there any additional charges for tracking my order?""",track
+"""Are there any additional fees for certain payment methods?""",payments
+"""Are there any discount offers for specific payment methods?""",payments
+"""Are there any limitations on using contactless payments?""",payments
+"""Are there any limitations on using prepaid cards for payment?""",payments
+"""Are there any limitations on using virtual credit cards for payment?""",payments
+"""Are there any limits on contactless payment transactions?""",payments
+"""Are there any loyalty programs or rewards associated with specific payment methods?""",payments
+"""Are there any mobile apps specifically designed for tracking orders from your store?""",track
+"""Are there any mobile-friendly order tracking options available?""",track
+"""Are there any order tracking mobile apps recommended by your company?""",track
+"""Are there any promotions or discounts for specific payment methods?""",payments
+"""Are there any restrictions on credit card payments for certain products or services?""",payments
+"""Are there any restrictions on debit card payments?""",payments
+"""Are there any restrictions on payment methods for online orders?""",payments
+"""Are there any restrictions on using credit cards for online transactions?""",payments
+"""Are there any restrictions on using mobile payment apps for transactions?""",payments
+"""Are there any service charges for credit card transactions?""",payments
+"""Can I make a payment using a cashier's check?""",payments
+"""Can I make a payment using a money transfer service like Western Union or MoneyGram?""",payments
+"""Can I make payments using a wire transfer?""",payments
+"""Can I opt-in for SMS notifications regarding my order's progress?""",track
+"""Can I pay in installments with a credit card?""",payments
+"""Can I pay using a bank card from a different country?""",payments
+"""Can I pay using a cashier's check or money order by mail?""",payments
+"""Can I pay using a corporate check?""",payments
+"""Can I pay using a digital wallet like Paytm or Alipay?""",payments
+"""Can I pay using a foreign bank draft?""",payments
+"""Can I pay using a foreign currency?""",payments
+"""Can I pay using a mobile app like Square or Venmo?""",payments
+"""Can I pay using a mobile banking app?""",payments
+"""Can I pay using a prepaid gift card?""",payments
+"""Can I pay using a virtual currency like Bitcoin?""",payments
+"""Can I pay using a virtual wallet like Venmo or Zelle?""",payments
+"""Can I pay using an electronic funds transfer?""",payments
+"""Can I pay using an international bank transfer?""",payments
+"""Can I pay using contactless payment methods?""",payments
+"""Can I pay using mobile wallets like Google Pay or Samsung Pay?""",payments
+"""Can I pay with a cashier's check or money order in person?""",payments
+"""Can I pay with a cashier's check?""",payments
+"""Can I pay with a credit card?""",payments
+"""Can I pay with a prepaid card?""",payments
+"""Can I pay with a store credit or gift card?""",payments
+"""Can I pay with a virtual credit card number?""",payments
+"""Can I pay with PayPal?""",payments
+"""Can I receive notifications or alerts regarding my order's progress?""",track
+"""Can I set up automatic recurring payments?""",payments
+"""Can I split the payment between multiple cards?""",payments
+"""Can I track my order internationally?""",track
+"""Can I track my order through a mobile app?""",track
+"""Can I track my order using a third-party tracking service?""",track
+"""Can I track my order using my billing address and last name?""",track
+"""Can I track my order using my email address?""",track
+"""Can I track my order using my phone number?""",track
+"""Can I track my order using my social media account?""",track
+"""Can I track my order using the order confirmation number?""",track
+"""Can I track my order using the order reference number?""",track
+"""Can I track my order using the package barcode or QR code?""",track
+"""Can I track my order using the package weight or dimensions?""",track
+"""Can I track my order using the product SKU or UPC code?""",track
+"""Can I track my order using the shipment reference number?""",track
+"""Can I track my order using the shipping carrier's website?""",track
+"""Can I track my order using the shipping label number?""",track
+"""Can I track my order using the shipping manifest or container number?""",track
+"""Can I use a debit card to pay?""",payments
+"""Can I use a virtual credit card for payment?""",payments
+"""Can I use multiple payment methods for a single purchase?""",payments
+"""Can you assist me in locating my order?""",track
+"""Can you assist me in tracking my order if I don't have an account?""",track
+"""Can you check the delivery status of my order?""",track
+"""Can you check the status of my delivery and provide an estimated arrival time?""",track
+"""Can you check the status of my delivery and provide an estimated arrival time?""",track
+"""Can you check the status of my delivery and provide an estimated arrival time?""",track
+"""Can you check the status of my delivery and provide an estimated arrival time?""",delivery
+"""Can you check the status of my delivery and provide an estimated arrival time?""",delivery
+"""Can you check the status of my delivery and provide an estimated arrival time?""",delivery
+"""Can you check the status of my order for me?""",track
+"""Can you describe the range of goods you offer?""",items
+"""Can you describe the variety of goods you have for sale?""",items
+"""Can you describe the variety of goods you offer?""",items
+"""Can you describe your range of offerings?""",items
+"""Can you explain the reason for the delay in my order's delivery?""",track
+"""Can you explain the reason for the extended delivery time for my order?""",track
+"""Can you explain the reason for the extended delivery time for my order?""",delivery
+"""Can you explain why my order has not been delivered within the expected timeframe?""",delay
+"""Can you give me a glimpse of your product offerings?""",items
+"""Can you give me an idea of your product inventory?""",items
+"""Can you give me an overview of your product selection?""",items
+"""Can you give me an update on the delivery progress of my order?""",track
+"""Can you give me an update on the delivery progress of my order?""",track
+"""Can you give me an update on the delivery progress of my order?""",track
+"""Can you give me an update on the delivery progress of my order?""",delivery
+"""Can you give me an update on the delivery progress of my order?""",delivery
+"""Can you give me an update on the delivery status of my order?""",track
+"""Can you give me an update on the estimated arrival time of my order?""",delivery
+"""Can you give me details about the items you sell?""",items
+"""Can you give me information on your product inventory?""",items
+"""Can you guide me on how to track my order?""",track
+"""Can you help me locate my order using my order ID?""",track
+"""Can you help me track my order if I placed it as a guest?""",track
+"""Can you offer any compensation or resolution for the inconvenience caused by the delay in my order?""",delay
+"""Can you please check the delivery status of my order?""",delivery
+"""Can you provide a clear explanation for the delay in delivering my order?""",delay
+"""Can you provide a revised delivery date for my order that has experienced a delay?""",delay
+"""Can you provide a summary of your product inventory?""",items
+"""Can you provide an estimate on the delivery time for my order?""",track
+"""Can you provide an estimated delivery date for my order?""",delivery
+"""Can you provide an estimated delivery window for my order?""",track
+"""Can you provide an estimated delivery window for my order?""",track
+"""Can you provide an estimated delivery window for my order?""",track
+"""Can you provide an estimated delivery window for my order?""",delivery
+"""Can you provide an estimated delivery window for my order?""",delivery
+"""Can you provide an estimated delivery window for my order?""",delivery
+"""Can you provide an estimated delivery window for my order?""",delivery
+"""Can you provide an estimated time of arrival for my order?""",track
+"""Can you provide an estimated time of arrival for my order?""",track
+"""Can you provide an estimated time of arrival for my order?""",track
+"""Can you provide an estimated time of arrival for my order?""",delivery
+"""Can you provide an estimated time of arrival for my order?""",delivery
+"""Can you provide an estimated time of delivery for my delayed order?""",delay
+"""Can you provide an estimated timeframe for the delivery of my delayed order?""",delay
+"""Can you provide an overview of the items available for purchase?""",items
+"""Can you provide an overview of the items you have for sale?""",items
+"""Can you provide an overview of your available offerings?""",items
+"""Can you provide an overview of your offerings?""",items
+"""Can you provide an update on the delivery progress of my order?""",track
+"""Can you provide an update on the delivery status of my order?""",track
+"""Can you provide an update on the delivery status of my order?""",track
+"""Can you provide an update on the delivery status of my order?""",delivery
+"""Can you provide an update on the delivery status of my order?""",delivery
+"""Can you provide an update on the delivery status of my order?""",delivery
+"""Can you provide an update on the expected delivery date for my order?""",track
+"""Can you provide an update on the status of my delayed order?""",delay
+"""Can you provide an update on the status of my delivery?""",track
+"""Can you provide details on the range of items you sell?""",items
+"""Can you provide information on how I can track my order?""",track
+"""Can you provide information on my delivery status?""",track
+"""Can you provide information on your available items?""",items
+"""Can you provide me with the contact information of the shipping company to track my order?""",track
+"""Can you provide me with the current location of my order?""",track
+"""Can you provide me with the tracking number for my order?""",track
+"""Can you provide the estimated time of arrival for my order?""",track
+"""Can you tell me about the items you have in stock?""",items
+"""Can you tell me about your available merchandise?""",items
+"""Can you tell me about your product inventory and offerings?""",items
+"""Can you track the progress of my order and provide an update?""",track
+"""Can you track the progress of my order and provide an update?""",delivery
+"""Can you track the whereabouts of my order?""",track
+"""Charged for order, but no confirmation received. What steps should I follow?""",confirm
+"""Charged for order, but no confirmation received. What steps should I follow?""",confirm
+"""Charged for order, but no confirmation. How do I ensure confirmation?""",confirm
+"""Charged for order, but no confirmation. How to get it confirmed?""",confirm
+"""Completed payment, but no confirmation email. What actions should I take?""",confirm
+"""Completed payment, but no confirmation received. Need guidance on next steps.""",confirm
+"""Completed payment, but no confirmation received. What actions should I take?""",confirm
+"""Completed payment, but no confirmation received. What actions should I take?""",confirm
+"""Completed payment, but no confirmation received. What should I do next?""",confirm
+"""Completed payment, but no confirmation received. What should I do now?""",confirm
+"""Completed payment, but no confirmation. How can I resolve this?""",confirm
+"""Could you provide an update on my delivery status?""",delivery
+"""Did my order get delayed? Can you provide an update on its status?""",delay
+"""Do you accept American Express?""",payments
+"""Do you accept corporate credit cards?""",payments
+"""Do you accept Discover credit cards?""",payments
+"""Do you accept international credit cards?""",payments
+"""Do you accept Mastercard for payments?""",payments
+"""Do you accept mobile payment apps?""",payments
+"""Do you accept money orders?""",payments
+"""Do you accept payment through cryptocurrency wallets like Coinbase or BitPay?""",payments
+"""Do you accept payment through digital wallets like Skrill or Neteller?""",payments
+"""Do you accept payment through digital wallets like WeChat Pay or AliPay?""",payments
+"""Do you accept payment through mobile wallets like M-Pesa or Paytm?""",payments
+"""Do you accept payment through payment gateways like Stripe or PayPal?""",payments
+"""Do you accept payment through peer-to-peer payment platforms like PayPal or Zelle?""",payments
+"""Do you accept payment through third-party financing providers?""",payments
+"""Do you accept payments via QR codes?""",payments
+"""Do you accept personal checks for payment?""",payments
+"""Do you have a payment installment plan?""",payments
+"""Do you have a tracking service for orders?""",track
+"""Do you offer a customer service chatbot for order tracking assistance?""",track
+"""Do you offer a mobile-friendly tracking interface?""",track
+"""Do you offer cash-on-delivery payment?""",payments
+"""Do you offer financing options?""",payments
+"""Do you offer payment on delivery?""",payments
+"""Do you offer payment plans for high-value purchases?""",payments
+"""Do you offer payment plans for large purchases?""",payments
+"""Do you offer payment through automatic bank drafts?""",payments
+"""Do you offer payment through bank transfers?""",payments
+"""Do you offer payment through mobile wallets like Apple Pay or Google Pay?""",payments
+"""Do you offer real-time customer support for order tracking inquiries?""",track
+"""Do you only accept cash?""",payments
+"""Do you provide a direct link to track my order on your website?""",track
+"""Do you provide a receipt for payment?""",payments
+"""Do you provide a tracking service for customers?""",track
+"""Do you provide order tracking services for international customs clearance?""",track
+"""Do you provide order tracking services for international destinations?""",track
+"""Do you provide order tracking services for international shipments?""",track
+"""Do you provide real-time updates on the delivery status of my order?""",track
+"""Do you support installment plans with zero interest?""",payments
+"""Has my order been delayed? If so, what caused the delay?""",delay
+"""Has my order encountered any logistical issues that have caused the delay?""",delay
+"""Has my order encountered any unforeseen challenges that have resulted in the delay?""",delay
+"""Has there been a delay in the delivery of my order? If so, why?""",delay
+"""Has there been any unforeseen circumstances that have led to the delay in delivering my order?""",delay
+"""How can I get updates on the location of my order?""",track
+"""How can I make a payment?""",payments
+"""How can I monitor the status of my order?""",track
+"""How can I track multiple orders from the same account?""",track
+"""How do I access the tracking information for my order?""",track
+"""How do I find the tracking information for my order?""",track
+"""How do I know if my order is out for delivery?""",track
+"""How frequently is the tracking information updated?""",track
+"""How long does it usually take for delivery?""",delivery
+"""How long does it usually take for orders to be delivered?""",track
+"""How long does it usually take for the tracking information to be available?""",track
+"""How long does shipping typically take?""",track
+"""I completed the payment process, but there's no confirmation of my order. What steps can I take?""",confirm
+"""I completed the payment, but my order hasn't been confirmed. What should be my next course of action?""",confirm
+"""I expected my order to arrive by now. Why is there a delay?""",delay
+"""I expected to receive my order by now. Can you clarify the reason for the delay?""",delay
+"""I have been waiting for my order for an extended period. What is causing the delay?""",delay
+"""I haven't received any updates on my delayed order. Can you provide more information?""",delay
+"""I made a payment, but I haven't received an order confirmation. What should I do?""",confirm
+"""I noticed that the payment was deducted, but I didn't receive any confirmation for my order. What actions should I take?""",confirm
+"""I paid for my order, but I haven't received any confirmation. What should I do to resolve this?""",confirm
+"""I received a successful payment notification, but there's no order confirmation. How can I proceed?""",confirm
+"""I want to know the estimated arrival time of my order. How can I find that?""",track
+"""I would appreciate an explanation for the delay in delivering my order.""",delay
+"""I would appreciate an update on the progress in delivering my delayed order.""",delay
+"""I would like to check the whereabouts of my order.""",track
+"""I would like to know the cause of the delay in delivering my order.""",delay
+"""I would like to understand the cause of the delay in delivering my order.""",delay
+"""I would like to understand the cause of the delay in shipping my order.""",delay
+"""I'd like to inquire about the tracking process for my order.""",track
+"""I'm concerned about the delay in receiving my order. Can you explain?""",delay
+"""I'm concerned about the excessive delay in delivering my order. Can you provide an update?""",delay
+"""I'm concerned about the extended delay in delivering my order. Can you provide an update?""",delay
+"""I'm concerned about the prolonged delay in receiving my order. Can you assist?""",delay
+"""I'm disappointed with the delay in receiving my order. Can you explain the reason behind it?""",delay
+"""I'm eager to know the whereabouts of my order. Can you help?""",delivery
+"""I'm frustrated with the delay in receiving my order. How can this be resolved?""",delay
+"""I'm interested in knowing the status of my order. How can I do that?""",track
+"""I've been charged for my order, but I haven't received any confirmation. What should I do to get it confirmed?""",confirm
+"""Is Apple Pay supported?""",payments
+"""Is cash payment an option?""",payments
+"""Is cryptocurrency accepted for payment?""",payments
+"""Is online payment available?""",payments
+"""Is the tracking information available via email?""",track
+"""Is the tracking information updated in real-time?""",track
+"""Is there a backlog or any other issues causing delays in order fulfillment?""",delay
+"""Is there a convenience fee for certain payment methods?""",payments
+"""Is there a customer portal or account where I can track my order?""",track
+"""Is there a customer portal where I can view the order history and tracking information?""",track
+"""Is there a customer support contact I can reach out to regarding my delayed order?""",delay
+"""Is there a customer support email address for order tracking inquiries?""",track
+"""Is there a customer support hotline I can contact to inquire about my order's status?""",track
+"""Is there a customer support phone number for order tracking assistance?""",track
+"""Is there a grace period for credit card payments?""",payments
+"""Is there a live chat support option to assist with tracking my order?""",track
+"""Is there a maximum limit for credit card transactions?""",payments
+"""Is there a minimum purchase amount for credit card payments?""",payments
+"""Is there a mobile notification system for order tracking updates?""",track
+"""Is there a preferred payment method for faster processing?""",payments
+"""Is there a preferred payment method for international transactions?""",payments
+"""Is there a secure online payment gateway?""",payments
+"""Is there a self-service tracking system on your website?""",track
+"""Is there a specific order tracking page on your website?""",track
+"""Is there a specific reason for the delay in shipping my order?""",delay
+"""Is there a specific reason why my order has not been delivered yet?""",delay
+"""Is there a specific reason why my order is taking longer than expected?""",delay
+"""Is there a specific time frame in which I should expect my order to be delivered?""",track
+"""Is there a specific time window for order tracking updates to be available?""",track
+"""Is there a specific webpage where I can input my order details to track its status?""",track
+"""Is there a specific website or platform I should use to track my order?""",track
+"""Is there a specific website or platform where I can track international orders?""",track
+"""Is there a surcharge for using credit cards for payment?""",payments
+"""Is there a tracking link or page where I can monitor my order?""",track
+"""Is there a tracking number available for my order?""",track
+"""Is there a tracking widget or plugin I can integrate into my website for order tracking?""",track
+"""Is there a way for me to track the progress of my order?""",track
+"""Is there a way to expedite the delivery of my delayed order?""",delay
+"""Is there a way to track my order without logging into my account?""",track
+"""Is there an alternative method to track my order if I don't have a tracking number?""",track
+"""Is there an option for automatic billing?""",payments
+"""Is there an option for deferred billing?""",payments
+"""Is there an option for deferred interest financing?""",payments
+"""Is there an option for deferred payment?""",payments
+"""Is there an option for payment via direct debit?""",payments
+"""Made payment, but no order confirmation received. Next steps?""",confirm
+"""Made payment, but no order confirmation. Can you help with this?""",confirm
+"""Made payment, but no order confirmation. Need help resolving this matter.""",confirm
+"""Made payment, but no order confirmation. Need support to resolve this issue.""",confirm
+"""Money deducted, but no order confirmation. How can I get it resolved?""",confirm
+"""Money deducted, but no order confirmation. Need assistance to resolve this.""",confirm
+"""Money deducted, but no order confirmation. Need guidance on resolving this.""",confirm
+"""Money deducted, but no order confirmation. What should I do now?""",confirm
+"""No confirmation after payment. What are the next steps to take?""",confirm
+"""No confirmation after payment. What should I do to confirm my order?""",confirm
+"""No confirmation after payment. What should I do to confirm my order?""",confirm
+"""No confirmation after payment. What should I do to receive confirmation?""",confirm
+"""No confirmation after payment. What steps can I take to get confirmation?""",confirm
+"""No confirmation after payment. What steps can I take to receive confirmation?""",confirm
+"""Paid for order, but no confirmation email. Can you assist with this issue?""",confirm
+"""Paid for order, but no confirmation email. Can you help me with this matter?""",confirm
+"""Paid for order, but no confirmation email. What should I do to get confirmation?""",confirm
+"""Paid for order, but no confirmation received. How to proceed?""",confirm
+"""Paid for order, but no confirmation. Any suggestions to get it confirmed?""",confirm
+"""Paid for order, but no confirmation. Any suggestions to receive confirmation?""",confirm
+"""Paid for order, but no confirmation. How can I get the confirmation email?""",confirm
+"""Paid for order, but no confirmation. How do I get it confirmed?""",confirm
+"""Paid for order, but no confirmation. How do I get it confirmed?""",confirm
+"""Paid for order, but no confirmation. Need assistance to resolve this issue.""",confirm
+"""Payment deducted, but no order confirmation. Any suggestions?""",confirm
+"""Payment deducted, but no order confirmation. How do I proceed from here?""",confirm
+"""Payment deducted, but no order confirmation. How do I proceed now?""",confirm
+"""Payment deducted, but no order confirmation. Need assistance to resolve this.""",confirm
+"""Payment processed successfully, but no confirmation email. Help needed.""",confirm
+"""Payment processed successfully, but no confirmation email. Help required.""",confirm
+"""Payment processed successfully, but no confirmation email. What to do?""",confirm
+"""Payment processed successfully, but no confirmation received. Help needed.""",confirm
+"""Payment processed, but no confirmation email. How can I get confirmation?""",confirm
+"""Payment processed, but no confirmation. How can I ensure order confirmation?""",confirm
+"""Payment processed, but no confirmation. How can I get the order confirmed?""",confirm
+"""Payment was processed successfully, but I didn't receive any confirmation for my order. What steps should I take?""",confirm
+"""Payment went through, but no confirmation email. What's the next course of action?""",confirm
+"""Payment went through, but no confirmation. How can I get the confirmation?""",confirm
+"""Payment went through, but no confirmation. How can I get the confirmation?""",confirm
+"""Payment went through, but no confirmation. How can I resolve this issue?""",confirm
+"""Refunded"" status, but refund not received. Requesting resolution.",refund_status
+"""The payment went through, but I didn't receive an order confirmation. How can I get it sorted out?""",confirm
+"""What actions are being taken to address the delay in delivering my order?""",delay
+"""What actions are being taken to expedite the delivery of my order that has been delayed?""",delay
+"""What are the available payment methods?""",payments
+"""What are the steps for making an online payment?""",payments
+"""What assortment of merchandise is there?""",items
+"""What can be done to ensure timely delivery and avoid future delays in order fulfillment?""",delay
+"""What can I add to my shopping cart?""",items
+"""What can I expect to find in your assortment of merchandise?""",items
+"""What can I expect to find in your product assortment?""",items
+"""What can I expect to find in your store's merchandise assortment?""",items
+"""What can I expect to find in your store's merchandise selection?""",items
+"""What can I find and add to my shopping cart?""",items
+"""What courier or shipping company is responsible for delivering my order?""",track
+"""What details do I need to provide to track my order?""",track
+"""What do you have available for customers to purchase?""",items
+"""What do you have available in your store?""",items
+"""What do you have in stock for customers to purchase?""",items
+"""What do you have in store for customers?""",items
+"""What do you have on sale?""",items
+"""What do you keep in stock for customers?""",items
+"""What do you keep in your inventory for customers?""",items
+"""What do you offer in terms of product selection?""",items
+"""What do you offer in terms of products?""",items
+"""What do you stock in your inventory?""",items
+"""What information do I need to track my order?""",track
+"""What is causing the delay in delivering my order to its destination?""",delay
+"""What is causing the delay in delivering my order?""",track
+"""What is causing the delay in delivering my order?""",delay
+"""What is causing the delay in my order's delivery?""",delivery
+"""What is causing the delay in processing my order?""",delay
+"""What is causing the prolonged delivery time for my order?""",delivery
+"""What is in store for customers to buy?""",items
+"""What is in store for customers to purchase?""",items
+"""What is included in your assortment of goods?""",items
+"""What is included in your product lineup?""",items
+"""What is listed as available for customers to buy and add to cart?""",items
+"""What is listed as available for customers to buy?""",items
+"""What is on your list of available items for sale?""",items
+"""What is on your list of available items?""",items
+"""What is part of your available product lineup?""",items
+"""What is part of your product lineup and offerings?""",items
+"""What is part of your product lineup?""",items
+"""What is the approximate delivery date for my order?""",track
+"""What is the average shipping time?""",delivery
+"""What is the current location of my order? Has it been shipped?""",track
+"""What is the current status of my delivery?""",track
+"""What is the estimated delivery time?""",track
+"""What is the estimated shipping date for my order?""",track
+"""What is the estimated time of arrival for my order?""",track
+"""What is the estimated time of arrival for my order?""",delivery
+"""What is the expected delivery date for my order?""",track
+"""What is the expected delivery timeframe for my order?""",track
+"""What is the procedure for checking the status of my order?""",track
+"""What is the process to track my order if I placed it over the phone?""",track
+"""What is the process to track my order?""",track
+"""What is the range of products in your collection?""",items
+"""What is the reason for the delay in my order?""",delay
+"""What is the typical delivery time for orders?""",track
+"""What is the usual delivery time frame for my location?""",track
+"""What is the usual delivery timeframe for expedited shipping orders?""",track
+"""What is the usual delivery timeframe for standard shipping orders?""",track
+"""What is your preferred payment method?""",payments
+"""What items are available to add to my cart?""",items
+"""What items are available to add to my shopping list?""",items
+"""What items are currently being sold?""",items
+"""What items are currently in stock?""",items
+"""What items are on offer for customers to buy?""",items
+"""What items are part of your product range?""",items
+"""What items are ready and waiting for purchase?""",items
+"""What items are ready for purchase?""",items
+"""What items can I explore and consider purchasing?""",items
+"""What items can I explore and potentially purchase?""",items
+"""What items do you carry for customers to buy?""",items
+"""What items do you carry in your store?""",items
+"""What kind of goods can I find at your store?""",items
+"""What kind of items can I expect to find?""",items
+"""What kind of merchandise can I shop for at your establishment?""",items
+"""What kind of merchandise can I shop for?""",items
+"""What kind of products are featured in your inventory?""",items
+"""What kind of products are featured in your stock?""",items
+"""What kind of products are in your stock?""",items
+"""What kind of products are included in your store's selection?""",items
+"""What kind of products can I expect to see?""",items
+"""What measures are being taken to address the delay in delivering my order?""",delay
+"""What measures are being taken to prevent future delays in order fulfillment?""",delay
+"""What options do I have to track my order?""",track
+"""What products can I browse and buy?""",items
+"""What should I do if my order tracking shows that it's been delivered, but I haven't received it?""",track
+"""What should I do if my payment was deducted, but I haven't received an order confirmation?""",confirm
+"""What should I do if the tracking information is not updating or accurate?""",track
+"""What should I do if the tracking information is showing an error or is unavailable?""",track
+"""What should I do if the tracking information shows that my order is being held at a customs facility?""",track
+"""What should I do if the tracking information shows that my order is stuck in transit?""",track
+"""What should I do if the tracking information shows that my order was delivered to the wrong address?""",track
+"""What should I do if the tracking information shows that my order was returned to the sender?""",track
+"""What specific goods are offered for purchase?""",items
+"""What specific goods are part of your product range?""",items
+"""What specific goods can I find in your collection?""",items
+"""What specific items are available for purchase?""",items
+"""What specific items can I add to my shopping list?""",items
+"""What specific items can I consider buying?""",items
+"""What specific items can I find in your collection?""",items
+"""What specific merchandise do you offer?""",items
+"""What specific things are available for purchase?""",items
+"""What steps are being taken to expedite the delivery of my delayed order?""",delay
+"""What steps are being taken to expedite the delivery of my order that has been delayed?""",delay
+"""What steps are being taken to resolve the delay in delivering my order?""",delay
+"""What steps can I take if my tracking information shows that my order is lost or delayed?""",track
+"""What steps should I follow to track my order?""",track
+"""What types of goods are featured in your stock and inventory?""",items
+"""What types of goods are featured in your store?""",items
+"""What types of goods are included in your inventory?""",items
+"""What types of goods can I find in your store?""",items
+"""What types of merchandise are featured in your store?""",items
+"""What types of merchandise can I expect to find at your shop?""",items
+"""What types of merchandise can I explore and shop for?""",items
+"""What types of merchandise can I find at your shop?""",items
+"""What types of products do you sell?""",items
+"""What variety of items are in your inventory?""",items
+"""When can I anticipate receiving my delivery?""",track
+"""When can I anticipate the delivery of my order?""",delivery
+"""When can I expect my delayed order to be shipped and delivered?""",delay
+"""When can I expect my order to be delivered? I need it soon.""",track
+"""When can I expect my order to be delivered? I need it soon.""",track
+"""When can I expect my order to be delivered? I need it soon.""",track
+"""When can I expect my order to be delivered? I need it soon.""",delivery
+"""When can I expect my order to be delivered? I need it soon.""",delivery
+"""When can I expect my order to be delivered? It's been a while since I placed it.""",track
+"""When can I expect my order to be delivered? It's been delayed for an extended period.""",delay
+"""When can I expect my order to be delivered? It's been delayed for too long.""",track
+"""When can I expect my order to be delivered? It's been delayed for too long.""",track
+"""When can I expect my order to be delivered? It's been delayed for too long.""",delivery
+"""When can I expect my order to be delivered? It's been delayed for too long.""",delivery
+"""When can I expect my order to be delivered? It's been delayed for too long.""",delivery
+"""When can I expect my order to be delivered? It's been significantly delayed.""",delay
+"""When can I expect to receive my delivery?""",track
+"""When can I expect to receive my delivery?""",delay
+"""When can I expect to receive my order?""",delivery
+"""When do you anticipate my order to be delivered?""",delivery
+"""When is my order scheduled to arrive at my address?""",track
+"""When should I anticipate the arrival of my order?""",track
+"""When should I expect my order to arrive? It's been a while.""",delivery
+"""When should I expect my order to be delivered?""",track
+"""When will my delayed order be dispatched for delivery?""",delay
+"""When will my order be delivered? It's been longer than the estimated time.""",delay
+"""When will my order be delivered?""",track
+"""When will my order be dispatched for delivery?""",track
+"""When will my order be dispatched for delivery?""",track
+"""When will my order be dispatched for delivery?""",track
+"""When will my order be dispatched for delivery?""",delivery
+"""When will my order be dispatched for delivery?""",delivery
+"""When will my order be dispatched for delivery?""",delivery
+"""When will my order be dispatched for delivery?""",delivery
+"""When will my order be shipped and delivered to my address?""",track
+"""When will my order be shipped out for delivery?""",track
+"""When will my order be shipped out for delivery?""",track
+"""When will my order be shipped out for delivery?""",track
+"""When will my order be shipped out for delivery?""",delivery
+"""When will my order be shipped out for delivery?""",delivery
+"""When will my order be shipped out for delivery?""",delivery
+"""When will my order finally be delivered? It's been delayed multiple times.""",track
+"""When will my order finally be delivered? It's been delayed multiple times.""",track
+"""When will my order finally be delivered? It's been delayed multiple times.""",track
+"""When will my order finally be delivered? It's been delayed multiple times.""",delivery
+"""When will my order finally be delivered? It's been delayed multiple times.""",delivery
+"""When will my order finally be delivered? It's been delayed multiple times.""",delivery
+"""Where can I check the status of my delivery?""",delivery
+"""Where can I find the tracking details for my order?""",track
+"""Where can I input my order details to track its status?""",track
+"""Where is my order currently in the delivery process? Can you track it?""",track
+"""Where is my order currently in the delivery process? Can you track it?""",track
+"""Where is my order currently in the delivery process? Can you track it?""",track
+"""Where is my order currently in the delivery process? Can you track it?""",delivery
+"""Where is my order currently in the delivery process? Can you track it?""",delivery
+"""Where is my order currently in the delivery process? Can you track it?""",delivery
+"""Where is my order currently located in the delivery process?""",track
+"""Where is my order currently? I haven't received any information about it.""",delivery
+"""Where is my order? Can you provide an update?""",track
+"""Where is my order? Can you track its location?""",delivery
+"""Where is my order? I haven't received any updates on its status.""",track
+"""Where is my order? I haven't received any updates on its status.""",track
+"""Where is my order? I haven't received any updates on its status.""",track
+"""Where is my order? I haven't received any updates on its status.""",delivery
+"""Where is my order? I haven't received any updates on its status.""",delivery
+"""Where is my order? I haven't received any updates on its status.""",delivery
+"""Where is my order? I haven't received it yet.""",track
+"""Where is my order? It's been quite some time since I placed it.""",track
+"""Where is my order? It's been quite some time since I placed it.""",track
+"""Where is my order? It's been quite some time since I placed it.""",track
+"""Where is my order? It's been quite some time since I placed it.""",delivery
+"""Where is my order? It's been quite some time since I placed it.""",delivery
+"""Where is my package currently in the delivery route?""",track
+"""Where is my package currently in the delivery route?""",track
+"""Where is my package currently in the delivery route?""",track
+"""Where is my package currently in the delivery route?""",delivery
+"""Where is my package currently in the delivery route?""",delivery
+"""Where is my package currently in the delivery route?""",delivery
+"""Where is my package? It has not been delivered yet.""",track
+"""Where is my package? It hasn't been delivered yet.""",track
+"""Where is my package? The tracking information hasn't been updated.""",track
+"""Where is my package? The tracking information hasn't been updated.""",track
+"""Where is my package? The tracking information hasn't been updated.""",track
+"""Where is my package? The tracking information hasn't been updated.""",delivery
+"""Where is my package? The tracking information hasn't been updated.""",delivery
+"""Where is my package? The tracking information hasn't been updated.""",delivery
+"""Which items are currently on offer?""",items
+"""Which items are included in your product selection?""",items
+"""Which items are included in your range of products?""",items
+"""Which items are listed for sale currently?""",items
+"""Which items are listed for sale?""",items
+"""Which payment methods do you accept?""",payments
+"""Which products are currently offered for sale?""",items
+"""Which products are included in your current selection?""",items
+"""Which products can I explore and consider buying?""",items
+"""Which products can I explore and purchase?""",items
+"""Which products do you have available for purchase?""",items
+"""Which specific items are part of your product range?""",items
+"""Why has my delivery not arrived as scheduled?""",track
+"""Why has my delivery not arrived on the expected delivery date?""",track
+"""Why has my delivery not arrived on the expected delivery date?""",track
+"""Why has my delivery not arrived on the expected delivery date?""",track
+"""Why has my delivery not arrived on the expected delivery date?""",delivery
+"""Why has my delivery not arrived on the expected delivery date?""",delivery
+"""Why has my delivery not arrived on the expected delivery date?""",delivery
+"""Why has my delivery not arrived within the specified timeframe?""",track
+"""Why has my order been delayed? Can you provide more information?""",delay
+"""Why has my order not been delivered within the expected timeframe?""",delivery
+"""Why has my order not been delivered within the promised timeframe? Is there an issue?""",delay
+"""Why has my order not been delivered within the specified timeframe? Is there a problem?""",delay
+"""Why has my order not been delivered yet? It's been longer than expected.""",track
+"""Why has my order not been delivered yet?""",track
+"""Why has my order not been delivered yet?""",delay
+"""Why has my order not been shipped yet? Is there an issue with the inventory?""",delay
+"""Why has my order not been shipped yet? It's been pending for a while.""",track
+"""Why has my order not been shipped yet? It's been pending for a while.""",track
+"""Why has my order not been shipped yet? It's been pending for a while.""",track
+"""Why has my order's delivery been delayed? Is there a specific reason?""",track
+"""Why has my order's delivery been delayed? Is there a specific reason?""",track
+"""Why has my order's delivery been delayed? Is there a specific reason?""",track
+"""Why has my order's delivery been delayed? Is there a specific reason?""",delivery
+"""Why has my order's delivery been delayed? Is there a specific reason?""",delivery
+"""Why has there been a delay in delivering my order? Are there any issues?""",track
+"""Why has there been a delay in delivering my order? Is there a specific reason?""",track
+"""Why has there been a delay in delivering my order? Is there any specific reason?""",track
+"""Why has there been a delay in delivering my order? Is there any specific reason?""",track
+"""Why has there been a delay in delivering my order? Is there any specific reason?""",track
+"""Why has there been a delay in delivering my order? Is there any specific reason?""",delivery
+"""Why has there been a delay in delivering my order? Is there any specific reason?""",delivery
+"""Why has there been a delay in delivering my order? Is there any specific reason?""",delivery
+"""Why has there been a delay in delivering my order?""",delay
+"""Why hasn't my order been delivered yet?""",delivery
+"""Why hasn't my order been shipped yet? It's been pending for a while.""",delivery
+"""Why hasn't my order been shipped yet? It's been pending for a while.""",delivery
+"""Why hasn't my order been shipped yet? It's been pending for a while.""",delivery
+"""Why is my order experiencing such a long delay in delivery?""",delivery
+"""Why is my order not delivered yet? It was supposed to arrive by now.""",track
+"""Why is my order not delivered yet? It was supposed to arrive by now.""",track
+"""Why is my order not delivered yet? It was supposed to arrive by now.""",track
+"""Why is my order not delivered yet? It was supposed to arrive by now.""",delivery
+"""Why is my order not delivered yet? It was supposed to arrive by now.""",delivery
+"""Why is my order not delivered yet? It was supposed to arrive by now.""",delivery
+"""Why is my order still in transit? It has been delayed for an unusually long time.""",delay
+"""Why is my order still in transit? It's been in transit for a long time.""",track
+"""Why is my order still in transit?""",track
+"""Why is my order taking longer than expected to be delivered?""",track
+"""Why is my order taking longer than usual to be delivered?""",track
+"""Why is my order taking longer than usual to be delivered?""",delivery
+"""Why is my order taking longer than usual to be processed and delivered?""",delay
+"""Why is my order's delivery status not updating?""",track
+"""Why is my order's delivery status not updating?""",track
+"""Why is my order's delivery status not updating?""",track
+"""Why is my order's delivery status not updating?""",delivery
+"""Why is my order's delivery status not updating?""",delivery
+"""Why is my order's delivery taking longer than initially estimated?""",track
+"""Why is my order's delivery taking longer than initially estimated?""",track
+"""Why is my order's delivery taking longer than initially estimated?""",track
+"""Why is my order's delivery taking longer than initially estimated?""",delivery
+"""Why is my order's delivery taking longer than initially estimated?""",delivery
+"""Why is my order's delivery taking longer than initially estimated?""",delivery
+"""Why is my order's delivery taking so long? It's been weeks.""",track
+"""Why is my order's delivery taking so long? It's been weeks.""",track
+"""Why is my order's delivery taking so long? It's been weeks.""",track
+"""Why is my order's delivery taking so long? It's been weeks.""",delivery
+"""Why is my order's delivery taking so long? It's been weeks.""",delivery
+"""Why is my order's delivery taking so much time? It's been delayed significantly.""",delivery
+"""Why is my order's delivery time extending beyond the usual timeframe?""",track
+"""Why is my order's delivery time extending beyond the usual timeframe?""",track
+"""Why is my order's delivery time extending beyond the usual timeframe?""",track
+"""Why is my order's delivery time extending beyond the usual timeframe?""",delivery
+"""Why is my order's delivery time extending beyond the usual timeframe?""",delivery
+"""Why is my order's delivery time extending beyond the usual timeframe?""",delivery
+"""Why is my order's delivery time significantly longer than usual?""",track
+"""Why is my order's delivery time significantly longer than usual?""",track
+"""Why is my order's delivery time significantly longer than usual?""",track
+"""Why is my order's delivery time significantly longer than usual?""",delivery
+"""Why is my order's delivery time significantly longer than usual?""",delivery
+"""Why is my order's delivery time significantly longer than usual?""",delivery
+"""Why is the delivery of my order taking so much time?""",track
+"""Why is there a delay in delivering my order? I'm concerned.""",delivery
+"""Why is there a delay in delivering my order?""",track
+"""Why is there a delay in delivering my order?""",track
+Any active vouchers or promo codes available?,voucher
+Any available vouchers for my purchase?,voucher
+Any available vouchers or discount offers for customers?,voucher
+Are refunds available,return
+Are refunds available for return?,return_status
+Are there any active voucher codes for extra savings?,voucher
+Are there any active vouchers or discount codes?,voucher
+Are there any additional features or functionalities in the mobile app?,mobile_app
+Are there any available vouchers I can use?,voucher
+Are there any consequences for canceling my order multiple times?,cancel
+Are there any external factors that have contributed to the delay in delivering my order?,reasons
+Are there any limitations on canceling certain types of orders?,cancel
+Are there any ongoing voucher promotions or offers?,voucher
+Are there any penalties for canceling my order?,cancel
+Are there any restrictions on canceling orders for certain product categories?,cancel
+Are there any special offers or vouchers currently available?,voucher
+Are there any specific instructions I should follow to cancel my order?,cancel
+Are there any specific instructions to download the mobile app?,mobile_app
+Are there any specific requirements or conditions for canceling an order?,cancel
+Are there any valid vouchers I can use for my order?,voucher
+Are there any vouchers?,voucher
+Are you cash only?,payments
+Bye,goodbye
+Can I access all the website features and functionalities through the mobile app?,mobile_app
+Can I access the platform's features on a mobile app?,mobile_app
+Can I apply a voucher during the checkout process?,voucher
+Can I apply a voucher to my purchase?,voucher
+can I call customer service,more
+Can I cancel an order?,cancel
+Can I cancel my order if it has already been shipped?,cancel
+Can I cancel my order if it is a bulk or wholesale purchase?,cancel
+Can I cancel my order if it is a customized or personalized item?,cancel
+Can I cancel my order if it is a digital or downloadable product?,cancel
+Can I cancel my order if it is a digital subscription or membership?,cancel
+Can I cancel my order if it is a gift or gift card purchase?,cancel
+Can I cancel my order if it is a large or bulky item?,cancel
+Can I cancel my order if it is a limited edition or exclusive item?,cancel
+Can I cancel my order if it is a made-to-order or custom-made item?,cancel
+Can I cancel my order if it is a perishable or time-sensitive item?,cancel
+Can I cancel my order if it is a pre-order or backordered item?,cancel
+Can I cancel my order if it is a pre-sale item?,cancel
+Can I cancel my order if it is a reservation or booking?,cancel
+Can I cancel my order if it is a special order or made-to-measure item?,cancel
+Can I cancel my order if it is a subscription box or recurring delivery?,cancel
+Can I cancel my order if it is a subscription or recurring purchase?,cancel
+Can I cancel my order if it is a subscription renewal?,cancel
+Can I cancel my order if it is an international shipment?,cancel
+Can I cancel my order online or do I need to contact customer service?,cancel
+Can I cancel my order?,cancel
+Can I cancel part of my order or only the entire order?,cancel
+Can I download a mobile app for this platform?,mobile_app
+Can I download a mobile app for this?,mobile_app
+Can I enter a voucher code at checkout?,voucher
+Can I get a refund if I cancel my order?,cancel
+Can I obtain more help or support for my issue?,more
+Can I pay with Cash?,payments
+can I refund my order,return
+Can I return an item?,return
+Can I speak to a live agent for further assistance?,more
+Can I still cancel my order or is it too late?,cancel
+can I talk to an agent,more
+Can I track my order,track
+Can I use a promotional code or voucher for my order?,voucher
+Can I use a voucher code for my purchase?,voucher
+Can I use a voucher?,voucher
+Can you assist me in canceling my order?,cancel
+Can you assist me in deleting my account?,profile
+Can you assist me in updating my password to ensure the security of my account?,profile
+Can you clarify the factors contributing to the delay in delivering my order?,reasons
+Can you explain the reason for the delay in my order?,reasons
+Can you guide me on changing my phone number?,profile
+Can you guide me on how to apply a voucher to my order?,voucher
+Can you guide me on how to become a seller?,more
+Can you guide me on how to modify my phone number associated with my account?,profile
+Can you guide me on the process of becoming a seller on the platform?,more
+Can you guide me through the process of canceling my order?,cancel
+Can you guide me through the steps to change my password for enhanced account security?,profile
+Can you help me understand the cause of the delay in shipping my order?,reasons
+Can you offer any insights into why my order has been delayed?,reasons
+Can you provide an explanation for the delay in delivering my order?,reasons
+Can you provide guidance on how to modify my profile settings and preferences?,profile
+Can you provide guidance on how to permanently delete my account and all associated data?,profile
+Can you provide information on how to become a seller on the platform?,more
+Can you provide information on the availability of a mobile app?,mobile_app
+Can you provide instructions on how to permanently delete my account from the platform?,profile
+Can you provide instructions on how to update my password using the account settings?,profile
+Can you provide instructions on how to use a voucher?,voucher
+Can you provide me with the customer service contact information?,more
+"Can you provide the contact information for customer service, such as email or phone?",more
+Can you provide the customer service number for further assistance?,more
+Can you provide the download link for the mobile app?,mobile_app
+Common reasons for delivery delay,reasons
+contact number for help,more
+Could you please clarify the circumstances that have led to the delay in my order?,reasons
+Could you please shed some light on the cause of the delay in my order?,reasons
+customer service number,more
+customer support number,more
+delete my account,profile
+delivery delay,reasons
+"Despite the order being ""Refunded,"" the refund hasn't been received in my account. What should I do?",refund_status
+"Despite the order being designated as ""Refunded,"" I haven't received the refund in my bank account.",refund_status
+"Despite the order being marked as ""Refunded,"" I have not received the refunded money.",refund_status
+"Despite the order being marked as ""Refunded,"" I haven't received the refund amount yet.",refund_status
+"Despite the order status displaying ""Refunded,"" I haven't received the refund yet. Can you help?",refund_status
+Did my order get delayed?,delay
+Do you accept Mastercard?,payments
+Do you take credit cards?,payments
+Does the mobile app offer push notifications for updates and notifications?,mobile_app
+Download mobile app,mobile_app
+Good day,greeting
+Goodbye,goodbye
+Has there been any specific issue or challenge leading to the delay in my order?,reasons
+Hello,greeting
+help me more,more
+helpline number,more
+Hey,greeting
+Hi ,greeting
+How are you doing?,personal
+How are you?,personal
+How can I access customer service to address my concerns?,more
+How can I access the services through a mobile app?,mobile_app
+How can I avail the benefits of a voucher?,voucher
+How can I benefit from a voucher or promotional code?,voucher
+How can I cancel my order?,cancel
+How can I change my address or add a new address for my account?,profile
+How can I change my profile information,profile
+How can I confirm that my order has been successfully canceled?,cancel
+How can I contact customer service for help?,more
+"How can I edit my profile information, including my name, email, and other details?",profile
+How can I ensure that my cancellation request has been properly processed?,cancel
+How can I get in touch with a seller for inquiries or assistance?,more
+How can I get the mobile app for convenient access to the platform?,mobile_app
+How can I initiate contact with a seller for inquiries or support?,more
+How can I install the mobile app on my smartphone or tablet?,mobile_app
+"How can I make changes to my profile information such as name, email, and photo?",profile
+"How can I modify my profile settings, such as privacy preferences and notification settings?",profile
+How can I reach out to customer service for further assistance?,more
+How can I redeem a voucher?,voucher
+How can I request a cancellation for my order?,cancel
+How can I track my order,track
+How can I update my address in my profile?,profile
+"How can I update my communication preferences, such as email subscriptions or newsletter subscriptions?",profile
+How can I update my profile information?,profile
+How can I utilize a voucher for my order?,voucher
+How do I can cancel my order,cancel
+"How do I change my account settings, such as email notification preferences?",profile
+How do I delete my account?,profile
+How do I pay?,payments
+How do I use a voucher to receive discounts?,voucher
+How is your day?,personal
+How long do return items take?,return_status
+How long does delivery take?,delivery
+How long does it take to process a cancellation request?,cancel
+How long does shipping take?,delivery
+How soon can I cancel my order before it is processed?,cancel
+How to become a seller,more
+How to contact a seller,more
+how to contact customer service,more
+How to redeem a voucher for savings?,voucher
+How to use a voucher?,voucher
+How will I be notified if my order cancellation is successful?,cancel
+I am unable to access my account. How can I reset my password to regain access?,profile
+I am unable to log in due to a forgotten password. How can I reset it?,profile
+I did not receive my refund money,refund_status
+"I expected to receive the refund, but the order status is still ""Refunded.""",refund_status
+I forgot my password and need to reset it. How can I initiate the password reset?,profile
+I forgot my password. How can I initiate the password reset process?,profile
+I forgot my password. How can I reset it to regain access to my account?,profile
+I forgot my password. What is the process to reset it and set a new password?,profile
+I have decided to delete my account. What is the process to delete it permanently?,profile
+I have decided to remove my account from the platform. How can I delete it?,profile
+"I haven't received the refund even though the order status says ""Refunded."" What should I do?",refund_status
+"I haven't received the refunded money, even though the order status indicates ""Refunded.""",refund_status
+"I haven't seen the refund in my bank account, despite the order status being ""Refunded.""",refund_status
+I need assistance in changing the address on my account. How can I do that?,profile
+I need further assistance. Can you provide more help?,more
+I need the contact number to reach out for help.,more
+I need the customer service hotline or contact number to seek help.,more
+I need the helpline number or contact details to seek help.,more
+I need to change my phone number on my account. Can you assist me with the process?,profile
+I need to change my shipping address. How can I update it in my profile?,profile
+I need to update my contact details. How can I change my phone number on my account?,profile
+I no longer want to keep my account. Can you assist me in deleting it permanently?,profile
+I require additional guidance. Can you provide further assistance?,more
+I want to cancel my order,cancel
+I want to change my address,profile
+I want to change my password,profile
+I want to change my phone number,profile
+I want to close my account permanently. Can you guide me through the account deletion process?,profile
+I want to delete my account,profile
+I want to initiate the cancellation of my order.,cancel
+"I want to modify my profile information, including my bio and personal details. How do I proceed?",profile
+I want to refund an item,return
+I want to Reset my password,profile
+I want to track my order,track
+"I want to update my contact information, particularly my phone number. How can I do that?",profile
+I want to update my phone number on file. How can I change it in my account?,profile
+"I want to update my profile details like interests, preferences, and bio. How can I do that?",profile
+I would appreciate it if you could provide me with an update on the reasons behind the delay in my order.,reasons
+I would like to change my registered phone number. How can I do that?,profile
+I would like to delete my account. What are the steps to do so?,profile
+I would like to know the specific reason behind the delay in my order.,reasons
+I would like to request a cancellation for my order.,cancel
+I would like to update my password to enhance the security of my account. How can I proceed?,profile
+"I'm awaiting the refund despite the order status showing as ""Refunded."" Can you assist me?",refund_status
+"I'm concerned about the discrepancy between the ""Refunded"" status and the actual refund amount received.",refund_status
+"I'm concerned as the order shows ""Refunded,"" but I haven't received the refund payment.",refund_status
+"I'm concerned as the order status indicates ""Refunded,"" but the refund amount hasn't been credited.",refund_status
+"I'm concerned because the order is marked as ""Refunded,"" but I haven't seen the refund reflected.",refund_status
+"I'm confused because the order status shows ""Refunded,"" but I haven't received the refund.",refund_status
+I'm curious about the factors contributing to the delay in my order. Can you shed some light on this?,reasons
+I'm looking for further guidance. Can you provide additional support?,more
+"I'm puzzled because the order status indicates ""Refunded,"" but I haven't received the refund amount.",refund_status
+I'm worried about the delay in my order. Can you provide an explanation?,reasons
+"I've noticed that the order is listed as ""Refunded,"" but the refund hasn't been issued.",refund_status
+Is anyone there? ,greeting
+Is it possible to cancel an order?,cancel
+Is the mobile app free to download and use?,mobile_app
+Is the mobile app user-friendly and intuitive to navigate?,mobile_app
+Is there a cancellation fee for canceling my order?,cancel
+Is there a cancellation policy for orders placed during promotional periods?,cancel
+Is there a customer service helpline I can call for support?,more
+Is there a customer support hotline I can call to cancel my order?,cancel
+Is there a customer support hotline I can contact for additional assistance?,more
+Is there a deadline or time frame for canceling an order?,cancel
+Is there a dedicated mobile app for a seamless user experience?,mobile_app
+Is there a dedicated support team I can speak to regarding my issue?,more
+Is there a helpline number available for customer support?,more
+Is there a helpline or support center I can contact for more information?,more
+Is there a mobile app available for download?,mobile_app
+Is there a mobile app compatible with iOS and Android devices?,mobile_app
+Is there a mobile app?,mobile_app
+Is there a particular reason for the delay in delivering my order?,reasons
+Is there a section to enter a voucher code at payment?,voucher
+Is there a specific cancellation policy for orders?,cancel
+Is there a specific contact number or email address to contact customer service?,more
+Is there a specific department I should contact to cancel my order?,cancel
+Is there a specific form or process for canceling my order?,cancel
+Is there a specific method to communicate with sellers regarding my questions or issues?,more
+Is there a specific process for canceling orders placed through a third-party seller?,cancel
+Is there a specific process to use a voucher for discounts?,voucher
+Is there a specific timeframe within which I should expect a refund after canceling my order?,cancel
+Is there a specific timeframe within which I should expect a response to my cancellation request?,cancel
+Is there a specific way to use a voucher for discounts?,voucher
+Is there a timeframe within which I can cancel my order?,cancel
+Is there a voucher code or coupon available for use?,voucher
+Is there a way to change my password without any hassle? Can you guide me?,profile
+Is there a way to change my profile visibility settings on the platform?,profile
+Is there a way to update my profile picture or avatar on the platform?,profile
+Is there an official mobile app for this platform?,mobile_app
+Is there any information on why my order is experiencing a delay?,reasons
+Is there any specific information about why my order is experiencing a delay?,reasons
+Mobile app,mobile_app
+Money deducted but order is not confirmed,confirm
+My payment was processed successfully but I didn't get any order confirmation. What should I do?,confirm
+Need more help,more
+No refund even though status is refunded,refund_status
+"No refund received despite ""Refunded"" status. Help required.",refund_status
+ok thnx,thanks
+"Order shows ""Refunded,"" but no refund money received. Assistance required.",refund_status
+"Order status: ""Refunded,"" but refund not received. Assistance needed.",refund_status
+Order was not confirmed,confirm
+Payment was completed but no confirmation,confirm
+Please Tell me about my delivery,delivery
+reasons for delay,reasons
+Refund money not received,refund_status
+"Refund status: ""Refunded,"" but money not credited. Need support.",refund_status
+See you later,goodbye
+shipping delay,reasons
+Steps to apply a voucher for discounts?,voucher
+Steps to avail the discounts using a voucher or coupon?,voucher
+Steps to redeem a voucher for savings on my purchase?,voucher
+Steps to take advantage of a voucher or coupon?,voucher
+Thank you,thanks
+Thank's a lot!,thanks
+Thanks,thanks
+That's helpful,thanks
+"The order has been marked as ""Refunded,"" but I'm yet to receive the refund in my account.",refund_status
+"The order has been marked as ""Refunded,"" but I'm yet to receive the refund in my account.",refund_status
+"The order is labeled as ""Refunded,"" but I'm still awaiting the refund to be completed.",refund_status
+"The order is marked as ""Refunded,"" but I'm still waiting for the refund to be processed and received.",refund_status
+"The order is showing as ""Refunded,"" but the refund hasn't been credited to my account yet.",refund_status
+"The order shows as ""Refunded,"" but I haven't received the refund. Please help resolve this issue.",refund_status
+"The order status changed to ""Refunded,"" but I haven't received the refunded amount in my bank.",refund_status
+"The order status changed to ""Refunded,"" but the refund transaction hasn't been completed yet.",refund_status
+"The order status displays ""Refunded,"" but I haven't received the money back. Can you assist me further?",refund_status
+"The order status displays as ""Refunded,"" but I haven't received the money back into my account.",refund_status
+"The order status indicates ""Refunded,"" but I'm still awaiting the refund to be processed.",refund_status
+"The status of my order is displayed as ""Refunded,"" but the refund amount hasn't been refunded yet.",refund_status
+"The status of my order is showing as ""Refunded,"" but the refunded amount hasn't been credited yet.",refund_status
+thnx,thanks
+Track order,track
+What actions are being taken to rectify the delay and ensure the prompt delivery of my order?,reasons
+What are the available channels to contact customer service for help?,more
+What are the benefits of using the mobile app compared to the website?,mobile_app
+What are the possible reasons for not being able to cancel an order?,cancel
+What are the steps to edit my address details for accurate shipping and delivery?,profile
+What are the steps to reset my password?,profile
+What are the ways to contact a seller regarding my queries or concerns?,more
+What are your payment methods?,payments
+What can I buy?,items
+What could be the possible reasons for the delay in my order?,reasons
+What do you offer?,items
+What do you sell?,items
+What happens if I cancel my order after the return window has expired?,cancel
+What happens if I cancel my order but have already received the shipment?,cancel
+What happens to my payment if I cancel my order?,cancel
+What information do I need to provide to cancel my order?,cancel
+What is causing the delay in processing and shipping my order?,reasons
+What is the best way to reach out to customer support for assistance?,more
+What is the contact number for customer support?,more
+What is the procedure for canceling an order?,cancel
+What is the procedure for updating my address information for accurate order delivery?,profile
+What is the process for editing my existing address or adding a new one?,profile
+What is the process for updating or changing my password for account security?,profile
+What is the process to change my password?,profile
+What is the return status ?,return_status
+What kinds of items are there?,items
+What measures are being taken to expedite the delivery of my delayed order?,reasons
+What should I do if I change my mind after canceling my order?,cancel
+What should I do if I want to cancel my order but cannot find a cancellation option?,cancel
+What steps are being taken to address the delay in delivering my order?,reasons
+What steps do I need to take to cancel my order?,cancel
+When can I get a refund for return items?,return_status
+When do I get my delivery?,delivery
+When do I get my delivery?,delay
+When will my items be returned?,return_status
+Where can I find and download the official mobile app?,mobile_app
+Where can I find the mobile app for this platform in the app store?,mobile_app
+Where is my order,track
+where is my order?,delivery
+Which items do you have?,items
+Why has my order been delayed? I'm concerned about the delay.,reasons
+Why is my order cancelled?,cancel
+Why is my order delayed?,delay
+Why is my order not delivered yet?,delivery
+Why is my order not delivered yet?,delay
+Why is my order taking so much time be to delivered?,delivery
+Why is the status Refunded when it's not credited?,refund_status
