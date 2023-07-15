@@ -1,3 +1,6 @@
-[submodule "machine-learning/week1/price-prediction"]
+[submodule "price-prediction"]
 	path = machine-learning/week1/price-prediction
 	url = https://github.com/17vali/price-prediction.git
+[submodule "mydjangoproject"]
+	path = backend/mydjangoproject
+	url = https://github.com/17vali/mydjangoproject.git
