@@ -8,7 +8,7 @@ class User{
   final String email;
   final String password;
   final String phone;
-  final String address;
+  final List address;
   final String image;
   final List<dynamic> suggestion;
 

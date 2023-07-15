@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/homepage.dart';
 
+import '../ApiService/authApi.dart';
 import '../Utils/widgets.dart';
 
 class AuthPage extends StatefulWidget {
@@ -27,6 +28,42 @@ class _AuthPageState extends State<AuthPage> {
   String name="";
   bool isloading=false;
   bool obscure=true;
+  AuthApi api=AuthApi();
+  register(){
+    if(registerKey.currentState!.validate()){
+      setState(() {
+        isloading=true;
+      });
+      api.registerUser(name, email.trim(), password, context).then((value) {
+        if(value){
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+              builder: (context) =>  const HomePage()), (Route route) => false);
+        }
+        setState(() {
+          isloading=false;
+        });
+      });
+    }
+
+  }
+
+  login(){
+    if(loginKey.currentState!.validate()){
+      setState(() {
+        isloading=true;
+      });
+      api.login(email.trim(), password, context).then((value) {
+        if(value){
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+              builder: (context) =>  const HomePage()), (Route route) => false);
+        }
+        setState(() {
+          isloading=false;
+        });
+
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -235,7 +272,7 @@ class _AuthPageState extends State<AuthPage> {
                                         ) ,
                                         child: const Text("Sign In",style: TextStyle(color:Colors.white,fontSize: 16),
                                         ),onPressed: (){
-                                          nextScreenReplace(context, const HomePage());
+                                          login();
                                       },
                                       ),
                                     ),
@@ -369,6 +406,7 @@ class _AuthPageState extends State<AuthPage> {
                                         ) ,
                                         child: const Text("Sign Up",style: TextStyle(color:Colors.white,fontSize: 16),
                                         ),onPressed: (){
+                                          register();
                                       },
                                       ),
                                     ),

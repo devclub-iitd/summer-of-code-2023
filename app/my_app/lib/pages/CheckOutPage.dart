@@ -48,7 +48,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         flexibleSpace:Padding(
-          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -57,7 +57,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                   Navigator.pop(context);
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -69,7 +69,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
               Text("Order Summary",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
               GestureDetector(
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -81,7 +81,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
             ],
           ),
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       bottomNavigationBar: Padding(
@@ -155,7 +154,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: Container(padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
                           width: MediaQuery.of(context).size.width,
-                          child: Text(user.address.isEmpty?"No saved address":user.address,style: const TextStyle(fontSize: 18),)),
+                          child: Text(user.address.isEmpty?"No saved address":address(user.address),style: const TextStyle(fontSize: 18),)),
                     ),
                   ],
                 ),
@@ -320,5 +319,12 @@ class _CheckOutPageState extends State<CheckOutPage> {
         ),
       ),
     );
+  }
+  String address(List add){
+    String ad='';
+    for(var i=0;i<add.length;i++){
+      ad+="${add[i]} ";
+    }
+    return ad;
   }
 }

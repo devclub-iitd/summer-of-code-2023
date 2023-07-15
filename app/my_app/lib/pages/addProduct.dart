@@ -1,6 +1,7 @@
 
 import 'dart:ffi';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/Models/AddedProduct.dart';
@@ -46,7 +47,7 @@ class _AddProductState extends State<AddProduct> {
         isLoading = true;
       });
       apiService.addProduct(context: context,
-          userId: "adi@gmail.com",
+          userId: FirebaseAuth.instance.currentUser!.email!,
           title: name,
           category: category,
           desc: description,
@@ -64,7 +65,7 @@ class _AddProductState extends State<AddProduct> {
       bottomNavigationBar:submitForm() ,
       appBar: AppBar(
         flexibleSpace:Padding(
-          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -74,6 +75,7 @@ class _AddProductState extends State<AddProduct> {
                 },
                 child: Card(
                   elevation: 10,
+                  color: Colors.grey,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -88,7 +90,7 @@ class _AddProductState extends State<AddProduct> {
                   nextScreen(context, SearchPage());
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -100,7 +102,6 @@ class _AddProductState extends State<AddProduct> {
             ],
           ),
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: SafeArea(child: SingleChildScrollView(

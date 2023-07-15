@@ -22,7 +22,7 @@ class _OrderPageState extends State<OrderDetailPage> {
     return  Scaffold(
       appBar:  AppBar(
         flexibleSpace:Padding(
-          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -31,7 +31,7 @@ class _OrderPageState extends State<OrderDetailPage> {
                   Navigator.pop(context);
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -46,7 +46,7 @@ class _OrderPageState extends State<OrderDetailPage> {
                   nextScreen(context, SearchPage());
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -58,7 +58,6 @@ class _OrderPageState extends State<OrderDetailPage> {
             ],
           ),
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: SingleChildScrollView(

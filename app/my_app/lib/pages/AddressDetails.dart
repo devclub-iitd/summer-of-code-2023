@@ -78,7 +78,7 @@ class _AddressDetailsState extends State<AddressDetails> {
   ];
 
 
-  updateAddress(String add,String email,String phone,String image,String name,BuildContext context,String id,String password){
+  updateAddress(List add,String email,String phone,String image,String name,BuildContext context,String id,String password){
     api.updateAddress(context: context, email: email, address: add,phone: phone,image: image,name: name).then((value) {
       setState(() {
         isSwitched=false;
@@ -103,7 +103,7 @@ class _AddressDetailsState extends State<AddressDetails> {
         leading: null,
         automaticallyImplyLeading: false,
         flexibleSpace:Padding(
-          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -112,7 +112,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                   Navigator.pop(context);
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -127,7 +127,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                   nextScreen(context, const SearchPage());
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -139,7 +139,6 @@ class _AddressDetailsState extends State<AddressDetails> {
             ],
           ),
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       bottomNavigationBar: widget.onCheckOut?Padding(
@@ -204,7 +203,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Container(padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
                         width: MediaQuery.of(context).size.width,
-                        child: Text(user.address.isEmpty?"No saved address":user.address,style: TextStyle(fontSize: 18),)),
+                        child: Text(user.address.isEmpty?"No saved address":address(user.address),style: TextStyle(fontSize: 18),)),
                   ),
                 ],
               ),
@@ -233,8 +232,10 @@ class _AddressDetailsState extends State<AddressDetails> {
                             color: Colors.grey.withOpacity(0.2)
                         ),
                         child: TextFormField(
+                          initialValue: user.address.isNotEmpty?user.address[0]:null,
                           decoration: textInputdec.copyWith(
                             hintText: "John Doe",
+
                             hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
                             border:InputBorder.none,),
                           onChanged:(val){
@@ -273,8 +274,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                                       color: Colors.grey.withOpacity(0.2)
                                   ),
                                   child: TextFormField(
-                                    keyboardType: TextInputType.multiline,
-                                    maxLines: null,
+                                    initialValue: user.address.isNotEmpty?user.address[6]:null,
                                     decoration: textInputdec.copyWith(
                                       hintText: "with country code",
                                       hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
@@ -309,8 +309,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                                       color: Colors.grey.withOpacity(0.2)
                                   ),
                                   child: TextFormField(
-                                    keyboardType: TextInputType.multiline,
-                                    maxLines: null,
+                                    initialValue: user.address.isNotEmpty?user.address[1]:null,
                                     decoration: textInputdec.copyWith(
                                       hintText: "required",
                                       hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
@@ -353,6 +352,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                         child: TextFormField(
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
+                          initialValue: user.address.isNotEmpty?user.address[3]:null,
                           decoration: textInputdec.copyWith(
                             hintText: "required",
                             hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
@@ -390,6 +390,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                         child: TextFormField(
                           keyboardType: TextInputType.multiline,
                           maxLines: null,
+                          initialValue: user.address.isNotEmpty?user.address[2]:null,
                           decoration: textInputdec.copyWith(
                             hintText: "Delhi ",
                             hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
@@ -415,7 +416,6 @@ class _AddressDetailsState extends State<AddressDetails> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Container(
-                        height: 150,
 
                         decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -424,7 +424,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                         child: Center(
                           child: TextFormField(
                             keyboardType: TextInputType.multiline,
-                            maxLines: null,
+                            initialValue: user.address.isNotEmpty?user.address[4]:null,
                             decoration: textInputdec.copyWith(
                               hintText: "House/ward no",
                               hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
@@ -456,7 +456,6 @@ class _AddressDetailsState extends State<AddressDetails> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Container(
-                        height: 150,
 
                         decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -466,6 +465,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                           child: TextFormField(
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
+                            initialValue: user.address.isNotEmpty?user.address[5]:null,
                             decoration: textInputdec.copyWith(
                               hintText: "near temple..",
                               hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
@@ -498,14 +498,14 @@ class _AddressDetailsState extends State<AddressDetails> {
   Widget submitForm(){
     final user=context.watch<UserProvider>().user;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: (){
               if(formKey.currentState!.validate()){
-                String add="Name-$name Phone Number-$phone \n $ward ,$landmark $city $state   Pin-$pin ";
+                List add=[name,pin,city,state,ward,landmark,phone];
                 showSnakbar(context, Colors.blue, "Saving Address");
                 updateAddress(add,user.email,user.phone,user.image,user.name,context,user.id,user.password);
 
@@ -514,7 +514,8 @@ class _AddressDetailsState extends State<AddressDetails> {
             },
             child: Container(
               height: 50,
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              width: (MediaQuery.of(context).size.width-25)*0.5,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: const BoxDecoration(
                   gradient:LinearGradient(
                     begin: Alignment.topCenter,
@@ -523,7 +524,7 @@ class _AddressDetailsState extends State<AddressDetails> {
                   borderRadius: BorderRadius.all(Radius.circular(15))
               ),
               child:  Center(
-                child: Text("Update Address",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                child: Text("Submit",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
                 ),
               ),
             ),
@@ -536,7 +537,8 @@ class _AddressDetailsState extends State<AddressDetails> {
             },
             child: Container(
               height: 50,
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              width: (MediaQuery.of(context).size.width-25)*0.5,
               decoration: const BoxDecoration(
                   gradient:LinearGradient(
                     begin: Alignment.topCenter,
@@ -553,5 +555,13 @@ class _AddressDetailsState extends State<AddressDetails> {
         ],
       ),
     );
+  }
+
+  String address(List add){
+    String ad='';
+    for(var i=0;i<add.length;i++){
+      ad+="${add[i]} ";
+    }
+    return ad;
   }
 }

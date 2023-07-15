@@ -1,5 +1,6 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/ApiService/addedProductApi.dart';
 import 'package:my_app/Utils/constants.dart';
@@ -57,13 +58,13 @@ class _FirstPageState extends State<FirstPage> {
         isloading=false;
       });
     });
-    apiService.getMyProducts("adi@gmail.com").then((value) {
+    apiService.getMyProducts(FirebaseAuth.instance.currentUser!.email!).then((value) {
       setState(() {
         myProducts=value;
         ismyProductLoading=false;
       });
     });
-    myProductApi.getRecommended("its8@gmail.com").then((value) {
+    myProductApi.getRecommended(FirebaseAuth.instance.currentUser!.email!).then((value) {
       setState(() {
         rec=value;
         isRecLoading=false;
@@ -76,7 +77,7 @@ class _FirstPageState extends State<FirstPage> {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Padding(
-          padding: const EdgeInsets.only(top: 40.0),
+          padding: const EdgeInsets.only(top: 35.0),
           child: Row(
             children: [
               GestureDetector(
@@ -93,13 +94,12 @@ class _FirstPageState extends State<FirstPage> {
             ],
           ),
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: LayoutBuilder(
         builder: (context,constraints)=>RefreshIndicator(
           onRefresh: (){
-            return myProductApi.getRecommended("its8@gmail.com").then((value) {
+            return myProductApi.getRecommended(FirebaseAuth.instance.currentUser!.email!).then((value) {
               setState(() {
                 rec=value;
                 isRecLoading=false;

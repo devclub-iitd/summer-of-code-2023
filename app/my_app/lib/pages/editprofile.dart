@@ -80,7 +80,7 @@ class _EditProfileState extends State<EditProfile> {
         appBar:  AppBar(
           automaticallyImplyLeading: false,
           flexibleSpace:Padding(
-            padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+            padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -89,7 +89,7 @@ class _EditProfileState extends State<EditProfile> {
                     Navigator.pop(context);
                   },
                   child: Card(
-                    elevation: 10,
+                    elevation: 10,color: Colors.grey,
                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                     child: Container(
                       height: 50,
@@ -101,7 +101,7 @@ class _EditProfileState extends State<EditProfile> {
                 Text("Edit Profile",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
                 GestureDetector(
                   child: Card(
-                    elevation: 10,
+                    elevation: 10,color: Colors.grey,
                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                     child: Container(
                       height: 50,
@@ -113,7 +113,7 @@ class _EditProfileState extends State<EditProfile> {
               ],
             ),
           ),
-          backgroundColor: Colors.white,
+
           elevation: 0,
         ),
         bottomNavigationBar: Padding(

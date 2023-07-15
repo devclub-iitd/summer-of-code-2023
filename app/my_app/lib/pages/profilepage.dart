@@ -1,9 +1,11 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/pages/AddressDetails.dart';
+import 'package:my_app/pages/authpage.dart';
 import 'package:my_app/pages/wishlistpage.dart';
 import 'package:my_app/providers/userProvider.dart';
 import 'package:provider/provider.dart';
@@ -309,7 +311,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   CupertinoDialogAction(
                                     child:  Text("Log out",style: GoogleFonts.poppins(fontSize: 15),),
                                     onPressed: () {
-
+                                      FirebaseAuth.instance.signOut();
+                                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                                          builder: (context) =>  AuthPage()), (Route route) => false);
                                     },
                                   ),
                                   CupertinoDialogAction(

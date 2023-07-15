@@ -19,8 +19,10 @@ class AuthApi{
       if(user!=null){
          apiService.signUP(context: context, name: name, email: email, password: password);
         return true;
+      }else{
+        return false;
       }
-      return false;
+
     }on FirebaseAuthException catch(e){
       showSnakbar(context, Colors.red, e.message.toString());
       return false;

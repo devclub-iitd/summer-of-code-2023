@@ -26,7 +26,7 @@ void showSnakbar(context,color,message){
     fontSize: 14
   ),),
   backgroundColor: color,
-    duration: Duration(seconds: 15),
+    duration: Duration(seconds: 2),
     action: SnackBarAction(label: "OK", onPressed: (){},textColor: Colors.white,),
   ));
 }

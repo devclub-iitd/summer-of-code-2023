@@ -10,6 +10,7 @@ import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/constants.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/product_description.dart';
+import 'package:my_app/pages/searchPage.dart';
 
 import '../Models/AddedProduct.dart';
 
@@ -66,7 +67,7 @@ class _CategoryPageState extends State<CategoryPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         flexibleSpace:Padding(
-          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -75,7 +76,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   Navigator.pop(context);
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -86,8 +87,11 @@ class _CategoryPageState extends State<CategoryPage> {
               ),
               Text(widget.name,style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
               GestureDetector(
+                onTap: (){
+                  nextScreen(context, SearchPage());
+                },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -99,7 +103,6 @@ class _CategoryPageState extends State<CategoryPage> {
             ],
           ),
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: isLoading?Center(child: CircularProgressIndicator()):SingleChildScrollView(

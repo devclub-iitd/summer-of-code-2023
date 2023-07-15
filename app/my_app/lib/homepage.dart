@@ -38,12 +38,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    cartApiService.getMyCart("adi@gmail.com", context).then((value) {
+    cartApiService.getMyCart(FirebaseAuth.instance.currentUser!.email!, context).then((value) {
       Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
     });
 
 
-    apiService.authorizedUser(email: "its8@gmail.com", context: context);
+    apiService.authorizedUser(email: FirebaseAuth.instance.currentUser!.email!, context: context);
   }
   @override
   Widget build(BuildContext context) {

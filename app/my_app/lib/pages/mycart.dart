@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,7 +36,7 @@ class _MyCartState extends State<MyCart> {
    getCart();
   }
   getCart(){
-    cartApiService.getMyCart("adi@gmail.com",context).then((value){
+    cartApiService.getMyCart(FirebaseAuth.instance.currentUser!.email!,context).then((value){
       Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
       setState(() {
         list=value[0];
@@ -52,7 +53,7 @@ class _MyCartState extends State<MyCart> {
       bottomNavigationBar:CheckOut() ,
       appBar: AppBar(
         flexibleSpace:Padding(
-          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -61,7 +62,7 @@ class _MyCartState extends State<MyCart> {
                   Navigator.pop(context);
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -76,7 +77,7 @@ class _MyCartState extends State<MyCart> {
                   nextScreen(context, const SearchPage());
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -88,7 +89,6 @@ class _MyCartState extends State<MyCart> {
             ],
           ),
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: isLoading?Center(child: CircularProgressIndicator(),): SingleChildScrollView(

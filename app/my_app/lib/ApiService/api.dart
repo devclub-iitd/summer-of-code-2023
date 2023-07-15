@@ -64,7 +64,7 @@ class ApiService{
 
   }) async{
     try{
-      User user=User('', name, email, password, '', '', '',[]);
+      User user=User('', name, email, password, '', [], '',[]);
 
       http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/signUp"),
           body: user.toJson(),
@@ -72,21 +72,21 @@ class ApiService{
             'content-Type':'application/json; charset=UTF-8'
           });
       if (response.statusCode==200){
-        showSnakbar(context,Colors.green, "account created");
         User user=User.fromJson(jsonDecode(response.body));
+        showSnakbar(context,Colors.green, "account created");
         return user;
       }else if(response.statusCode==400){
         showSnakbar(context, Colors.red, jsonDecode(response.body)['msg']);
-        User user=User('', '', '', '', '', '', '',[]);
+        User user=User('', '', '', '', '', [], '',[]);
         return user;
       }else{
         showSnakbar(context, Colors.red, jsonDecode(response.body)["error"]);
-        User user=User('', '', '', '', '', '', '',[]);
+        User user=User('', '', '', '', '', [], '',[]);
         return user;
       }
     }catch(e){
       showSnakbar(context, Colors.red, e.toString());
-      User user=User('', '', '', '', '', '', '',[]);
+      User user=User('', '', '', '', '', [], '',[]);
       return user;
     }
 
@@ -210,7 +210,7 @@ class ApiService{
     required BuildContext context,
     required String email,
     required String name,
-    required String address,
+    required List address,
     required String image,
     required String phone
 
@@ -254,16 +254,17 @@ class ApiService{
         Provider.of<UserProvider>(context, listen: false).setUserFromModel(user);
         return user;
       }else if(response.statusCode==400){
-        User user=User('', '', '', '', '', '', '',[]);
+        User user=User('', '', '', '', '', [], '',[]);
         return user;
       }else{
-        showSnakbar(context, Colors.green, jsonDecode(response.body)["error"]);
-        User user=User('', '', '', '', '', '', '',[]);
+        showSnakbar(context, Colors.blue, jsonDecode(response.body)["error"]);
+        User user=User('', '', '', '', '', [], '',[]);
         return user;
       }
     }catch(e){
-      showSnakbar(context, Colors.green, e.toString());
-      User user=User('', '', '', '', '', '', '',[]);
+      showSnakbar(context, Colors.red, e.toString());
+      print(e.toString());
+      User user=User('', '', '', '', '', [], '',[]);
       return user;
     }
 

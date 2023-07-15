@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/ApiService/CartApi.dart';
@@ -27,7 +28,7 @@ class _WishListPageState extends State<WishListPage> {
   CartApiService cartApiService=CartApiService();
 
   getCart(){
-    cartApiService.getMyCart("adi@gmail.com",context).then((value){
+    cartApiService.getMyCart(FirebaseAuth.instance.currentUser!.email!,context).then((value){
       Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
     });
   }
@@ -35,7 +36,7 @@ class _WishListPageState extends State<WishListPage> {
   void initState() {
 
     super.initState();
-    myProductApi.getWishlist("its8@gmail.com",context).then((value) {
+    myProductApi.getWishlist(FirebaseAuth.instance.currentUser!.email!,context).then((value) {
 
       setState(() {
         myProducts=value;
@@ -50,7 +51,7 @@ class _WishListPageState extends State<WishListPage> {
       appBar:  AppBar(
         automaticallyImplyLeading: false,
         flexibleSpace:Padding(
-          padding: const EdgeInsets.only(top: 40.0,left: 10,right: 10),
+          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -59,7 +60,7 @@ class _WishListPageState extends State<WishListPage> {
                   Navigator.pop(context);
                 },
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -71,7 +72,7 @@ class _WishListPageState extends State<WishListPage> {
               Text("WishList",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
               GestureDetector(
                 child: Card(
-                  elevation: 10,
+                  elevation: 10,color: Colors.grey,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
@@ -83,7 +84,6 @@ class _WishListPageState extends State<WishListPage> {
             ],
           ),
         ),
-        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: isLoading?const Center(child: CircularProgressIndicator( )):Column(

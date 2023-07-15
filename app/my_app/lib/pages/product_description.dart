@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,9 +9,11 @@ import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Models/AddedProduct.dart';
 import 'package:my_app/Models/Product.dart';
 import 'package:my_app/Utils/widgets.dart';
+import 'package:my_app/pages/AddressDetails.dart';
 import 'package:my_app/pages/addProduct.dart';
 import 'package:my_app/pages/mycart.dart';
 import 'package:my_app/providers/product_provider.dart';
+import 'package:my_app/providers/userProvider.dart';
 import 'package:provider/provider.dart';
 
 class ProductDescription extends StatefulWidget {
@@ -29,19 +32,22 @@ class _ProductDescriptionState extends State<ProductDescription> {
   MyProductApi myProductApi =MyProductApi();
   ApiService apiService=ApiService();
   getCart(){
-    cartApiService.getMyCart("adi@gmail.com",context).then((value){
+    cartApiService.getMyCart(FirebaseAuth.instance.currentUser!.email!,context).then((value){
       Provider.of<ProductProvider>(context, listen: false).setCartLength(value[2]);
     });
   }
   bool isInWishlist=false;
 
   addTowishlist(){
-    apiService.addTowishlist(email: "its8@gmail.com", id: widget.product.id);
+    apiService.addTowishlist(email:FirebaseAuth.instance.currentUser!.email!, id: widget.product.id);
+    setState(() {
+      isInWishlist=true;
+    });
   }
 
   checkifinwish(){
     if(widget.product.id.isNotEmpty){
-      apiService.isInWishlist(widget.product.id, "its8@gmail.com").then((value) {
+      apiService.isInWishlist(widget.product.id,FirebaseAuth.instance.currentUser!.email!).then((value) {
         setState(() {
           isInWishlist=value;
         });
@@ -54,96 +60,74 @@ class _ProductDescriptionState extends State<ProductDescription> {
   void initState() {
     super.initState();
     checkifinwish();
-    myProductApi.addSuggestion(context: context, email: "its8@gmail.com", category: widget.product.category);
+    myProductApi.addSuggestion(context: context, email:FirebaseAuth.instance.currentUser!.email!, category: widget.product.category);
   }
 
 
 
   @override
   Widget build(BuildContext context) {
+    final user=context.watch<UserProvider>().user;
     return Scaffold(
-      bottomNavigationBar:GestureDetector(
-        onTap: (){
-          if(widget.product.id.isEmpty){
-            showSnakbar(context, Colors.red, "can't be added");
-          }else{
-            cartApiService.addTocart(context: context, userId: "adi@gmail.com", id: widget.product.id, quantity: 1).then((value) {
-              if(value){
-                getCart();
-              }
-            });
-          }
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0,vertical: 15),
-          child: Container(
-            decoration: const BoxDecoration(
-                gradient:LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.black,Colors.black45],),
-                borderRadius: BorderRadius.all(Radius.circular(15))
-            ),
-            height: 50,
-            child: const Center(
-              child: Text("Add to Cart",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        flexibleSpace:Padding(
+          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap:(){
+                  Navigator.pop(context);
+                },
+                child: Card(
+                  elevation: 10,
+                  color: Colors.grey,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child: const Icon(Icons.arrow_back_ios),
+                  ),
+                ),
               ),
-            ),
+              Text(widget.category,style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+              GestureDetector(
+                onTap:(){
+                  if(widget.product.id.isEmpty){
+                    showSnakbar(context, Colors.red, "can't be added");
+                  }else{
+                    if(!isInWishlist){
+                      addTowishlist();
+                    }else{
+
+                    }
+
+                  }
+                },
+                child: Card(
+                  elevation: 10,
+                  color: Colors.grey,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    child:  Icon(isInWishlist?Icons.favorite:Icons.favorite_outline_outlined,color: isInWishlist?Colors.red:Colors.black,),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ) ,
+        ) ,
+      ),
+      bottomNavigationBar:submit(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap:(){
-                          Navigator.pop(context);
-                        },
-                        child: Card(
-                          elevation: 10,
-                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            child: const Icon(Icons.arrow_back_ios),
-                          ),
-                        ),
-                      ),
-                      Text(widget.category,style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
-                      GestureDetector(
-                        onTap:(){
-                          if(widget.product.id.isEmpty){
-                            showSnakbar(context, Colors.red, "can't be added");
-                          }else{
-                            if(!isInWishlist){
-                              addTowishlist();
-                            }else{
-
-                            }
-
-                          }
-                        },
-                        child: Card(
-                          elevation: 10,
-                          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            child:  Icon(isInWishlist?Icons.favorite:Icons.favorite_outline_outlined,color: isInWishlist?Colors.red:Colors.black,),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                
                 const SizedBox(height: 15,),
                 Card(
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(15),topLeft: Radius.circular(15))),
@@ -208,6 +192,78 @@ class _ProductDescriptionState extends State<ProductDescription> {
                     ),
                   ),
                 ),
+                Padding(
+                 padding: EdgeInsets.symmetric(horizontal: 2),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 8),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              const Text("Deliver to: ",style: TextStyle(fontSize: 20),),
+                               Text(user.address[1],style: TextStyle(fontSize: 20,color: Colors.blue),),
+                              Expanded(child: Container()),
+                              GestureDetector(
+                                onTap: (){
+                                  nextScreen(context, AddressDetails(onCheckOut: false));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    border: Border.fromBorderSide(BorderSide(color: Colors.grey))
+                                  ),
+                                  child: Text("Change",style: GoogleFonts.poppins(color: Colors.blue,fontSize: 18),),),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Text(user.address.isEmpty?"No saved address":address(user.address),style: const TextStyle(fontSize: 15),)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                  child: Card(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5,vertical: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.4,
+                            child: Column(
+                              children: const[
+                                 CircleAvatar(
+                                   backgroundColor: Colors.yellow,
+                                     child: Icon(Icons.restart_alt)),
+                                SizedBox(height: 5,),
+                                 Text("7 Day Replacement")
+                              ],
+                            ),
+                          ),
+
+
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.4,
+                            child: Column(
+                              children: const[
+                                 CircleAvatar(
+                                   backgroundColor: Colors.green,
+                                     child: Icon(Icons.currency_rupee_outlined)),
+                                SizedBox(height: 5,),
+                                 Text("Cash on Delivery ")
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
 
               ],
             ),
@@ -215,5 +271,75 @@ class _ProductDescriptionState extends State<ProductDescription> {
         ),
       ),
     );
+  }
+  Widget submit(){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10).copyWith(
+        bottom: 10
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: (){
+              if(widget.product.id.isEmpty){
+                showSnakbar(context, Colors.red, "can't be added");
+              }else{
+                cartApiService.addTocart(context: context, userId:FirebaseAuth.instance.currentUser!.email!, id: widget.product.id, quantity: 1).then((value) {
+                  if(value){
+                    getCart();
+                  }
+                });
+              }
+
+            },
+            child: Container(
+              height: 50,
+           width: (MediaQuery.of(context).size.width-25)*0.5,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: const BoxDecoration(
+                  gradient:LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black,Colors.black45],),
+                  borderRadius: BorderRadius.all(Radius.circular(15))
+              ),
+              child:  Center(
+                child: Text("Add to Cart",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: (){
+
+            },
+            child: Container(
+              height: 50,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              width: (MediaQuery.of(context).size.width-25)*0.5,
+              decoration: const BoxDecoration(
+                  gradient:LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black,Colors.black45],),
+                  borderRadius: BorderRadius.all(Radius.circular(15))
+              ),
+              child:  const Center(
+                child: Text("Buy Now",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  String address(List add){
+    String ad='';
+    for(var i=0;i<add.length;i++){
+      ad+="${add[i]} ";
+    }
+    return ad;
   }
 }

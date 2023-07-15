@@ -7,7 +7,7 @@ const productRouter=require("./routers/ProductApi");
 const userRouter=require("./routers/userApi");
 const cartRouter=require("./routers/addCartApi");
 const app=express();
-const DB="mongodb+srv://aditya:adi123@cluster0.pxaqtot.mongodb.net/?retryWrites=true&w=majority";
+const DB=dburl;
 
 app.use(express.json());
 app.use(authRouter);
