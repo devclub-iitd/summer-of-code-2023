@@ -102,7 +102,7 @@ class _CartState extends State<Cart> {
                 final cartItem = cartItems[index];
 
                 return ListTile(
-                  leading: Image.asset(cartItem.product.image),
+                  leading: Image.network(cartItem.product.image),
                   title: Text(cartItem.product.title),
                   subtitle: Text('\$${cartItem.product.price.toStringAsFixed(2)}'),
                   trailing: Row(

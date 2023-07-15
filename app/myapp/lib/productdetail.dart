@@ -21,7 +21,7 @@ class ProductDetailsScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Center(
-              child: Image.asset(product.image),
+              child: Image.network(product.image),
             ),
           ),
           Padding(

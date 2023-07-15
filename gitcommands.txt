@@ -4,5 +4,5 @@ git merge upstream/main
 git push origin main
 
 git add .
-git commit -m "Week 3 backend completed"
+git commit -m "Week 4 app completed"
 git push origin main

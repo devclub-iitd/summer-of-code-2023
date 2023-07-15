@@ -51,25 +51,27 @@ class _ProductTileState extends State<ProductTile> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Stack(
-              children: [
-                Image.asset(widget.product.image),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: IconButton(
-                    icon: Icon(
-                      Storage.favorites.contains(widget.product) ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.red,
-                    ),
-                    onPressed: () {
-                      toggleFavorite();
-                      // Perform additional logic here
-                    },
-                    tooltip: Storage.favorites.contains(widget.product) ? 'Remove from favorites' : 'Add to favorites',
-                  )
-                ),
-              ],
+            Expanded(
+              child: Stack(
+                children: [
+                  Image.network(widget.product.image),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: IconButton(
+                      icon: Icon(
+                        Storage.favorites.contains(widget.product) ? Icons.favorite : Icons.favorite_border,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        toggleFavorite();
+                        // Perform additional logic here
+                      },
+                      tooltip: Storage.favorites.contains(widget.product) ? 'Remove from favorites' : 'Add to favorites',
+                    )
+                  ),
+                ],
+              ),
             ),
             Center(child: Text(widget.product.title, style: TextStyle(fontWeight: FontWeight.bold))),
             Center(child: Text('\$${widget.product.price.toStringAsFixed(2)}')),
