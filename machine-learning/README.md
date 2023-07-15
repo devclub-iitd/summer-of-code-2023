@@ -29,7 +29,143 @@ This year the theme for DevClub Summer of Code is e-commerce! We will be buildin
       - Model Selection
       - Train Test Split
       - Error metrics
-- #### Resources:
-    See <a href = "https://github.com/devclub-iitd/summer-of-code-2023/blob/machine-learning/machine-learning/week1/README.md">Assignment 1</a>
+#### Resources:
+1. <a href = "https://www.youtube.com/playlist?list=PLA83b1JHN4ly56Y7o6vDAT8Szxc3_EdRH">Google Colab Setup</a>
+2. <a href="https://www.youtube.com/watch?v=_uwucNViakk">Kaggle Datasets</a>
+3. Tutorial on <a href="https://www.youtube.com/watch?v=FniLzpaSFGk">Numpy and Pandas</a> for Data Analysis and Manipulation
+4. Tutorials on <a href="https://www.youtube.com/playlist?list=PL-osiE80TeTvipOqomVEeZ1HRrcEvtZB_">Matplotlib</a> for Data Visualisation
+5. <a href="https://www.youtube.com/watch?v=WngoqVB6cXw">Linear Regression (Multiple Variables)</a>
+6. <a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uvCeTYTeyfe0-rN5r8zn9rw">ML Playlist</a>, contains algorithms like Linear Regression, Decision Trees, and Random Forest
+7. <a href="https://www.youtube.com/watch?v=K490SP-_H0U&t=26s">Evaluation metrics for regression:</a> MAE vs MSE vs RMSE vs RMSLE
 - #### [Task](week1) 
 Set up an ML environment to run your code on GPUs, then select and build a price prediction model, and also scrape your own dataset for it from the web.
+
+### Week 2
+
+#### Concepts
+- YOLO
+  
+YOLO is incredibly efficient because it processes the entire image in a single pass. Unlike traditional object detection algorithms that inspect different regions of an image separately, YOLO absorbs all the visual information at once, rather than examining each piece of evidence individually. By examining the entire image simultaneously, it drastically reduces the computational burden and time compared to algorithms that examine multiple regions independently. It also achieves impressive accuracy despite its speed. Its deep neural network architecture has been meticulously trained on vast datasets, honing its ability to recognize a wide range of objects across various classes. YOLO doesn't just detect objects; it also provides precise bounding box coordinates and class probabilities, allowing for more detailed analysis. While there are other highly accurate object detection algorithms, YOLO strikes an excellent balance between speed and accuracy, making it a popular choice in practical applications.
+
+- Training a Model
+
+The training of an ML model irrespective of its architecture involves
+providing it with the data present in the collected dataset in order to
+set some 'weights' which in some way ultimately decide the bounds of
+classification or tagging in our case. The training of a model can be
+done from scratch but requires vast datasets and implementing the model
+itself but the frameworks mentioned above make it much more easy to do
+the same by tweaking pre-built ones as per the use case. The choice you
+can make is in the very architecture of the ML model. In other words,
+the algorithm that drives the model is of equal importance. You are free
+to try out a few and come to a better conclusion. However, a few common
+ones are mentioned below:-
+
+- Decision Trees and Random Forests
+
+A decision tree is a flowchart-like model that makes sequential
+decisions based on feature values, leading to a final prediction. It
+splits data into branches based on specific features and their
+thresholds. Random forests, on the other hand is a method that combines
+multiple decision trees to improve accuracy. In object tagging, decision
+trees and random forests analyze image features (such as color, texture,
+or shape) and make predictions about the presence and class of objects.
+Each tree in a random forest independently predicts object labels, and
+the final prediction is determined through majority voting or averaging
+the predictions. Scikit-Learn is an extremely powerful library which
+allows user-friendly training of such models.
+
+- Convolutional Neural Networks
+
+CNNs consist of multiple layers, including convolutional layers, pooling
+layers, and fully connected layers. Convolutional layers apply filters
+to capture local patterns in the input image, while pooling layers
+downsample the feature maps, reducing their spatial dimensions. Fully
+connected layers combine these learned features and make predictions
+based on them. CNNs are trained on large labeled datasets, allowing them
+to learn hierarchical representations of images. This enables them to
+recognize complex patterns, textures, and shapes in images, aiding in
+accurate object tagging. Some libraries such as TensorFlow and PyTorch
+offer a wide range of pre-built CNN models such as ResNet and VGG which
+might help in tagging.
+
+#### Resources
+1. Object Detection by using [YOLO with OpenCV](https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)
+2. Check out [Scikit Learn](https://www.youtube.com/playlist?list=PLQVvvaa0QuDd0flgGphKCej-9jp-QdzZ3)
+3. Tutorial on using Pytorch with YOLO [here](https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/)
+4. Setting up [YOLO on Google Collab](https://www.youtube.com/watch?v=mmj3nxGT2YQ)
+5. Sample Dataset for Object Detection [BSDS500](https://www.kaggle.com/datasets/balraj98/berkeley-segmentation-dataset-500-bsds500) (Already split into training testing and validation)
+6. YOLO Algorithm Expkanation [YOLO](https://www.baeldung.com/cs/yolo-algorithm) 
+
+#### [Task](week2) 
+Use YOLO to identify and describe items to be sold from the pictures, and fine-tune your Object Detection model using your own dataset
+
+### Week 3
+
+#### Concepts
+- Haar Cascades
+  
+Haar cascades are an efficient and widely-used method for object detection in images. This method is based on the Haar-like features, which are simple rectangular patterns that can be computed rapidly. Haar cascades use a cascade of classifiers trained to detect specific object features at different scales and positions within an image. This approach is particularly effective for detecting objects with well-defined features, such as faces or specific shapes.
+
+- HOG + SVM
+
+The HOG (Histogram of Oriented Gradients) + SVM approach is another beginner-friendly method for image recognition. It involves extracting gradient features from images to capture local shape and edge information. The HOG algorithm computes histograms of oriented gradients, which represent the distribution of gradient orientations within localized image regions. These features are then used as input to an SVM classifier, which can learn to distinguish between different object classes.
+
+- SIFT and SURF
+
+These are feature extraction algorithms that enable the identification of distinctive keypoints within an image. These keypoints represent unique visual patterns that can be robustly matched across different images, regardless of variations in scale, rotation, or lighting conditions. By leveraging these algorithms, you can extract and analyze the most relevant features in an image, laying the foundation for successful object detection.
+
+- RANSAC
+
+Once keypoints are identified, aligning the detected objects accurately becomes crucial. This is where **RANSAC** steps in. RANSAC is an algorithm that iteratively estimates model parameters by fitting models to subsets of data points. In the context of image recognition, RANSAC aids in eliminating outliers and refining the alignment of objects within the image. By incorporating RANSAC, you can achieve more robust and reliable object alignment.
+
+#### Resources
+1. Explanation of the [Harr Cascades](https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08) Algorithm
+2. A basic introduction to [SVMs](https://towardsdatascience.com/https-medium-com-pupalerushikesh-svm-f4b42800e989)
+3. The steps involved in the [SIFT](https://medium.com/data-breach/introduction-to-sift-scale-invariant-feature-transform-65d7f3a72d40) algorithm
+4. Implementation of <a href="https://www.youtube.com/watch?v=7sz4WpkUIIs">SVMs</a>
+5. <a href="https://www.youtube.com/watch?v=5nZGnYPyKLU">HOGs</a>
+6. <a href="https://www.youtube.com/watch?v=6oLRdnQI_2w">SIFT</a> feature extraction
+7. <a href="https://www.youtube.com/watch?v=USl5BHFq2H4">SIFT and SURF</a>
+8. <a href="https://www.youtube.com/watch?v=EkYXjmiolBg">RANSAC</a>
+9. Implementation(check the github link underneath the video description too)  of  <a href="https://www.youtube.com/watch?v=IYBOPdmFDJ8">RANSAC</a>
+
+#### [Task](week3) 
+Develop a model that automatically detects, aligns, and enhances images uploaded by sellers in an online marketplace, using techniques such as image recognition, rotation, and image enhancement
+
+### Week 4
+
+#### Concepts
+- Language Models
+  
+Language models lie at the core of chatbot development. A language model
+is basically a model based on deep learning through which enables the
+chatbot to understand and subsequently generate answers to user queries.
+Training such a model from scratch requires vast computational
+resources. This is where certain libraries with pre-built models which
+can be changed to suit the need of the marketplace website become useful
+. Some libraries which may be of use include:-
+
+- NLTK and spaCy
+
+The NLTK library is of great use for all NLP related applications
+especially for chatbots. It allows for speech tagging and tokenization
+which is of great help as this can then be processed to generate the
+output.The spaCy library also provides tools such as creation of tokens
+as well as getting dependency information among various entities present
+in the input.\
+There are several other libraries with a variety of underlying
+architectures which can be used to build the chatbot Try out a few to
+observe which works the best. Note that some of these also provide
+access to quality collections of texts which can be used for both
+training as well as evaluation.
+
+#### Resources
+1. How [NLP](https://landbot.io/blog/natural-language-processing-chatbot) fits into Machine Learning
+2. Understanding differences between LLMs and small-scale models [here](https://www.labellerr.com/blog/unveiling-the-contrasts-developing-small-scale-and-large-scale-language-models/#:~:text=Small%2Dscale%20language%20models%2C%20also,and%20had%20limited%20computational%20resources)
+3. An introduction to [Dataset Cleaning](https://machinelearningmastery.com/basic-data-cleaning-for-machine-learning/)
+4. Natural Language Processing with [NLTK](https://youtube.com/playlist?list=PLQVvvaa0QuDf2JswnfiGkliBInZnIC4HL) library
+5. The basics of [spaCy](https://youtu.be/dIUTsFT2MeQ) library 
+
+#### [Task](week4) 
+Develop a chatbot designed for a marketplace website, capable of effectively addressing and resolving buyer queries and complaints, by utilizing a well-organized dataset, NLP frameworks and integration for a seamless user experience

@@ -11,6 +11,7 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 
 ## Timeline
 ### Week 1
+
 #### Concepts
 - Introduction
     - What backend development entails.
@@ -49,3 +50,110 @@ This year the theme for DevClub Summer of Code is [e-commerce](https://github.co
 
 #### [Task](week1) 
 Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
+
+### Week 2
+#### Concepts
+- Virtual Environment
+    - What is a virtual environment and why do we need it.
+    - Setting up a virtual environment for our project.
+- Installing Django
+    - Installing Django using pip in the newly created virtual environment.
+    - Creating a new Django project.
+- Creating Apps
+    - Creating apps for our project.
+    - Understanding the structure of a Django app.
+    - Adding the app to the main project.
+- Creating models
+    - Creating models for our app.
+    - Understanding the structure of a Django model.
+    - Adding the models to the database.
+    - Adding data to the model using the admin panel.
+- Template Rendering
+    - Creating templates for our app.
+    - Rendering the templates using views and data from the database.
+- Using Django's powerful inbuilt Authentication and Form features
+
+#### Resources
+- Documentation for Python's [venv](https://docs.python.org/3/library/venv.html) module
+- Installation guide for [Django](https://docs.djangoproject.com/en/4.2/topics/install/)
+- Introduction to [Django](https://www.youtube.com/watch?v=rHux0gMZ3Eg)
+- GitHub's [Advanced Markdown Formatting](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams#creating-mermaid-diagrams)
+- Digital Ocean's [PostgreSQL Setup](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-22-04)
+- [NGINX](https://nginx.org/en/)
+- Django's guide to [deployment](https://docs.djangoproject.com/en/4.2/howto/deployment/)
+
+#### [Task](week2)
+Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
+
+### Week 3
+#### Concepts
+- Django REST Framework
+    - What is Django REST Framework and why do we need it.
+    - Installing Django REST Framework using pip in the virtual environment.
+    - Transforming our Django project into a REST API.
+- Function Based Views
+    - Creating function based views for our app.
+    - Understanding the structure of a Django function based view.
+    - Adding the views to the main project.
+- Authentication using Simple JWT
+    - Understanding the concept of JWT.
+    - Installing Simple JWT using pip in the virtual environment.
+    - Adding JWT authentication to our project.
+- Documentation
+    - Understanding how to document our API.
+    - Installing Postman and using it to test our API.
+    - Writing documentation for all APIs used in our project.
+
+
+#### Resources
+- Django REST Framework's [Quickstart](https://www.django-rest-framework.org/tutorial/quickstart/)
+- Django Simple JWT's [Quickstart](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html)
+- Postman's [Quickstart](https://learning.postman.com/docs/getting-started/introduction/)
+
+#### [Task](week3)
+
+Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!
+
+### Week 4
+#### Concepts
+- Cloud Platforms
+    - What are cloud platforms and why do we need them.
+    - Overview of different cloud platforms (AWS, GCP, Azure, etc.).
+    - Setting up a cloud platform account.
+- Virtual Machines
+    - What are virtual machines and why do we need them.
+    - Overview of different virtual machine providers (AWS EC2, GCP Compute Engine, Azure Virtual Machines, etc.).
+    - Creating a virtual machine on the cloud platform.
+    - Connecting to the virtual machine using SSH.
+- Deploying our Django project
+    - Setting up git on the virtual machine.
+    - Setting up postgresql on the virtual machine.
+    - Cloning our Django project from GitHub.
+    - Installing all dependencies and running the project.
+    - Making `settings.py` production ready.
+    - Using NGINX and Gunicorn to serve our project.
+- Domain Name
+    - How to get a domain name.
+    - What is DNS and how does it work.
+    - Connecting our domain name to our virtual machine.
+- HTTPS
+    - What is HTTPS and why do we need it.
+    - Getting a SSL certificate for our domain name.
+    - Setting up HTTPS on our virtual machine.
+
+#### Resources
+- Microsoft Azure [Student Account](https://azure.microsoft.com/en-in/free/students/)
+- Azure Virtual Machines [Documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/)
+- How to [SSH into a Virtual Machine (Windows)](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-windows)
+- How to [SSH into a Virtual Machine (Linux)](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-linux)
+- How to [SSH into a Virtual Machine (MacOS)](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-macos)
+- Digital Ocean's [Guide to Deploying Django](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-22-04)
+- Digital Ocean's [Guide to Domain Names](https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts)
+- Getting SSL Certificate using [Certbot](https://www.digitalocean.com/community/tutorials/
+how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+- [Docker Compose](https://realpython.com/django-development-with-docker-compose-and-machine/)
+- GitHub [WebHooks](https://docs.github.com/en/webhooks-and-events/webhooks/about-webhooks)
+
+#### [Task](week4)
+
+Deploy your Django project on Microsoft Azure cloud platform, and learn about virtual machines, domain names and HTTPS.
