@@ -235,11 +235,11 @@ class ApiService{
         showSnakbar(context, Colors.red, "400");
         return false;
       }else{
-        showSnakbar(context, Colors.red, jsonDecode(response.body)['error']+"500");
+        showSnakbar(context, Colors.red, jsonDecode(response.body)['error']);
         return false;
       }
     }catch(e){
-      showSnakbar(context, Colors.red, e.toString()+"e");
+      showSnakbar(context, Colors.red, e.toString());
       return false;
     }
 

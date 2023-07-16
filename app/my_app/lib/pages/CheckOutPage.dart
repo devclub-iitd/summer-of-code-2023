@@ -87,7 +87,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         child: GestureDetector(
           onTap: (){
-            nextScreen(context, const PaymentPage());
+            nextScreenReplace(context,  PaymentPage(price: totalPrice(),));
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),

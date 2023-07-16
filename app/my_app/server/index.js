@@ -6,6 +6,7 @@ const authRouter=require("./auth");
 const productRouter=require("./routers/ProductApi");
 const userRouter=require("./routers/userApi");
 const cartRouter=require("./routers/addCartApi");
+const orderRouter=require("./routers/orderApi");
 const app=express();
 const DB=dburl;
 

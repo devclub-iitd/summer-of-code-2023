@@ -6,8 +6,6 @@ import 'package:my_app/ApiService/addedProductApi.dart';
 import 'package:my_app/Utils/constants.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/searchPage.dart';
-import 'package:my_app/providers/product_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../ApiService/CartApi.dart';

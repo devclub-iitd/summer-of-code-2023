@@ -33,7 +33,7 @@ class OrderApi{
           }
           Map<String,dynamic> singleOrder=jsonDecode(response.body)[i];
 
-          Order order=Order(singleOrder["_id"], products, qty, singleOrder["address"], singleOrder["orderedAt"], singleOrder["status"], singleOrder["totalPrice"]);
+          Order order=Order(singleOrder["_id"], products, qty, singleOrder["address"], singleOrder["orderedAt"], singleOrder["status"], int.parse(singleOrder["totalPrice"]));
 
           list.add(order);
         }
@@ -53,7 +53,7 @@ class OrderApi{
     }
   }
 
-  Future<bool> placeOrderFromCart({
+  Future<Order> placeOrderFromCart({
     required BuildContext context,
     required String email,
     required String price,
@@ -74,20 +74,21 @@ class OrderApi{
       );
 
       if(response.statusCode==200){
-        return true;
+        return Order.fromJson(jsonDecode(response.body));
       }
       else{
+        print(jsonDecode(response.body)["error"].toString());
         showSnakbar(context,Colors.red, jsonDecode(response.body)["error"]);
-        return false;
+        return Order("", [], [], "", 0, 0, 0);
       }
 
     }catch(e){
-      showSnakbar(context,Colors.red, e.toString());
-      return false;
+      print(e.toString());
+      return Order("", [], [], "", 0, 0, 0);
     }
   }
 
-  Future<bool> placeSingleOrder({
+  Future<Order> placeSingleOrder({
     required BuildContext context,
     required String email,
     required String id,
@@ -96,7 +97,7 @@ class OrderApi{
   }) async{
     try{
 
-      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/order-from-cart"),
+      http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/order-single-product"),
           body: jsonEncode({
             "email":email,
             "address":address,
@@ -109,16 +110,16 @@ class OrderApi{
       );
 
       if(response.statusCode==200){
-        return true;
+        return Order.fromJson(jsonDecode(response.body));
       }
       else{
         showSnakbar(context,Colors.red, jsonDecode(response.body)["error"]);
-        return false;
+        return Order("", [], [], "", 0, 0, 0);
       }
 
     }catch(e){
       showSnakbar(context,Colors.red, e.toString());
-      return false;
+      return Order("", [], [], "", 0, 0, 0);
     }
   }
 

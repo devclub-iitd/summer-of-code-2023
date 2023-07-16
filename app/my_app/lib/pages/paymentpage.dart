@@ -1,9 +1,20 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'package:my_app/ApiService/ordersApi.dart';
+import 'package:my_app/Utils/widgets.dart';
+import 'package:my_app/pages/orderpage.dart';
+import 'package:my_app/providers/userProvider.dart';
+import 'package:provider/provider.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({Key? key}) : super(key: key);
+  int price;
+   PaymentPage({Key? key,required this.price}) : super(key: key);
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
@@ -25,9 +36,39 @@ class _PaymentPageState extends State<PaymentPage> {
           ? StepState.complete
           : StepState.editing,),
   ];
+  final _razorpay = Razorpay();
   int currentStep=2;
   @override
+  void initState() {
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    super.initState();
+
+  }
+  OrderApi api=OrderApi();
+  placeOrder(){
+    final user=context.read<UserProvider>().user;
+    api.placeOrderFromCart(context: context, email: user.email, price: widget.price.toString(), address: address(user.address)).then((value) {
+      if(value.id.isNotEmpty){
+        nextScreenReplace(context, OrderDetailPage(order: value));
+      }else{
+      }
+    });
+  }
+
+  String address(List add){
+    String ad='';
+    for(var i=0;i<add.length;i++){
+      ad+="${add[i]} ";
+    }
+    return ad;
+  }
+  Map<String,dynamic>? paymentIntent;
+
+  @override
   Widget build(BuildContext context) {
+    final user=context.watch<UserProvider>().user;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -103,70 +144,132 @@ class _PaymentPageState extends State<PaymentPage> {
                      children: [
                        Text("Choose mode of payment",style: GoogleFonts.poppins(fontSize: 20),),
                        SizedBox(height: 10,),
-                       Container(
-                         padding: EdgeInsets.all(10),
-                         decoration: BoxDecoration(
-                             color: Colors.grey.withOpacity(0.2),
-                             border: Border.all(color: Colors.black.withOpacity(0.1)),
-                             borderRadius: const BorderRadius.all(Radius.circular(5),)
-                         ),
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Text("Debit/Credit Card",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue),),
-                             Icon(Icons.credit_card_outlined,color: Colors.red,),
+                       GestureDetector(
+                         onTap: (){
+                           var options = {
+                             'key': 'rzp_test_lNxhLSjt3K4Aaa',
+                             'amount': widget.price *100,
+                             'name': 'Test',
+                             'description': 'T-Shirt',
+                             'prefill': {
+                               'contact': '${user.phone}',
+                               'email': 'aditya7903928568@gmail.com'
+                             }
+                           };
+                           try{
+                             _razorpay.open(options);
+                           }catch(e){
+                             print(e.toString());
+                           }
+                         },
+                         child: Container(
+                           padding: EdgeInsets.all(10),
+                           decoration: BoxDecoration(
+                               color: Colors.grey.withOpacity(0.2),
+                               border: Border.all(color: Colors.black.withOpacity(0.1)),
+                               borderRadius: const BorderRadius.all(Radius.circular(5),)
+                           ),
+                           child: Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Text("Debit/Credit Card",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue),),
+                               Icon(Icons.credit_card_outlined,color: Colors.red,),
 
-                           ],
-                         )
+                             ],
+                           )
+                         ),
                        ),
                        SizedBox(height: 10,),
-                       Container(
-                           padding: EdgeInsets.all(10),
-                         decoration: BoxDecoration(
-                             color: Colors.grey.withOpacity(0.2),
-                             border: Border.all(color: Colors.black.withOpacity(0.1)),
-                             borderRadius: const BorderRadius.all(Radius.circular(5),)
-                         ),
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Text("Internet Banking",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
-                             Icon(Icons.account_balance_outlined,color: Colors.red,),
+                       GestureDetector(
+                         onTap: (){
+                           var options = {
+                             'key': 'rzp_test_lNxhLSjt3K4Aaa',
+                             'amount': widget.price *100,
+                             'name': 'Test',
+                             'description': 'T-Shirt',
+                             'prefill': {
+                               'contact': '9341246568',
+                               'email': 'aditya7903928568@gmail.com'
+                             }
+                           };
+                           try{
+                             _razorpay.open(options);
+                           }catch(e){
+                             print(e.toString());
+                           }
+                         },
+                         child: Container(
+                             padding: EdgeInsets.all(10),
+                           decoration: BoxDecoration(
+                               color: Colors.grey.withOpacity(0.2),
+                               border: Border.all(color: Colors.black.withOpacity(0.1)),
+                               borderRadius: const BorderRadius.all(Radius.circular(5),)
+                           ),
+                           child: Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Text("Internet Banking",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
+                               Icon(Icons.account_balance_outlined,color: Colors.red,),
 
-                           ],
-                         )
+                             ],
+                           )
+                         ),
                        ),
                        SizedBox(height: 10,),
-                       Container(
-                           padding: EdgeInsets.all(10),
-                         decoration: BoxDecoration(
-                             color: Colors.grey.withOpacity(0.2),
-                             border: Border.all(color: Colors.black.withOpacity(0.1)),
-                             borderRadius: const BorderRadius.all(Radius.circular(5),)
+                       GestureDetector(
+                         onTap: (){
+                           var options = {
+                             'key': 'rzp_test_lNxhLSjt3K4Aaa',
+                             'amount': widget.price *100,
+                             'name': 'Test',
+                             'description': 'T-Shirt',
+                             'prefill': {
+                               'contact': '9341246568',
+                               'email': 'aditya7903928568@gmail.com'
+                             }
+                           };
+                           try{
+                             _razorpay.open(options);
+                           }catch(e){
+                             print(e.toString());
+                           }
+                         },
+                         child: Container(
+                             padding: EdgeInsets.all(10),
+                           decoration: BoxDecoration(
+                               color: Colors.grey.withOpacity(0.2),
+                               border: Border.all(color: Colors.black.withOpacity(0.1)),
+                               borderRadius: const BorderRadius.all(Radius.circular(5),)
+                           ),
+                           child: Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Text("Google-Pay/Paytm/PhonePe",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
+                               Icon(Icons.qr_code_scanner_rounded,color: Colors.red,)
+                             ],
+                           )
                          ),
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Text("Google-Pay/Paytm/PhonePe",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
-                             Icon(Icons.qr_code_scanner_rounded,color: Colors.red,)
-                           ],
-                         )
                        ),
                        SizedBox(height: 10,),
-                       Container(
-                           padding: EdgeInsets.all(10),
-                         decoration: BoxDecoration(
-                             color: Colors.grey.withOpacity(0.2),
-                             border: Border.all(color: Colors.black.withOpacity(0.1)),
-                             borderRadius: const BorderRadius.all(Radius.circular(5),)
+                       GestureDetector(
+                         onTap: (){
+
+                         },
+                         child: Container(
+                             padding: EdgeInsets.all(10),
+                           decoration: BoxDecoration(
+                               color: Colors.grey.withOpacity(0.2),
+                               border: Border.all(color: Colors.black.withOpacity(0.1)),
+                               borderRadius: const BorderRadius.all(Radius.circular(5),)
+                           ),
+                           child: Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Text("Cash on Delivery",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
+                               Icon(Icons.currency_rupee_outlined,color: Colors.red,)
+                             ],
+                           )
                          ),
-                         child: Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           children: [
-                             Text("Cash on Delivery",style: GoogleFonts.roboto(fontSize: 18,color: Colors.blue,),),
-                             Icon(Icons.currency_rupee_outlined,color: Colors.red,)
-                           ],
-                         )
                        ),
                      ],
                    ),
@@ -180,4 +283,21 @@ class _PaymentPageState extends State<PaymentPage> {
       ),
     );
   }
+  void _handlePaymentSuccess(PaymentSuccessResponse response){
+    showSnakbar(context, Colors.green, "Payment Successful Placing your order");
+    placeOrder();
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response){
+    showSnakbar(context, Colors.red, "${response.code} ${response.message}");
+  }
+  void _handleExternalWallet(ExternalWalletResponse response){
+    showSnakbar(context, Colors.blue, "${response.walletName} ");
+  }
+
+
+
+
+
+
 }

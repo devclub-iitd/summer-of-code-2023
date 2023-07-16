@@ -38,10 +38,12 @@ class _AuthPageState extends State<AuthPage> {
         if(value){
           Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
               builder: (context) =>  const HomePage()), (Route route) => false);
+        }else{
+          setState(() {
+            isloading=false;
+          });
         }
-        setState(() {
-          isloading=false;
-        });
+
       });
     }
 
@@ -236,8 +238,8 @@ class _AuthPageState extends State<AuthPage> {
                                         ),
                                       ),
                                       validator: (val){
-                                        if(val!.isEmpty){
-                                          return "enter password";
+                                        if(val!.length<7){
+                                          return "password must be more than 6 characters long";
                                         }else{
                                           return null;
                                         }

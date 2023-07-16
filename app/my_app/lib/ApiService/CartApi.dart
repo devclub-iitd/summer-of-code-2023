@@ -23,7 +23,6 @@ class CartApiService{
           Map<String,dynamic> json=jsonDecode(response.body)[i]["product"];
           int qty=jsonDecode(response.body)[i]['quantity'];
           AddedProduct addedProduct=AddedProduct.fromJson(json);
-
           price+=qty*(int.parse(addedProduct.price.split(".")[0]).toInt());
           cartLength+=qty;
           CartItem cartItem=CartItem(addedProduct, qty);

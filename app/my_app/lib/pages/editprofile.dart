@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/ApiService/authApi.dart';
 import 'package:my_app/Utils/widgets.dart';
+import 'package:my_app/pages/profilePicture.dart';
 import 'package:provider/provider.dart';
 
 import '../Models/user.dart';
@@ -68,6 +69,8 @@ class _EditProfileState extends State<EditProfile> {
       name=user.name;
       phone=user.phone;
     });
+
+    apiService.authorizedUser(email: user.email, context: context);
   }
 
 
@@ -145,12 +148,17 @@ class _EditProfileState extends State<EditProfile> {
               const SizedBox(height: 15,),
               Stack(
                 children: [
-                  CircleAvatar(
-                    radius: 75,
-                    child: profile(),
+                  GestureDetector(
+                    onTap: (){
+                      nextScreen(context,ProfileImage());
+                    },
+                    child: CircleAvatar(
+                      radius: 75,
+                      child: profile(),
+                    ),
                   ),
                   Positioned(
-                    left: 90,
+                    left: 110,
                     top: 100,
                     child: GestureDetector(
                       onTap: (){
@@ -309,7 +317,6 @@ class _EditProfileState extends State<EditProfile> {
                       decoration:  const InputDecoration(
                           border: InputBorder.none,
                           prefixIcon: Icon(Icons.lock,color:Color(0xff2E4237) ,),
-
 
                       ),
                       initialValue: user.phone,

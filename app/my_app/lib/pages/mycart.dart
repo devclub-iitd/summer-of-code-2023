@@ -50,6 +50,7 @@ class _MyCartState extends State<MyCart> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar:CheckOut() ,
       appBar: AppBar(
         flexibleSpace:Padding(
@@ -57,21 +58,10 @@ class _MyCartState extends State<MyCart> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                onTap:(){
-                  Navigator.pop(context);
-                },
-                child: Card(
-                  elevation: 10,color: Colors.grey,
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    child: const Icon(Icons.arrow_back_ios),
-                  ),
-                ),
-              ),
-              Text("My Cart",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+
+              SizedBox(width: 1,
+              height: 1,),
+              Text("My Cart",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 22),),
               GestureDetector(
                 onTap: (){
                   nextScreen(context, const SearchPage());
@@ -111,35 +101,44 @@ class _MyCartState extends State<MyCart> {
     final cl=context.watch<ProductProvider>().cartLength;
     return isLoading?const Center(child: CircularProgressIndicator(color: Colors.grey,)):list.isEmpty?
     Container(
-      child: Column(
-        children: [
-          Text("Cart is empty",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 23),),
-          const SizedBox(height: 20,),
-          const Text("Let's find something special for you",style:TextStyle(fontSize: 20,color: Colors.grey),),
-          const SizedBox(height: 25,),
-          GestureDetector(
-            onTap: (){
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                  builder: (context) =>  const HomePage()), (Route route) => false);
-            },
-            child: Container(
-              width: 250,
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              decoration: const BoxDecoration(
-                  gradient:LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.black,Colors.black45],),
-                  borderRadius: BorderRadius.all(Radius.circular(15))
+      child: Center(
+        child: Column(
+          children: [
+            Container(
+              height: 140,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage("assets/e1.jpg"))
               ),
-              height: 50,
-              child: const Center(
-                child: Text("start Shopping",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 20,),
+            Text("Cart is empty",style: GoogleFonts.roboto(fontWeight: FontWeight.w500,fontSize: 23),),
+            const SizedBox(height: 20,),
+            const Text("Let's find something special for you",style:TextStyle(fontSize: 20,color: Colors.grey),),
+            const SizedBox(height: 25,),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                    builder: (context) =>  const HomePage()), (Route route) => false);
+              },
+              child: Container(
+                width: 250,
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                decoration: const BoxDecoration(
+                    gradient:LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.black,Colors.black45],),
+                    borderRadius: BorderRadius.all(Radius.circular(15))
+                ),
+                height: 50,
+                child: const Center(
+                  child: Text("start Shopping",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     )
         :SizedBox(

@@ -69,22 +69,9 @@ class _AddProductState extends State<AddProduct> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                onTap:(){
-                  Navigator.pop(context);
-                },
-                child: Card(
-                  elevation: 10,
-                  color: Colors.grey,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    child: Icon(Icons.arrow_back_ios),
-                  ),
-                ),
-              ),
-              Text("Add Product",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+              SizedBox(width: 1,
+                height: 1,),
+              Text("Add Product",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 22),),
               GestureDetector(
                 onTap: (){
                   nextScreen(context, SearchPage());

@@ -1,6 +1,8 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/orderpage.dart';
 import 'package:my_app/providers/userProvider.dart';
@@ -21,6 +23,7 @@ class _MyOrdersState extends State<MyOrders> {
   OrderApi orderApi=OrderApi();
   bool isLoading=true;
 
+
   getOrders(String email){
     orderApi.getMyOrders(email, context).then((value){
       list=value;
@@ -30,6 +33,12 @@ class _MyOrdersState extends State<MyOrders> {
       });
 
     });
+  }
+
+  @override
+  void initState() {
+    getOrders(FirebaseAuth.instance.currentUser!.email!);
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
@@ -73,11 +82,14 @@ class _MyOrdersState extends State<MyOrders> {
         ),
         elevation: 0,
       ),
-      body: isLoading?const Center(child: CircularProgressIndicator(color: Colors.grey,),):Column(
+      body: isLoading?const Center(child: CircularProgressIndicator(color: Colors.grey,),)
+          :(list.isNotEmpty)?Column(
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: ListView.builder(
+              shrinkWrap: true,
+                itemCount: list.length,
                 itemBuilder: (context,i){
                   final order=list[i];
                   int items=0;
@@ -88,37 +100,55 @@ class _MyOrdersState extends State<MyOrders> {
                     onTap: (){
                       nextScreen(context, OrderDetailPage(order: order));
                     },
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.2),
-                        borderRadius: BorderRadius.all(Radius.circular(15))
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height:50,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(image: NetworkImage(order.products[0].image))
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Container(
+                        height: 90,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15))
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              height:70,
+                              width: 70,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(image: NetworkImage(order.products[0].image))
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 15,),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(order.id,style: TextStyle(color:Colors.blue),),
-                              Text("Total price- ${order.totalPrice.toString()}"),
-                              Text("$items items "),
+                            SizedBox(width: 15,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(order.id,style: TextStyle(color:Colors.blue),),
+                                Row(
+                                  children: [
+                                    Text("Rs.  ${order.totalPrice.toString()}"),
+                                  ],
+                                ),
+                                Text("$items items "),
+                                Text( DateFormat.yMMMEd().format(DateTime.fromMillisecondsSinceEpoch(order.orderedAt)))
 
-                            ],
-                          )
-                        ],
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );
             }),
           )
         ],
+      ):Center(
+        child: Column(
+          children: [
+            SizedBox(height: 20,),
+            Container(height: 200,
+            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/e2.jpg"))),),
+            SizedBox(height: 20,),
+            Text("No orders placed",style: TextStyle(color: Colors.red,fontWeight: FontWeight.w500),),
+          ],
+        ),
       ),
     );
   }

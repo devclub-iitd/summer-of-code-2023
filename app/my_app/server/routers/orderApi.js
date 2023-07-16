@@ -37,8 +37,6 @@ router.post("/api/order-from-cart",async (req,res)=>{
         res.status(200).json(order);
 
 
-
-
     } catch (error) {
         res.status(500).json({error:error.message});
     }
@@ -88,4 +86,5 @@ router.get("/api/my-orders/:userId",async (req,res)=>{
         res.status(500).json({error:error.message});
     }
 })
+module.exports=router;
 

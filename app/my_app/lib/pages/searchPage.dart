@@ -56,7 +56,7 @@ class _SearchPageState extends State<SearchPage> {
                   children: [
                     GestureDetector(
                       onTap:(){
-                        Navigator.pop(context);
+                        Navigator.pop(context,true);
                       },
                       child: Card(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
