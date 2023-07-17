@@ -2,16 +2,86 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+
+Future<Album> fetchAlbum() async {
+  final response = await http
+      .get(Uri.parse('https://marketplace-1-b3203472.deta.app/search/featured'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Album.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+class Album {
+  final String id;
+  final String title;
+  final String category;
+  final int price;
+  final String location;
+  final String description;
+  final bool isNegotiable;
+  final bool isFeatured;
+  final bool isPromoted;
+
+  const Album({
+    required this.id,
+    required this.title,
+    required this.category ,
+    required this.price ,
+    required this.location ,
+    required this.description ,
+    required this.isNegotiable ,
+    required this.isFeatured ,
+    required this.isPromoted ,
+  });
+//continue here: change map to list.....
+//Because our sources are of list type rather than map type...
+  factory Album.fromJson(List<dynamic> json) {
+    return Album(
+      id: json['_id'],
+      title: json['title'],
+      category: json['category'],
+      price: json['price'],
+      location: json['location'],
+      description: json['description'],
+      isNegotiable: json['isNegotiable'],
+      isFeatured: json['isFeatured'],
+      isPromoted: json['isPromoted'],
+    );
+  }
+}
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late Future<Album> futureAlbum;
+
+  @override
+  void initState() {
+    super.initState();
+    futureAlbum = fetchAlbum();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
@@ -20,7 +90,27 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         ),
-        home: MyHomePage(),
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Fetch Data Example'),
+          ),
+          body: Center(
+            child: FutureBuilder<Album>(
+              future: futureAlbum,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(snapshot.data!.title);
+                } else if (snapshot.hasError) {
+                  print('cannot fetch data');
+                  return MyHomePage();
+                }
+
+                // By default, show a loading spinner.
+                return const CircularProgressIndicator();
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
