@@ -49,6 +49,8 @@ class _FirstPageState extends State<FirstPage> {
     const Product("Men's Trousers", "", "Min 70% off", "https://m.media-amazon.com/images/I/71wL-coI9aL._AC_UL600_FMwebp_QL65_.jpg", "",''),
     const Product("Deals on Red Tape", "", "Upto 80% off", "https://m.media-amazon.com/images/I/31nQtukA3bL._AC_SY200_.jpg", "",'')];
 
+  List sponsors=["from Rs 14,990","Just Rs. 12,999","Rs. 1199","Just Rs 1099","From Rs. 7999"];
+
   @override
   void initState() {
     super.initState();
@@ -77,6 +79,8 @@ class _FirstPageState extends State<FirstPage> {
       });
     });
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -336,44 +340,45 @@ class _FirstPageState extends State<FirstPage> {
                               int i=myProducts.length-index-1;
                               return Card(
                                 elevation: 5,
-                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                                 child: GestureDetector(
                                   onTap: (){
                                     nextScreen(context, ProductDescription(product: myProducts[i], category: myProducts[i].category,isMYProduct: true,));
                                   },
-                                  child: Container(
-                                    child: Column(
-                                      children: [
-                                        Container(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                        child: Container(
                                           height: 141,
+
                                           decoration: BoxDecoration(
-                                              borderRadius:const BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
+                                              borderRadius:const BorderRadius.only(topLeft:Radius.circular(15),topRight: Radius.circular(15)) ,
                                               color: Colors.white,
                                               image: DecorationImage(image: NetworkImage(myProducts[i].image),fit: BoxFit.contain)
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 8.0),
-                                          child: Row(
-                                            children: [
-                                              Text(myProducts[i].title.length>20?myProducts[i].title.substring(0,20):myProducts[i].title,style: const TextStyle(fontWeight: FontWeight.w500),),
-                                            ],
-                                          ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(myProducts[i].title.length>20?myProducts[i].title.substring(0,20):myProducts[i].title,style: const TextStyle(fontWeight: FontWeight.w500),),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 8.0,right: 5),
-                                          child: Row(
-                                            children: [
-                                              Text("Rs."+myProducts[i].price,style: const TextStyle(color: Colors.blue),),
-                                              Expanded(child: Container()),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 8.0,right: 5),
+                                        child: Row(
+                                          children: [
+                                            Text("Rs."+myProducts[i].price,style: const TextStyle(color: Colors.blue),),
+                                            Expanded(child: Container()),
 
-                                            ],
-                                          ),
-                                        )
+                                          ],
+                                        ),
+                                      )
 
-                                      ],
-                                    ),
-
+                                    ],
                                   ),
                                 ),
                               );
@@ -431,6 +436,41 @@ class _FirstPageState extends State<FirstPage> {
                                         Center(child: Text(product["category"],style: TextStyle(color: Colors.blueAccent,fontSize: 18),))
                                       ],
                                     ),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            const Text("Sponsored" ,style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
+                            Expanded(child: Container()),
+                          ],
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Container(
+                          height:200,
+
+                          child: ListView.builder(
+                              itemCount: constants.sponsored.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context,i){
+                                var img=constants.sponsored[i];
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Container(
+                                    height: 200,
+                                    width: MediaQuery.of(context).size.width*0.85,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(image: NetworkImage(img),fit: BoxFit.contain)
+                                    ),
+
                                   ),
                                 );
                               }),

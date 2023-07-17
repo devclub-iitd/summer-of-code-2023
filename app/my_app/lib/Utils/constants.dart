@@ -10,4 +10,9 @@ final List laptop=["https://images-eu.ssl-images-amazon.com/images/G/31/img22/La
 "https://images-eu.ssl-images-amazon.com/images/G/31/img22/Laptops_PD23/Dell.2_Platinum_PC_banners.jpg",
 "https://images-eu.ssl-images-amazon.com/images/G/31/img22/Laptops_PD23/Ultimus_Platinum_PC_banners.jpg",
 "https://images-eu.ssl-images-amazon.com/images/G/31/img22/Laptops_PD23/Intel_Platinum_PC_Herotatar_1500x300.jpg"];
+
+ List sponsored=["https://m.media-amazon.com/images/G/31/img21/Wireless/tsabikhi/Narzo60-BAU/D85283799_Launch_catpage_1400x800._CB599884214_.jpg","https://m.media-amazon.com/images/G/31/img21/Wireless/Shreyansh/MayART/EX/D86464689_WLD_BAU_MotorolaKV_Combined_1400x800._CB599894134_.jpg",
+     "https://m.media-amazon.com/images/G/31/img21/Wireless/Madhav/July/itel/D89401413_Launch_catpage_1400x800._CB600214720_.jpg","https://m.media-amazon.com/images/G/31/img23/Wireless/Xiaomi/RedmiA2/GW/July/17thjluy/D81179785_INWLD_Redmi_A2_NewLaunch_catpage_1400x800._CB599885788_.jpg",
+     "https://m.media-amazon.com/images/G/31/tiyesum/iQOONeo7Pro/17July/D84645784_1400x800._CB599896248_.jpg"];
 }
+
