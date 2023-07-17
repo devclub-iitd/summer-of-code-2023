@@ -52,7 +52,7 @@ def add_product(request):
     if(not request.user.is_authenticated):
         return redirect('login')
     if(request.method=='POST'):
-        product=Product(name=request.POST.get("name"),description=request.POST.get("description"),price=request.POST.get("price"))
+        product=Product(name=request.POST.get("name"),description=request.POST.get("description"),price=request.POST.get("price"),creator=request.user.id,buyers=[])
         product.save()
         return redirect('add_product')
     return render(request,'add_product.html',{})
