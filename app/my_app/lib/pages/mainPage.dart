@@ -39,6 +39,7 @@ class _FirstPageState extends State<FirstPage> {
   List<AddedProduct> rec=[];
   CartApiService cartApiService=CartApiService();
   Constants constants=Constants();
+  List<Map<String,dynamic>> list=[];
 
   final PageController controller=PageController(
   );
@@ -382,6 +383,17 @@ class _FirstPageState extends State<FirstPage> {
                         ),
                       ),
                       const SizedBox(height: 15,),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            const Text("Deals of the Day",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
+                            Expanded(child: Container()),
+                            const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey,fontSize: 18),),
+                          ],
+                        ),
+                      ),
+
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(

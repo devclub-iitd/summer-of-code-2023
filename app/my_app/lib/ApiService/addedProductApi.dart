@@ -13,16 +13,26 @@ import '../homepage.dart';
 class MyProductApi{
   Constants constants=Constants();
   Future<List<AddedProduct>> getMyProducts(String id)async{
-    List<Map<String,dynamic>> list=[];
+    List<AddedProduct> list=[];
     final response=await http.get(Uri.parse("${constants.apiUri}/api/products/$id"));
     if(response.statusCode==200){
       final parsed=jsonDecode(response.body).cast<Map<String,dynamic>>();
       return parsed.map<AddedProduct>((json)=>
           AddedProduct.fromJson(json)).toList();
     }else{
-      return [];
+      return list;
     }
 
+  }
+  Future< List<Map<String,dynamic>>> getRecentlyViewedStores(String email) async{
+    List<Map<String,dynamic>> list=[];
+    final response=await http.get(Uri.parse("${constants.apiUri}/api/s-images/$email"));
+
+    if(response.statusCode==200){
+      return jsonDecode(response.body);
+    }else{
+      return  list;
+    }
   }
 
   Future<List<AddedProduct>> getRecommended(String id)async{
