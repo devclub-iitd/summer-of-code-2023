@@ -33,6 +33,19 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController controller_phone=TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+
+
+  @override
+  void initState() {
+    super.initState();
+    final user=context.read<UserProvider>().user;
+    setState(() {
+      name=user.name;
+      phone=user.phone;
+    });
+
+    apiService.authorizedUser(email: user.email, context: context);
+  }
   updateProfile(BuildContext context){
     if(_image!=null){
       showSnakbar(context, Colors.blue, "Updating details ..please wait");
@@ -59,18 +72,6 @@ class _EditProfileState extends State<EditProfile> {
 
       });
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    final user=context.read<UserProvider>().user;
-    setState(() {
-      name=user.name;
-      phone=user.phone;
-    });
-
-    apiService.authorizedUser(email: user.email, context: context);
   }
 
 

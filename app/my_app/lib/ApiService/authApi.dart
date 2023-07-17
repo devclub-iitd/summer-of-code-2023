@@ -57,4 +57,13 @@ class AuthApi{
     final urlDownload=await snapshot.ref.getDownloadURL();
     return urlDownload;
   }
+  
+  productImage(File? file) async {
+    FirebaseStorage _storage = FirebaseStorage.instance;
+    final storgeRef=FirebaseStorage.instance.ref().child("product_pics").child(FirebaseAuth.instance.currentUser!.uid).child(DateTime.now().microsecondsSinceEpoch.toString());
+    UploadTask uploadTask = storgeRef.putFile(file!);
+    final snapshot=await uploadTask.whenComplete((){});
+    final urlDownload=await snapshot.ref.getDownloadURL();
+    return urlDownload;
+  }
 }

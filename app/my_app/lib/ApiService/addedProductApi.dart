@@ -110,7 +110,7 @@ class MyProductApi{
   }
 
 
-  void addProduct({
+  Future<bool> addProduct({
     required BuildContext context,
     required String userId,
     required String title,
@@ -130,14 +130,18 @@ class MyProductApi{
           });
       if (response.statusCode==200){
         showSnakbar(context,Colors.green, "Product Added");
+        return true;
 
       }else if(response.statusCode==400){
         showSnakbar(context, Colors.red, jsonDecode(response.body)["msg"]);
+        return false;
       }else{
         showSnakbar(context, Colors.red, jsonDecode(response.body)['error']);
+        return false;
       }
     }catch(e){
       showSnakbar(context, Colors.red, e.toString());
+      return false;
     }
 
   }

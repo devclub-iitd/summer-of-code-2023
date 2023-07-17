@@ -1,12 +1,16 @@
 
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:my_app/Models/AddedProduct.dart';
 import 'package:my_app/pages/searchPage.dart';
 import '../ApiService/addedProductApi.dart';
+import '../ApiService/api.dart';
+import '../ApiService/authApi.dart';
 import '../Utils/widgets.dart';
 
 class AddProduct extends StatefulWidget {
@@ -28,6 +32,12 @@ class _AddProductState extends State<AddProduct> {
   MyProductApi apiService=MyProductApi();
   bool isSwitched=true;
   bool isLoading=false;
+
+  ImagePicker picker =ImagePicker();
+  File? _image;
+  late XFile pickedimage;
+  ApiService api=ApiService();
+  AuthApi authApi=AuthApi();
   void toggleSwitch(bool value) {
     if (isSwitched == false) {
       setState(() {
@@ -42,23 +52,54 @@ class _AddProductState extends State<AddProduct> {
   }
 
   void add() {
-    if (formKey.currentState!.validate()) {
-      setState(() {
-        isLoading = true;
-      });
-      apiService.addProduct(context: context,
-          userId: FirebaseAuth.instance.currentUser!.email!,
-          title: name,
-          category: category,
-          desc: description,
-          price: price,
-          location: location,
-          isNegotiable: isSwitched,
-          image: imageAddress);
-      isLoading = false;
-      formKey.currentState!.reset();
-    }
+      if (formKey.currentState!.validate()) {
+        setState(() {
+          isLoading = true;
+        });
+        if(_image!=null){
+          authApi.productImage(_image).then((uri){
+            apiService.addProduct(context: context,
+                userId: FirebaseAuth.instance.currentUser!.email!,
+                title: name,
+                category: category,
+                desc: description,
+                price: price,
+                location: location,
+                isNegotiable: isSwitched,
+                image: uri).then((value){
+              isLoading = false;
+              formKey.currentState!.reset();
+              _image=null;
+              setState(() {
+              });
+            });
+
+          });
+
+        } else{
+          apiService.addProduct(context: context,
+              userId: FirebaseAuth.instance.currentUser!.email!,
+              title: name,
+              category: category,
+              desc: description,
+              price: price,
+              location: location,
+              isNegotiable: isSwitched,
+              image: imageAddress).then((value){
+            isLoading = false;
+            formKey.currentState!.reset();
+            _image=null;
+            setState(() {
+            });
+          });
+
+        }
+
+      }
+
+
   }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -96,7 +137,18 @@ class _AddProductState extends State<AddProduct> {
           key: formKey,
           child: Column(
             children: [
-              SizedBox(height: 10,),
+
+              _image!=null?Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Container(
+                  height: 150,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    border:Border.all(color: Colors.grey),
+                    image: DecorationImage(image: FileImage(_image!,),fit: BoxFit.cover)
+                  ),
+                ),
+              ):SizedBox(height: 10,),
               Align(
                 alignment: Alignment.topLeft,
                   child: Padding(
@@ -222,36 +274,134 @@ class _AddProductState extends State<AddProduct> {
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text("Image Address",style: GoogleFonts.roboto(fontSize: 20),),
+                    child: Row(
+                      children: [
+                        Text("Image ",style: GoogleFonts.roboto(fontSize: 20),),
+                        Expanded(child: Container()),
+                        InkWell(
+                          onTap: (){
+                            showModalBottomSheet<void>(context: context,
+                                isScrollControlled: true,
+                                isDismissible: true,
+                                enableDrag: true,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20)
+                                    )
+                                ),
+                                builder:(BuildContext context){
+                                  return Container(
+                                    height: 180,
+                                    child: Column(
+                                        children:[
+                                          const Text("Choose an option ):",style: TextStyle(color:Color(0xff2E4237),fontSize: 25,fontWeight: FontWeight.bold),),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              GestureDetector(
+                                                onTap:()async{
+                                                  Navigator.pop(context);
+                                                  pickedimage = (await picker.pickImage(source: ImageSource.gallery))!;
+                                                  setState(() {
+                                                    if(pickedimage!=null){
+                                                      _image=File(pickedimage!.path);
+                                                    }
+                                                  });
+                                                },
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(left: 25,top: 20,bottom: 10,right: 20),
+                                                  padding: const EdgeInsets.only(bottom: 5),
+                                                  height: 120,
+                                                  width: 120,
+                                                  decoration: const BoxDecoration(
+                                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                    color: Color(0xff488381),
+                                                  ),
+                                                  child: Stack(
+                                                      children: const [
+                                                        Center(child: Icon(Icons.browse_gallery,size: 50,color: Colors.white,)),
+                                                        Align(
+                                                            alignment: Alignment.bottomCenter,
+                                                            child: Text("Gallery",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),))
+                                                      ]),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap:()async{
+                                                  Navigator.pop(context);
+                                                  pickedimage = (await picker.pickImage(source: ImageSource.camera))!;
+                                                  setState(() {
+                                                    if(pickedimage!=null){
+                                                      _image=File(pickedimage.path);
+                                                    }
+                                                  });
+                                                },
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(left: 15,top: 20,bottom: 10,right: 20),
+                                                  padding: const EdgeInsets.only(bottom: 5),
+                                                  height: 120,
+                                                  width: 120,
+                                                  decoration: const BoxDecoration(
+                                                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                    color: Color(0xff488381),
+                                                  ),
+                                                  child: Stack(
+                                                      children: const [
+                                                        Center(child: Icon(Icons.camera,size: 50,color: Colors.white,)),
+                                                        Align(
+                                                            alignment: Alignment.bottomCenter,
+                                                            child: Text("Camera",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),))
+                                                      ]),
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
+
+                                        ]
+                                    ),
+                                  );
+                                });
+
+                          },
+                            child: Icon(Icons.add,size: 30,color: Colors.blue,))
+                      ],
+                    ),
                   )),
               SizedBox(height: 10,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      color: Colors.grey.withOpacity(0.2)
-                  ),
-                  child: TextFormField(
-                    initialValue: widget.addedProduct==null?null:widget.addedProduct!.image,
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    decoration: textInputdec.copyWith(
-                      hintText: " ",
-                      hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
-                      border:InputBorder.none,),
-                    onChanged:(val){
-                      setState(() {
-                        imageAddress=val;
-                      });
-                    },
-                    validator: (val){
-                      if(val!.isEmpty){
-                        return "name is mandatory";
-                      }else{
-                        return null;
-                      }
-                    },
+              Visibility(
+                visible: _image==null,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        color: Colors.grey.withOpacity(0.2)
+                    ),
+                    child: TextFormField(
+                      initialValue: widget.addedProduct==null?null:widget.addedProduct!.image,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      decoration: textInputdec.copyWith(
+                        hintText: "enter image address Or upload image manually",
+                        hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
+                        border:InputBorder.none,),
+                      onChanged:(val){
+                        setState(() {
+                          imageAddress=val;
+                        });
+                      },
+                      validator: (val){
+                        if(_image==null){
+                          if(val!.isEmpty){
+                            return "image is mandatory";
+                          }else{
+                            return null;
+                          }
+                        }
+
+                      },
+                    ),
                   ),
                 ),
               ),
