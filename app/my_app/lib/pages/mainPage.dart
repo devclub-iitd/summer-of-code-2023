@@ -40,7 +40,7 @@ class _FirstPageState extends State<FirstPage> {
   List<AddedProduct> rec=[];
   CartApiService cartApiService=CartApiService();
   Constants constants=Constants();
-  List<Map<String,dynamic>> recentlyList=[];
+  List recentlyList=[];
 
   final PageController controller=PageController(
   );
@@ -73,6 +73,7 @@ class _FirstPageState extends State<FirstPage> {
     myProductApi.getRecentlyViewedStores(FirebaseAuth.instance.currentUser!.email!).then((value) {
       setState(() {
         recentlyList=value;
+        isrecentLoading=false;
       });
     });
   }
@@ -403,7 +404,8 @@ class _FirstPageState extends State<FirstPage> {
                       ):recentlyList.isEmpty?SizedBox(height: 5,):Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Container(
-                          height:170,
+                          height:173,
+
                           child: ListView.builder(
                               itemCount: recentlyList.length,
                               scrollDirection: Axis.horizontal,
@@ -411,23 +413,24 @@ class _FirstPageState extends State<FirstPage> {
                                 var product=recentlyList[i];
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        height: 150,
-                                        width: 130,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                                            color: Colors.white,
-                                            image: DecorationImage(image: NetworkImage(product["img"]),fit: BoxFit.contain)
-                                        ),
+                                  child: Container(
+                                    decoration: BoxDecoration(border: Border.all(color: Colors.grey),
+                                      borderRadius: BorderRadius.all(Radius.circular(15)),),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          height: 150,
+                                          width: 130,
+                                          padding: EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(Radius.circular(15)),
+                                              image: DecorationImage(image: NetworkImage(product["img"]),fit: BoxFit.contain)
+                                          ),
 
-                                      ),
-                                      Positioned(
-                                          top:150,
-                                          left: 10,
-                                          child:Center(child: Text(product["category"],style: TextStyle(color: Colors.black),)))
-                                    ],
+                                        ),
+                                        Center(child: Text(product["category"],style: TextStyle(color: Colors.blueAccent,fontSize: 18),))
+                                      ],
+                                    ),
                                   ),
                                 );
                               }),

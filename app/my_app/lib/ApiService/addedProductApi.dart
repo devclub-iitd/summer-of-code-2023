@@ -24,8 +24,8 @@ class MyProductApi{
     }
 
   }
-  Future< List<Map<String,dynamic>>> getRecentlyViewedStores(String email) async{
-    List<Map<String,dynamic>> list=[];
+  Future<List> getRecentlyViewedStores(String email) async{
+    List list=[];
     final response=await http.get(Uri.parse("${constants.apiUri}/api/s-images/$email"));
 
     if(response.statusCode==200){
