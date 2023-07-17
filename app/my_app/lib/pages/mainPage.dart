@@ -35,11 +35,12 @@ class _FirstPageState extends State<FirstPage> {
   bool isloading=true;
   bool ismyProductLoading=true;
   bool isRecLoading=true;
+  bool isrecentLoading=true;
   List<AddedProduct> myProducts=[];
   List<AddedProduct> rec=[];
   CartApiService cartApiService=CartApiService();
   Constants constants=Constants();
-  List<Map<String,dynamic>> list=[];
+  List<Map<String,dynamic>> recentlyList=[];
 
   final PageController controller=PageController(
   );
@@ -69,7 +70,11 @@ class _FirstPageState extends State<FirstPage> {
         isRecLoading=false;
       });
     });
-
+    myProductApi.getRecentlyViewedStores(FirebaseAuth.instance.currentUser!.email!).then((value) {
+      setState(() {
+        recentlyList=value;
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -387,12 +392,48 @@ class _FirstPageState extends State<FirstPage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
                           children: [
-                            const Text("Deals of the Day",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
+                            const Text("Recently viewed stores" ,style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
                             Expanded(child: Container()),
-                            const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey,fontSize: 18),),
                           ],
                         ),
                       ),
+                      isrecentLoading?const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: CircularProgressIndicator(color: Colors.grey,),
+                      ):recentlyList.isEmpty?SizedBox(height: 5,):Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Container(
+                          height:170,
+                          child: ListView.builder(
+                              itemCount: recentlyList.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context,i){
+                                var product=recentlyList[i];
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        height: 150,
+                                        width: 130,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                                            color: Colors.white,
+                                            image: DecorationImage(image: NetworkImage(product["img"]),fit: BoxFit.contain)
+                                        ),
+
+                                      ),
+                                      Positioned(
+                                          top:150,
+                                          left: 10,
+                                          child:Center(child: Text(product["category"],style: TextStyle(color: Colors.black),)))
+                                    ],
+                                  ),
+                                );
+                              }),
+                        ),
+                      ),
+
 
                       Padding(
                         padding: const EdgeInsets.all(10.0),
