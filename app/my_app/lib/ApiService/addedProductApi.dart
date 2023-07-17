@@ -26,6 +26,7 @@ class MyProductApi{
   }
 
   Future<List<AddedProduct>> getRecommended(String id)async{
+    List<AddedProduct>list=[];
     try{
 
       final response=await http.get(Uri.parse("${constants.apiUri}/api/recommended/$id"));
@@ -34,11 +35,11 @@ class MyProductApi{
         return parsed.map<AddedProduct>((json)=>
             AddedProduct.fromJson(json)).toList();
       }else{
-        return [];
+        return list;
       }
     }catch(e){
       print(e.toString());
-      return [];
+      return list;
     }
 
 

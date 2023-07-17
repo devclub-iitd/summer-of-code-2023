@@ -30,14 +30,14 @@ class CartApiService{
         }
         return [list,price,cartLength];
       }else if(response.statusCode==400){
-        return [[],0,0];
+        return [list,0,0];
       }else{
-        return [[],0,0];
+        return [list,0,0];
 
       }
     }catch(e){
       showSnakbar(context, Colors.red, e.toString());
-      return [];
+      return [[],0,0];
     }
 
 

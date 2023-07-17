@@ -149,11 +149,11 @@ class _PaymentPageState extends State<PaymentPage> {
                            var options = {
                              'key': 'rzp_test_lNxhLSjt3K4Aaa',
                              'amount': widget.price *100,
-                             'name': 'Test',
-                             'description': 'T-Shirt',
+                             'name': user.name,
+                             'description': 'Paying for shopping',
                              'prefill': {
-                               'contact': '${user.phone}',
-                               'email': 'aditya7903928568@gmail.com'
+                               'contact': user.phone,
+                               'email': user.email
                              }
                            };
                            try{
@@ -253,7 +253,8 @@ class _PaymentPageState extends State<PaymentPage> {
                        SizedBox(height: 10,),
                        GestureDetector(
                          onTap: (){
-
+                           showSnakbar(context, Colors.green, "Placing your order..when complete you will be redirected to order summary");
+                           placeOrder();
                          },
                          child: Container(
                              padding: EdgeInsets.all(10),
@@ -284,7 +285,7 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
   void _handlePaymentSuccess(PaymentSuccessResponse response){
-    showSnakbar(context, Colors.green, "Payment Successful Placing your order");
+    showSnakbar(context, Colors.green, "Payment Successful, Placing your order..Your payment id is ${response.paymentId}");
     placeOrder();
   }
 
@@ -292,7 +293,7 @@ class _PaymentPageState extends State<PaymentPage> {
     showSnakbar(context, Colors.red, "${response.code} ${response.message}");
   }
   void _handleExternalWallet(ExternalWalletResponse response){
-    showSnakbar(context, Colors.blue, "${response.walletName} ");
+    showSnakbar(context, Colors.blue, "${response.walletName}");
   }
 
 

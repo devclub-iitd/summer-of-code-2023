@@ -44,6 +44,7 @@ class _MyOrdersState extends State<MyOrders> {
   Widget build(BuildContext context) {
     final user=context.watch<UserProvider>().user;
     return  Scaffold(
+      backgroundColor: Colors.white,
       appBar:  AppBar(
         automaticallyImplyLeading: false,
         flexibleSpace:Padding(
@@ -123,11 +124,11 @@ class _MyOrdersState extends State<MyOrders> {
                                 Text(order.id,style: TextStyle(color:Colors.blue),),
                                 Row(
                                   children: [
-                                    Text("Rs.  ${order.totalPrice.toString()}"),
+                                    Text("Rs. ${order.totalPrice.toString()}"),
                                   ],
                                 ),
                                 Text("$items items "),
-                                Text( DateFormat.yMMMEd().format(DateTime.fromMillisecondsSinceEpoch(order.orderedAt)))
+                                Text( DateFormat.yMMMd().format(DateTime.fromMillisecondsSinceEpoch(order.orderedAt)))
 
                               ],
                             )
@@ -146,7 +147,7 @@ class _MyOrdersState extends State<MyOrders> {
             Container(height: 200,
             decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/e2.jpg"))),),
             SizedBox(height: 20,),
-            Text("No orders placed",style: TextStyle(color: Colors.red,fontWeight: FontWeight.w500),),
+            Text("No orders placed",style: TextStyle(color: Colors.red,fontWeight: FontWeight.w500,fontSize: 22),),
           ],
         ),
       ),

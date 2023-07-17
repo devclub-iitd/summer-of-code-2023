@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:my_app/ApiService/CartApi.dart';
 import 'package:my_app/pages/searchPage.dart';
 import 'package:provider/provider.dart';
@@ -90,7 +91,7 @@ class _OrderPageState extends State<OrderDetailPage> {
                   Row(
                     children: [
                       Text('Order Date: ',style: GoogleFonts.roboto(fontSize: 20,fontWeight: FontWeight.w500),),
-                      Text(widget.order.orderedAt.toString(),style: GoogleFonts.roboto(fontSize: 17,),),
+                      Text(DateFormat.yMMMMd().format(DateTime.fromMillisecondsSinceEpoch(widget.order.orderedAt)),style: GoogleFonts.roboto(fontSize: 17,),),
                     ],
                   ),
                   Row(
@@ -112,16 +113,12 @@ class _OrderPageState extends State<OrderDetailPage> {
                     'Purchase Details',
                     style: TextStyle(
                       fontSize: 22,
-                      color: Colors.green,
+                      color: Colors.black45,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black12,
-                      ),
-                    ),
+                  Card(
+
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -169,18 +166,15 @@ class _OrderPageState extends State<OrderDetailPage> {
                     'Tracking',
                     style: TextStyle(
                       fontSize: 22,
-                      color: Colors.green,
+                      color: Colors.black45,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black12,
-                      ),
-                    ),
+                  Card(
+
                     child: Theme(
                       data: ThemeData(
+                        accentColor: Colors.blue,
                           colorScheme: const ColorScheme.light(
                               primary: Colors.blue,
                               secondary: Colors.green,
@@ -188,49 +182,62 @@ class _OrderPageState extends State<OrderDetailPage> {
                           )
                       ),
                       child: Stepper(
-                        currentStep: currentStep,
+                        currentStep: widget.order.status+1,
                         controlsBuilder: (context, details) {
                           return const SizedBox();
                         },
                         steps: [
                           Step(
-                            title: const Text('Pending'),
-                            content: const Text(
-                              'Your order is yet to be delivered',
+                            title:  Row(
+                              children: [
+                                Text('Order Received -',style: TextStyle(color: Colors.green),),
+                                Text(' ${DateFormat.yMMMMd().format(DateTime.fromMillisecondsSinceEpoch(widget.order.orderedAt))}',style: TextStyle(color: Colors.green),),
+                              ],
+                            ),
+                            content:  Text(
+                              DateFormat.yMMMMd().format(DateTime.fromMillisecondsSinceEpoch(widget.order.orderedAt)),
                               style: TextStyle(color: Colors.blue),
                             ),
-                            isActive: currentStep > 0,
-                            state: currentStep > 0
-                                ? StepState.complete
-                                : StepState.editing,
+                            isActive: widget.order.status > 0,
+                            state: StepState.complete,
                           ),
                           Step(
-                            title: const Text('Completed'),
+                            title: const Text('Order confirmed'),
                             content: const Text(
-                              'Your order has been delivered, you are yet to sign.',
+                              'Your order is being confirmed',
                             ),
-                            isActive: currentStep > 1,
-                            state: currentStep > 1
+                            isActive: widget.order.status+1 > 1,
+                            state: widget.order.status+1 > 1
                                 ? StepState.complete
                                 : StepState.indexed,
                           ),
                           Step(
-                            title: const Text('Received'),
+                            title: const Text('Shipped'),
                             content: const Text(
-                              'Your order has been delivered and signed by you.',
+                              'Your order has been shipped',
                             ),
-                            isActive: currentStep > 2,
-                            state: currentStep > 2
+                            isActive: widget.order.status+1 > 2,
+                            state: widget.order.status+1 > 2
+                                ? StepState.complete
+                                : StepState.indexed,
+                          ),
+                          Step(
+                            title: const Text('Out for delivery'),
+                            content: const Text(
+                              'Your order is on the way for delivery',
+                            ),
+                            isActive: widget.order.status+1 >= 3,
+                            state: widget.order.status+1 >= 3
                                 ? StepState.complete
                                 : StepState.indexed,
                           ),
                           Step(
                             title: const Text('Delivered'),
                             content: const Text(
-                              'Your order has been delivered and signed by you!',
+                              'Your order has been delivered',
                             ),
-                            isActive: currentStep >= 3,
-                            state: currentStep >= 3
+                            isActive: widget.order.status+1 >= 3,
+                            state: widget.order.status+1 >= 3
                                 ? StepState.complete
                                 : StepState.indexed,
                           ),

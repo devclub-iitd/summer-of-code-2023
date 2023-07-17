@@ -298,7 +298,7 @@ class _FirstPageState extends State<FirstPage> {
                         ),
                       ),
                       const SizedBox(height: 15,),
-                      Padding(
+                      myProducts.isEmpty?SizedBox(height: 5,):Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
                           children: [
@@ -317,7 +317,8 @@ class _FirstPageState extends State<FirstPage> {
                       ismyProductLoading?const Padding(
                         padding: EdgeInsets.all(5.0),
                         child: CircularProgressIndicator(color: Colors.grey,),
-                      ):Container(
+                      ):myProducts.isEmpty?SizedBox(height: 5,):
+                      Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: GridView.builder(
                             itemCount:myProducts.length>4?4:myProducts.length ,
@@ -456,27 +457,24 @@ class _FirstPageState extends State<FirstPage> {
                             }),
                       ),
                       const SizedBox(height: 15,),
-                      Visibility(
-                        visible: !(rec==[]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            children: [
-                              const Text("Suggestions for you",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
-                              Expanded(child: Container()),
-                              const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey,fontSize: 18),),
-                            ],
-                          ),
+                      rec.isEmpty?SizedBox(height: 5,):Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            const Text("Suggestions for you",style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 20),),
+                            Expanded(child: Container()),
+                            const Text("See all",style: TextStyle(fontWeight: FontWeight.normal,color: Colors.grey,fontSize: 18),),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 10,),
                       isRecLoading?const Padding(
                         padding: EdgeInsets.all(5.0),
                         child: CircularProgressIndicator(color: Colors.grey,),
-                      ):Padding(
+                      ):rec.isEmpty?SizedBox(height: 5,):Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Container(
-                          height: rec==[]?1:170,
+                          height:170,
                           child: ListView.builder(
                             itemCount: rec.length,
                               scrollDirection: Axis.horizontal,

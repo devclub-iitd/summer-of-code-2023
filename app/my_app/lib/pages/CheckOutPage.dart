@@ -100,7 +100,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
             ),
             height: 50,
             child:   Center(
-              child: Text("Pay Rs. ${totalPrice() } /-",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+              child: Text("Pay Rs. ${totalPrice()+50-(totalPrice()*0.1).toInt() } /-",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -215,18 +215,18 @@ class _CheckOutPageState extends State<CheckOutPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Discount:",style: TextStyle(fontSize: 18),),
-                      const Text("Rs. 700",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                      const Text("Discount: ",style: TextStyle(fontSize: 18),),
+                       Text("Rs. "+((totalPrice()*0.1).toInt()).toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
 
                     ],
                   ),
                   const SizedBox(height: 10,),
                   Row(
                     children: [
-                      for(int i=0;i<120;i++)
+                      for(int i=0;i<122;i++)
                         i.isEven?Container(
                           width: 3,
-                          height: 1,
+                          height: 2,
                           decoration: BoxDecoration(
                               color: const Color(0xFF839fed),
                               borderRadius: BorderRadius.circular(2)
@@ -244,7 +244,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Total:",style: TextStyle(fontSize: 18),),
-                      Text("Rs. ${totalPrice()+ 50-700}",style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.blue),),
+                      Text("Rs. ${totalPrice()+50-(totalPrice()*0.1).toInt()}",style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w500,color: Colors.blue),),
 
                     ],
                   ),
