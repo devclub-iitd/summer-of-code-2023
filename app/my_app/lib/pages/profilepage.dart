@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
             leading: CircleAvatar(
               radius: 30,
               backgroundColor: Colors.blue,
-              child: profile(),
+              child:profile(),
             ),
             title: Text(user.name,style: GoogleFonts.poppins(fontSize: 23),),
             subtitle: Text(user.email),
@@ -391,7 +391,7 @@ class _ProfilePageState extends State<ProfilePage> {
       return Text(user.name.substring(0,1).toUpperCase(),style: TextStyle(fontSize: 25),);
     }else {
       return ClipOval(
-        child: Image.network(user.image,height: 150,width: 150,fit: BoxFit.cover,),
+        child: user.image.isEmpty?const CircularProgressIndicator():Image.network(user.image,height: 150,width: 150,fit: BoxFit.cover,),
       );
     }
   }

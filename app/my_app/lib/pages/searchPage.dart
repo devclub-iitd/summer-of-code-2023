@@ -41,6 +41,7 @@ class _SearchPageState extends State<SearchPage> {
       });
     });
   }
+  TextEditingController textEditingController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +118,13 @@ class _SearchPageState extends State<SearchPage> {
                     itemBuilder: (context,i){
                   return ListTile(
                     leading: Icon(Icons.history_outlined),
-                    title: Text(suggestion[i]),
+                    title: InkWell(
+                      onTap: (){
+                        setState(() {
+                          textEditingController.text=suggestion[i];
+                        });
+                      },
+                        child: Text(suggestion[i])),
                   );
                 }),
               ),
@@ -173,6 +180,7 @@ class _SearchPageState extends State<SearchPage> {
             color: Colors.grey.withOpacity(0.2)
         ),
         child: TextFormField(
+          controller: textEditingController,
           decoration: textInputdec.copyWith(
             hintText: "half sleeve shirt",
             prefixIcon: const Icon(Icons.search,color: Colors.black,),

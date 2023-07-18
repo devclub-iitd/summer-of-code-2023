@@ -110,20 +110,20 @@ class _AddProductState extends State<AddProduct> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(width: 1,
+              const SizedBox(width: 1,
                 height: 1,),
               Text("Add Product",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 22),),
               GestureDetector(
                 onTap: (){
-                  nextScreen(context, SearchPage());
+                  nextScreen(context, const SearchPage());
                 },
                 child: Card(
                   elevation: 10,color: Colors.grey,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
                     width: 50,
-                    child: Icon(Icons.search_outlined),
+                    child: const Icon(Icons.search_outlined),
                   ),
                 ),
               ),
@@ -139,7 +139,7 @@ class _AddProductState extends State<AddProduct> {
             children: [
 
               _image!=null?Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Container(
                   height: 150,
                   width: 120,
@@ -148,19 +148,19 @@ class _AddProductState extends State<AddProduct> {
                     image: DecorationImage(image: FileImage(_image!,),fit: BoxFit.cover)
                   ),
                 ),
-              ):SizedBox(height: 10,),
+              ):const SizedBox(height: 10,),
               Align(
                 alignment: Alignment.topLeft,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text("Title",style: GoogleFonts.roboto(fontSize: 20),),
                   )),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
                     color: Colors.grey.withOpacity(0.2)
                   ),
                   child: TextFormField(
@@ -184,7 +184,7 @@ class _AddProductState extends State<AddProduct> {
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Padding(
 
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -198,10 +198,10 @@ class _AddProductState extends State<AddProduct> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Category",style: GoogleFonts.roboto(fontSize: 20),),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                                borderRadius: const BorderRadius.all(Radius.circular(15)),
                                 color: Colors.grey.withOpacity(0.2)
                             ),
                             child: TextFormField(
@@ -235,10 +235,10 @@ class _AddProductState extends State<AddProduct> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Price",style: GoogleFonts.roboto(fontSize: 20),),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                                borderRadius: const BorderRadius.all(Radius.circular(15)),
                                 color: Colors.grey.withOpacity(0.2)
                             ),
                             child: TextFormField(
@@ -269,7 +269,7 @@ class _AddProductState extends State<AddProduct> {
                   ],
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
@@ -364,18 +364,18 @@ class _AddProductState extends State<AddProduct> {
                                 });
 
                           },
-                            child: Icon(Icons.add,size: 30,color: Colors.blue,))
+                            child: const Icon(Icons.add,size: 30,color: Colors.blue,))
                       ],
                     ),
                   )),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Visibility(
                 visible: _image==null,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Container(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderRadius: const BorderRadius.all(Radius.circular(15)),
                         color: Colors.grey.withOpacity(0.2)
                     ),
                     child: TextFormField(
@@ -405,19 +405,19 @@ class _AddProductState extends State<AddProduct> {
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text("Location ",style: GoogleFonts.roboto(fontSize: 20),),
                   )),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       color: Colors.grey.withOpacity(0.2)
                   ),
                   child: TextFormField(
@@ -443,21 +443,21 @@ class _AddProductState extends State<AddProduct> {
                   ),
                 ),
               ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text("Description",style: GoogleFonts.roboto(fontSize: 20),),
                   )),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
                   height: 150,
 
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       color: Colors.grey.withOpacity(0.2)
                   ),
                   child: Center(
@@ -485,7 +485,7 @@ class _AddProductState extends State<AddProduct> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
@@ -496,7 +496,7 @@ class _AddProductState extends State<AddProduct> {
                       scale: 1.5,
                       child: Switch(value: isSwitched,
                         onChanged: toggleSwitch,
-                        activeColor: Color(0xff77b493),
+                        activeColor: const Color(0xff77b493),
                       ),
                     )
                   ],
@@ -526,7 +526,7 @@ class _AddProductState extends State<AddProduct> {
               borderRadius: BorderRadius.all(Radius.circular(15))
           ),
           child:  Center(
-            child: Text(isLoading? "Adding Product" :"Add Product",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+            child: Text(isLoading? "Adding Product" :"Add Product",style: const TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
             ),
           ),
         ),

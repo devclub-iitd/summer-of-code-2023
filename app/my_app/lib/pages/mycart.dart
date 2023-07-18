@@ -99,7 +99,7 @@ class _MyCartState extends State<MyCart> {
 
   Widget CartProducts(){
     final cl=context.watch<ProductProvider>().cartLength;
-    return isLoading?const Center(child: CircularProgressIndicator(color: Colors.grey,)):list.isEmpty?
+    return isLoading?const Center(child: CircularProgressIndicator(color: Colors.grey,)):cl==0?
     Container(
       child: Center(
         child: Column(
