@@ -20,7 +20,7 @@ function MainContent() {
         <button onClick={handleIncrement}>Increment</button>
       </section>
     </main>
-  );
+  );    
 }
 
 export default MainContent;
