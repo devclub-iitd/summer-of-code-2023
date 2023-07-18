@@ -221,11 +221,11 @@ class _PaymentPageState extends State<PaymentPage> {
                            var options = {
                              'key': 'rzp_test_lNxhLSjt3K4Aaa',
                              'amount': widget.price *100,
-                             'name': 'Test',
-                             'description': 'T-Shirt',
+                             'name': user.name,
+                             'description': "Payment for shopping",
                              'prefill': {
-                               'contact': '9341246568',
-                               'email': 'aditya7903928568@gmail.com'
+                               'contact': user.phone,
+                               'email': user.email
                              }
                            };
                            try{
@@ -290,15 +290,10 @@ class _PaymentPageState extends State<PaymentPage> {
   }
 
   void _handlePaymentError(PaymentFailureResponse response){
-    showSnakbar(context, Colors.red, "${response.code} ${response.message}");
+    showSnakbar(context, Colors.red, " ${response.message}");
   }
   void _handleExternalWallet(ExternalWalletResponse response){
     showSnakbar(context, Colors.blue, "${response.walletName}");
   }
-
-
-
-
-
 
 }
