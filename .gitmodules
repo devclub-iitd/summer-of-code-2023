@@ -4,3 +4,6 @@
 [submodule "mydjangoproject"]
 	path = backend/mydjangoproject
 	url = https://github.com/17vali/mydjangoproject.git
+[submodule "marketplace-chatbot"]
+	path = machine-learning/week4/marketplace-chatbot
+	url = https://github.com/17vali/marketplace-chatbot.git
