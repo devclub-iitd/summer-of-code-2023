@@ -1,11 +1,13 @@
 
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/ApiService/ordersApi.dart';
+import 'package:my_app/Models/AddedProduct.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/orderpage.dart';
 import 'package:my_app/providers/userProvider.dart';
@@ -14,7 +16,9 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentPage extends StatefulWidget {
   int price;
-   PaymentPage({Key? key,required this.price}) : super(key: key);
+  AddedProduct? product;
+  bool? fromCart;
+   PaymentPage({Key? key,required this.price,this.fromCart,this.product}) : super(key: key);
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
@@ -49,10 +53,18 @@ class _PaymentPageState extends State<PaymentPage> {
   OrderApi api=OrderApi();
   placeOrder(){
     final user=context.read<UserProvider>().user;
-    api.placeOrderFromCart(context: context, email: user.email, price: widget.price.toString(), address: address(user.address)).then((value) {
+    api.placeOrderFromCart(context: context, email:FirebaseAuth.instance.currentUser!.email!, price: widget.price.toString(), address: address(user.address)).then((value) {
       if(value.id.isNotEmpty){
         nextScreenReplace(context, OrderDetailPage(order: value));
       }else{
+      }
+    });
+  }
+  placeSingleOrder(){
+    final user=context.read<UserProvider>().user;
+    api.placeSingleOrder(context: context, email: FirebaseAuth.instance.currentUser!.email!, id: widget.product!.id, address: address(user.address)).then((value) {
+      if(value.id.isNotEmpty){
+        nextScreenReplace(context, OrderDetailPage(order: value));
       }
     });
   }
@@ -254,7 +266,11 @@ class _PaymentPageState extends State<PaymentPage> {
                        GestureDetector(
                          onTap: (){
                            showSnakbar(context, Colors.green, "Placing your order..when complete you will be redirected to order summary");
-                           placeOrder();
+                           if(widget.fromCart==false){
+                             placeSingleOrder();
+                           }else{
+                             placeOrder();
+                           }
                          },
                          child: Container(
                              padding: EdgeInsets.all(10),
@@ -286,7 +302,15 @@ class _PaymentPageState extends State<PaymentPage> {
   }
   void _handlePaymentSuccess(PaymentSuccessResponse response){
     showSnakbar(context, Colors.green, "Payment Successful, Placing your order..Your payment id is ${response.paymentId}");
-    placeOrder();
+    setState(() {
+      currentStep=3;
+    });
+    if(widget.fromCart==false){
+      placeSingleOrder();
+    }else{
+      placeOrder();
+    }
+
   }
 
   void _handlePaymentError(PaymentFailureResponse response){

@@ -59,7 +59,7 @@ class _MyCartState extends State<MyCart> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
 
-              SizedBox(width: 1,
+              const SizedBox(width: 1,
               height: 1,),
               Text("My Cart",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 22),),
               GestureDetector(
@@ -256,7 +256,8 @@ class _MyCartState extends State<MyCart> {
 
   Widget CheckOut(){
     final user=context.watch<UserProvider>().user;
-    return isLoading?Container(height: 1,):list.isEmpty? Container(height: 1,):
+    final cl=context.watch<ProductProvider>().cartLength;
+    return isLoading?Container(height: 1,):cl==0? Container(height: 1,):
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
           child: GestureDetector(

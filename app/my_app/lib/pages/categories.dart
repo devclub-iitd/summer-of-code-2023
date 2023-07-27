@@ -67,40 +67,42 @@ class _CategoriesState extends State<Categories> {
         ),
         elevation: 0,
       ),
-      body:isLoading?const Center(child: CircularProgressIndicator(),): Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
-            child: GridView.builder(
-                itemCount: list.length,
-                shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,mainAxisSpacing: 20),
-                itemBuilder: (context,i){
-                  return GestureDetector(
-                    onTap: (){
-                      nextScreen(context, CategoryPage(name: list[i]["category"]));
-                    },
-                    child: Container(
-                      height: 80,
-                      child: Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 35,
-                            backgroundColor: Colors.white,
-                            child: ClipOval(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: Image.network(list[i]["image"],fit: BoxFit.cover,),
-                            )
-                          ),
-                          Text(list[i]["category"],style: GoogleFonts.roboto(fontSize: 18),)
-                        ],
+      body:isLoading?const Center(child: CircularProgressIndicator(),): SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 15),
+              child: GridView.builder(
+                  itemCount: list.length,
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,mainAxisSpacing: 20),
+                  itemBuilder: (context,i){
+                    return GestureDetector(
+                      onTap: (){
+                        nextScreen(context, CategoryPage(name: list[i]["category"]));
+                      },
+                      child: Container(
+                        height: 80,
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 35,
+                              backgroundColor: Colors.white,
+                              child: ClipOval(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                child: Image.network(list[i]["image"],fit: BoxFit.cover,),
+                              )
+                            ),
+                            Text(list[i]["category"],style: GoogleFonts.roboto(fontSize: 18),)
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                }),
-          ),
-        ],
+                    );
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -3,6 +3,8 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:my_app/Models/AddedProduct.dart';
 
+import '../Models/order.dart';
+
 
 class ProductProvider extends ChangeNotifier{
   List<AddedProduct> list=[];
@@ -11,12 +13,17 @@ class ProductProvider extends ChangeNotifier{
   get size=>list.length;
 
   Map<String,dynamic> user={};
+  List<Order> orderList=[];
 
 
 
 
   void setList(List<AddedProduct> cartList){
     list=cartList;
+    notifyListeners();
+  }
+  void setOrders(List<Order> list){
+    orderList=list;
     notifyListeners();
   }
   void setCartLength(int length){
@@ -27,4 +34,5 @@ class ProductProvider extends ChangeNotifier{
     user=map;
     notifyListeners();
   }
+
 }

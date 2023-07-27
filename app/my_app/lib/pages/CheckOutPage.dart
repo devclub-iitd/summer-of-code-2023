@@ -11,7 +11,8 @@ import '../providers/product_provider.dart';
 
 class CheckOutPage extends StatefulWidget {
   List<CartItem> orders;
-   CheckOutPage({Key? key,required this.orders}) : super(key: key);
+  bool? fromCart;
+   CheckOutPage({Key? key,required this.orders,this.fromCart}) : super(key: key);
 
   @override
   State<CheckOutPage> createState() => _CheckOutPageState();
@@ -87,7 +88,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         child: GestureDetector(
           onTap: (){
-            nextScreenReplace(context,  PaymentPage(price: totalPrice(),));
+            nextScreenReplace(context,  PaymentPage(price: totalPrice(),fromCart: widget.fromCart,product: widget.orders[0].product,));
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 30),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:my_app/ApiService/CartApi.dart';
+import 'package:my_app/ApiService/ordersApi.dart';
 import 'package:my_app/pages/searchPage.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,8 @@ class _OrderPageState extends State<OrderDetailPage> {
     });
     super.initState();
   }
+
+  OrderApi orderApi=OrderApi();
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -46,26 +49,26 @@ class _OrderPageState extends State<OrderDetailPage> {
                 },
                 child: Card(
                   elevation: 10,color: Colors.grey,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
                     width: 50,
-                    child: Icon(Icons.arrow_back_ios),
+                    child: const Icon(Icons.arrow_back_ios),
                   ),
                 ),
               ),
               Text("Order Details",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
               GestureDetector(
                 onTap: (){
-                  nextScreen(context, SearchPage());
+                  nextScreen(context, const SearchPage());
                 },
                 child: Card(
                   elevation: 10,color: Colors.grey,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
                     width: 50,
-                    child: Icon(Icons.search_outlined),
+                    child: const Icon(Icons.search_outlined),
                   ),
                 ),
               ),
@@ -190,13 +193,13 @@ class _OrderPageState extends State<OrderDetailPage> {
                           Step(
                             title:  Row(
                               children: [
-                                Text('Order Received -',style: TextStyle(color: Colors.green),),
-                                Text(' ${DateFormat.yMMMMd().format(DateTime.fromMillisecondsSinceEpoch(widget.order.orderedAt))}',style: TextStyle(color: Colors.green),),
+                                const Text('Order Received -',style: TextStyle(color: Colors.green),),
+                                Text(' ${DateFormat.yMMMMd().format(DateTime.fromMillisecondsSinceEpoch(widget.order.orderedAt))}',style: const TextStyle(color: Colors.green),),
                               ],
                             ),
                             content:  Text(
                               DateFormat.yMMMMd().format(DateTime.fromMillisecondsSinceEpoch(widget.order.orderedAt)),
-                              style: TextStyle(color: Colors.blue),
+                              style: const TextStyle(color: Colors.blue),
                             ),
                             isActive: widget.order.status > 0,
                             state: StepState.complete,
@@ -245,6 +248,37 @@ class _OrderPageState extends State<OrderDetailPage> {
                       ),
                     ),
                   ),
+
+                  Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+          child: GestureDetector(
+            onTap: (){
+              orderApi.cancelOrder(id: widget.order.id).then((value) {
+                if(value){
+                  orderApi.getMyOrders(FirebaseAuth.instance.currentUser!.email!, context).then((value){
+                    Provider.of<ProductProvider>(context, listen: false).setOrders(value);
+                    Navigator.pop(context);
+                  });
+                }
+              });
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              decoration: const BoxDecoration(
+                  gradient:LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black,Colors.black45],),
+                  borderRadius: BorderRadius.all(Radius.circular(15))
+              ),
+              height: 40,
+              child:  const Center(
+                child: Text("Cancel order",style: TextStyle(color:Colors.white,fontSize: 22,fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+          ),
+        )
                 ],
               ),
             ),

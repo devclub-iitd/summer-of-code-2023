@@ -8,8 +8,10 @@ import 'package:my_app/ApiService/addedProductApi.dart';
 import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/Models/AddedProduct.dart';
 import 'package:my_app/Models/Product.dart';
+import 'package:my_app/Models/cartItem.dart';
 import 'package:my_app/Utils/widgets.dart';
 import 'package:my_app/pages/AddressDetails.dart';
+import 'package:my_app/pages/CheckOutPage.dart';
 import 'package:my_app/pages/addProduct.dart';
 import 'package:my_app/pages/mycart.dart';
 import 'package:my_app/providers/product_provider.dart';
@@ -312,7 +314,10 @@ class _ProductDescriptionState extends State<ProductDescription> {
           ),
           GestureDetector(
             onTap: (){
-
+              List<CartItem> orders=[CartItem(widget.product, 1)];
+              if(widget.product.id.isNotEmpty){
+                nextScreenReplace(context, CheckOutPage(orders: orders,fromCart: false,));
+              }
             },
             child: Container(
               height: 50,

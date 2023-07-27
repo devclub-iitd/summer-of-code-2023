@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../ApiService/ordersApi.dart';
 import '../Models/order.dart';
+import '../providers/product_provider.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({Key? key}) : super(key: key);
@@ -19,14 +20,13 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrdersState extends State<MyOrders> {
-  List<Order> list=[];
   OrderApi orderApi=OrderApi();
   bool isLoading=true;
 
 
   getOrders(String email){
     orderApi.getMyOrders(email, context).then((value){
-      list=value;
+      Provider.of<ProductProvider>(context, listen: false).setOrders(value);
       isLoading=false;
       setState(() {
 
@@ -42,7 +42,7 @@ class _MyOrdersState extends State<MyOrders> {
   }
   @override
   Widget build(BuildContext context) {
-    final user=context.watch<UserProvider>().user;
+    final list=context.watch<ProductProvider>().orderList;
     return  Scaffold(
       backgroundColor: Colors.white,
       appBar:  AppBar(
@@ -87,7 +87,7 @@ class _MyOrdersState extends State<MyOrders> {
           :(list.isNotEmpty)?Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: ListView.builder(
               shrinkWrap: true,
                 itemCount: list.length,
@@ -105,7 +105,7 @@ class _MyOrdersState extends State<MyOrders> {
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Container(
                         height: 90,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(15))
                         ),
                         child: Row(
@@ -117,11 +117,11 @@ class _MyOrdersState extends State<MyOrders> {
                                 image: DecorationImage(image: NetworkImage(order.products[0].image))
                               ),
                             ),
-                            SizedBox(width: 15,),
+                            const SizedBox(width: 15,),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(order.id,style: TextStyle(color:Colors.blue),),
+                                Text(order.id,style: const TextStyle(color:Colors.blue),),
                                 Row(
                                   children: [
                                     Text("Rs. ${order.totalPrice.toString()}"),
@@ -143,11 +143,11 @@ class _MyOrdersState extends State<MyOrders> {
       ):Center(
         child: Column(
           children: [
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Container(height: 200,
-            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/e2.jpg"))),),
-            SizedBox(height: 20,),
-            Text("No orders placed",style: TextStyle(color: Colors.red,fontWeight: FontWeight.w500,fontSize: 22),),
+            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/e2.jpg"))),),
+            const SizedBox(height: 20,),
+            const Text("No orders placed",style: TextStyle(color: Colors.red,fontWeight: FontWeight.w500,fontSize: 22),),
           ],
         ),
       ),

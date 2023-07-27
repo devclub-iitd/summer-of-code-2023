@@ -124,6 +124,23 @@ class OrderApi{
   }
 
 
+  Future<bool> cancelOrder({
+    required String id,
+})async{
+    http.Response response=await http.post(Uri.parse("${constants.apiUri}/api/cancel-order/$id"),
+        headers: <String,String>{
+          'content-Type':'application/json; charset=UTF-8'
+        }
+    );
+
+    if(response.statusCode==200){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
 
 
 }
