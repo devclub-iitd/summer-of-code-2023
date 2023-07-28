@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3d276d49.css",
+    "main.js": "/static/js/main.73698091.js",
+    "static/media/Location.png": "/static/media/Location.a252df74529362123623.png",
+    "static/media/sunaina.png": "/static/media/sunaina.525d2d02a41b3f9ce05c.png",
+    "static/media/homepage.png": "/static/media/homepage.6fb6cb1b0f244851be46.png",
+    "static/media/order-confirmation-email.jpg": "/static/media/order-confirmation-email.13d831498bce06b4169e.jpg",
+    "static/media/ecommerce.png": "/static/media/ecommerce.ad2c76669f8b1148db66.png",
+    "static/media/white-background-photo.jpg": "/static/media/white-background-photo.81a3fdf6cbab98ee5b3f.jpg",
+    "static/media/lady-img.jpg": "/static/media/lady-img.8ee2d8f8e7a0264be864.jpg",
+    "index.html": "/index.html",
+    "main.3d276d49.css.map": "/static/css/main.3d276d49.css.map",
+    "main.73698091.js.map": "/static/js/main.73698091.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3d276d49.css",
+    "static/js/main.73698091.js"
+  ]
+}
