@@ -9,7 +9,7 @@ I also wish to apply for the following categories -
 
 - [ ] Most Starred Fork
 - [ ] Best All-Rounder
-- [ ] Best App submission
+- [x] Best App submission
 - [ ] Best Backend submission
 - [ ] Best Frontend submission
 - [ ] Best Machine Learning submission
@@ -19,14 +19,14 @@ I also wish to apply for the following categories -
 <!-- Make sure to write about the **BONUS**, if you attempted that too! -->
 
 - [App Development](app)
-  - [ ] [Week 1](app/week1): Learn Flutter and build a UI using Stateful and Stateless Widgets
-  - [ ] [Week 2](app/week2): Dive deeper into Flutter's Widgets by building ProductTile, Promoted product banners and implementing forms. Make the app dynamic and interactive!
-  - [ ] [Week 3](app/week3): Communicate with server resources and manage product data using HTTP methods. Enhancing our app's capabilities for seamless product management and smooth data handling
-  - [ ] [Week 4](app/week4): Implement Firebase user authentication, integrate cloud storage for image handling and explore Stripe for seamless payments
+  - [x] [Week 1](app/week1): Learn Flutter and build a UI using Stateful and Stateless Widgets
+  - [x] [Week 2](app/week2): Dive deeper into Flutter's Widgets by building ProductTile, Promoted product banners and implementing forms. Make the app dynamic and interactive!
+  - [x] [Week 3](app/week3): Communicate with server resources and manage product data using HTTP methods. Enhancing our app's capabilities for seamless product management and smooth data handling
+  - [x] [Week 4](app/week4): Implement Firebase user authentication, integrate cloud storage for image handling and explore Stripe for seamless payments
 - [Backend Development](backend)
-  - [ ] [Week 1](backend/week1): Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
-  - [ ] [Week 2](backend/week2): Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
-  - [ ] [Week 3](backend/week3): Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!
+  - [x] [Week 1](backend/week1): Learn how a backend works by analysing a real-world website, and then make your own backend, using raw Python & SQL and use it to create a simple URL shortener
+  - [x] [Week 2](backend/week2): Setup a Django backend server, and learn database models, rendering templates, user authentication and forms. Bonus: make it production-ready!
+  - [x] [Week 3](backend/week3): Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!
   - [ ] [Week 4](backend/week4): Deploy your Django project on Microsoft Azure cloud platform, and learn about virtual machines, domain names and HTTPS.
 - [Frontend Development](frontend)
   - [ ] [Week 1](frontend/week1): Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
@@ -41,11 +41,23 @@ I also wish to apply for the following categories -
 
 ## Technologies/Tools/Frameworks used/learnt
 <!-- Talk about what all you have learn through this journey, and feel free to also include sources you learnt from -->
+- flutter frame work
+- google firbase
+- django
+- restapi
+- jwt
 
 ## Features Implemented
 <!-- Talk about the features you have implemented in these tasks, and how each is useful to the end user -->
+- flutter frame work
+- google firbase
+- django
+- restapi
+- jwt
+ 
 
 ## Deployment Link
+Check release folder for app
 <!-- For app, build the apk/appbundle and add it in `releases` section of your GitHub Fork -->
 <!-- For frontend, give link to the deployed .github.io links -->
 <!-- For backend, give link to the deployed server, as well as the link to the documentation -->
@@ -55,13 +67,15 @@ I also wish to apply for the following categories -
 <!-- Make a short demo video showing what you've made over the summer -->
 <!-- Make a youtube video and share the link here! -->
 <!-- You can use any screen recording software or video editor like Kinemaster -->
+- app ->
+  https://www.youtube.com/watch?v=qi0BVqZsMEg
 
 ## Personal Details
-| Name         |               |
-| :----------- | ------------: |
-| College      |               |
-| Entry No     |               |
-| Email ID     |               |
-| Phone Number |               |
+| Name         |      Pritesh Mehta      |
+| :----------- | ----------------------: |
+| College      |          IIT D          |
+| Entry No     |       2022CS11916       |
+| Email ID     | 4mehtapritesh@gmail.com |
+| Phone Number |        720104635        |
 
 <!-- Write your entry number if you are from IITD -->
