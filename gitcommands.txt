@@ -1,0 +1,8 @@
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
+
+git add .
+git commit -m "Submission"
+git push origin main
