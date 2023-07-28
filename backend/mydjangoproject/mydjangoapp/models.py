@@ -8,7 +8,7 @@ class Product(models.Model):
     sold = models.BooleanField(default=False)
     image = models.ImageField(upload_to="product_images/")
 
-    def __str__(self):
+    def get_string(self):
         return str(self.id)+" - "+self.name
     
     def isSold(self):
