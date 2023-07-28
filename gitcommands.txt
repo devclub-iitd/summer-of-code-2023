@@ -4,5 +4,5 @@ git merge upstream/main
 git push origin main
 
 git add .
-git commit -m "App submission"
+git commit -m "Submission"
 git push origin main

@@ -8,9 +8,9 @@ I also wish to apply for the following categories -
 <!-- Make sure the branch matches what you choose here -->
 
 - [ ] Most Starred Fork
-- [ ] Best All-Rounder
+- [X] Best All-Rounder
 - [x] Best App submission
-- [ ] Best Backend submission
+- [X] Best Backend submission
 - [ ] Best Frontend submission
 - [ ] Best Machine Learning submission
 
