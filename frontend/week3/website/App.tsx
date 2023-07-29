@@ -6,8 +6,8 @@ import {
   Link  
 }   
 from 'react-router-dom';  
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "https://jahnabiroy.github.io/summer-of-code-2023/frontend/week3/website/Navbar.tsx";
+import Footer from "https://jahnabiroy.github.io/summer-of-code-2023/frontend/week3/website/Footer.tsx";
 import Home from './Home/Home';
 import Verify from './Verify/Verify';
 import Learn from './Home/LearnMore';
