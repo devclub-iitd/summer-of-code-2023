@@ -1,0 +1,278 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "Is anyone there?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Hey :-) My name is Jarvis!",
+        "Hello, thanks for visiting. My name is Jarvis!",
+        "Hi there, My name is Jarvis!. What can I do for you?",
+        "Hi there, My name is Jarvis! How can I help?"
+      ]
+    },
+    {
+      "tag": "personal",
+      "patterns": [
+        "How are you?",
+        "How are you doing?",
+        "How is your day?"
+      ],
+      "responses": [
+        "I'm good, all's good, thanks. How about you?"
+      ]
+    },
+            {
+      "tag": "user response",
+      "patterns": [
+        "I'm good",
+        "Im good",
+        "Im doing good",
+        "I am good",
+        "I am okay"
+      ],
+      "responses": [
+        "Great to hear you are doing good."
+      ]
+    },   
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye"],
+      "responses": [
+        "See you later, thanks for visiting. Hope I was able to help!",
+        "Have a nice day. Hope I was able to help!"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!", "thnx", "ok thnx"],
+      "responses": ["Happy to help!", "Any time!", "My pleasure","Anything else in which I can be of assistance?"]
+    },
+    {
+      "tag": "items",
+      "patterns": [
+        "Which items do you have?",
+        "What kinds of items are there?",
+        "What do you sell?",
+        "What do you offer?",
+        "What can I buy?"
+      ],
+      "responses": [
+        "Search your preference in our flagship store's search bar to see all available products. "
+      ]
+    },
+    {
+      "tag": "payments",
+      "patterns": [
+        "Do you take credit cards?",
+        "Do you accept Mastercard?",
+        "Can I pay with Cash?",
+        "Are you cash only?",
+        "What are your payment methods?",
+        "How do I pay?"
+      ],
+      "responses": [
+        "We accept VISA, Mastercard and Cash"
+      ]
+    },
+    {
+      "tag": "track",
+      "patterns": [
+        "How can I track my order", 
+        "I want to track my order", 
+        "Can I track my order", 
+        "Track order",
+        "Where is my order"
+      ],
+      "responses": [
+        "Visit the order page, click on the specific order, select 'track my order', and check the status"
+      ]
+    },
+    {
+      "tag": "delivery",
+      "patterns": [
+        "How long does delivery take?",
+        "How long does shipping take?",
+        "Please Tell me about my delivery",
+        "When do I get my delivery?",
+        "Why is my order not delivered yet",
+        "Why is my order taking so much time be to delivered",
+        "where is my order"
+
+      ],
+      "responses": [
+        "Delivery and shipping takes 4-5 days. Please bear with us!"
+      ]
+    },
+    {
+      "tag": "confirm",
+      "patterns": [
+        "My payment was processed successfully but I didn't get any order confirmation. What should I do?",
+        "Payment was completed but no confirmation",
+        "Order was not confirmed",
+        "Money deducted but order is not confirmed"
+      ],
+      "responses": [
+        "Daraz sends you an Email & SMS upon confirmation of your order. If it requires manual confirmation, our team will contact you within 24 hours after order placement. Delay in confirmation SMS may occur due to network error, you may receive it with a delay.",
+        "It takes upto 24 hours for confirmation, please bear with us! Type Need more help for more assistance. "
+      ]
+    },
+    {
+      "tag": "delay",
+      "patterns": [
+        "Why is my order delayed? ",
+        "Did my order get delayed?",
+        "Why is my order not delivered yet?",
+        "When do I get my delivery?"
+      ],
+      "responses": [
+        "We are really sorry if there has been a delay in your order! If your order is within delivery period, We recommend you to please wait during this period since our Delivery Heroes make 3 attempts to deliver your order!",
+        "If your order is past up to 3 days after delivery period, There may be logistic issues causing a delay in delivery. Please type 'Common reasons for delivery delay' to know more about this.",
+        "We appreciate if you could wait for your items as most orders are delivered successfully within this period.",
+        "If your order is past more than 3 days, Since there may be unexpected issues causing delivery delays, you can click on 'Need more Help' for further assistance."
+      ]
+    },
+    {
+      "tag": "reasons",
+      "patterns": [
+        "Common reasons for delivery delay",
+        "common reasons for delivery delay",
+        "reasons for delay",
+        "delivery delay",
+        "shipping delay"
+      ],
+      "responses": [
+        "Reasons include Seller Sourcing Issues, Courier Issues, Cross Border shipment delay, Wrong Address or Phone Number, and Unavailability of Customer. "
+      ]
+    },
+    {
+      "tag": "more",
+      "patterns": [
+        "Need more help",
+        "help me more",
+        "can I talk to an agent",
+        "can I call customer service",
+        "customer support number",
+        "how to contact customer service",
+        "customer service number",
+        "contact number for help",
+        "helpline number",
+        "How to become a seller",
+        "How to contact a seller"
+      ],
+      "responses": [
+        "Contact us for further information here: Phone: 021-111-132729. Timings are from 09:00 AM to 05:00 PM from Monday to Saturday."
+      ]
+    },
+    {
+      "tag": "cancel",
+      "patterns": [
+        "Can I cancel my order?",
+        "Why is my order cancelled?",
+        "How do I can cancel my order",
+        "Can I cancel an order",
+        "I want to cancel my order"
+      ],
+      "responses": [
+        "Order can only be cancelled within 7 days of placement. Digital goods do not qualify for refund.",
+        "Visit my orders page to check status of specific orders."
+      ]
+    },
+    {
+      "tag": "refund",
+      "patterns": [
+        "Can I refund an item.",
+        "I want to refund an item",
+        "can I refund my order",
+        "Are refunds available"
+      ],
+      "responses": [
+        "Refund can only be issued within 7 days of placement. Digital goods do not qualify for refund.",
+        "Visit my orders page to check for specific orders."
+      ]
+    },
+    {
+      "tag": "refund status",
+      "patterns": [
+        "Why is the status Refunded when it's not credited?",
+        "No refund even though status is refunded",
+        "No refund when status says refunded",
+        "I did not receive my refund money",
+        "Refund money not received"
+      ],
+      "responses": [
+        "Please be patient as refunds take upto 30 days to receive into bank. "
+      ]
+    },
+    {
+      "tag": "refund",
+      "patterns": [
+        "Can I refund an item.",
+        "I want to refund an item",
+        "can I refund my order",
+        "Are refunds available"
+      ],
+      "responses": [
+        "Refund can only be issued within 7 days of placement. Digital goods do not qualify for refund.",
+        "Visit my orders page to check for specific orders."
+      ]
+    },
+    {
+      "tag": "return",
+      "patterns": [
+        "How long do return items take",
+        "When will my items be returned",
+        "When can I get a refund for return items?",
+        "Are refunds available for return?",
+        "What is the return status ?"
+      ],
+      "responses": [
+        "Return takes 6 to 10 business days.",
+        " There are 2 parts to the return process. In the first part, we check the items received from you to verify the issue highlighted in your return claim. Once we've verified and accepted your return, we initiate the refund process which takes 1 business day for Daraz wallet and 2-10 business days for bank or card. "
+      ]
+    },
+    {
+      "tag": "use voucher",
+      "patterns": [
+        "How to use a voucher?",
+        "Can I use a voucher?",
+        "Are there any vouchers?"
+      ],
+      "responses": [
+        "You can add a voucher by clicking on My Cart > Check Out > Enter Voucher Code > APPLY. "
+      ]
+    },
+        {
+      "tag": "profile info",
+      "patterns": [
+        "How can I change my profile information",
+        "I want to change my password",
+        "I want to change my phone number",
+        "I want to change my address",
+        "I want to Reset my password",
+        "I want to delete my account",
+        "delete my account"
+      ],
+      "responses": [
+        "You can easily add or change your account details by following the steps below: Step 1: Click on 'Account', Step 2: Click on 'Manage my account' from the icon, Step 3: You change or edit your name, address, email address, mobile number, etc., Step 4: Fill in the required details, and click on Save. Note: You can also change your delivery address from the Checkout page before proceeding to pay."
+      ]
+    },
+        {
+      "tag": "mobile app",
+      "patterns": [
+        "Can I download a mobile app for this?",
+        "Mobile app",
+        "Download mobile app",
+        "Is there a mobile app"
+      ],
+      "responses": [
+        "You can download the E-commerce  Mobile App from both IOS App Store, and Google Play Store. "
+      ]
+    }  
+  ]
+}

@@ -1,0 +1,7 @@
+train: data_images/train
+val: data_images/text
+nc: 3
+names: ['person',
+        'car',
+        'bus'
+]
