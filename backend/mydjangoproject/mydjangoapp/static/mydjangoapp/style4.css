@@ -52,6 +52,42 @@ body {
     font-size: 14px;
 }
 
+/* ... Other styles ... */
+
+.top-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.top-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    z-index: 1000; /* Set a higher z-index to ensure it's on top of other elements */
+}
+
+/* Style for the logout button */
+.logout-button, .login-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #00b894;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-button {
+    background-color: #ff6b6b;
+}
+
+
 .price {
     font-size: 16px;
     font-weight: bold;

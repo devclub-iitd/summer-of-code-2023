@@ -1,4 +1,3 @@
-/* The same CSS styles as before, no changes here */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,10 +6,47 @@ body {
     color: #fff; /* Light text color */
 }
 
+/* ... Other styles ... */
+
+/* Style for the top-left class */
+.top-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.top-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    z-index: 1000; /* Set a higher z-index to ensure it's on top of other elements */
+}
+
+/* Style for the logout button */
+.logout-button, .login-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #00b894;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-button {
+    background-color: #ff6b6b;
+}
+
+
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Center the product card */
+    justify-content: center; /* Center the product cards */
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -55,18 +91,4 @@ body {
 .price {
     font-size: 16px;
     font-weight: bold;
-}
-
-.add-to-cart-button {
-    padding: 10px 20px;
-    background-color: #00b894; /* Green button color */
-    color: #fff; /* Light text color for the button */
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-.add-to-cart-button:hover {
-    background-color: #009e74; /* Darker green color on hover */
 }

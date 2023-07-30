@@ -1,131 +1,47 @@
-{% load static %}
-
+<!DOCTYPE html>
 <html>
-
 <head>
-    <title>Realm: Technology Superstore</title>
-    <link rel="stylesheet" href="{% static 'mydjangoapp/styles.css' %}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo" rel="stylesheet">
+    <title>Product Listing</title>
+    <link rel="stylesheet" type="text/css" href="../../static/mydjangoapp/style2.css">
 </head>
-
 <body>
+    <div class="top-left">
+        {% if user.is_authenticated %}
+            Logged in as: {{ user.username }} <a class="logout-button" href="../../logout">Logout</a>
+        {% else %}
+            <a class="login-button" href="../../login">Login</a>
+        {% endif %}
+    </div>
 
-    <header>
+    <div class="top-right">
+        {% if user.is_authenticated %}
+        <a class="login-button" href="../../add-product">Add Product</a>
+        {% endif %}
+    </div>
 
-        <div class="header-logo">
-            <a href="index.html">
-                <p>Realm.</p>
-            </a>
-        </div>
-
-        <nav class="header-nav">
-
-            <ul class="header-nav-list">
-                <li><a class="header-current" href="index.html" title="intro">Home</a></li>
-                <li><a class="header-noncurrent" href="about/index.html" title="about">About</a></li>
-                <li><a class="header-noncurrent" href="contact/index.html" title="services">Contact Us</a></li>
-            </ul>
-
-        </nav>
-
-    </header>
-
-    <section id="help" class="help-section">
-
-        <div class="row help-content">
-
-            <div class="section-title help-title"><h1>Products list</h1></div>
-
-            <div class="help-box box1">
-                <img src="assets/images/help1.jpg" class="help-title-image">
-                <h3>Send</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quas eveniet necessitatibus, pariatur, possimus provident repellendus placeat eius deserunt iusto praesentium suscipit! Architecto, ea! Impedit, numquam. Suscipit laudantium quis culpa!</p>
-                <a href="help/index.html">Learn more   <img src="assets/images/rightArrowThin.svg"></a>
-            </div>
-
-            <div class="help-box box2">
-                <img src="assets/images/help2.jpg" class="help-title-image">
-                <h3>Recieve</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quas eveniet necessitatibus, pariatur, possimus provident repellendus placeat eius deserunt iusto praesentium suscipit! Architecto, ea! Impedit, numquam. Suscipit laudantium quis culpa!</p>
-                <a href="help/index.html">Learn more   <img src="assets/images/rightArrowThin.svg"></a>
-            </div>
-
-            <div class="help-box box3">
-                <img src="assets/images/help3.jpg" class="help-title-image">
-                <h3>Buy</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum quas eveniet necessitatibus, pariatur, possimus provident repellendus placeat eius deserunt iusto praesentium suscipit! Architecto, ea! Impedit, numquam. Suscipit laudantium quis culpa!</p>
-                <a href="help/index.html">Learn more   <img src="assets/images/rightArrowThin.svg"></a>
-            </div>
-        </div>
-
-    </section>
-
-    <section id="how" class="how-section">
-
-        <div class="section-title help-title"><h1>How it works</h1></div>
-
-        <div class="row how-content">
-            <div class="how-box">
-                <img src="assets/images/how1.svg">
-                <h3>Create an account</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-
-            <div class="how-box">
-                <img src="assets/images/how2.svg">
-                <h3>Get authorization</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-
-            <div class="how-box">
-                <img src="assets/images/how3.svg">
-                <h3>Enjoy the app</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <section id="test" class="test-section">
-
-        <div class="section-title test-title"><h1>What our clients say</h1></div>
-
-        <div class="row test-layout">
-
-            <img src="assets/images/leftArrow.svg" class="arrow">
-
-            <div class="test-image">
-                <img src="assets/images/test1.jpeg">
-            </div>
-
-            <div class="test-content">
-                <img src="assets/images/quote.svg">
-                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam veniam cumque dolorem blanditiis dignissimos asperiores minima commodi reprehenderit temporibus quidem, sequi alias ad quisquam ipsum libero est assumenda enim laudantium.</h4>
-                <h3>Dhruv Joshi</h3>
-            </div>
-
-            <img src="assets/images/rightArrow.svg" class="arrow">
-
-        </div>
-
-    </section>
-
-    <section id="footer" class="footer-section">
-
-        <div class="footer-logo">
-            <a href="index.html">
-                <p>Realm.</p>
-            </a>
-        </div>
-
-    </section>
-
+    <div class="container">
+        {% if latest_product_list %}
+            {% for product in latest_product_list %}
+                <a href="../products/{{ product.id }}" class="product-link">
+                    <div class="product-card">
+                        <div class="product-image">
+                            {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                            {% else %}
+                            No image.
+                            {% endif %}
+                        </div>
+                        <div class="product-details">
+                            <h2 class="gradient-title">{{ product.name }}</h2>
+                            <p class="description">{{ product.description }}</p>
+                            <p class="price">${{ product.price }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>No products available.</p>
+        {% endif %}
+    </div>
 </body>
-
 </html>
