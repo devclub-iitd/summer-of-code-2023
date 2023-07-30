@@ -36,7 +36,7 @@ class CartApiService{
 
       }
     }catch(e){
-      showSnakbar(context, Colors.red, e.toString());
+      showSnakbar(context, Colors.red, "please check your internet connection");
       return [[],0,0];
     }
 

@@ -235,8 +235,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                 height: 118,
                                 decoration: BoxDecoration(
                                     borderRadius:const BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(8)) ,
-                                    color: Colors.grey.withOpacity(0.5),
-                                    image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.fill)
+                                    color: Colors.white,
+                                    image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
                                 ),
                               ),
                               Positioned(
@@ -278,13 +278,10 @@ class _CategoryPageState extends State<CategoryPage> {
               );
               }),
             ),
-            Visibility(
-              visible: widget.name=="Gadgets"?true:false,
-              child: Container(
-                height: 150,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: NetworkImage(constants.imagesUri[0]),fit: BoxFit.cover)
-                ),
+            Container(
+              height: 150,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: NetworkImage(constants.imagesUri[0]),fit: BoxFit.cover)
               ),
             ),
 

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/ApiService/CartApi.dart';
+import 'package:my_app/ApiService/api.dart';
 import 'package:my_app/pages/product_description.dart';
 import 'package:my_app/pages/searchPage.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,7 @@ class _WishListPageState extends State<WishListPage> {
   List<AddedProduct> myProducts=[];
   bool isLoading=true;
   CartApiService cartApiService=CartApiService();
+  ApiService apiService=ApiService();
 
   getCart(){
     cartApiService.getMyCart(FirebaseAuth.instance.currentUser!.email!,context).then((value){
@@ -36,6 +38,10 @@ class _WishListPageState extends State<WishListPage> {
   void initState() {
 
     super.initState();
+    get();
+
+  }
+  get(){
     myProductApi.getWishlist(FirebaseAuth.instance.currentUser!.email!,context).then((value) {
 
       setState(() {
@@ -116,7 +122,7 @@ class _WishListPageState extends State<WishListPage> {
                                 width: 90,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.fill)
+                                    image: DecorationImage(image: NetworkImage(product.image),fit: BoxFit.contain)
                                 ),
                               ),
                             ),
@@ -138,7 +144,17 @@ class _WishListPageState extends State<WishListPage> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  Icon(Icons.delete,color: Colors.red,size:30,),
+                                  InkWell(
+                                    onTap:(){
+                                      apiService.removeFromWishlist(product.id, FirebaseAuth.instance.currentUser!.email!).then((value) {
+                                        if (value){
+                                          get();
+                                        }else{
+                                          showSnakbar(context, Colors.red, "Something went wrong");
+                                        }
+                                      });
+                                  },
+                                      child: Icon(Icons.delete,color: Colors.red,size:30,)),
                                   SizedBox(width: 25,),
                                   InkWell(
                                       onTap: (){

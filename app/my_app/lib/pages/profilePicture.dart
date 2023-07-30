@@ -60,7 +60,7 @@ class _ProfileImageState extends State<ProfileImage> {
         children: [
           Center(
             child: Container(
-              height: 500,
+              height:MediaQuery.of(context).size.height-93,
               width: double.infinity,
               child: ClipRect(
                 child: Image.network(user.image,height: 300,width: double.infinity,fit: BoxFit.cover,),

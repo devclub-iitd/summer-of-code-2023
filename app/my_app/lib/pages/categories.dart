@@ -89,10 +89,7 @@ class _CategoriesState extends State<Categories> {
                             CircleAvatar(
                               radius: 35,
                               backgroundColor: Colors.white,
-                              child: ClipOval(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(list[i]["image"],fit: BoxFit.cover,),
-                              )
+                              child: Image.network(list[i]["image"],fit: BoxFit.contain,)
                             ),
                             Text(list[i]["category"],style: GoogleFonts.roboto(fontSize: 18),)
                           ],

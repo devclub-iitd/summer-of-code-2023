@@ -27,7 +27,7 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   List items=["Headphone","jewelery","Gadgets","Daily use","Watch","Bagpacks"];
-  List img=["hp1.png","Cmen.jpg","Celectr.jpg","Cfurni.jpg","Cwat.jpg","Cbag.jpg"];
+  List img=["hp1.png","jewel.jpg","Celectr.jpg","Cfurni.jpg","Cwat.jpg","Cbag.jpg"];
   int currentPageIndex=0;
   List<Product> productList=[];
   ApiService apiService=ApiService();
@@ -348,10 +348,9 @@ class _FirstPageState extends State<FirstPage> {
                                   child: Column(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
                                         child: Container(
-                                          height: 141,
-
+                                          height: 131,
                                           decoration: BoxDecoration(
                                               borderRadius:const BorderRadius.only(topLeft:Radius.circular(15),topRight: Radius.circular(15)) ,
                                               color: Colors.white,
@@ -368,7 +367,7 @@ class _FirstPageState extends State<FirstPage> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 8.0,right: 5),
+                                        padding: const EdgeInsets.only(left: 15.0,right: 5,bottom: 10),
                                         child: Row(
                                           children: [
                                             Text("Rs."+myProducts[i].price,style: const TextStyle(color: Colors.blue),),

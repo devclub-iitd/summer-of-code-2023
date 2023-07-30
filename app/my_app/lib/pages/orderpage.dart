@@ -1,6 +1,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:my_app/ApiService/CartApi.dart';
@@ -11,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../Models/order.dart';
 import '../Utils/widgets.dart';
 import '../providers/product_provider.dart';
+import 'authpage.dart';
 
 
 class OrderDetailPage extends StatefulWidget {
@@ -121,49 +124,8 @@ class _OrderPageState extends State<OrderDetailPage> {
                     ),
                   ),
                   Card(
-
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        for (int i = 0; i < widget.order.products.length; i++)
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.network(
-                                  widget.order.products[i].image,
-                                  height: 90,
-                                  width: 90,
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      widget.order.products[i].title,
-                                      style: const TextStyle(
-                                        fontSize: 17,
-                                        color: Colors.blue,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      'Qty: ${widget.order.quantity[i]}',
-                                    ),
-                                    Text("Rs. " +widget.order.products[i].price)
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                      ],
+                    child: products(),
                     ),
-                  ),
                   const SizedBox(height: 10),
                   const Text(
                     'Tracking',
@@ -186,6 +148,7 @@ class _OrderPageState extends State<OrderDetailPage> {
                       ),
                       child: Stepper(
                         currentStep: widget.order.status+1,
+                        physics: NeverScrollableScrollPhysics(),
                         controlsBuilder: (context, details) {
                           return const SizedBox();
                         },
@@ -253,14 +216,46 @@ class _OrderPageState extends State<OrderDetailPage> {
           padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
           child: GestureDetector(
             onTap: (){
-              orderApi.cancelOrder(id: widget.order.id).then((value) {
-                if(value){
-                  orderApi.getMyOrders(FirebaseAuth.instance.currentUser!.email!, context).then((value){
-                    Provider.of<ProductProvider>(context, listen: false).setOrders(value);
-                    Navigator.pop(context);
-                  });
-                }
-              });
+              showCupertinoDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                  content:  Text("Are you sure you want to cancel this order?",style: GoogleFonts.poppins(fontSize: 17),),
+                  actions: <Widget>[
+                    CupertinoDialogAction(
+                      child:  Text("confirm",style: GoogleFonts.poppins(fontSize: 15),),
+                      onPressed: () {
+                        orderApi.cancelOrder(id: widget.order.id).then((value) {
+                          if(value){
+                            orderApi.getMyOrders(FirebaseAuth.instance.currentUser!.email!, context).then((value){
+                              Provider.of<ProductProvider>(context, listen: false).setOrders(value);
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            });
+                          }
+                        });
+                      },
+                    ),
+                    Theme(
+                      data: ThemeData(
+                    accentColor: Colors.blue,
+              colorScheme: const ColorScheme.light(
+              primary: Colors.blue,
+              secondary: Colors.green,
+              background: Colors.red
+              )
+              ),
+                      child: CupertinoDialogAction(
+                        child:  Text('Cancel',style: GoogleFonts.poppins(fontSize: 15),),
+                        onPressed: () {
+                          HapticFeedback.heavyImpact();
+                          return Navigator.of(context).pop(false);
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              );
+
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -286,5 +281,50 @@ class _OrderPageState extends State<OrderDetailPage> {
         ),
       ),
     );
+  }
+ Widget products(){
+   return ListView.builder(
+     shrinkWrap: true,
+      physics:NeverScrollableScrollPhysics(),
+      itemCount: widget.order.products.length,
+        itemBuilder: (context,i){
+      return Container(
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.network(
+                widget.order.products[i].image,
+                height: 90,
+                width: 90,
+              ),
+            ),
+            const SizedBox(width: 5),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    widget.order.products[i].title,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    'Qty: ${widget.order.quantity[i]}',
+                  ),
+                  Text("Rs. " +widget.order.products[i].price)
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

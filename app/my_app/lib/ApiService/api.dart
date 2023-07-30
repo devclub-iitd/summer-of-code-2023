@@ -203,6 +203,26 @@ class ApiService{
       return false;
     }
   }
+  Future<bool> removeFromWishlist(String id,String email) async{
+    try{
+      final response=await http.post(Uri.parse("${constants.apiUri}/api/remove-from-wishlist"),
+          body: jsonEncode({
+            "email":email,
+            "id":id,
+          }),
+          headers: <String,String>{
+            'content-Type':'application/json; charset=UTF-8'
+          });
+
+      if(response.statusCode==200){
+        return true;
+      }else{
+        return false;
+      }
+    }catch(e){
+      return false;
+    }
+  }
 
 
 
@@ -232,14 +252,11 @@ class ApiService{
         showSnakbar(context,Colors.green, "details updated");
         return true;
       }else if(response.statusCode==400){
-        showSnakbar(context, Colors.red, "400");
         return false;
       }else{
-        showSnakbar(context, Colors.red, jsonDecode(response.body)['error']);
         return false;
       }
     }catch(e){
-      showSnakbar(context, Colors.red, e.toString());
       return false;
     }
 
@@ -262,8 +279,7 @@ class ApiService{
         return user;
       }
     }catch(e){
-      showSnakbar(context, Colors.red, e.toString());
-      print(e.toString());
+
       User user=User('', '', '', '', '', [], '',[]);
       return user;
     }

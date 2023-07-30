@@ -32,21 +32,26 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        flexibleSpace: Padding(
-          padding: const EdgeInsets.only(top: 28.0,),
-          child: ListTile(
-            leading: CircleAvatar(
-              radius: 30,
-              backgroundColor: Colors.blue,
-              child:profile(),
+        flexibleSpace: GestureDetector(
+          onTap: (){
+            nextScreen(context, EditProfile());
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 28.0,),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.blue,
+                child:profile(),
+              ),
+              title: Text(user.name,style: GoogleFonts.poppins(fontSize: 23),),
+              subtitle: Text(user.email),
+              trailing: InkWell(
+                onTap: (){
+                  nextScreen(context, EditProfile());
+                },
+                  child: Icon(Icons.edit)),
             ),
-            title: Text(user.name,style: GoogleFonts.poppins(fontSize: 23),),
-            subtitle: Text(user.email),
-            trailing: InkWell(
-              onTap: (){
-                nextScreen(context, EditProfile());
-              },
-                child: Icon(Icons.edit)),
           ),
         ),
       ),

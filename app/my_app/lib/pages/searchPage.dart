@@ -121,8 +121,13 @@ class _SearchPageState extends State<SearchPage> {
                     title: InkWell(
                       onTap: (){
                         setState(() {
+                          name=suggestion[i];
+
                           textEditingController.text=suggestion[i];
+                          isLoading=true;
+                          history=false;
                         });
+                        search();
                       },
                         child: Text(suggestion[i])),
                   );
