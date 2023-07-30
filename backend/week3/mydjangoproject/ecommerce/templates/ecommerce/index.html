@@ -1,0 +1,23 @@
+{% if latest_product_list %}
+    <ul>
+    {% for item in latest_product_list %}
+        <li><a href="/ecommerce/{{ item.id }}/">{{ item.productName }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  <p><a href="/ecommerce/addproducts.html"></a>Add your products</p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+  <p>Please login to add your products.</p>
+{% endif %}
+
+{% endblock %}
