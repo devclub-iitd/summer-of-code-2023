@@ -235,7 +235,6 @@ class _AddressDetailsState extends State<AddressDetails> {
                           initialValue: user.address.isNotEmpty?user.address[0]:null,
                           decoration: textInputdec.copyWith(
                             hintText: "John Doe",
-
                             hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
                             border:InputBorder.none,),
                           onChanged:(val){

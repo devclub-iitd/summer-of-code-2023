@@ -200,11 +200,12 @@ class _ProductDescriptionState extends State<ProductDescription> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 8),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
                               const Text("Deliver to: ",style: TextStyle(fontSize: 20),),
-                               Text(user.address[1],style: TextStyle(fontSize: 20,color: Colors.blue),),
+                               Text(user.address.isEmpty?"":user.address[1],style: TextStyle(fontSize: 20,color: Colors.blue),),
                               Expanded(child: Container()),
                               GestureDetector(
                                 onTap: (){

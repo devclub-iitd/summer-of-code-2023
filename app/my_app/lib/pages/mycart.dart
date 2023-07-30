@@ -222,7 +222,7 @@ class _MyCartState extends State<MyCart> {
                         ),
                         trailing: GestureDetector(
                           onTap: (){
-                            cartApiService.removeFromCart(context: context, userId: "adi@gmail.com", id: product.id).then((value) {
+                            cartApiService.removeFromCart(context: context, userId: FirebaseAuth.instance.currentUser!.email!, id: product.id).then((value) {
                               if(value){
                                 getCart();
                               }

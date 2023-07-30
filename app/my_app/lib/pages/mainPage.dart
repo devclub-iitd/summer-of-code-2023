@@ -393,7 +393,7 @@ class _FirstPageState extends State<FirstPage> {
                         ),
                       ),
                       const SizedBox(height: 15,),
-                      Padding(
+                      recentlyList.isEmpty?SizedBox(height: 5,):Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
                           children: [
