@@ -29,9 +29,9 @@ I also wish to apply for the following categories -
   - [ ] [Week 3](backend/week3): Convert your Django backend into a REST API, and learn about function based views, JWT authentication and documentation with Postman. Bonus: make it enterprise-grade!
   - [ ] [Week 4](backend/week4): Deploy your Django project on Microsoft Azure cloud platform, and learn about virtual machines, domain names and HTTPS.
 - [Frontend Development](frontend)
-  - [ ] [Week 1](frontend/week1): Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
-  - [ ] [Week 2](frontend/week2): Use Javascript to create a repository network analyzer consuming the GitHub API, and use Bootstrap to make our previous webpage responsive!
-  - [ ] [Week 3](frontend/week3): Learn ReactJS, and make your website better using JSX components and State management. Bonus: improve the code quality too!
+  - [x] [Week 1](frontend/week1): Learn how websites work using DevTools, and then learn how to build a simple static website using HTML and CSS, taking designs from Figma and host it on GitHub Pages
+  - [x] [Week 2](frontend/week2): Use Javascript to create a repository network analyzer consuming the GitHub API, and use Bootstrap to make our previous webpage responsive!
+  - [x] [Week 3](frontend/week3): Learn ReactJS, and make your website better using JSX components and State management. Bonus: improve the code quality too!
   - [ ] [Week 4](frontend/week4): Design pages to render, create, and update products. Fetch this data from a public API and understand the interface using API specs. Learn about status codes, state management, error handling, and much more! 
 - [Machine Learning](machine-learning)
   - [ ] [Week 1](machine-learning/week1): Set up an ML environment to run your code on GPUs, then select and build a price prediction model, and also scrape your own dataset for it from the web.
@@ -48,6 +48,9 @@ I also wish to apply for the following categories -
 ## Deployment Link
 <!-- For app, build the apk/appbundle and add it in `releases` section of your GitHub Fork -->
 <!-- For frontend, give link to the deployed .github.io links -->
+https://jahnabiroy.github.io/summer-of-code-2023/frontend/week1/website/
+https://jahnabiroy.github.io/summer-of-code-2023/frontend/week2/website/index1.html
+https://jahnabiroy.github.io/Week-3/
 <!-- For backend, give link to the deployed server, as well as the link to the documentation -->
 <!-- For machine learning, give link to the notebooks, and if you were able to deploy then the link to the demo -->
 
@@ -55,13 +58,14 @@ I also wish to apply for the following categories -
 <!-- Make a short demo video showing what you've made over the summer -->
 <!-- Make a youtube video and share the link here! -->
 <!-- You can use any screen recording software or video editor like Kinemaster -->
+https://drive.google.com/file/d/1uEEhcfeFmOXTMYMdNyxJUHjLRu161GiM/view?usp=drive_link
 
 ## Personal Details
-| Name         |               |
+| Name         |       Jahnabi Roy        |
 | :----------- | ------------: |
-| College      |               |
-| Entry No     |               |
-| Email ID     |               |
-| Phone Number |               |
+| College      |       IIT Delhi        |
+| Entry No     |       2022CS11094        |
+| Email ID     |     cs1221094@cse.iitd.ac.in          |
+| Phone Number |     9326064138          |
 
 <!-- Write your entry number if you are from IITD -->
