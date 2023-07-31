@@ -3,7 +3,7 @@ import 'package:e_commerce/src/Product.dart';
 import 'package:flutter/material.dart';
 
 class IndividualProduct extends StatefulWidget {
-  late Map<int,int> cart;
+  late Map<Product,int> cart;
   IndividualProduct({super.key,required this.cart});
 
   @override
@@ -11,7 +11,6 @@ class IndividualProduct extends StatefulWidget {
 }
 
 class _IndividualProductState extends State<IndividualProduct> {
-  final int index=0;
   @override
   Widget build(BuildContext context) {
     final Product product=ModalRoute.of(context)!.settings.arguments as Product;
@@ -62,7 +61,7 @@ class _IndividualProductState extends State<IndividualProduct> {
                     minimumSize: const Size.fromHeight(50), // NEW
                   ),
                   onPressed: () {
-                    widget.cart[index]=(widget.cart[index]??0)+1;
+                    widget.cart[product]=(widget.cart[product]??0)+1;
                     },
                   child: const ListTile(
                     leading: Icon(Icons.add_shopping_cart),

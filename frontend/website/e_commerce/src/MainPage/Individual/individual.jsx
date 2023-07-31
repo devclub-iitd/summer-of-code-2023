@@ -29,7 +29,7 @@ export default function IndividualProduct(props) {
           <>
             <div className="row">
               <div className="col">
-                <img src={product.img_url} onError={(event) => {setproduct((prevFormData) => ({...prevFormData,["img_url"]:"https://cdn-icons-png.flaticon.com/512/2748/2748558.png"}))}} />
+                <img style={{width:'50%'}}src={product.img_url} onError={(event) => {setproduct((prevFormData) => ({...prevFormData,["img_url"]:"https://cdn-icons-png.flaticon.com/512/2748/2748558.png"}))}} />
               </div>
               <div className=" col">
                 <div className=" p-2">

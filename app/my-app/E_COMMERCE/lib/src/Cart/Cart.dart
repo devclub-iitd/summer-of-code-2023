@@ -4,7 +4,7 @@ import 'package:e_commerce/src/Product.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
-  final Map<int,int> cart;
+  final Map<Product,int> cart;
   const Cart({super.key,required this.cart});
 
   @override
@@ -45,7 +45,7 @@ class _CartState extends State<Cart> {
           ])
           ,
           ...widget.cart.keys.map((key) {
-            Product product = Data().products[key];
+            Product product = key;
             return TableRow(
               children: [
                 Container(
