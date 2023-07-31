@@ -44,6 +44,7 @@ We will be giving attractive **rewards** to those who participate enthusiastical
 - We will also be having online lectures or discussion **sessions**, to help you learn better
 - **Upload** your submissions for each week to the respective folder
 - Join our **Discord** server for any queries, discussions, and to stay up-to-date!
+- Once you're done, create a Pull Request on the appropriate branch (`most-starred`, `best-all-rounder`, `best-app`, `best-backend`, `best-frontend`, `best-machine-learning`), and fill in the automatic template to make a submission!
 
 ## Aim
 We aim to help students get started with learning coding and software development. The concepts for each **track** are divided into **weeks** pedagogically so you can learn step-by-step. 
@@ -80,6 +81,12 @@ The projects in each track will revolve around this theme, and we are planning t
 - The classic: **best in track**!
   - This will be given the to best submission in each track!
   - Incentives to submissions which were up-to-date with the deadlines and also for bonus tasks
+
+For submitting your entries, create a **Pull Request** on the appropriate branch (`most-starred`, `best-all-rounder`, `best-app`, `best-backend`, `best-frontend`, `best-machine-learning`), and fill in the automatic template to make a submission! You should also create a demo video for each task and upload it on YouTube
+
+The deadline for completing your projects and making the final commit is `31st July 2023 11:59 PM IST`. 
+
+Note: You can create a Pull Request now and keep updating the branch with the commits as you make progress
 
 ## Connect
 Join our `DevClub IIT Delhi` **Discord** server using [this invite](https://discord.gg/ScKSwn5jsP) and set your discord nickname to your GitHub handle
