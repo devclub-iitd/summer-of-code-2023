@@ -1,15 +1,18 @@
 /* Dark Theme Styling */
 body {
-    background-color: #343a40;
+    background-color: #121212;
     color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
   }
   
-  /* Styling for the form containers */
+  /* Center alignment for the form containers */
   .form-container {
-    background-color: #2c3036;
+    background-color: #1a1a1a;
     padding: 20px;
     border-radius: 5px;
-    margin-top: 30px;
+    margin: 30px auto;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
   
   /* Input field styling */
@@ -18,9 +21,13 @@ body {
   .form-container input[type="password"],
   .form-container input[type="number"],
   .form-container textarea {
-    background-color: #2c3036;
+    background-color: #242424;
     border: 1px solid #ffffff;
     color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
   }
   
   /* Input field focus */
@@ -40,6 +47,7 @@ body {
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 5px;
+    width: 100%;
   }
   
   .form-container button[type="submit"]:hover {
@@ -49,6 +57,7 @@ body {
   /* Styling for link buttons */
   .form-container a {
     color: #17a2b8;
+    text-decoration: none;
   }
   
   .form-container a:hover {
@@ -63,5 +72,15 @@ body {
   /* Custom styling for success messages (optional) */
   .success-message {
     color: #28a745;
+  }
+  
+  /* Gradient text title for form containers */
+  .form-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
