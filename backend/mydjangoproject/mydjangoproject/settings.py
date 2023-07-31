@@ -56,16 +56,6 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://django-project.jdhruv.com",
-    "http://127.0.0.1:8000",
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://django-project.jdhruv.com",
-    "http://127.0.0.1:8000",
-]
-
 ROOT_URLCONF = "mydjangoproject.urls"
 
 TEMPLATES = [
