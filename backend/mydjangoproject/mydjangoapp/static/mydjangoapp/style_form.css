@@ -1,0 +1,67 @@
+/* Dark Theme Styling */
+body {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+  
+  /* Styling for the form containers */
+  .form-container {
+    background-color: #2c3036;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 30px;
+  }
+  
+  /* Input field styling */
+  .form-container input[type="text"],
+  .form-container input[type="email"],
+  .form-container input[type="password"],
+  .form-container input[type="number"],
+  .form-container textarea {
+    background-color: #2c3036;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+  }
+  
+  /* Input field focus */
+  .form-container input[type="text"]:focus,
+  .form-container input[type="email"]:focus,
+  .form-container input[type="password"]:focus,
+  .form-container input[type="number"]:focus,
+  .form-container textarea:focus {
+    border-color: #17a2b8;
+  }
+  
+  /* Styling for submit buttons */
+  .form-container button[type="submit"] {
+    background-color: #17a2b8;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .form-container button[type="submit"]:hover {
+    background-color: #138496;
+  }
+  
+  /* Styling for link buttons */
+  .form-container a {
+    color: #17a2b8;
+  }
+  
+  .form-container a:hover {
+    color: #138496;
+  }
+  
+  /* Custom styling for error messages (optional) */
+  .error-message {
+    color: #dc3545;
+  }
+  
+  /* Custom styling for success messages (optional) */
+  .success-message {
+    color: #28a745;
+  }
+  

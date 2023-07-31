@@ -26,7 +26,8 @@ SECRET_KEY = "django-insecure-0i5p(ui)t@tvkqz_pnkn3qn(i_guf-cpt*hecwvf1%7p*2&832
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'django-project.jdhruv.com'
+    'django-project.jdhruv.com',
+    '127.0.0.1'
 ]
 
 
@@ -95,12 +96,12 @@ DATABASES = {
 
 CORS_ALLOWED_ORIGINS = [
     "https://django-project.jdhruv.com",
-    "http://127.0.0.1:8000",
+    "http://127.0.0.1",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://django-project.jdhruv.com",
-    "http://127.0.0.1:8000",
+    "http://127.0.0.1",
 ]
 
 # Password validation
