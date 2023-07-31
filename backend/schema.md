@@ -22,6 +22,7 @@
 
 # Mermaid diagram
 
+```mermaid
 classDiagram
     class Product {
         +int id
@@ -71,3 +72,4 @@ classDiagram
     SignupView --> User : creates
     LoginView --> User : uses
     LogoutView --> User : uses
+```
