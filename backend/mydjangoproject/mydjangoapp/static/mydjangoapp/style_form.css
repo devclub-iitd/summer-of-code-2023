@@ -6,7 +6,7 @@ body {
   }
   
   /* Center alignment for the form containers */
-  .form-container {
+  bpdy {
     background-color: #1a1a1a;
     padding: 20px;
     border-radius: 5px;
@@ -16,11 +16,11 @@ body {
   }
   
   /* Input field styling */
-  .form-container input[type="text"],
-  .form-container input[type="email"],
-  .form-container input[type="password"],
-  .form-container input[type="number"],
-  .form-container textarea {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
     background-color: #242424;
     border: 1px solid #ffffff;
     color: #ffffff;
@@ -31,16 +31,16 @@ body {
   }
   
   /* Input field focus */
-  .form-container input[type="text"]:focus,
-  .form-container input[type="email"]:focus,
-  .form-container input[type="password"]:focus,
-  .form-container input[type="number"]:focus,
-  .form-container textarea:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus {
     border-color: #17a2b8;
   }
   
   /* Styling for submit buttons */
-  .form-container button[type="submit"] {
+button[type="submit"] {
     background-color: #17a2b8;
     color: #ffffff;
     border: none;
@@ -50,32 +50,21 @@ body {
     width: 100%;
   }
   
-  .form-container button[type="submit"]:hover {
+button[type="submit"]:hover {
     background-color: #138496;
   }
   
   /* Styling for link buttons */
-  .form-container a {
+a {
     color: #17a2b8;
     text-decoration: none;
   }
   
-  .form-container a:hover {
+a:hover {
     color: #138496;
   }
   
-  /* Custom styling for error messages (optional) */
-  .error-message {
-    color: #dc3545;
-  }
-  
-  /* Custom styling for success messages (optional) */
-  .success-message {
-    color: #28a745;
-  }
-  
-  /* Gradient text title for form containers */
-  .form-container h2 {
+h2 {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
