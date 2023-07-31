@@ -1,0 +1,4 @@
+#Mon Jul 31 21:14:21 IST 2023
+base.0=C\:\\Projects\\DSOC\\summer-of-code-2023\\app\\my-app\\E_COMMERCE\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

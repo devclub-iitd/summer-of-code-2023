@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/layout/notification_template_part_time.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-core-1.6.0-12:/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/layout/custom_dialog.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-core-1.6.0-12:/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/layout/notification_template_icon_group.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-core-1.6.0-12:/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/layout/notification_action_tombstone.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-core-1.6.0-12:/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/layout/browser_actions_context_menu_page.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-browser-1.4.0-8:/layout/browser_actions_context_menu_page.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/layout/notification_template_part_chronometer.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-core-1.6.0-12:/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/layout/notification_action.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-core-1.6.0-12:/layout/notification_action.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/layout/browser_actions_context_menu_row.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-browser-1.4.0-8:/layout/browser_actions_context_menu_row.xml"
+    }
+]
