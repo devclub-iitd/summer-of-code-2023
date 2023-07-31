@@ -51,8 +51,12 @@ Colabs
 
 ## Deployment Link
 <!-- For app, build the apk/appbundle and add it in `releases` section of your GitHub Fork -->
+https://github.com/CodeGreatCommander/summer-of-code-2023/tree/main/app/my-app/E_COMMERCE/build/app/outputs/flutter-apk  
 <!-- For frontend, give link to the deployed .github.io links -->
+https://codegreatcommander.github.io/summer-of-code-2023/frontend/GitHubAPI/  
+https://codegreatcommander.github.io/summer-of-code-2023/frontend/website/e_commerce/build
 <!-- For backend, give link to the deployed server, as well as the link to the documentation -->
+https://codegreatcommander.iitd.site/e_commerce/
 <!-- For machine learning, give link to the notebooks, and if you were able to deploy then the link to the demo -->
 
 ## Demo Video
