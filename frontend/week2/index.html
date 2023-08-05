@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Summer of Code Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fdd6e3, #c1e1fd);
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    h2 {
+      color: #2b3e50;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .fork-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #3498db;
+    }
+
+    .branch-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #27ae60;
+    }
+
+    .commit-message {
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Summer of Code Dashboard</h2>
+    <div id="dashboard"></div>
+  </div>
+
+  <script>
+    // Function to fetch data from GitHub API
+    async function fetchData(url) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+        return await response.json();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    // Function to render the dashboard
+    async function renderDashboard() {
+      const repoURL = 'https://api.github.com/repos/devclub-iitd/summer-of-code-2023';
+      const forksURL = repoURL + '/forks';
+
+      const forksData = await fetchData(forksURL);
+      const dashboardElement = document.getElementById('dashboard');
+      dashboardElement.innerHTML = ''; // Clear loading text
+
+      forksData.forEach(async (fork) => {
+        const forkElement = document.createElement('div');
+        forkElement.classList.add('fork');
+        forkElement.innerHTML = `<h2>Fork: ${fork.full_name}</h2>`;
+        dashboardElement.appendChild(forkElement);
+
+        const branchesURL = fork.url + '/branches';
+        const branchesData = await fetchData(branchesURL);
+
+        branchesData.forEach(async (branch) => {
+          const branchElement = document.createElement('div');
+          branchElement.classList.add('branch');
+          branchElement.innerHTML = `<h3>Branch: ${branch.name}</h3>`;
+          forkElement.appendChild(branchElement);
+
+          const commitsURL = branch.commit.url + '/commits';
+          const commitsData = await fetchData(commitsURL);
+
+          const commitsList = document.createElement('ul');
+          commitsList.classList.add('commit-list');
+          branchElement.appendChild(commitsList);
+
+          commitsData.forEach((commit) => {
+            const commitItem = document.createElement('li');
+            commitItem.classList.add('commit-item');
+            commitItem.textContent = commit.commit.message;
+            commitsList.appendChild(commitItem);
+          });
+        });
+      });
+    }
+
+    // Call the function to render the dashboard using an async IIFE
+    (async () => {
+      await renderDashboard();
+    })();
+    // Use DOMContentLoaded event to ensure the JavaScript code runs after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', renderDashboard);
+
+  </script>
+</body>
+</html>
