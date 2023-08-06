@@ -1,0 +1,108 @@
+html, body {
+    margin: 0;
+    padding: 0;
+  }
+  
+
+/* Custom CSS for the Navbar */
+  .nav {
+    background-color: #7a6868;
+    color: #2e2b2b;
+    display: flex;
+    width:100%;
+    overflow: hidden;
+    
+  }
+  
+  .navbar {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbar a {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: medium;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+    color: rgb(38, 0, 126);
+  }
+  
+  /* Custom CSS for the Slideshow */
+  .carousel-img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .carousel-container {
+    height: 500px; /* Fixed height for the carousel container */
+    margin: 0 auto;
+    padding:10px;
+    width:90%;
+    overflow: hidden; /* Hide overflowing content */
+  }
+
+  .what-we-do h2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 50px;
+    text-decoration: underline;
+    color: maroon;
+  }
+  
+  /* Custom CSS for other sections */
+  .card {
+    text-align: center;
+    width: 300px;
+  }
+
+  .row{
+    align-items: right;
+    width:80%;
+  }
+
+  .card-content {
+    text-align: center;
+  }
+
+  .card img{
+    width: 200px;
+    margin: 0 auto;
+  }
+
+  .how-it-works h2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 30px;
+    text-decoration: underline;
+    color: maroon;
+  }
+  
+  .client-reviews h2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 30px;
+    text-decoration: underline;
+    color: maroon;
+  }
+
+  .client-reviews img{
+    width: 200px;
+    margin: 0;
+    border-radius: 50%;
+  }
+
+
+  .review {
+    text-align: center;
+  }
+  
+  .footer {
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    font-size: large;
+  }
+  

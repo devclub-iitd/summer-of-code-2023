@@ -1,0 +1,159 @@
+/* Navbar styles */
+nav {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar {
+    list-style: none;
+    display: flex;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+  
+  .navbar li {
+    margin-right: 20px;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  .navbar a:active {
+    color: rgb(61, 0, 152);
+  }
+  
+  .active {
+    font-weight: bold;
+  }
+  
+  /* Carousel styles */
+  .carousel {
+    padding-left: 100px;
+  }
+  
+  .carousel img {
+    width: 90%;
+  }
+  
+  .prev-btn,
+  .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .prev-btn {
+    left: 10px;
+  }
+  
+  .next-btn {
+    right: 10px;
+  }
+  
+  /* What we do section styles */
+  .what-we-do {
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .what-we-do h2 {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+  }
+  
+  .card img {
+    width: 200px;
+  }
+  
+  .card-content {
+    position: absolute;
+    bottom: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px;
+    width: 100%;
+  }
+  
+  .card-content h3,
+  .card-content p {
+    margin: 0;
+  }
+  
+  .card-content a {
+    color: lightblue;
+    text-decoration: none;
+  }
+  
+  /* How it works section styles */
+  .how-it-works {
+    text-align: center;
+    transform: translateY(80px);
+    padding: 40px 0;
+  }
+  
+  .how-it-works h2 {
+    margin-bottom: 20px;
+  }
+  
+  .how-it-works .card {
+    display: inline-block;
+    width: 30%;
+    margin: 0 10px;
+    color:rgb(4, 91, 50);
+    background-color: blanchedalmond;
+    text-align: center;
+  }
+  
+  /* Client reviews section styles */
+  .client-reviews {
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .client-reviews h2 {
+    margin-bottom: 20px;
+  }
+  
+  .review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+  
+  .review img {
+    width: 100px;
+    border-radius: 50%;
+  }
+  
+  .review p {
+    margin: 10px 0;
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
