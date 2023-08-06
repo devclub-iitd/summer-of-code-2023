@@ -51,13 +51,14 @@ html, body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 50px;
     text-decoration: underline;
+    text-align: center;
     color: maroon;
   }
   
   /* Custom CSS for other sections */
   .card {
     text-align: center;
-    width: 300px;
+    width: 200px;
   }
 
   .row{
@@ -77,6 +78,7 @@ html, body {
   .how-it-works h2{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 30px;
+    text-align: center;
     text-decoration: underline;
     color: maroon;
   }
@@ -85,6 +87,7 @@ html, body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 30px;
     text-decoration: underline;
+    text-align: center;
     color: maroon;
   }
 
@@ -105,4 +108,3 @@ html, body {
     display: flex;
     font-size: large;
   }
-  
