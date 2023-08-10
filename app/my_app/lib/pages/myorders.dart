@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../ApiService/ordersApi.dart';
 import '../Models/order.dart';
 import '../providers/product_provider.dart';
+import '../widgets/orders_item_widget.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({Key? key}) : super(key: key);
@@ -20,18 +20,14 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrdersState extends State<MyOrders> {
-  OrderApi orderApi=OrderApi();
-  bool isLoading=true;
+  OrderApi orderApi = OrderApi();
+  bool isLoading = true;
 
-
-  getOrders(String email){
-    orderApi.getMyOrders(email, context).then((value){
+  getOrders(String email) {
+    orderApi.getMyOrders(email, context).then((value) {
       Provider.of<ProductProvider>(context, listen: false).setOrders(value);
-      isLoading=false;
-      setState(() {
-
-      });
-
+      isLoading = false;
+      setState(() {});
     });
   }
 
@@ -40,25 +36,28 @@ class _MyOrdersState extends State<MyOrders> {
     getOrders(FirebaseAuth.instance.currentUser!.email!);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    final list=context.watch<ProductProvider>().orderList;
-    return  Scaffold(
+    final list = context.watch<ProductProvider>().orderList;
+    return Scaffold(
       backgroundColor: Colors.white,
-      appBar:  AppBar(
+      appBar: AppBar(
         automaticallyImplyLeading: false,
-        flexibleSpace:Padding(
-          padding: const EdgeInsets.only(top: 35.0,left: 10,right: 10),
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(top: 35.0, left: 10, right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                onTap:(){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: Card(
-                  elevation: 10,color: Colors.grey,
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  elevation: 10,
+                  color: Colors.grey,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
                     width: 50,
@@ -66,11 +65,17 @@ class _MyOrdersState extends State<MyOrders> {
                   ),
                 ),
               ),
-              Text("Orders",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 20),),
+              Text(
+                "Orders",
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500, fontSize: 20),
+              ),
               GestureDetector(
                 child: Card(
-                  elevation: 10,color: Colors.grey,
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                  elevation: 10,
+                  color: Colors.grey,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Container(
                     height: 50,
                     width: 50,
@@ -83,74 +88,65 @@ class _MyOrdersState extends State<MyOrders> {
         ),
         elevation: 0,
       ),
-      body: isLoading?const Center(child: CircularProgressIndicator(color: Colors.grey,),)
-          :(list.isNotEmpty)?Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: ListView.builder(
-              shrinkWrap: true,
-                itemCount: list.length,
-                itemBuilder: (context,i){
-                  final order=list[i];
-                  int items=0;
-                  for(var i=0;i<order.quantity.length;i++){
-                    items+=order.quantity[i];
-                  }
-                  return GestureDetector(
-                    onTap: (){
-                      nextScreen(context, OrderDetailPage(order: order));
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Container(
-                        height: 90,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(15))
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              height:70,
-                              width: 70,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(image: NetworkImage(order.products[0].image))
-                              ),
-                            ),
-                            const SizedBox(width: 15,),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(order.id,style: const TextStyle(color:Colors.blue),),
-                                Row(
-                                  children: [
-                                    Text("Rs. ${order.totalPrice.toString()}"),
-                                  ],
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(
+                color: Colors.grey,
+              ),
+            )
+          : (list.isNotEmpty)
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: list.length,
+                            itemBuilder: (context, i) {
+                              final order = list[i];
+                              int items = 0;
+                              for (var i = 0; i < order.quantity.length; i++) {
+                                items += order.quantity[i];
+                              }
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12.0),
+                                child: OrdersItemWidget(
+                                  order: order,
                                 ),
-                                Text("$items items "),
-                                Text( DateFormat.yMMMd().format(DateTime.fromMillisecondsSinceEpoch(order.orderedAt)))
-
-                              ],
-                            )
-                          ],
-                        ),
+                              );
+                            }),
+                      )
+                    ],
+                  ),
+                )
+              : Center(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                  );
-            }),
-          )
-        ],
-      ):Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 20,),
-            Container(height: 200,
-            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/e2.jpg"))),),
-            const SizedBox(height: 20,),
-            const Text("No orders placed",style: TextStyle(color: Colors.red,fontWeight: FontWeight.w500,fontSize: 22),),
-          ],
-        ),
-      ),
+                      Container(
+                        height: 200,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/e2.jpg"))),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "No orders placed",
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 22),
+                      ),
+                    ],
+                  ),
+                ),
     );
   }
 }
