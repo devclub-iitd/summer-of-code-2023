@@ -1,0 +1,231 @@
+/* Reset default margins and paddings for all elements */
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a default background color and font family */
+body {
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar styles */
+.nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.navbar {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Add margin to separate logo from links */
+}
+
+.navbar li {
+  margin-left: 20px;
+}
+
+.navbar li a {
+  color: #000000;
+  background-color: #ff9900;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 15px; /* Add padding to make the links more clickable */
+  border-radius: 5px; /* Add rounded corners for a uniform look */
+}
+
+.navbar li a.active {
+  background-color: #ff9900; /* Add background color for active link */
+}
+
+/* Add hover effect to the links */
+.navbar li a:hover {
+  background-color: #555;
+}
+
+/* Carousel styles */
+.carousel-container {
+  height: 600px; /* Set a fixed height for the carousel container */
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden; /* Hide any overflowing content (images) */
+}
+
+.carousel-inner {
+  height: 100%; /* Make the carousel-inner fill the carousel container */
+}
+
+.carousel-item {
+  height: 100%; /* Make each carousel item fill the carousel container */
+}
+
+.carousel-item img {
+  object-fit: cover; /* Scale the images to cover the carousel item, maintaining aspect ratio */
+  width: 100%; /* Make sure the image takes the full width of the carousel item */
+  height: 100%; /* Make sure the image takes the full height of the carousel item */
+}
+
+
+.carousel-control-prev, .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+/* What we do section styles */
+.what-we-do {
+  margin-top: 40px;
+}
+
+.what-we-do h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card img {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.card-content a {
+  display: block;
+  color: #ff9900;
+  text-decoration: none;
+}
+
+.card-content a:hover {
+  text-decoration: underline;
+}
+
+/* How it works section styles */
+.how-it-works {
+  margin-top: 40px;
+}
+
+.how-it-works h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.how-it-works .card {
+  border: none;
+  background-color: #f5f5f5;
+  padding: 20px;
+  text-align: center;
+}
+
+.how-it-works .card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.how-it-works .card p {
+  font-size: 14px;
+}
+
+/* Customer reviews section styles */
+.customer-reviews {
+  margin-top: 40px;
+}
+
+.customer-reviews h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.review {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.review img {
+  width: 50px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer p {
+  margin-top: 10px;
+}
+
+.footer img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar li {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .carousel-control-prev, .carousel-control-next {
+    font-size: 16px;
+  }
+
+  .what-we-do .col-md-4 {
+    flex-basis: 100%;
+  }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anime Sutoaa</title>
+  <link rel="stylesheet" type="text/css" href="assets/styles1.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="assets/logo.png" alt="Logo">
+      </div>
+      <ul class="navbar">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="carousel" id="carousel">
+    <img class="carousel-img" src="assets/image1.jpg" alt="Image 1">
+    <img class="carousel-img" src="assets/image2.jpg" alt="Image 2">
+    <button class="prev-btn">Previous</button>
+    <button class="next-btn">Next</button>
+  </section>
+
+  <section class="what-we-do">
+    <h2>What we do to help our customers in the digital era</h2>
+    <div class="card">
+      <img src="assets/card-image-1.jpg" alt="Card Image">
+      <div class="card-content">
+        <h3>Personal Recommendations:</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a href="#">Learn More</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/card-image-2.jpg" alt="Card Image">
+      <div class="card-content">
+        <h3>Convenient Payment</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a href="#">Learn More</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="assets/card-image-3.jpg" alt="Card Image">
+      <div class="card-content">
+        <h3>Reliable Delivery</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a href="#">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How it works</h2>
+    <div class="card">
+      <h3>Step 1</h3>
+      <p>Short and clear instruction</p>
+    </div>
+    <div class="card">
+      <h3>Step 2</h3>
+      <p>Short and clear instruction</p>
+    </div>
+    <div class="card">
+      <h3>Step 3</h3>
+      <p>Short and clear instruction</p>
+    </div>
+  </section>
+
+  <section class="client-reviews">
+    <h2>What our clients say</h2>
+    <div class="review">
+      <img src="assets/client-photo.jpg" alt="Client Photo">
+      <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo">
+    </div>
+    <p>&copy; 2023 Nandini</p>
+  </footer>
+
+  <script>
+    // JavaScript code for the slideshow functionality
+    let slideIndex = 0;
+    showSlides();
+  
+    function showSlides() {
+      let slides = document.getElementsByClassName("carousel-img");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 3000); // Change slide every 3 seconds (adjust as needed)
+    }
+  </script>
+  
+
+</body>
+</html>
