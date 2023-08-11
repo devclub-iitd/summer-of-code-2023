@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} URL Shortener {% endblock %}
+
+{% block content %}
+<form action="#" method="POST">
+    <div class="form-group">
+        <label for="url">Enter an https:// URL:</label>
+        <input type="text" name="nm" id="url" placeholder="https://devansh.com" size="50" required>
+    </div>
+    <br>
+    <label for="srl">Enter a Short URl:</label>
+    <input type="string" name="snm" id="srl" placeholder="hello.my"> <a>Skip To generate a Random Url</a>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+<hr>
+<div>
+    <a href="/data"><button type="button" class="btn btn-primary">Clicks</button></a>
+</div>
+
+{% if short_url%}
+<hr>
+<a>{{short_url}}</a>
+{% endif%}
+{% endblock %}
