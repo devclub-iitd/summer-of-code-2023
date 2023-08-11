@@ -1,0 +1,32 @@
+/* Reset default browser styles */
+body,
+h1,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the header */
+header {
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+/* Style the navigation bar */
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+/* Style the main content */
+main {
+    padding: 20px;
+}
+
+/* Style the footer */
+footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+

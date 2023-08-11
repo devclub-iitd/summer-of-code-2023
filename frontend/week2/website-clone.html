@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yuvraj - Your Online Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .product img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            margin: 0;
+        }
+
+        .product p {
+            margin-top: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            background-color: #333;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        #cart-container {
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        #checkout-button {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            background-color: #333;
+            color: #fff;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Yuvraj - Your Online Store</h1>
+    </header>
+    <main>
+        <div id="products-container">
+            <!-- Product listing will be dynamically added here -->
+        </div>
+
+        <div id="cart-container">
+            <h2>Shopping Cart</h2>
+            <ul id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </ul>
+            <p>Total: $<span id="cart-total">0.00</span></p>
+            <a href="#" id="checkout-button" class="button">Checkout</a>
+        </div>
+    </main>
+
+    <script>
+        // Sample product data
+        var products = [
+            {
+                name: "Product 1",
+                image: "product1.jpg",
+                price: 10.99
+            },
+            {
+                name: "Product 2",
+                image: "product2.jpg",
+                price: 19.99
+            },
+            {
+                name: "Product 3",
+                image: "product3.jpg",
+                price: 123.99
+            },
+            {
+                name: "Product 4",
+                image: "product4.jpg",
+                price: 23.99
+            },
+            {
+                name: "Product 5",
+                image: "product5.jpg",
+                price: 45.99
+            },
+            {
+                name: "Product 6",
+                image: "product6.jpg",
+                price: 678.99
+            },
+            {
+                name: "Product 7",
+                image: "product7.jpg",
+                price: 1998.99
+            } 
+        ];
+
+        var cartItems = [];
+
+        // Function to render products
+        function renderProducts() {
+            var productsContainer = document.getElementById("products-container");
+
+            // Clear existing products
+            productsContainer.innerHTML = "";
+
+            // Iterate over each product and create product elements
+            for (var i = 0; i < products.length; i++) {
+                var product = products[i];
+
+                var productElement = document.createElement("div");
+                productElement.className = "product";
+
+                var imageElement = document.createElement("img");
+                imageElement.src = product.image;
+                productElement.appendChild(imageElement);
+
+                var nameElement = document.createElement("h3");
+                nameElement.textContent = product.name;
+                productElement.appendChild(nameElement);
+
+                var priceElement = document.createElement("p");
+                priceElement.textContent = "Price: $" + product.price;
+                productElement.appendChild(priceElement);
+
+                var buyButton = document.createElement("a");
+                buyButton.href = "#";
+                buyButton.className = "button";
+                buyButton.textContent = "Buy";
+                buyButton.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    addToCart(product);
+                });
+                productElement.appendChild(buyButton);
+
+                productsContainer.appendChild(productElement);
+            }
+        }
+
+        // Function to add a product to the cart
+        function addToCart(product) {
+            cartItems.push(product);
+            updateCart();
+        }
+
+        // Function to update the cart
+        function updateCart() {
+            var cartItemsContainer = document.getElementById("cart-items");
+            var cartTotalElement = document.getElementById("cart-total");
+
+            // Clear existing cart items
+            cartItemsContainer.innerHTML = "";
+
+            // Iterate over each cart item and create cart item elements
+            for (var i = 0; i < cartItems.length; i++) {
+                var cartItem = cartItems[i];
+
+                var cartItemElement = document.createElement("li");
+                cartItemElement.textContent = cartItem.name;
+                cartItemsContainer.appendChild(cartItemElement);
+            }
+
+            // Calculate and display the cart total
+            var cartTotal = cartItems.reduce(function (total, item) {
+                return total + item.price;
+            }, 0);
+            cartTotalElement.textContent = cartTotal.toFixed(2);
+        }
+
+        // Render initial products
+        renderProducts();
+    </script>
+</body>
+
+</html>

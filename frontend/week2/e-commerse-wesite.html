@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yuvraj - Your Online Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .product img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            margin: 0;
+        }
+
+        .product p {
+            margin-top: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            background-color: #333;
+            color: #fff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Yuvraj - Your Online Store</h1>
+    </header>
+    <main>
+        <div id="products-container">
+            <!-- Product listing will be dynamically added here -->
+        </div>
+    </main>
+
+    <script>
+        // Sample product data
+        var products = [
+            {
+                name: "Product 1",
+                image: "product1.jpg",
+                price: 10.99
+            },
+            {
+                name: "Product 2",
+                image: "product2.jpg",
+                price: 19.99
+            },
+            {
+                name: "Product 3",
+                image: "product3.jpg",
+                price: 14.99
+            }
+        ];
+
+        // Function to render products
+        function renderProducts() {
+            var productsContainer = document.getElementById("products-container");
+
+            // Clear existing products
+            productsContainer.innerHTML = "";
+
+            // Iterate over each product and create product elements
+            for (var i = 0; i < products.length; i++) {
+                var product = products[i];
+
+                var productElement = document.createElement("div");
+                productElement.className = "product";
+
+                var imageElement = document.createElement("img");
+                imageElement.src = product.image;
+                productElement.appendChild(imageElement);
+
+                var nameElement = document.createElement("h3");
+                nameElement.textContent = product.name;
+                productElement.appendChild(nameElement);
+
+                var priceElement = document.createElement("p");
+                priceElement.textContent = "Price: $" + product.price;
+                productElement.appendChild(priceElement);
+
+                var buyButton = document.createElement("a");
+                buyButton.href = "#";
+                buyButton.className = "button";
+                buyButton.textContent = "Buy";
+                productElement.appendChild(buyButton);
+
+                productsContainer.appendChild(productElement);
+            }
+        }
+
+        // Render initial products
+        renderProducts();
+    </script>
+</body>
+
+</html>
+
