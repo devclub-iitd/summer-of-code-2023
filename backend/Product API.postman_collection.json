@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "2412c1f8-9085-49b6-856d-9da18969aeb0",
+		"name": "Product API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12706153"
+	},
+	"item": [
+		{
+			"name": "List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product-list/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product-list",
+						""
+					]
+				},
+				"description": "Get all products:\n\n- Purpose: Retrieve a list of all products.\n- Inputs: None.\n- Outputs: Returns a JSON response containing details of all products, including their names, prices, and other attributes."
+			},
+			"response": []
+		},
+		{
+			"name": "Detail View",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product-detail/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product-detail",
+						"1",
+						""
+					]
+				},
+				"description": "Get a single product (by id):\n\n- Purpose: Retrieve details of a specific product based on its ID.\n- Inputs: ID of the product as a URL parameter.\n- Outputs: Returns a JSON response containing details of the requested product, including its name, price, and other attributes."
+			},
+			"response": []
+		},
+		{
+			"name": "Add",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5MjQ1ODY5LCJpYXQiOjE2ODkyNDU1NjksImp0aSI6IjJiMmZhYzg3YTVlYjRlZGJhMzA2ZjkwMWM0M2U0YjIyIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJyaXNoaWsifQ.KNeWD2bnS5K9p28vpOUp62cE0XyK7kpS1N4rctodgF4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "testing",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "testing",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "12.54",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product-add/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product-add",
+						""
+					]
+				},
+				"description": "Add a product:\n\n- Purpose: Create a new product and add it to the database.\n- Inputs: Product details, such as name, price, and other attributes, provided in the request body as JSON.\n- Outputs: If the input is valid, returns a JSON response with the details of the newly created product. Otherwise, returns an error message."
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "rishik",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/token/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				},
+				"description": "Login:\n\n- Purpose: Obtain a JSON Web Token (JWT) by providing valid login credentials.\n- Inputs: User credentials (username and password) provided in the request body as JSON.\n- Outputs: If the credentials are valid, returns a JWT access token and a refresh token as a JSON response. The access token can be used for authentication in subsequent requests."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5MjQ1ODY5LCJpYXQiOjE2ODkyNDU1NjksImp0aSI6IjJiMmZhYzg3YTVlYjRlZGJhMzA2ZjkwMWM0M2U0YjIyIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJyaXNoaWsifQ.KNeWD2bnS5K9p28vpOUp62cE0XyK7kpS1N4rctodgF4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product-delete/8/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product-delete",
+						"8",
+						""
+					]
+				},
+				"description": "Delete a product:\n\n- Purpose: Delete a product from the database.\n- Inputs: ID of the product as a URL parameter.\n- Outputs: If the product exists and the requester is the product owner, the product is deleted, and a success response with status code 204 (No Content) is returned. Otherwise, an appropriate error response is returned."
+			},
+			"response": []
+		},
+		{
+			"name": "Token Refresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "refresh",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MTgzNzU2OSwiaWF0IjoxNjg5MjQ1NTY5LCJqdGkiOiI1MWExOGNkMzljMmU0OTU4YTVkZGYxZTU3NjlkNGYxYiIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoicmlzaGlrIn0.Xz0liJSE3kUQOAHikflwxcnBxw-zvPie-cdIEFpzVu4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/token/refresh/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"token",
+						"refresh",
+						""
+					]
+				},
+				"description": "Token Refresh:\n\n- Purpose: Obtain a new access token by providing a valid refresh token.\n- Inputs: Refresh token provided in the request body as JSON.\n- Outputs: If the refresh token is valid and has not expired, a new access token is generated and returned in a JSON response. This allows the user to extend their authenticated session without re-entering their credentials."
+			},
+			"response": []
+		},
+		{
+			"name": "Purchase",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5MjQ2MzE3LCJpYXQiOjE2ODkyNDU1NjksImp0aSI6ImIzMzU1YTMzNTNjNjQwOGI4ZjAzNzk0NzAxNDVhODUzIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJyaXNoaWsifQ.-aHxpYHqQUFrTQd06-vjwvVA31__v7bfDTSNTAuhORo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/product-purchase/2/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"product-purchase",
+						"2",
+						""
+					]
+				},
+				"description": "Purchase a product:\n\n- Purpose: Allow a user to purchase a product.\n- Inputs: ID of the product as a URL parameter.\n- Outputs: If the product exists and the requester is not the product owner, the user can purchase the product. The purchase is recorded, and a success response with status code 200 is returned. However, if the user has already purchased the product or is the product owner, appropriate error responses are returned."
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testing",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "testing@testing.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signup",
+						""
+					]
+				},
+				"description": "Signup:\n\n- Purpose: Register a new user account.\n- Inputs: User details, including username, email, and password, provided in the request body as JSON.\n- Outputs: If the input is valid, a new user account is created, and a success response is returned. The user can then use their credentials to login and obtain an access token."
+			},
+			"response": []
+		}
+	]
+}
