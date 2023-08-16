@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Rockerz 450 POLO",
+    "price": 3990,
+    "desc": "Rockerz 450 Over Ear Bluetooth Headphones",
+    "rating": "4.2",
+    "image": "https://cdn.shopify.com/s/files/1/0057/8938/4802/products/eb8e0fbd-c412-48b3-9c91-5b49ddf35800_931c22f0-d145-4334-9c51-e394ed8bb90b_300x.png?v=1678075255"
+  },
+  {
+    "name": "Rockerz 558",
+    "price": 2299,
+    "desc": "boAt | Sunburn Rockerz 558 - Wireless Bluetooth Headphones",
+    "rating": "4.5",
+    "image":"https://cdn.shopify.com/s/files/1/0057/8938/4802/files/main2_ba58a7c3-19e5-4c05-93b7-286b833f62ea_300x.png?v=1684931893"
+  },
+  {
+    "name": "JBL Glide 500",
+    "price": 999,
+    "desc": "nfinity (JBL Glide 500, 20 Hrs Playtime with Quick Charge, Wireless On Ear Headphone with Mic, Deep Bass, Dual Equalizer, Bluetooth 5.0 with Voice Assistant Support (Black)",
+    "image":"https://m.media-amazon.com/images/I/71CM0FCo3BL._AC_UY327_FMwebp_QL65_.jpg",
+    "rating": "3.2"
+  },
+  {
+    "name":"BassHeads 900" ,
+    "price":849 ,
+    "desc": "boAt BassHeads 900 On-Ear Wired Headphone with Mic",
+    "rating": "4.1",
+    "image":"https://m.media-amazon.com/images/I/61xeIT6UHrL._AC_UY327_FMwebp_QL65_.jpg"
+  },
+  {
+    "name": "Zeb-Thunder",
+    "price":599 ,
+    "desc": "ZEBRONICS Zeb-Thunder Bluetooth Wireless Over The Ear Headphone FM, mSD, 9 hrs Playback with Mic (Blue with Red)",
+    "rating": "3.8",
+    "image":"https://m.media-amazon.com/images/I/61HGPQnvmbL._AC_UY327_FMwebp_QL65_.jpg"
+  }
+]
