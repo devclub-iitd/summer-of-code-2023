@@ -1,0 +1,1 @@
+dataset url : https://www.kaggle.com/datasets/vikashrajluhaniwal/fashion-images
