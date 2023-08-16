@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-4:/layout/notification_action.xml",
+        "source": "io.flutter.plugins.firebase.firestore.cloud_firestore-core-1.6.0-11:/layout/notification_action.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-4:/layout/custom_dialog.xml",
+        "source": "io.flutter.plugins.firebase.firestore.cloud_firestore-core-1.6.0-11:/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-4:/layout/notification_template_part_time.xml",
+        "source": "io.flutter.plugins.firebase.firestore.cloud_firestore-core-1.6.0-11:/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-4:/layout/notification_template_part_chronometer.xml",
+        "source": "io.flutter.plugins.firebase.firestore.cloud_firestore-core-1.6.0-11:/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-4:/layout/notification_template_icon_group.xml",
+        "source": "io.flutter.plugins.firebase.firestore.cloud_firestore-core-1.6.0-11:/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-4:/layout/notification_action_tombstone.xml",
+        "source": "io.flutter.plugins.firebase.firestore.cloud_firestore-core-1.6.0-11:/layout/notification_action_tombstone.xml"
+    }
+]

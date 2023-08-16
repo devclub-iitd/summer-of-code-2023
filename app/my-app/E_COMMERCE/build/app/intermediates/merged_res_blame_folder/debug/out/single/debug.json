@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.example.e_commerce.app-merged_res-8:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.example.e_commerce.app-main-1:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.e_commerce.app-merged_res-8:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.example.e_commerce.app-main-1:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.e_commerce.app-merged_res-8:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.example.e_commerce.app-main-1:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.e_commerce.app-merged_res-8:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.example.e_commerce.app-main-1:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.e_commerce.app-merged_res-8:/drawable-v21_launch_background.xml.flat",
+        "source": "com.example.e_commerce.app-main-1:/drawable-v21/launch_background.xml"
+    },
+    {
+        "merged": "com.example.e_commerce.app-merged_res-8:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.example.e_commerce.app-main-1:/mipmap-xhdpi/ic_launcher.png"
+    }
+]

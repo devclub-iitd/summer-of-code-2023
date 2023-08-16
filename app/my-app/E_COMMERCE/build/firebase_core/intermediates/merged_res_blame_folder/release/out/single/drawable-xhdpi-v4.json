@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-4:/drawable-xhdpi-v4/notification_bg_normal.9.png",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-10:/drawable-xhdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-4:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-10:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-4:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-10:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-4:/drawable-xhdpi-v4/notification_bg_low_normal.9.png",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-10:/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-4:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-10:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
+    }
+]

@@ -1,0 +1,9 @@
+#contactus {
+    background: linear-gradient(
+        180deg,
+        rgba(74, 153, 211, 0.20000000298023224) 7.81%,
+        rgba(74, 153, 211, 0) 100%
+      ),
+      #fff;
+    box-shadow: 4px 4px 4px 0px rgba(75, 0, 129, 0.26);
+}

@@ -1,0 +1,8 @@
+.nav-link#home.active,
+#about.active,
+#contact.active a:visited{
+    color:#4A99D3!important;
+}
+#home,#about,#contact{
+    color:black
+}

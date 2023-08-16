@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/color/common_google_signin_btn_text_dark.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-jetified-play-services-base-18.0.1-13:/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/color/common_google_signin_btn_tint.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-jetified-play-services-base-18.0.1-13:/color/common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "io.flutter.plugins.firebase.auth.firebase_auth-merged_res-4:/color/common_google_signin_btn_text_light.xml",
+        "source": "io.flutter.plugins.firebase.auth.firebase_auth-jetified-play-services-base-18.0.1-13:/color/common_google_signin_btn_text_light.xml"
+    }
+]
